@@ -4,7 +4,7 @@
 #+OPTIONS: html-postamble:nil
 #+LANGUAGE: zh-CN
 #+OPTIONS:   ^:{}
-#+TITLE: 操作系统安装
+#+TITLE:   Install System
 
 ** 学习装系统
 #1. 下载Centos-7镜像
