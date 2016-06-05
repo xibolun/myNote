@@ -1,8 +1,16 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: 操作系统安装
+
 ** 学习装系统
-1. 下载Centos-7镜像
-2. 创建硬盘
-3. 安装系统
-4. 下载vnc连接配置：http://www.realvnc.com/download/viewer/
+#1. 下载Centos-7镜像
+#2. 创建硬盘
+#3. 安装系统
+ 4. 下载vnc连接配置：http://www.realvnc.com/download/viewer/
 
 *** 硬盘创建
 - 创建硬盘
