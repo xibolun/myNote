@@ -1,4 +1,0 @@
-* TODO java todo清单
-1. Java net里面的一些接口，获取主机名，ip地址等信息
-2. Java security keystore里面的接口
-3. 

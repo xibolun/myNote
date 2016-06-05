@@ -1,9 +1,0 @@
-** FastWiki
-https://github.com/alibaba/fastjson/wiki
-
-** 测试
-1. 
-#+BEGIN_SRC 
-    /** 只支持序列化格式化日期，反序列化时无法格式化 */
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss.SSS")
-#+END_SRC

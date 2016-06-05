@@ -1,5 +1,0 @@
-** Spring Data Jpa环境搭建
-*** Maven库下载 
-*** 注意事项
-1. 配置文件必须为persistence.xml，并存放于META_INF目录下
-2. 
