@@ -1,0 +1,26 @@
+** rpm打包工具
+
+查看fpm命令help
+fpm -h | less
+
+fpm打包命令：
+fpm -f \
+    -s dir \
+    -t rpm \
+    -n $_app \
+    -v $_date \
+    -a x86_64 \
+    -m yunji@idcos.com \
+    --license GPLv3+ \
+    --vendor CentOS \
+    --description none \
+    --url none \
+    --prefix /usr/yunji/$_app \
+    $(for i in $_depend; do echo -n "--depends $i "; done) \
+    --after-install postinstall.sh \
+    --before-remove preuninstall.sh \
+    --after-remove postuninstall.sh \
+    -C ${_home}/${_app}/temp
+
+rpm包介绍
+https://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/Packagers_Guide/index.html

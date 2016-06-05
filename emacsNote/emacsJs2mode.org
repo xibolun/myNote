@@ -1,0 +1,19 @@
+** emacs Helm学习
+*** 使用操作
++ C-s 在当前文件当中搜索，需要配置helm-occur
++ C-c h / 当前目录搜索
+
+** emacsJs2 Mode学习
+
+*** 安装配置
+
+*** 使用
+1. 替换：M-x replace-string 按提示写入参数
+2. 
+
+
+
+
+
+*** 参考
+http://www.saltycrane.com/blog/2008/11/emacs-notes/

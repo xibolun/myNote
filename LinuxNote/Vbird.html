@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Vbird</title>
+<!-- 2015-10-04 Sun 10:53 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="彭甘雨" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Vbird</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. SHELL</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> SHELL</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>echo $$ 查看当前bashPID
+</li>
+<li>echo ?$ 查看上一命令返回值,0代表成功
+</li>
+<li>name=pengganyu 设置变量，=左右不能有空格，命名合法
+</li>
+<li>unset name 取消变量
+</li>
+<li>"" 与''是有区别的； echo "$name"与echo '$name'，后者返回$name
+</li>
+<li>PS1 提示字符配置界面
+</li>
+<li>read -pt 让用户自行录入变量值，修改变量内容
+</li>
+<li>declare -rx name  将name设置为环境变量，并且不可修改
+<ol class="org-ol">
+<li>declare +x name解除修改
+</li>
+<li>declare -i name 将name的值转换为int输出
+</li>
+</ol>
+</li>
+<li>array[index]=value 数组赋值；  echo ${array[index]} 输出数组
+</li>
+<li>变量的删除，替换，替代操作  
+</li>
+</ol>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">变量</th>
+<th scope="col" class="left">符号</th>
+<th scope="col" class="left">说明</th>
+<th scope="col" class="left">例子</th>
+<th scope="col" class="left">输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">name=pengganyu</td>
+<td class="left">*</td>
+<td class="left">通用匹配符</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">name=pengganyu</td>
+<td class="left">#</td>
+<td class="left">从变量的最前面开始删除符合文字最短的元素</td>
+<td class="left">echo ${name#*g}</td>
+<td class="left">ganyu</td>
+</tr>
+
+<tr>
+<td class="left">name=pengganyu</td>
+<td class="left">##</td>
+<td class="left">从变量的最前面开始删除符合文字最长的元素</td>
+<td class="left">echo ${name##*g}</td>
+<td class="left">anyu</td>
+</tr>
+
+<tr>
+<td class="left">name=pengganyu</td>
+<td class="left">%</td>
+<td class="left">从变量的最后面开始删除符合文字最短的元素</td>
+<td class="left">echo ${name%g*}</td>
+<td class="left">peng</td>
+</tr>
+
+<tr>
+<td class="left">name=pengganyu</td>
+<td class="left">%%</td>
+<td class="left">从变量的最后面开始删除符合文字最长的元素</td>
+<td class="left">echo ${name%%g*}</td>
+<td class="left">pen</td>
+</tr>
+
+<tr>
+<td class="left">name=pengganyu</td>
+<td class="left">/</td>
+<td class="left">替换变量当中第一个元素</td>
+<td class="left">echo ${name/g/y}</td>
+<td class="left">penyganyu</td>
+</tr>
+
+<tr>
+<td class="left">name=pengganyu</td>
+<td class="left">//</td>
+<td class="left">替换变量当中全部的元素</td>
+<td class="left">echo ${name//g/y}</td>
+<td class="left">penyyanyu</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">变量配置方式</th>
+<th scope="col" class="left">str未配置</th>
+<th scope="col" class="left">str为空</th>
+<th scope="col" class="left">str非空已配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">var=${str-expr}</td>
+<td class="left">expr</td>
+<td class="left">&#xa0;</td>
+<td class="left">$str</td>
+</tr>
+
+<tr>
+<td class="left">var=${str+expr}</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">$str</td>
+</tr>
+
+<tr>
+<td class="left">var=${str=expr}</td>
+<td class="left">expr;str=expr</td>
+<td class="left">&#xa0;</td>
+<td class="left">$str</td>
+</tr>
+
+<tr>
+<td class="left">var=${str?expr}</td>
+<td class="left">expr输出至错误</td>
+<td class="left">&#xa0;</td>
+<td class="left">$str</td>
+</tr>
+
+<tr>
+<td class="left">var=${str:-expr}</td>
+<td class="left">expr</td>
+<td class="left">expr</td>
+<td class="left">$str</td>
+</tr>
+
+<tr>
+<td class="left">var=${str:+expr}</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">$str</td>
+</tr>
+
+<tr>
+<td class="left">var=${str:=expr}</td>
+<td class="left">expr;str=expr</td>
+<td class="left">expr;str=expr</td>
+<td class="left">$str</td>
+</tr>
+
+<tr>
+<td class="left">var=${str:?expr}</td>
+<td class="left">expr输出至错误</td>
+<td class="left">exper输出至错误</td>
+<td class="left">$str</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 彭甘雨</p>
+<p class="date">Created: 2015-10-04 Sun 10:53</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

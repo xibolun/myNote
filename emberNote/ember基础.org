@@ -1,0 +1,11 @@
+[[https://www.twilio.com/blog/2015/08/getting-started-with-ember-js-2-0-using-ember-cli.html][ember基础介绍]]
+
+** 文件结构：
+- ember-cli-build.js：引入外部css和js
+- bower.json：ember的bower下载配置文件
+- app：业务代码
+
+
+
+
+

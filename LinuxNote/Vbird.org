@@ -1,0 +1,369 @@
+** SHELL
+*** 基础学习
+1) echo $$ 查看当前bashPID
+2) echo $? 查看命令退出的状态,0代表成功
+3) name=pengganyu 设置变量，=左右不能有空格，命名必须合法
+4) unset name 取消变量
+5) "" 与''是有区别的； echo "$name"与echo '$name'，后者返回$name
+6) PS1 提示字符配置界面
+7) read -pt 让用户自行录入变量值，修改变量内容
+8) declare -rx name  将name设置为环境变量，并且不可修改
+   1) declare +x name解除修改
+   2) declare -i name 将name的值转换为int输出
+9) array[index]=value 数组赋值；  echo ${array[index]} 输出数组
+10) 变量的删除，替换，替代操作
+|----------------+------+------------------------------------------+-------------------+-----------|
+| 变量           | 符号 | 说明                                     | 例子              | 输出      |
+|----------------+------+------------------------------------------+-------------------+-----------|
+| name=pengganyu | *    | 通用匹配符                               |                   |           |
+| name=pengganyu | #    | 从变量的最前面开始删除符合文字最短的元素 | echo ${name#*g}   | ganyu     |
+| name=pengganyu | ##   | 从变量的最前面开始删除符合文字最长的元素 | echo ${name##*g}  | anyu      |
+| name=pengganyu | %    | 从变量的最后面开始删除符合文字最短的元素 | echo ${name%g*}   | peng      |
+| name=pengganyu | %%   | 从变量的最后面开始删除符合文字最长的元素 | echo ${name%%g*}  | pen       |
+| name=pengganyu | /    | 替换变量当中第一个元素                   | echo ${name/g/y}  | penyganyu |
+| name=pengganyu | //   | 替换变量当中全部的元素                   | echo ${name//g/y} | penyyanyu |
+|----------------+------+------------------------------------------+-------------------+-----------|
+
+|------------------+----------------+-----------------+---------------|
+| 变量配置方式     | str未配置      | str为空         | str非空已配置 |
+|------------------+----------------+-----------------+---------------|
+| var=${str-expr}  | expr           |                 | $str          |
+| var=${str+expr}  |                |                 | $str          |
+| var=${str=expr}  | expr;str=expr  |                 | $str          |
+| var=${str?expr}  | expr输出至错误 |                 | $str          |
+| var=${str:-expr} | expr           | expr            | $str          |
+| var=${str:+expr} |                |                 | $str          |
+| var=${str:=expr} | expr;str=expr  | expr;str=expr   | $str          |
+| var=${str:?expr} | expr输出至错误 | exper输出至错误 | $str          |
+|------------------+----------------+-----------------+---------------|
+
+1) alias
+   1) alias 列出所有存在别名的命令
+   2) alias mv='mv -i'  设置命令别名
+   3) unalias mv 取消命令别名
+2) history
+   1) history 列出shell操作历史
+   2) history 3 列出最近3个的操作历名
+   3) !+id 运行id号命令，此Id号为history当中的id号
+   4) !! 运行上一条命令，相当于Ctrl+p或方向上键
+   5) !al 运行最近以al开头的命令
+3) /etc/motd 设置登陆shell后的显示信息，root用户展示给其他用户的
+4) /etc/issue 普通登陆shell后的显示信息
+5) /etc/issue.net telnet远程登陆shellr后的显示信息
+6) ll > text  将ll输出覆盖写入text，若text不存在，自动创建
+7) ll >> text  将ll输出累加写入text
+8) ll 2> text   将ll错误输出覆盖写入text
+9) ll 2>> text   将ll错误输出累加写入text
+10) man fdsf 2> /dev/null 将错误输出到null，但/dev/null不会记录错误日志，可用于过滤错误日志
+11) cat > test << ~/.bashrc  将.bashrc的文件内容写入创建好的test
+12) &&与||
+    1) cmd1 && cmd2 若cmd1执行成功，运行cmd2
+    2) cmd1 || cmd2 若cmd1执行失败，执行cmd2;执行成功，不执行cmd2
+    3) cmd1 && cmd2 || cmd3
+    4) cmd1 || cmd2 || cmd3
+13) cat ~/.bashrc | wc  显示.bashrc里面有多少行，字数，字符数
+14) tee
+    1) echo "hello" | tee test  创建test并将hello覆盖添加到test中
+    2) echo "hello add" | tee -a test
+15) test命令：
+    1) test -e file 用于检测一个文件是否存在，但没有输出结果
+    2) test -e file && echo "exist" || "not exist"
+    3) test -f 测试档名是否为文件
+    4) test -d 测试档名是否为目录
+    5) test -r/w/x/ 测试档名是否可读/写/执行
+    6) test -s 测试档名非空白文件
+    7) test -nt 测试file1是否比file2新  newer than
+    8) test -ot 测试fiel1是否比file2旧  older than
+    9) test -ef 测试fiel1是否与fiel2相同
+    10) -a 相当于&&
+    11) -o 相同于||
+    12) ! 非
+    ......
+16) 判断符号[]
+    1) [ $name ]; echo $?   判断name是否存在，若存在返回0，不存在返回1
+    2) [ $name == $age ]; echo $?     注意[]内两边有空格
+
+*** if then case学习
+**** IF
+#+BEGIN_SRC shell
+read -p "Please input Date: " date_d
+
+if [ "$date_d" == "" ]; then
+        echo "you should input param"
+        exit 1
+fi
+echo $date_d
+if [ "$date_d" == "one" ]; then
+        echo "you input one"
+        exit 0
+fi
+if [ "$date_d" == "two" ]; then
+        echo "you input two"
+        exit 0
+fi
+#+END_SRC
+***** 说明
+1. 以if开头以fi结尾
+2. 判断== 两边需要有空格
+3. $date_d 需要用“”
+
+**** CASE
+***** 代码片段
+#+BEGIN_SRC shell
+function printit(){
+        echo -n "you input word is : "
+}
+
+case $1 in
+ "one")
+        printit; echo $1 | tr 'a-z' 'A-Z'
+        ;;
+ "two")
+        printit; echo $1 | tr 'a-z' 'A-Z'
+        ;;
+ *)
+        echo "you should input param"
+        ;;
+esac
+#+END_SRC
+*****  说明：
+- tr后面是两个参数中间存在空格
+- case开头esac结尾
+- 每一项的最后都需要有;;来结束
+- *) 相当于其他语言的default
+
+*** 循环学习
+**** while
+#+BEGIN_SRC shell
+s=0
+i=0
+while [ "$i" != "100" ]
+do
+        i=$(($i+1))
+        s=$(($s+$i))
+done
+echo "the result ===> $s"
+#+END_SRC
+
+**** do...while
+#+BEGIN_SRC shell
+until [ "$1" == "one" ]
+do
+        echo "until you input one"
+        exit 0
+done
+#+END_SRC
+
+**** for
+#+BEGIN_SRC shell
+s=0
+for i in $(seq 1 100)
+do
+        s=$(($i+$s))
+done
+echo "the result is $s"
+#+END_SRC
+
+#+BEGIN_SRC shell
+s=0
+for((i=1;i<=$1;i=i+1))
+do
+        s=$(($s+$i))
+done
+echo "the result is $s"
+#+END_SRC       
+
+*** shell debug
+1. sh -n：不执行shell脚本，查看shell是否存在问题
+2. sh -v：将shell内容打印
+3. sh -x：运行脚本，并实时输出脚本内容及执行信息
+* Linux使用者管理
+** 账号与群组
+1. /etc/passwd：用来存放user信息
+2. /etc/shadow：用来存放user的密码
+3. /etc/group：用来存放group信息
+4. /etc/gshadow：用来存放group的shadow信息
+** 账号管理
+*** 创建用户
+**** useradd命令
+1. -u 指定用户uid
+2. -g 指定用户gid
+3. -D 查看创建用户的默认参数
+
+**** 用户创建与查看
+
+#+BEGIN_SRC shell
+1. 创建用户
+[root@localhost home]# useradd yunji
+
+2. 查看用户信息
+[root@localhost home]# grep yunji /etc/passwd /etc/shadow /etc/group                     
+/etc/passwd:yunji:x:1002:1003::/home/yunji:/bin/bash
+/etc/shadow:yunji:!!:16672:0:99999:7:::
+/etc/group:yunji:x:1003:
+
+3. 修改用户密码
+[root@localhost home]# passwd yunji更改用户 yunji 的密码 。
+新的 密码：
+重新输入新的 密码：
+passwd：所有的身份验证令牌已经成功更新。
+
+4. 再次查看用户信息
+[root@localhost home]# grep yunji /etc/passwd /etc/shadow /etc/group
+/etc/passwd:yunji:x:1002:1003::/home/yunji:/bin/bash
+/etc/shadow:yunji:$6$LglkJeL3$j3LYFBunaa71flFwu9sp0wmBqdMs3kFpotN2PUFBtFXBd.jbq5YmN.rigBVP/iuai6Sn0sdp12HH.py6zWr3m/:16672:0:99999:7:::
+/etc/group:yunji:x:1003:
+
+5. 用新建的用户登录
+ ~  ssh yunji@10.211.55.8
+yunji@10.211.55.8's password: 
+[yunji@localhost home]$ ll
+总用量 0
+drwxr-xr-x. 3 root  root  24 8月  25 16:55 pengganyu
+drwxr-xr-x. 2 root  root   6 8月  25 19:45 pgy
+drwx------. 2 pgy2  pgy2  59 8月  25 19:33 pgy2
+drwx------. 2 yunji yunji 59 8月  25 19:46 yunji
+
+6. 登录root账号修改用户密码
+[root@localhost ~]# echo "123" | passwd --stdin yunji
+更改用户 yunji 的密码 。
+passwd：所有的身份验证令牌已经成功更新。
+
+7. 删除用户
+[root@localhost home]# userdel -r pgy
+-r 连主目录一同删除
+#+END_SRC
+
+说明：
+1. 此刻的用户是不能使用的，因为shadow里面是没有密码的
+2. 用户默认创建的时候会在/home目录下以用户名做为一个主目录
+3. 默认创建会在gid当中创建一个与user一样的组名称
+4. 当修改了密码之后，就可以在shadow里面看到密码的密文
+5. 当以新建的用户进来之后，权限自动切换至新建的用户
+
+**** passwd参数
++ -S：用户的状态
+#+BEGIN_SRC sehll
+[root@localhost ~]# passwd -S yunji
+yunji PS 2015-08-25 0 99999 7 -1 (密码已设置，使用 SHA512 算法。)
+#+END_SRC
+
++ -l：锁定用户密码：在密码前面添加!!
+#+BEGIN_SRC shell
+[root@localhost ~]# grep yunji /etc/shadow
+yunji:$6$rpQH/xUu$wr.DX9Vp/GNWGxR1gZH9S8.OAeZnBILtnTSFpJBNm2aaF0CiQxeVPygntPNfleAZPJY/0nEj2SfWtr/.pJrn.0:16672:0:99999:7:::
+[root@localhost ~]# passwd -l yunji
+锁定用户 yunji 的密码 。
+passwd: 操作成功
+[root@localhost ~]# passwd -S yunji
+yunji LK 2015-08-25 0 99999 7 -1 (密码已被锁定。)
+[root@localhost ~]# grep yunji /etc/shadow
+yunji:!!$6$rpQH/xUu$wr.DX9Vp/GNWGxR1gZH9S8.OAeZnBILtnTSFpJBNm2aaF0CiQxeVPygntPNfleAZPJY/0nEj2SfWtr/.pJrn.0:16672:0:99999:7:::
+#+END_SRC
+说明：锁定密码相当于在密码前面添加了!!
+
++ -u：解除锁定
+#+BEGIN_SRC shell
+[root@localhost ~]# passwd -u yunji
+解锁用户 yunji 的密码。
+passwd: 操作成功
+[root@localhost ~]# passwd -S yunji
+yunji PS 2015-08-25 0 99999 7 -1 (密码已设置，使用 SHA512 算法。)
+[root@localhost ~]# grep yunji /etc/shadow
+yunji:$6$rpQH/xUu$wr.DX9Vp/GNWGxR1gZH9S8.OAeZnBILtnTSFpJBNm2aaF0CiQxeVPygntPNfleAZPJY/0nEj2SfWtr/.pJrn.0:16672:0:99999:7:::
+#+END_SRC
+
++ -d：删除用户密码
+#+BEGIN_SRC shell
+[root@localhost ~]# passwd -d yunji
+清除用户的密码 yunji。
+passwd: 操作成功
+[root@localhost ~]# grep yunji /etc/shadow
+yunji::16672:0:99999:7:::
+#+END_SRC
+
++ --stdin：修改用户密码
+#+BEGIN_SRC shell
+[root@localhost ~]# echo "1234" |passwd --stdin yunji
+更改用户 yunji 的密码 。
+passwd：所有的身份验证令牌已经成功更新。
+#+END_SRC
+
+**** chage 
++ 让用户登录后修改密码
+#+BEGIN_SRC shell
+[root@localhost ~]# chage -d 0 yunji
+
+➜  ~  ssh yunji@10.211.55.8 
+yunji@10.211.55.8's password: 
+Permission denied, please try again.
+yunji@10.211.55.8's password: 
+You are required to change your password immediately (root enforced)
+Last failed login: Tue Aug 25 20:14:39 CST 2015 from 10.211.55.2 on ssh:notty
+There were 3 failed login attempts since the last successful login.
+Last login: Tue Aug 25 19:53:03 2015 from 10.211.55.2
+WARNING: Your password has expired.
+You must change your password now and login again!
+更改用户 yunji 的密码 。
+为 yunji 更改 STRESS 密码。
+（当前）UNIX 密码：
+#+END_SRC
+**** 其他命令
+1. id：查看指定用户信息（默认为当前用户）
+
+*** 身份切换SU
+**** su命令
+1. su - username：切的至usrename用户，变更也转变
+2. su --c command：切换至root执行命令
+3. root切换至其他用户不用输入密码，反之则需要
+
+**** sudo命令
+1. sudo -u username command：切换至username下执行command
+2. visudo：修改/etc/sudoers里面的配置文件，使用其他用户可以使用root的口令
+3. sudo在5分钟之内连续使用需要输入口令
+
+**** 使用者特殊shell与PAM模块
+1. nologin用户：用户不能登陆主机，但是可以访问主机的资源信息
+2. useradd yunji -s /sbin/nologin：添加用户Yunji为nologin用户
+3. usermod yunji -s /sbin/nologin：修改已经存在的用户yunji为nologin用户
+   - 或直接修改/etc/passwd当中的用户shell信息
+4. vi /etc/nologin.txt：设置nologin用户登录的提示内容
+
+**** Linux 主机上的用户信息传递
+1. lastlog:查询所有用户的登陆信息
+2. who查看当前登陆的用户；若先登陆root，再su到其他用户，则此用户无法被看到
+3. write 用户名 终端接口：可以让用户之间实时对话；非root用户不需要加终端接口
+4. mesg 查看当前用户的mesg是开启还是关闭
+5. mesg n 可以让用户不接受对话
+6. mesg y 可以让对方在拒绝对话之后重新连接
+7. wall 广播信息，非root用户不能广播root
+8. mail peng -s "hello"： 向peng发送一封email，内容为hello以.结束并发送
+
+**** 手动新增使用者
+1. pwck：检查/etc/passwd文件当中的信息
+2. grpck：检查用户组文件当中的信息
+3. pwconv：将/etc/passwd与/etc/shadow同步
+4. pwunconv：将/etc/shadow当中的内容写回/etc/passwd当中，同时删除/etc/shadow
+5. echo "pengganyu:yunjikeji" | chpasswd -m ：将pengganyu用户的密码重置为yunjikeji
+6. 手工创建用户的步骤
+   - 先创建所需要的群组 ( vi /etc/group )；
+   - 将 /etc/group 与 /etc/gshadow 同步化 ( grpconv )；
+   - 创建账号的各个属性 ( vi /etc/passwd )；
+   - 将 /etc/passwd 与 /etc/shadow 同步化 ( pwconv )；
+   - 创建该账号的口令 ( passwd accountname )；
+   - 创建用户家目录 ( cp -a /etc/skel /home/accountname )；
+   - 更改用户家目录的属性 ( chown -R accountname:group /home/accountname );
+   - 更改用户目录的权限（chmod 700 /home/accountname）.
+
+* 磁盘配额与进阶文件系统管理
+** 磁碟配额应用与实作
+*** quota
+**** 一般用途
+1. 针对WWW server
+2. 针对mail server
+3. 针对file server
+4. 针对groups
+5. 针对user
+6. 针对link
+7. 限制inode用量
+8. 限制block用量
