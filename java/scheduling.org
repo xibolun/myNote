@@ -1,0 +1,78 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: Spring boot Schedule Task 
+#+TAGS: java Spring
+
+*  基础入门
+scheduled Task是定时任务，用于定时执行某段程序
+** 官方demo： [[https://spring.io/guides/gs/scheduling-tasks/][Scheduling Tasks]]  
+需要注意的地方：
+1. 在Application.java当中配置@EnableScheduling
+2. 在方法当中配置@Scheduled
+3. 在方法所在的类当中配置component
+** 注解列表
+*** @EnableScheduling
+设置在Application类当中，用于打开定时任务的开头
+*** @Scheduled
+定时任务的模式注解
+**** cron
+- 按照unix 平台的cron语法来设置定时任务执行的时间
+- 参考man crontab
+**** fixedDelay
+ - 在下一周期时间g到达时，当上一定时任务执行完之后，才执行此次的定时任务;
+ - 参数long类型，5000为5s；
+ - fixedDelayString，接收String类型的日期
+**** fixedRate
+- 在下一周期时间到达时，当上一次定时任务未执行完，此次的定时任务也可以执行
+- 参数同 fixedDelay
+**** initialDelayString
+**** zone
+** cron
+*** cron学习
+
+| field        | allowed value               |
+|--------------+-----------------------------|
+| second       | 0-59 , - / *                |
+| minute       | 0-59 , - / *                |
+| hour         | 0-23 , - / *                |
+| day of month | 1-31 , - / * ? L W C        |
+| month        | 1-12 JAN-DEC , - / *        |
+| day of week  | 1-7 SUN-SAT , - / * ? L C # |
+| year         | Null 1970-2099 , - / *      |
+
+1. - 分隔起止时间值； eg: minute 5-20 ==》 从5分钟~20分钟内，每分钟执行一次
+2. / 分隔开始时间和间隔时间； eg: minute 5/20  ==》5分钟开始执行，每隔20分钟执行一次
+3. , 分隔指定时间值，表示枚举；eg minute 5,20 ==> 5分钟和20分钟，每分钟执行一次
+4. * 表示通配符； eg minute * ==> 表示每分钟都执行
+5. ? 只能出现在dayOfMonth,dayOfWeek，匹配任意值
+6. L last,最后一个值； dayOfMonth L ==> 每个月的最后一天执行
+7. W work，工作日执行；
+8. C
+9. # 分隔，每个月的第几个周几，6#3，每个月的第三个周五
+
+**** TODO Demo列表 
+|--------------------+-------------------------------------------------------------|
+| 0 0/5 14,18 * * ?  | 每天的14:00开始到14:55及每天的18:00开始到18:55，每5分钟执行 |
+| 0 0-5 14 * * ?     | 每天的14:00~14：05，每分钟执行                              |
+| 0 10,44 14 ? 3 WED | 3月的每周三的14:10,14:44每分钟执行                          |
+| 0 15 10 ? * 6L     | 每周五10：15，每分钟执行（6是周五，1是周日）                |
+| 0 15 10 ? * 6#3    | 每个月的第3个周五的10:15执行                                |
+|                    |                                                             |
+*** cron配置化
+**** 在application当中配置cron值
+#+BEGIN_SRC java
+cron.expression="*/5 * * * * ?" 
+#+END_SRC
+**** 在需要添加定时任务的方法上面添加cron配置的value值即可
+#+BEGIN_SRC java
+    @Scheduled(cron = "${cron.expression}")
+    public void reportCurrentTime() {
+        System.out.println("The time is now " + dateFormat.format(new Date()));
+    }
+#+END_SRC
+***  cron maker
+ 这是专门生成cron的一个网站：http://www.cronmaker.com/
