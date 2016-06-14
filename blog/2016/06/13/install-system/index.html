@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Install System - org-page</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="彭甘雨" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+  </head>
+  <body class="container">
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">org-page</a></h1>
+        <p>static site generator</p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/java/">Java</a></li>
+          <li><a href="/tools/">Tools</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="https://github.com/kelvinh/org-page">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="//www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="http://127.0.0.1">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>Install System</h1>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">学习装系统</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+#1. 下载Centos-7镜像
+#2. 创建硬盘
+#3. 安装系统
+</p>
+<ol class="org-ol">
+<li>下载vnc连接配置：<a href="http://www.realvnc.com/download/viewer/">http://www.realvnc.com/download/viewer/</a></li>
+</ol>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">硬盘创建</h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<ul class="org-ul">
+<li>创建硬盘</li>
+<li>分区（可选）</li>
+<li>格式化硬盘</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">kvm virt执行脚本</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<p>
+virt-install \
+&#x2013;name=Centos-7 \  #虚拟机名称
+&#x2013;vcpus=4 \        #cpu数量
+&#x2013;ram=4096 \       #内存大小
+&#x2013;hvm \       
+&#x2013;accelerate \
+&#x2013;network=bridge:br0,model=virtio \    #网络是否为桥接
+&#x2013;disk path=/dev/VolGroup0/centos7,format=raw,bus=virtio \  #硬盘的位置，格式化信息
+&#x2013;cdrom=/home/www/iso/CentOS-7-x86_64-DVD-1511.iso \   #镜像地址
+&#x2013;vnc
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell">virt-install \
+--name=Centos-7 \
+--vcpus=4 \
+--ram=4096 \
+--hvm \
+--accelerate \
+--network=bridge:br0,model=virtio \
+--disk path=/dev/VolGroup0/centos7,format=raw,bus=virtio \
+--cdrom=/home/www/iso/CentOS-7-x86_64-DVD-1511.iso \
+--vnc
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">vnc配置</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<ul class="org-ul">
+<li>ip:端口</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">其他</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+<ul class="org-ul">
+<li>PV</li>
+<li>VG</li>
+<li>LV</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2016-06-13</span>
+        <span title="last modification date" class="post-info">2016-06-05</span>
+        <span title="tags" class="post-info">N/A</span>
+        <span title="author" class="post-info">彭甘雨</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/2016/06/13/install-system/";
+          var disqus_url = "http://127.0.0.1/blog/2016/06/13/install-system/";
+          var disqus_shortname = 'your_disqus_shortname';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="//disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'your_duoshuo_shortname'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="//code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:admin &lt;at&gt; pengganyu &lt;dot&gt; local">彭甘雨</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
