@@ -6,11 +6,44 @@
 #+OPTIONS:   ^:{}
 #+TITLE:  mysql笔记
 #+TAGS: MySql
-#+DATE: 2016月06月15日
+#+DATE: 2016-06-15
 
 * MySql学习
 ** 启动相关
 #+BEGIN_SRC shell
 /etc/init.d/mysql.d
+#+END_SRC
+** Mysql Dump
+*** dump数据库
+#+BEGIN_SRC shell
+mysqldump -uroot -p hf-csa > hf-csa.sql
+#+END_SRC
+*** 只dump数据库表结构（--no-data -d）
+#+BEGIN_SRC shell
+mysqldump -uroot -p --no-data --add-drop-table hf-csa > hf-csa.sql
+mysqldump -uroot -p -d --add-drop-table hf-csa > hf-csa.sql
+#+END_SRC
+*** dump数据库表结构排除某些表
+#+BEGIN_SRC shell
+mysqldump -uroot -p --no-data --add-drop-table hf-csa --ignore-table=hf-csa.ACT_GET_PROPERTY > hf-csa.sql
+#+END_SRC
+*** dump数据库某张表，表中间以空格分隔
+#+BEGIN_SRC shell
+mysqldump -uroot -p --no-data hf-csa SRV_INFO SRV_BP_APP_INFO > hf-csa.sql
+#+END_SRC
+*** dump数据库带注释的表结构
+#+BEGIN_SRC shell
+mysqldump -uroot -p --no-data --comments hf-csa SRV_INFO SRV_BP_APP_INFO > hf-csa.sql
+#+END_SRC
+*** reload dump File
+#+BEGIN_SRC shell
+shell> mysql hf-csa < hf-csa.sql
+shell> mysql -e "source hf-csa.sql" hf-csa
+mysql> source hf-csa.sql 
+#+END_SRC
+** INFOMATION_SCHEMA
+#+BEGIN_SRC sql
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有表的列
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有的表
 #+END_SRC
 
