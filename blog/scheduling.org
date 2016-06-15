@@ -6,6 +6,7 @@
 #+OPTIONS:   ^:{}
 #+TITLE: Spring boot Schedule Task 
 #+TAGS: java Spring
+#+DATE: 2016-06-11
 
 *  基础入门
 scheduled Task是定时任务，用于定时执行某段程序
