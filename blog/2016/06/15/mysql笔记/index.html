@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>mysql笔记 - org-page</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="彭甘雨" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+  </head>
+  <body class="container">
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">org-page</a></h1>
+        <p>static site generator</p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="https://github.com/kelvinh/org-page">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="//www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="http://127.0.0.1">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>mysql笔记</h1>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13">MySql学习</h2>
+<div class="outline-text-2" id="text-orgheadline13">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">启动相关</h3>
+<div class="outline-text-3" id="text-orgheadline1">
+<div class="org-src-container">
+
+<pre class="src src-shell">/etc/init.d/mysqld start
+/etc/init.d/mysqld stop
+/etc/init.d/mysqld restart
+
+service mysqld restart
+service mysqld stop
+service mysqld start
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">其他</h3>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">Mysql Dump</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+</div><div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">dump数据库</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p hf-csa &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">只dump数据库表结构（&#x2013;no-data -d）</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p --no-data --add-drop-table hf-csa &gt; hf-csa.sql
+mysqldump -uroot -p -d --add-drop-table hf-csa &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">dump数据库表结构排除某些表</h4>
+<div class="outline-text-4" id="text-orgheadline5">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p --no-data --add-drop-table hf-csa --ignore-table=hf-csa.ACT_GET_PROPERTY &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">dump数据库某张表，表中间以空格分隔</h4>
+<div class="outline-text-4" id="text-orgheadline6">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p --no-data hf-csa SRV_INFO SRV_BP_APP_INFO &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">dump数据库带注释的表结构</h4>
+<div class="outline-text-4" id="text-orgheadline7">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p --no-data --comments hf-csa SRV_INFO SRV_BP_APP_INFO &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8">reload dump File</h4>
+<div class="outline-text-4" id="text-orgheadline8">
+<div class="org-src-container">
+
+<pre class="src src-shell">shell&gt; mysql hf-csa &lt; hf-csa.sql
+shell&gt; mysql -e "source hf-csa.sql" hf-csa
+mysql&gt; source hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">INFOMATION_SCHEMA</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+<div class="org-src-container">
+
+<pre class="src src-sql">SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有表的列
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有的表
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">语法相关</h3>
+<div class="outline-text-3" id="text-orgheadline12">
+</div><div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">LEFT JOIN，RIGHT JOIN,  INNER JOIN</h4>
+<div class="outline-text-4" id="text-orgheadline11">
+<ul class="org-ul">
+<li>LEFT JOIN：以左边的表为基准显示查询结果</li>
+<li>RIGHT JOIN：以右边的表为基准显示查询结果</li>
+<li>INNER JOIN：只显示符合条件的查询结果</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-shell">SELECT ip.IP_ADDRESS,ip.ID,unit.NAME FROM SRV_BP_DEV_IP ip LEFT JOIN SRV_BP_DEV dev ON ip.SRV_BP_DEV_ID = dev.ID
+  LEFT JOIN SRV_BP_APP_DP_UNIT unit ON dev.SRV_BP_APP_DP_UNIT_ID = unit.ID WHERE
+  ip.SRV_INFO_ID = dev.SRV_INFO_ID AND dev.SRV_INFO_ID = unit.SRV_INFO_ID AND ip.SRV_INFO_ID = '9ecbd34c-3ed6-4e61-8d11-0ba526e9ca98';
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2016-06-15</span>
+        <span title="last modification date" class="post-info">2016-06-16</span>
+        <span title="tags" class="post-info"><a href="/tags/mysql/">MySql</a></span>
+        <span title="author" class="post-info">彭甘雨</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/2016/06/15/mysql笔记/";
+          var disqus_url = "http://127.0.0.1/blog/2016/06/15/mysql笔记/";
+          var disqus_shortname = 'your_disqus_shortname';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="//disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'your_duoshuo_shortname'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="//code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:admin &lt;at&gt; pengganyu &lt;dot&gt; local">彭甘雨</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

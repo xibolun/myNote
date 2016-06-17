@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Spring boot Schedule Task  - org-page</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="彭甘雨" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+  </head>
+  <body class="container">
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">org-page</a></h1>
+        <p>static site generator</p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="https://github.com/kelvinh/org-page">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="//www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="http://127.0.0.1">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>Spring boot Schedule Task </h1>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">基础入门</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+scheduled Task是定时任务，用于定时执行某段程序
+</p>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">官方demo： <a href="https://spring.io/guides/gs/scheduling-tasks/">Scheduling Tasks</a></h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<p>
+需要注意的地方：
+</p>
+<ol class="org-ol">
+<li>在Application.java当中配置@EnableScheduling</li>
+<li>在方法当中配置@Scheduled</li>
+<li>在方法所在的类当中配置component</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">注解列表</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+</div><div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">@EnableScheduling</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<p>
+设置在Application类当中，用于打开定时任务的开头
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">@Scheduled</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<p>
+定时任务的模式注解
+</p>
+</div>
+<ul class="org-ul"><li><a id="orgheadline5"></a>cron<br  /><div class="outline-text-5" id="text-orgheadline5">
+<ul class="org-ul">
+<li>按照unix 平台的cron语法来设置定时任务执行的时间</li>
+<li>参考man crontab</li>
+</ul>
+</div></li>
+<li><a id="orgheadline6"></a>fixedDelay<br  /><div class="outline-text-5" id="text-orgheadline6">
+<ul class="org-ul">
+<li>在下一周期时间g到达时，当上一定时任务执行完之后，才执行此次的定时任务;</li>
+<li>参数long类型，5000为5s；</li>
+<li>fixedDelayString，接收String类型的日期</li>
+</ul>
+</div></li>
+<li><a id="orgheadline7"></a>fixedRate<br  /><div class="outline-text-5" id="text-orgheadline7">
+<ul class="org-ul">
+<li>在下一周期时间到达时，当上一次定时任务未执行完，此次的定时任务也可以执行</li>
+<li>参数同 fixedDelay</li>
+</ul>
+</div></li>
+<li><a id="orgheadline8"></a>initialDelayString<br  /></li>
+<li><a id="orgheadline9"></a>zone<br  /></li></ul>
+</div>
+</div>
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17">cron</h3>
+<div class="outline-text-3" id="text-orgheadline17">
+</div><div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">cron学习</h4>
+<div class="outline-text-4" id="text-orgheadline11">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">field</th>
+<th scope="col" class="org-left">allowed value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">second</td>
+<td class="org-left">0-59 , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">minute</td>
+<td class="org-left">0-59 , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">hour</td>
+<td class="org-left">0-23 , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">day of month</td>
+<td class="org-left">1-31 , - / * ? L W C</td>
+</tr>
+
+<tr>
+<td class="org-left">month</td>
+<td class="org-left">1-12 JAN-DEC , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">day of week</td>
+<td class="org-left">1-7 SUN-SAT , - / * ? L C #</td>
+</tr>
+
+<tr>
+<td class="org-left">year</td>
+<td class="org-left">Null 1970-2099 , - / *</td>
+</tr>
+</tbody>
+</table>
+
+<ol class="org-ol">
+<li>- 分隔起止时间值； eg: minute 5-20 ==&gt; 从5分钟~20分钟内，每分钟执行一次</li>
+<li>/ 分隔开始时间和间隔时间； eg: minute 5/20  ==&gt; 5分钟开始执行，每隔20分钟执行一次</li>
+<li>, 分隔指定时间值，表示枚举；eg minute 5,20  ==&gt; 5分钟和20分钟，每分钟执行一次</li>
+<li>* 表示通配符； eg minute * ==&gt; 表示每分钟都执行</li>
+<li>? 只能出现在dayOfMonth,dayOfWeek，匹配任意值</li>
+<li>L last,最后一个值； dayOfMonth L ==&gt; 每个月的最后一天执行</li>
+<li>W work，工作日执行；</li>
+<li>C</li>
+<li># 分隔，每个月的第几个周几，6#3，每个月的第三个周五</li>
+</ol>
+</div>
+
+<ul class="org-ul"><li><a id="orgheadline12"></a>Demo列表<br  /><div class="outline-text-5" id="text-orgheadline12">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">0 0/5 14,18 * * ?</td>
+<td class="org-left">每天的14:00开始到14:55及每天的18:00开始到18:55，每5分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">0 0-5 14 * * ?</td>
+<td class="org-left">每天的14:00~14：05，每分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">0 10,44 14 ? 3 WED</td>
+<td class="org-left">3月的每周三的14:10,14:44每分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">0 15 10 ? * 6L</td>
+<td class="org-left">每周五10：15，每分钟执行（6是周五，1是周日）</td>
+</tr>
+
+<tr>
+<td class="org-left">0 15 10 ? * 6#3</td>
+<td class="org-left">每个月的第3个周五的10:15执行</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div></li></ul>
+</div>
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15">cron配置化</h4>
+<div class="outline-text-4" id="text-orgheadline15">
+</div><ul class="org-ul"><li><a id="orgheadline13"></a>在application当中配置cron值<br  /><div class="outline-text-5" id="text-orgheadline13">
+<div class="org-src-container">
+
+<pre class="src src-java">cron.expression="*/5 * * * * ?"
+</pre>
+</div>
+</div></li>
+<li><a id="orgheadline14"></a>在需要添加定时任务的方法上面添加cron配置的value值即可<br  /><div class="outline-text-5" id="text-orgheadline14">
+<div class="org-src-container">
+
+<pre class="src src-java">@Scheduled(cron = "${cron.expression}")
+public void reportCurrentTime() {
+    System.out.println("The time is now " + dateFormat.format(new Date()));
+}
+</pre>
+</div>
+</div></li></ul>
+</div>
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16">cron maker</h4>
+<div class="outline-text-4" id="text-orgheadline16">
+<p>
+这是专门生成cron的一个网站：<a href="http://www.cronmaker.com/">http://www.cronmaker.com/</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2016-06-11</span>
+        <span title="last modification date" class="post-info">2016-06-15</span>
+        <span title="tags" class="post-info"><a href="/tags/java-spring/">java Spring</a></span>
+        <span title="author" class="post-info">彭甘雨</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/2016/06/11/spring-boot-schedule-task-/";
+          var disqus_url = "http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/";
+          var disqus_shortname = 'your_disqus_shortname';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="//disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'your_duoshuo_shortname'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="//code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:admin &lt;at&gt; pengganyu &lt;dot&gt; local">彭甘雨</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
