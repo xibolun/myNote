@@ -4,33 +4,79 @@
     <title>org-page</title>
     <link>http://127.0.0.1</link>
     <description>static site generator</description>
-    <pubDate>Fri, 17 Jun 2016 20:37:01 CST</pubDate>
-    <lastBuildDate>Fri, 17 Jun 2016 20:37:01 CST</lastBuildDate>
+    <pubDate>Wed, 22 Jun 2016 23:48:36 CST</pubDate>
+    <lastBuildDate>Wed, 22 Jun 2016 23:48:36 CST</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
-      <title>Linux笔记</title>
-      <link>http://127.0.0.1/blog/2016/06/16/linux笔记/</link>
+      <title>马太福音1章 </title>
+      <link>http://127.0.0.1/blog/2016/06/22/马太福音1章-/</link>
       <description><![CDATA[<div>
 <div class="post">
-<h1>Linux笔记</h1>
+<h1>马太福音1章 </h1>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">VIM 笔记</h2>
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">Matthew Chapter1</h2>
+<div class="outline-text-2" id="text-orgheadline7">
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">四位外邦女子</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+</div><div id="outline-container-orgheadline1" class="outline-4">
+<h4 id="orgheadline1">他玛</h4>
+<div class="outline-text-4" id="text-orgheadline1">
+<ul class="org-ul">
+<li>她本是犹大的儿媳妇，我相信她是因着想进入犹太人的族谱当中，才采取那样的方式与犹大同房。</li>
+<li>但大卫却是从犹大而来，基督也是从他而来。因着玛利亚生了耶稣，万代要称她有福（路1：48）。可想他玛的福份是何等的大。</li>
+<li>另外一方面也看到神是何等的怜恤罪人，她与犹大犯了乱伦的罪，神却没有灭绝，反而更加的赐福。我相信犹大与他玛肯定有认罪悔改。因为我们若认自己的罪，神必会赦免。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2">喇合：</h4>
+<div class="outline-text-4" id="text-orgheadline2">
+<ul class="org-ul">
+<li>耶利哥人</li>
+<li>妓女</li>
+<li>因着接待探子，明白神的旨意，蒙恩得救，得着那朱红色线做为家的得救记号。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">路得</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<ul class="org-ul">
+<li>摩押人：外邦人，被神所咒诅的族类，世代都不容许进入神的会；</li>
+<li>决志跟随婆婆（圣灵）的人；</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">拔示巴</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<ul class="org-ul">
+<li>因自己的父亲并未出现以历代志书中，所以认为她是一个外邦人</li>
+<li>美丽，却又不太检点（开着窗户洗澡，让大卫看到）</li>
+<li>自己丈夫是一个非常爱国的人，自己却没有做一个好的帮手</li>
+</ul>
+</div>
+</div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">常用Command</h2>
-<div class="outline-text-2" id="text-orgheadline3">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">find</h3>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">家谱当中的14-14代</h3>
+<div class="outline-text-3" id="text-orgheadline6">
+<p>
+需要认真地去查考家谱，因为里面并不止28代，因为里面有一些人物不合神的心意没有列在家谱当中。
+</p>
+</div>
 </div>
 </div>
 
 </div>
 </div>]]></description>
-      <pubDate>2016-06-17</pubDate>
-      <guid>http://127.0.0.1/blog/2016/06/16/linux笔记/</guid>
+      <pubDate>2016-06-22</pubDate>
+      <guid>http://127.0.0.1/blog/2016/06/22/马太福音1章-/</guid>
     </item>
     <item>
       <title>mysql笔记</title>
@@ -164,231 +210,12 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询
 
 </div>
 </div>]]></description>
-      <pubDate>2016-06-16</pubDate>
+      <pubDate>2016-06-18</pubDate>
       <guid>http://127.0.0.1/blog/2016/06/15/mysql笔记/</guid>
     </item>
     <item>
-      <title>Spring boot Schedule Task </title>
-      <link>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</link>
-      <description><![CDATA[<div>
-<div class="post">
-<h1>Spring boot Schedule Task </h1>
-
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">基础入门</h2>
-<div class="outline-text-2" id="text-orgheadline1">
-<p>
-scheduled Task是定时任务，用于定时执行某段程序
-</p>
-</div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">官方demo： <a href="https://spring.io/guides/gs/scheduling-tasks/">Scheduling Tasks</a></h3>
-<div class="outline-text-3" id="text-orgheadline2">
-<p>
-需要注意的地方：
-</p>
-<ol class="org-ol">
-<li>在Application.java当中配置@EnableScheduling</li>
-<li>在方法当中配置@Scheduled</li>
-<li>在方法所在的类当中配置component</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">注解列表</h3>
-<div class="outline-text-3" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">@EnableScheduling</h4>
-<div class="outline-text-4" id="text-orgheadline3">
-<p>
-设置在Application类当中，用于打开定时任务的开头
-</p>
-</div>
-</div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">@Scheduled</h4>
-<div class="outline-text-4" id="text-orgheadline4">
-<p>
-定时任务的模式注解
-</p>
-</div>
-<ul class="org-ul"><li><a id="orgheadline5"></a>cron<br  /><div class="outline-text-5" id="text-orgheadline5">
-<ul class="org-ul">
-<li>按照unix 平台的cron语法来设置定时任务执行的时间</li>
-<li>参考man crontab</li>
-</ul>
-</div></li>
-<li><a id="orgheadline6"></a>fixedDelay<br  /><div class="outline-text-5" id="text-orgheadline6">
-<ul class="org-ul">
-<li>在下一周期时间g到达时，当上一定时任务执行完之后，才执行此次的定时任务;</li>
-<li>参数long类型，5000为5s；</li>
-<li>fixedDelayString，接收String类型的日期</li>
-</ul>
-</div></li>
-<li><a id="orgheadline7"></a>fixedRate<br  /><div class="outline-text-5" id="text-orgheadline7">
-<ul class="org-ul">
-<li>在下一周期时间到达时，当上一次定时任务未执行完，此次的定时任务也可以执行</li>
-<li>参数同 fixedDelay</li>
-</ul>
-</div></li>
-<li><a id="orgheadline8"></a>initialDelayString<br  /></li>
-<li><a id="orgheadline9"></a>zone<br  /></li></ul>
-</div>
-</div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">cron</h3>
-<div class="outline-text-3" id="text-orgheadline17">
-</div><div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">cron学习</h4>
-<div class="outline-text-4" id="text-orgheadline11">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">field</th>
-<th scope="col" class="org-left">allowed value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">second</td>
-<td class="org-left">0-59 , - / *</td>
-</tr>
-
-<tr>
-<td class="org-left">minute</td>
-<td class="org-left">0-59 , - / *</td>
-</tr>
-
-<tr>
-<td class="org-left">hour</td>
-<td class="org-left">0-23 , - / *</td>
-</tr>
-
-<tr>
-<td class="org-left">day of month</td>
-<td class="org-left">1-31 , - / * ? L W C</td>
-</tr>
-
-<tr>
-<td class="org-left">month</td>
-<td class="org-left">1-12 JAN-DEC , - / *</td>
-</tr>
-
-<tr>
-<td class="org-left">day of week</td>
-<td class="org-left">1-7 SUN-SAT , - / * ? L C #</td>
-</tr>
-
-<tr>
-<td class="org-left">year</td>
-<td class="org-left">Null 1970-2099 , - / *</td>
-</tr>
-</tbody>
-</table>
-
-<ol class="org-ol">
-<li>- 分隔起止时间值； eg: minute 5-20 ==&gt; 从5分钟~20分钟内，每分钟执行一次</li>
-<li>/ 分隔开始时间和间隔时间； eg: minute 5/20  ==&gt; 5分钟开始执行，每隔20分钟执行一次</li>
-<li>, 分隔指定时间值，表示枚举；eg minute 5,20  ==&gt; 5分钟和20分钟，每分钟执行一次</li>
-<li>* 表示通配符； eg minute * ==&gt; 表示每分钟都执行</li>
-<li>? 只能出现在dayOfMonth,dayOfWeek，匹配任意值</li>
-<li>L last,最后一个值； dayOfMonth L ==&gt; 每个月的最后一天执行</li>
-<li>W work，工作日执行；</li>
-<li>C</li>
-<li># 分隔，每个月的第几个周几，6#3，每个月的第三个周五</li>
-</ol>
-</div>
-
-<ul class="org-ul"><li><a id="orgheadline12"></a>Demo列表<br  /><div class="outline-text-5" id="text-orgheadline12">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">0 0/5 14,18 * * ?</td>
-<td class="org-left">每天的14:00开始到14:55及每天的18:00开始到18:55，每5分钟执行</td>
-</tr>
-
-<tr>
-<td class="org-left">0 0-5 14 * * ?</td>
-<td class="org-left">每天的14:00~14：05，每分钟执行</td>
-</tr>
-
-<tr>
-<td class="org-left">0 10,44 14 ? 3 WED</td>
-<td class="org-left">3月的每周三的14:10,14:44每分钟执行</td>
-</tr>
-
-<tr>
-<td class="org-left">0 15 10 ? * 6L</td>
-<td class="org-left">每周五10：15，每分钟执行（6是周五，1是周日）</td>
-</tr>
-
-<tr>
-<td class="org-left">0 15 10 ? * 6#3</td>
-<td class="org-left">每个月的第3个周五的10:15执行</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div></li></ul>
-</div>
-<div id="outline-container-orgheadline15" class="outline-4">
-<h4 id="orgheadline15">cron配置化</h4>
-<div class="outline-text-4" id="text-orgheadline15">
-</div><ul class="org-ul"><li><a id="orgheadline13"></a>在application当中配置cron值<br  /><div class="outline-text-5" id="text-orgheadline13">
-<div class="org-src-container">
-
-<pre class="src src-java">cron.expression="*/5 * * * * ?"
-</pre>
-</div>
-</div></li>
-<li><a id="orgheadline14"></a>在需要添加定时任务的方法上面添加cron配置的value值即可<br  /><div class="outline-text-5" id="text-orgheadline14">
-<div class="org-src-container">
-
-<pre class="src src-java">@Scheduled(cron = "${cron.expression}")
-public void reportCurrentTime() {
-    System.out.println("The time is now " + dateFormat.format(new Date()));
-}
-</pre>
-</div>
-</div></li></ul>
-</div>
-<div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16">cron maker</h4>
-<div class="outline-text-4" id="text-orgheadline16">
-<p>
-这是专门生成cron的一个网站：<a href="http://www.cronmaker.com/">http://www.cronmaker.com/</a>
-</p>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>]]></description>
-      <pubDate>2016-06-15</pubDate>
-      <guid>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</guid>
-    </item>
-    <item>
       <title>Git Learn</title>
-      <link>http://127.0.0.1/blog/2016/06/17/git-learn/</link>
+      <link>http://127.0.0.1/blog/2016/06/22/git-learn/</link>
       <description><![CDATA[<div>
 <div class="post">
 <h1>Git Learn</h1>
@@ -616,8 +443,251 @@ public void reportCurrentTime() {
 
 </div>
 </div>]]></description>
-      <pubDate>2016-06-14</pubDate>
-      <guid>http://127.0.0.1/blog/2016/06/17/git-learn/</guid>
+      <pubDate>2016-06-17</pubDate>
+      <guid>http://127.0.0.1/blog/2016/06/22/git-learn/</guid>
+    </item>
+    <item>
+      <title>Linux笔记</title>
+      <link>http://127.0.0.1/blog/2016/06/16/linux笔记/</link>
+      <description><![CDATA[<div>
+<div class="post">
+<h1>Linux笔记</h1>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">VIM 笔记</h2>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">常用Command</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">find</h3>
+</div>
+</div>
+
+</div>
+</div>]]></description>
+      <pubDate>2016-06-17</pubDate>
+      <guid>http://127.0.0.1/blog/2016/06/16/linux笔记/</guid>
+    </item>
+    <item>
+      <title>Spring boot Schedule Task </title>
+      <link>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</link>
+      <description><![CDATA[<div>
+<div class="post">
+<h1>Spring boot Schedule Task </h1>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">基础入门</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+scheduled Task是定时任务，用于定时执行某段程序
+</p>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">官方demo： <a href="https://spring.io/guides/gs/scheduling-tasks/">Scheduling Tasks</a></h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<p>
+需要注意的地方：
+</p>
+<ol class="org-ol">
+<li>在Application.java当中配置@EnableScheduling</li>
+<li>在方法当中配置@Scheduled</li>
+<li>在方法所在的类当中配置component</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">注解列表</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+</div><div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">@EnableScheduling</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<p>
+设置在Application类当中，用于打开定时任务的开头
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">@Scheduled</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<p>
+定时任务的模式注解
+</p>
+</div>
+<ul class="org-ul"><li><a id="orgheadline5"></a>cron<br  /><div class="outline-text-5" id="text-orgheadline5">
+<ul class="org-ul">
+<li>按照unix 平台的cron语法来设置定时任务执行的时间</li>
+<li>参考man crontab</li>
+</ul>
+</div></li>
+<li><a id="orgheadline6"></a>fixedDelay<br  /><div class="outline-text-5" id="text-orgheadline6">
+<ul class="org-ul">
+<li>在下一周期时间g到达时，当上一定时任务执行完之后，才执行此次的定时任务;</li>
+<li>参数long类型，5000为5s；</li>
+<li>fixedDelayString，接收String类型的日期</li>
+</ul>
+</div></li>
+<li><a id="orgheadline7"></a>fixedRate<br  /><div class="outline-text-5" id="text-orgheadline7">
+<ul class="org-ul">
+<li>在下一周期时间到达时，当上一次定时任务未执行完，此次的定时任务也可以执行</li>
+<li>参数同 fixedDelay</li>
+</ul>
+</div></li>
+<li><a id="orgheadline8"></a>initialDelayString<br  /></li>
+<li><a id="orgheadline9"></a>zone<br  /></li></ul>
+</div>
+</div>
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17">cron</h3>
+<div class="outline-text-3" id="text-orgheadline17">
+</div><div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">cron学习</h4>
+<div class="outline-text-4" id="text-orgheadline11">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">field</th>
+<th scope="col" class="org-left">allowed value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">second</td>
+<td class="org-left">0-59 , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">minute</td>
+<td class="org-left">0-59 , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">hour</td>
+<td class="org-left">0-23 , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">day of month</td>
+<td class="org-left">1-31 , - / * ? L W C</td>
+</tr>
+
+<tr>
+<td class="org-left">month</td>
+<td class="org-left">1-12 JAN-DEC , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">day of week</td>
+<td class="org-left">1-7 SUN-SAT , - / * ? L C #</td>
+</tr>
+
+<tr>
+<td class="org-left">year</td>
+<td class="org-left">Null 1970-2099 , - / *</td>
+</tr>
+</tbody>
+</table>
+
+<ol class="org-ol">
+<li>- 分隔起止时间值； eg: minute 5-20 ==&gt; 从5分钟~20分钟内，每分钟执行一次</li>
+<li>/ 分隔开始时间和间隔时间； eg: minute 5/20  ==&gt; 5分钟开始执行，每隔20分钟执行一次</li>
+<li>, 分隔指定时间值，表示枚举；eg minute 5,20  ==&gt; 5分钟和20分钟，每分钟执行一次</li>
+<li>* 表示通配符； eg minute * ==&gt; 表示每分钟都执行</li>
+<li>? 只能出现在dayOfMonth,dayOfWeek，匹配任意值</li>
+<li>L last,最后一个值； dayOfMonth L ==&gt; 每个月的最后一天执行</li>
+<li>W work，工作日执行；</li>
+<li>C</li>
+<li># 分隔，每个月的第几个周几，6#3，每个月的第三个周五</li>
+</ol>
+</div>
+
+<ul class="org-ul"><li><a id="orgheadline12"></a>Demo列表<br  /><div class="outline-text-5" id="text-orgheadline12">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">0 0/5 14,18 * * ?</td>
+<td class="org-left">每天的14:00开始到14:55及每天的18:00开始到18:55，每5分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">0 0-5 14 * * ?</td>
+<td class="org-left">每天的14:00~14：05，每分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">0 10,44 14 ? 3 WED</td>
+<td class="org-left">3月的每周三的14:10,14:44每分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">0 15 10 ? * 6L</td>
+<td class="org-left">每周五10：15，每分钟执行（6是周五，1是周日）</td>
+</tr>
+
+<tr>
+<td class="org-left">0 15 10 ? * 6#3</td>
+<td class="org-left">每个月的第3个周五的10:15执行</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div></li></ul>
+</div>
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15">cron配置化</h4>
+<div class="outline-text-4" id="text-orgheadline15">
+</div><ul class="org-ul"><li><a id="orgheadline13"></a>在application当中配置cron值<br  /><div class="outline-text-5" id="text-orgheadline13">
+<div class="org-src-container">
+
+<pre class="src src-java">cron.expression="*/5 * * * * ?"
+</pre>
+</div>
+</div></li>
+<li><a id="orgheadline14"></a>在需要添加定时任务的方法上面添加cron配置的value值即可<br  /><div class="outline-text-5" id="text-orgheadline14">
+<div class="org-src-container">
+
+<pre class="src src-java">@Scheduled(cron = "${cron.expression}")
+public void reportCurrentTime() {
+    System.out.println("The time is now " + dateFormat.format(new Date()));
+}
+</pre>
+</div>
+</div></li></ul>
+</div>
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16">cron maker</h4>
+<div class="outline-text-4" id="text-orgheadline16">
+<p>
+这是专门生成cron的一个网站：<a href="http://www.cronmaker.com/">http://www.cronmaker.com/</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>]]></description>
+      <pubDate>2016-06-15</pubDate>
+      <guid>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</guid>
     </item>
   </channel>
 </rss>
