@@ -1,0 +1,66 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE:  mysql笔记
+#+TAGS: MySql
+#+DATE: 2016-06-15
+
+* MySql学习
+** 启动相关
+#+BEGIN_SRC shell
+/etc/init.d/mysqld start
+/etc/init.d/mysqld stop
+/etc/init.d/mysqld restart
+
+service mysqld restart
+service mysqld stop
+service mysqld start
+#+END_SRC
+** 其他
+** Mysql Dump
+*** dump数据库
+#+BEGIN_SRC shell
+mysqldump -uroot -p hf-csa > hf-csa.sql
+#+END_SRC
+*** 只dump数据库表结构（--no-data -d）
+#+BEGIN_SRC shell
+mysqldump -uroot -p --no-data --add-drop-table hf-csa > hf-csa.sql
+mysqldump -uroot -p -d --add-drop-table hf-csa > hf-csa.sql
+#+END_SRC
+*** dump数据库表结构排除某些表
+#+BEGIN_SRC shell
+mysqldump -uroot -p --no-data --add-drop-table hf-csa --ignore-table=hf-csa.ACT_GET_PROPERTY > hf-csa.sql
+#+END_SRC
+*** dump数据库某张表，表中间以空格分隔
+#+BEGIN_SRC shell
+mysqldump -uroot -p --no-data hf-csa SRV_INFO SRV_BP_APP_INFO > hf-csa.sql
+#+END_SRC
+*** dump数据库带注释的表结构
+#+BEGIN_SRC shell
+mysqldump -uroot -p --no-data --comments hf-csa SRV_INFO SRV_BP_APP_INFO > hf-csa.sql
+#+END_SRC
+*** reload dump File
+#+BEGIN_SRC shell
+shell> mysql hf-csa < hf-csa.sql
+shell> mysql -e "source hf-csa.sql" hf-csa
+mysql> source hf-csa.sql 
+#+END_SRC
+** INFOMATION_SCHEMA
+#+BEGIN_SRC sql
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有表的列
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有的表
+#+END_SRC
+** 语法相关
+*** LEFT JOIN，RIGHT JOIN,  INNER JOIN
+- LEFT JOIN：以左边的表为基准显示查询结果
+- RIGHT JOIN：以右边的表为基准显示查询结果
+- INNER JOIN：只显示符合条件的查询结果
+#+BEGIN_SRC shell
+SELECT ip.IP_ADDRESS,ip.ID,unit.NAME FROM SRV_BP_DEV_IP ip LEFT JOIN SRV_BP_DEV dev ON ip.SRV_BP_DEV_ID = dev.ID
+  LEFT JOIN SRV_BP_APP_DP_UNIT unit ON dev.SRV_BP_APP_DP_UNIT_ID = unit.ID WHERE
+  ip.SRV_INFO_ID = dev.SRV_INFO_ID AND dev.SRV_INFO_ID = unit.SRV_INFO_ID AND ip.SRV_INFO_ID = '9ecbd34c-3ed6-4e61-8d11-0ba526e9ca98';
+#+END_SRC
+

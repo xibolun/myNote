@@ -1,0 +1,19 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: Java基础
+#+TAGS: java 
+#+DATE: 2016-06-26
+
+*** 运算
+**** 移位运算
+#+BEGIN_SRC java
+   System.out.println(Integer.toBinaryString(1));
+   System.out.println(Integer.toBinaryString(1 << 2));//左移去算 1的二进制后面补2个0
+   System.out.println(Integer.toBinaryString(1 << 4));// 1的二进制后面补4个0
+   System.out.println(10 >> 2); //右移运算  10的二进制去掉最后两位
+#+END_SRC
+
