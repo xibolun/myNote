@@ -1,0 +1,125 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: Java枚举
+#+TAGS: Java
+#+DATE: 2016-06-24
+
+** Java枚举的使用
+
+*** 用法列表
+|-----------+-------------------------------|
+| values    | 获取枚举当中所有的枚举        |
+| compareTo | 一个枚举的实现了compareTo对象 |
+| valueOf   | 根据一个枚举constant获取枚举  |
+| toString  | 可将Enum直接转换为String对象  |
+| EnumMap   |                               |
+*** 代码
+**** WeekEnum
+#+BEGIN_SRC  java
+package com.pgy.base;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public enum WeekEnum {
+    Monday(1, "周一"),
+
+    Tuseday(2, "周二"),
+
+    Wednesday(3, "周三"),
+
+    Thursday(4, "周四"),
+
+    Friday(5, "周五"),
+
+    Saturday(6, "周六"),
+
+    Sunday(7, "周七"),
+
+    ;
+
+    private int    code;
+    private String description;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private WeekEnum(int code, String description) {
+        this.code = code;
+        this.description = description;
+    }
+
+}
+#+END_SRC
+**** values 
+下面的两个方法，可以写到枚举类当中，直接进行调用
+#+BEGIN_SRC java
+    // 遍历枚举，寻找code对象的枚举
+    public WeekEnum findOneByCode(int code) {
+        for (WeekEnum demo : WeekEnum.values()) {
+            if (demo.getCode() == code) {
+                return demo;
+            }
+        }
+        return null;
+    }
+    // 遍历枚举，获取所有的code值 
+    public List<Integer> allCode() {
+        List<Integer> allCodes = new ArrayList<Integer>();
+        for (WeekEnum demo : WeekEnum.values()) {
+            allCodes.add(demo.getCode());
+        }
+        return allCodes;
+    }
+#+END_SRC
+****  compareTo
+#+BEGIN_SRC java
+  System.out.println(WeekEnum.Friday.compareTo(WeekEnum.Sunday));//-2
+  System.out.println(WeekEnum.Friday.compareTo(WeekEnum.Monday));//4
+#+END_SRC
+**** valueOf
+valueOf入参为Enum的Enum Constant，否则会抛出异常;
+valueOf还可以指定Enum的Type，及Enum Constant去获取枚举
+#+BEGIN_SRC java
+System.out.println(WeekEnum.valueOf("Friday").getCode()); //5
+System.out.println(WeekEnum.valueOf(WeekEnum.class, "Friday").getCode()); //5
+#+END_SRC
+**** toString
+#+BEGIN_SRC java
+        System.out.println(WeekEnum.Friday.toString());//Friday
+#+END_SRC
+**** EnumMap
+#+BEGIN_SRC java
+ public static void enumToMap() {
+        EnumMap<WeekEnum, String> enumMap = new EnumMap<WeekEnum, String>(WeekEnum.class);
+        enumMap.put(WeekEnum.Monday, "周一");
+        enumMap.put(WeekEnum.Tuseday, "周二");
+        enumMap.put(WeekEnum.Wednesday, "周三");
+
+        for (WeekEnum weekEnum : enumMap.keySet()) {
+            System.out.println("key=" + weekEnum.name() + ",value=" + enumMap.get(weekEnum));
+        }
+    }
+#+END_SRC
+*** 其他说明
+- enum无法再继承其他的，因为java不支持多继承
+- EnumMap当中的泛型为Enum对象
+
+
