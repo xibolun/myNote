@@ -5,7 +5,7 @@
 #+LANGUAGE: zh-CN
 #+OPTIONS:   ^:{}
 #+TITLE: Spring boot Schedule Task 
-#+TAGS: java Spring
+#+TAGS: Java
 #+DATE: 2016-06-11
 
 *  基础入门
