@@ -1,0 +1,16 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: Spacemacs 
+#+TAGS: Emacs 
+#+DATE: 2016-07-30
+
+** 如何修改spacemacs当中的换行
+spacemacs配置了truncate-lines的功能，SPC+t+l即可打开/关闭truncate-lines
+enable是打开，当字段过长时，不会被截取。
+disable是关闭，当字段过长时，会自动被截取，换行处理。
+
+
