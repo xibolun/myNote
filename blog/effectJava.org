@@ -1,0 +1,53 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: Effect Java笔记 
+#+TAGS: java 
+#+DATE: 2016-08-16
+
+** 第2章 对象的销毁和创建
+*** 私有构造方法来强化单例属性
+
+单例的三种实现方法
+#+BEGIN_SRC java
+public class Elvis{
+  public static final Elvis INSTANCE = new Elvis();
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+public class Elvis{
+  public static final Evlis INSTANCE = new Elvis();
+  
+  public static Elvis getInstance(){
+     return INSTANCE;
+  }
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+public enum Elvis{
+  INSTANCE;
+}
+#+END_SRC
+
+*** 私有构造方法强化不可实例化的能力
+在某些类当中，比如工具类，常量类，是不希望被实例化的。但是在没有构造方法的情况下，会调用默认的无参的构造方法。如果我们创建一个私有的构造方法，则编译器就不会实例化一个无参的构造方法。
+*** 避免创建不必要的对象
+#+BEGIN_SRC java
+String s = new String("hello");
+String s = "hello";
+#+END_SRC
+以上的代码在每次执行的时候都会创建一个新的对象。
+
+1. 对于同时提供了静态方法和构造方法的不可变类，静态方法的使用要优于构造方法
+      #+BEGIN_SRC java
+         Boolean.valueOf("true");
+         Boolean("true");
+      #+END_SRC
+2. 我们可以在将一些变量声明于类或方法的抬头，防止多次实例化
+3. 
+
