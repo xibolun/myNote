@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <title>mysql笔记 - org-page</title>
+    <title>Java枚举 - org-page</title>
     <meta charset="utf-8" />
     <meta name="author" content="彭甘雨" />
     <link rel="stylesheet" href="/media/css/main.css" type="text/css">
@@ -29,127 +29,202 @@
 
 <div>
 <div class="post">
-<h1>mysql笔记</h1>
+<h1>Java枚举</h1>
 
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13">MySql学习</h2>
-<div class="outline-text-2" id="text-orgheadline13">
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10">Java枚举的使用</h2>
+<div class="outline-text-2" id="text-orgheadline10">
 </div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">启动相关</h3>
+<h3 id="orgheadline1">用法列表</h3>
 <div class="outline-text-3" id="text-orgheadline1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">values</td>
+<td class="org-left">获取枚举当中所有的枚举</td>
+</tr>
+
+<tr>
+<td class="org-left">compareTo</td>
+<td class="org-left">一个枚举的实现了compareTo对象</td>
+</tr>
+
+<tr>
+<td class="org-left">valueOf</td>
+<td class="org-left">根据一个枚举constant获取枚举</td>
+</tr>
+
+<tr>
+<td class="org-left">toString</td>
+<td class="org-left">可将Enum直接转换为String对象</td>
+</tr>
+
+<tr>
+<td class="org-left">EnumMap</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">代码</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+</div><div id="outline-container-orgheadline2" class="outline-4">
+<h4 id="orgheadline2">WeekEnum</h4>
+<div class="outline-text-4" id="text-orgheadline2">
 <div class="org-src-container">
 
-<pre class="src src-shell">/etc/init.d/mysqld start
-/etc/init.d/mysqld stop
-/etc/init.d/mysqld restart
+<pre class="src src-java">package com.pgy.base;
 
-service mysqld restart
-service mysqld stop
-service mysqld start
+import java.util.ArrayList;
+import java.util.List;
+
+public enum WeekEnum {
+    Monday(1, "周一"),
+
+    Tuseday(2, "周二"),
+
+    Wednesday(3, "周三"),
+
+    Thursday(4, "周四"),
+
+    Friday(5, "周五"),
+
+    Saturday(6, "周六"),
+
+    Sunday(7, "周七"),
+
+    ;
+
+    private int    code;
+    private String description;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private WeekEnum(int code, String description) {
+        this.code = code;
+        this.description = description;
+    }
+
+}
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">其他</h3>
-</div>
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">Mysql Dump</h3>
-<div class="outline-text-3" id="text-orgheadline9">
-</div><div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">dump数据库</h4>
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">values</h4>
 <div class="outline-text-4" id="text-orgheadline3">
+<p>
+下面的两个方法，可以写到枚举类当中，直接进行调用
+</p>
 <div class="org-src-container">
 
-<pre class="src src-shell">mysqldump -uroot -p hf-csa &gt; hf-csa.sql
+<pre class="src src-java">// 遍历枚举，寻找code对象的枚举
+public WeekEnum findOneByCode(int code) {
+    for (WeekEnum demo : WeekEnum.values()) {
+        if (demo.getCode() == code) {
+            return demo;
+        }
+    }
+    return null;
+}
+// 遍历枚举，获取所有的code值 
+public List&lt;Integer&gt; allCode() {
+    List&lt;Integer&gt; allCodes = new ArrayList&lt;Integer&gt;();
+    for (WeekEnum demo : WeekEnum.values()) {
+        allCodes.add(demo.getCode());
+    }
+    return allCodes;
+}
 </pre>
 </div>
 </div>
 </div>
 <div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">只dump数据库表结构（&#x2013;no-data -d）</h4>
+<h4 id="orgheadline4">compareTo</h4>
 <div class="outline-text-4" id="text-orgheadline4">
 <div class="org-src-container">
 
-<pre class="src src-shell">mysqldump -uroot -p --no-data --add-drop-table hf-csa &gt; hf-csa.sql
-mysqldump -uroot -p -d --add-drop-table hf-csa &gt; hf-csa.sql
+<pre class="src src-java">System.out.println(WeekEnum.Friday.compareTo(WeekEnum.Sunday));//-2
+System.out.println(WeekEnum.Friday.compareTo(WeekEnum.Monday));//4
 </pre>
 </div>
 </div>
 </div>
 <div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">dump数据库表结构排除某些表</h4>
+<h4 id="orgheadline5">valueOf</h4>
 <div class="outline-text-4" id="text-orgheadline5">
+<p>
+valueOf入参为Enum的Enum Constant，否则会抛出异常;
+valueOf还可以指定Enum的Type，及Enum Constant去获取枚举
+</p>
 <div class="org-src-container">
 
-<pre class="src src-shell">mysqldump -uroot -p --no-data --add-drop-table hf-csa --ignore-table=hf-csa.ACT_GET_PROPERTY &gt; hf-csa.sql
+<pre class="src src-java">System.out.println(WeekEnum.valueOf("Friday").getCode()); //5
+System.out.println(WeekEnum.valueOf(WeekEnum.class, "Friday").getCode()); //5
 </pre>
 </div>
 </div>
 </div>
 <div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6">dump数据库某张表，表中间以空格分隔</h4>
+<h4 id="orgheadline6">toString</h4>
 <div class="outline-text-4" id="text-orgheadline6">
 <div class="org-src-container">
 
-<pre class="src src-shell">mysqldump -uroot -p --no-data hf-csa SRV_INFO SRV_BP_APP_INFO &gt; hf-csa.sql
+<pre class="src src-java">System.out.println(WeekEnum.Friday.toString());//Friday
 </pre>
 </div>
 </div>
 </div>
 <div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">dump数据库带注释的表结构</h4>
+<h4 id="orgheadline7">EnumMap</h4>
 <div class="outline-text-4" id="text-orgheadline7">
 <div class="org-src-container">
 
-<pre class="src src-shell">mysqldump -uroot -p --no-data --comments hf-csa SRV_INFO SRV_BP_APP_INFO &gt; hf-csa.sql
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">reload dump File</h4>
-<div class="outline-text-4" id="text-orgheadline8">
-<div class="org-src-container">
+<pre class="src src-java">public static void enumToMap() {
+       EnumMap&lt;WeekEnum, String&gt; enumMap = new EnumMap&lt;WeekEnum, String&gt;(WeekEnum.class);
+       enumMap.put(WeekEnum.Monday, "周一");
+       enumMap.put(WeekEnum.Tuseday, "周二");
+       enumMap.put(WeekEnum.Wednesday, "周三");
 
-<pre class="src src-shell">shell&gt; mysql hf-csa &lt; hf-csa.sql
-shell&gt; mysql -e "source hf-csa.sql" hf-csa
-mysql&gt; source hf-csa.sql
+       for (WeekEnum weekEnum : enumMap.keySet()) {
+           System.out.println("key=" + weekEnum.name() + ",value=" + enumMap.get(weekEnum));
+       }
+   }
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">INFOMATION_SCHEMA</h3>
-<div class="outline-text-3" id="text-orgheadline10">
-<div class="org-src-container">
-
-<pre class="src src-sql">SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有表的列
-SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有的表
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">语法相关</h3>
-<div class="outline-text-3" id="text-orgheadline12">
-</div><div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">LEFT JOIN，RIGHT JOIN,  INNER JOIN</h4>
-<div class="outline-text-4" id="text-orgheadline11">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">其他说明</h3>
+<div class="outline-text-3" id="text-orgheadline9">
 <ul class="org-ul">
-<li>LEFT JOIN：以左边的表为基准显示查询结果</li>
-<li>RIGHT JOIN：以右边的表为基准显示查询结果</li>
-<li>INNER JOIN：只显示符合条件的查询结果</li>
+<li>enum无法再继承其他的，因为java不支持多继承</li>
+<li>EnumMap当中的泛型为Enum对象</li>
 </ul>
-<div class="org-src-container">
-
-<pre class="src src-shell">SELECT ip.IP_ADDRESS,ip.ID,unit.NAME FROM SRV_BP_DEV_IP ip LEFT JOIN SRV_BP_DEV dev ON ip.SRV_BP_DEV_ID = dev.ID
-  LEFT JOIN SRV_BP_APP_DP_UNIT unit ON dev.SRV_BP_APP_DP_UNIT_ID = unit.ID WHERE
-  ip.SRV_INFO_ID = dev.SRV_INFO_ID AND dev.SRV_INFO_ID = unit.SRV_INFO_ID AND ip.SRV_INFO_ID = '9ecbd34c-3ed6-4e61-8d11-0ba526e9ca98';
-</pre>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -158,9 +233,9 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询
 </div>
     <div>
       <div class="post-meta">
-        <span title="post date" class="post-info">2016-06-15</span>
-        <span title="last modification date" class="post-info">2016-07-08</span>
-        <span title="tags" class="post-info"><a href="/tags/mysql/">MySql</a></span>
+        <span title="post date" class="post-info">2016-06-24</span>
+        <span title="last modification date" class="post-info">2016-06-27</span>
+        <span title="tags" class="post-info"><a href="/tags/java/">Java</a></span>
         <span title="author" class="post-info">彭甘雨</span>
       </div>
       <section>
@@ -168,8 +243,8 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询
         <div id="disqus_thread"></div>
         <script type="text/javascript">
           //var disqus_developer = 1;
-          var disqus_identifier = "/blog/2016/06/15/mysql笔记/";
-          var disqus_url = "http://127.0.0.1/blog/2016/06/15/mysql笔记/";
+          var disqus_identifier = "/blog/2016/06/24/java枚举/";
+          var disqus_url = "http://127.0.0.1/blog/2016/06/24/java枚举/";
           var disqus_shortname = 'your_disqus_shortname';
           /* * * DON'T EDIT BELOW THIS LINE * * */
           (function() {

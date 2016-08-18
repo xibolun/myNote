@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <title>Linux笔记 - org-page</title>
+    <title>Java基础 - org-page</title>
     <meta charset="utf-8" />
     <meta name="author" content="彭甘雨" />
     <link rel="stylesheet" href="/media/css/main.css" type="text/css">
@@ -29,56 +29,23 @@
 
 <div>
 <div class="post">
-<h1>Linux笔记</h1>
+<h1>Java基础</h1>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">VIM 笔记</h2>
-</div>
-
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">常用Command</h2>
-<div class="outline-text-2" id="text-orgheadline7">
-</div><div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">find</h3>
-</div>
-
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">awk</h3>
-<div class="outline-text-3" id="text-orgheadline5">
-</div><div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">语法</h4>
-<div class="outline-text-4" id="text-orgheadline3">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">运算</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">移位运算</h3>
+<div class="outline-text-3" id="text-orgheadline1">
 <div class="org-src-container">
 
-<pre class="src src-shell">usage: awk [-F fs] [-v var=value] [-f progfile | 'prog'] [file ...]
-</pre>
-</div>
-<ul class="org-ul">
-<li>-F: 指定分隔域的标识</li>
-<li>-v: 指定命令/参数值</li>
-<li>-f: 指定需要解析的文件</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">Demo</h4>
-<div class="outline-text-4" id="text-orgheadline4">
-<div class="org-src-container">
-
-<pre class="src src-shell">awk -F ':' '{print $1}' /etc/passwd                                                  ##输入/etc/passwd当中以:分隔的第一个域
-awk -F ':' '{print $1 "\t" $2}' /etc/passwd                                          ##输入/etc/passwd当中以:分隔的第1，2两个域，注意$1与$2之间的字符串要添加""
-awk '{count++} END {print count}' /etc/passwd                                        ##统计文件当中的行数
-echo -e "A line 1n A line 2" | awk {print}                                           ##print不带参数的时候，默认打印整行 
-echo -e "A line 1n A line 2" | awk -F 'n' '{print $1}'                               ##指定分隔符 'n',并打印第一个field 
-echo -e "A line 1n A line 2" | awk  '{print $1}'                                     ## -F为空时，默认以空格分隔 
-echo | awk '{ var1="hello"; var2="world"; print var1,var2}'                          ##在{}当中定义变量，变量声明之间用 ; 进行分隔
+<pre class="src src-java">System.out.println(Integer.toBinaryString(1));
+System.out.println(Integer.toBinaryString(1 &lt;&lt; 2));//左移去算 1的二进制后面补2个0
+System.out.println(Integer.toBinaryString(1 &lt;&lt; 4));// 1的二进制后面补4个0
+System.out.println(10 &gt;&gt; 2); //右移运算  10的二进制去掉最后两位
 </pre>
 </div>
 </div>
-</div>
-</div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6"></h3>
 </div>
 </div>
 
@@ -86,9 +53,9 @@ echo | awk '{ var1="hello"; var2="world"; print var1,var2}'                     
 </div>
     <div>
       <div class="post-meta">
-        <span title="post date" class="post-info">2016-06-16</span>
+        <span title="post date" class="post-info">2016-06-26</span>
         <span title="last modification date" class="post-info">2016-07-02</span>
-        <span title="tags" class="post-info"><a href="/tags/linux/">Linux</a></span>
+        <span title="tags" class="post-info"><a href="/tags/java/">Java</a></span>
         <span title="author" class="post-info">彭甘雨</span>
       </div>
       <section>
@@ -96,8 +63,8 @@ echo | awk '{ var1="hello"; var2="world"; print var1,var2}'                     
         <div id="disqus_thread"></div>
         <script type="text/javascript">
           //var disqus_developer = 1;
-          var disqus_identifier = "/blog/2016/06/16/linux笔记/";
-          var disqus_url = "http://127.0.0.1/blog/2016/06/16/linux笔记/";
+          var disqus_identifier = "/blog/2016/06/26/java基础/";
+          var disqus_url = "http://127.0.0.1/blog/2016/06/26/java基础/";
           var disqus_shortname = 'your_disqus_shortname';
           /* * * DON'T EDIT BELOW THIS LINE * * */
           (function() {
