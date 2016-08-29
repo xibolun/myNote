@@ -4,17 +4,22 @@
     <title>org-page</title>
     <link>http://127.0.0.1</link>
     <description>static site generator</description>
-    <pubDate>Thu, 18 Aug 2016 23:40:20 CST</pubDate>
-    <lastBuildDate>Thu, 18 Aug 2016 23:40:20 CST</lastBuildDate>
+    <pubDate>Tue, 30 Aug 2016 00:15:05 CST</pubDate>
+    <lastBuildDate>Tue, 30 Aug 2016 00:15:05 CST</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
       <title>Effect Java笔记 </title>
       <link>http://127.0.0.1/blog/2016/08/16/effect-java笔记-/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>Effect Java笔记 </h1>
-
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Effect Java笔记 </h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
 <div id="outline-container-orgheadline4" class="outline-2">
 <h2 id="orgheadline4">第2章 对象的销毁和创建</h2>
 <div class="outline-text-2" id="text-orgheadline4">
@@ -92,18 +97,25 @@ Boolean("true");
 </div>
 </div>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
-      <pubDate>2016-08-16</pubDate>
+]]></description>
+      <pubDate>2016-08-29</pubDate>
       <guid>http://127.0.0.1/blog/2016/08/16/effect-java笔记-/</guid>
     </item>
     <item>
       <title>马太福音</title>
       <link>http://127.0.0.1/blog/2016/06/22/马太福音/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>马太福音</h1>
-
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>马太福音</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1">背景</h2>
 <div class="outline-text-2" id="text-orgheadline1">
@@ -185,6 +197,11 @@ Boolean("true");
 </div>
 <div id="outline-container-orgheadline10" class="outline-3">
 <h3 id="orgheadline10">为什么不从亚当开始计算？</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+<ul class="org-ul">
+<li>个人理解，从君王的生命开始算起。</li>
+</ul>
+</div>
 </div>
 </div>
 <div id="outline-container-orgheadline13" class="outline-2">
@@ -271,7 +288,6 @@ Boolean("true");
 </div>
 </div>
 
-
 <div id="outline-container-orgheadline23" class="outline-2">
 <h2 id="orgheadline23">天国不配的人</h2>
 <div class="outline-text-2" id="text-orgheadline23">
@@ -289,18 +305,25 @@ Boolean("true");
 </div>
 </div>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
-      <pubDate>2016-08-12</pubDate>
+]]></description>
+      <pubDate>2016-08-26</pubDate>
       <guid>http://127.0.0.1/blog/2016/06/22/马太福音/</guid>
     </item>
     <item>
       <title>Spacemacs </title>
       <link>http://127.0.0.1/blog/2016/07/30/spacemacs-/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>Spacemacs </h1>
-
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Spacemacs </h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1">如何修改spacemacs当中的换行</h2>
 <div class="outline-text-2" id="text-orgheadline1">
@@ -312,8 +335,10 @@ disable是关闭，当字段过长时，会自动被截取，换行处理。
 </div>
 </div>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
+]]></description>
       <pubDate>2016-07-30</pubDate>
       <guid>http://127.0.0.1/blog/2016/07/30/spacemacs-/</guid>
     </item>
@@ -321,9 +346,14 @@ disable是关闭，当字段过长时，会自动被截取，换行处理。
       <title>保罗传道旅程 </title>
       <link>http://127.0.0.1/blog/2016/07/17/保罗传道旅程-/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>保罗传道旅程 </h1>
-
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>保罗传道旅程 </h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1">第一次传道旅程</h2>
 <div class="outline-text-2" id="text-orgheadline1">
@@ -458,18 +488,25 @@ disable是关闭，当字段过长时，会自动被截取，换行处理。
 </div>
 </div>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
+]]></description>
       <pubDate>2016-07-17</pubDate>
       <guid>http://127.0.0.1/blog/2016/07/17/保罗传道旅程-/</guid>
     </item>
     <item>
       <title>Untitled</title>
-      <link>http://127.0.0.1/blog/2016/08/18/untitled/</link>
+      <link>http://127.0.0.1/blog/2016/08/30/untitled/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>Untitled</h1>
-<p>
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Untitled</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                <p>
 拔示巴是否为外邦人：
 <a href="https://3amthoughts.com/article/people-and-places/ahithophel">https://3amthoughts.com/article/people-and-places/ahithophel</a>
 </p>
@@ -489,18 +526,25 @@ disable是关闭，当字段过长时，会自动被截取，换行处理。
 亚希多弗看着自己的孙女婿被大卫用这样的诡计害了，肯定心里有一些不快；一家人多快乐啊，在一起，儿子与孙女婿都那么有出息，又是侍奉王的家庭，自己也侍奉王，多么荣耀，结果被大卫给毁坏了。
 </p>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
+]]></description>
       <pubDate>2016-07-09</pubDate>
-      <guid>http://127.0.0.1/blog/2016/08/18/untitled/</guid>
+      <guid>http://127.0.0.1/blog/2016/08/30/untitled/</guid>
     </item>
     <item>
       <title>mysql笔记</title>
       <link>http://127.0.0.1/blog/2016/06/15/mysql笔记/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>mysql笔记</h1>
-
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>mysql笔记</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
 <div id="outline-container-orgheadline13" class="outline-2">
 <h2 id="orgheadline13">MySql学习</h2>
 <div class="outline-text-2" id="text-orgheadline13">
@@ -624,8 +668,10 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询
 </div>
 </div>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
+]]></description>
       <pubDate>2016-07-08</pubDate>
       <guid>http://127.0.0.1/blog/2016/06/15/mysql笔记/</guid>
     </item>
@@ -633,9 +679,14 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询
       <title>Java基础</title>
       <link>http://127.0.0.1/blog/2016/06/26/java基础/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>Java基础</h1>
-
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Java基础</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
 <div id="outline-container-orgheadline2" class="outline-2">
 <h2 id="orgheadline2">运算</h2>
 <div class="outline-text-2" id="text-orgheadline2">
@@ -654,8 +705,10 @@ System.out.println(10 &gt;&gt; 2); //右移运算  10的二进制去掉最后两
 </div>
 </div>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
+]]></description>
       <pubDate>2016-07-02</pubDate>
       <guid>http://127.0.0.1/blog/2016/06/26/java基础/</guid>
     </item>
@@ -663,9 +716,14 @@ System.out.println(10 &gt;&gt; 2); //右移运算  10的二进制去掉最后两
       <title>Linux笔记</title>
       <link>http://127.0.0.1/blog/2016/06/16/linux笔记/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>Linux笔记</h1>
-
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Linux笔记</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1">VIM 笔记</h2>
 </div>
@@ -717,8 +775,10 @@ echo | awk '{ var1="hello"; var2="world"; print var1,var2}'                     
 </div>
 </div>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
+]]></description>
       <pubDate>2016-07-02</pubDate>
       <guid>http://127.0.0.1/blog/2016/06/16/linux笔记/</guid>
     </item>
@@ -726,9 +786,14 @@ echo | awk '{ var1="hello"; var2="world"; print var1,var2}'                     
       <title>Spring boot Schedule Task </title>
       <link>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>Spring boot Schedule Task </h1>
-
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Spring boot Schedule Task </h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
 <div id="outline-container-orgheadline1" class="outline-2">
 <h2 id="orgheadline1">基础入门</h2>
 <div class="outline-text-2" id="text-orgheadline1">
@@ -936,8 +1001,10 @@ public void reportCurrentTime() {
 </div>
 </div>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
+]]></description>
       <pubDate>2016-07-02</pubDate>
       <guid>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</guid>
     </item>
@@ -945,9 +1012,14 @@ public void reportCurrentTime() {
       <title>Java枚举</title>
       <link>http://127.0.0.1/blog/2016/06/24/java枚举/</link>
       <description><![CDATA[<div>
-<div class="post">
-<h1>Java枚举</h1>
-
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Java枚举</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
 <div id="outline-container-orgheadline10" class="outline-2">
 <h2 id="orgheadline10">Java枚举的使用</h2>
 <div class="outline-text-2" id="text-orgheadline10">
@@ -1146,8 +1218,10 @@ System.out.println(WeekEnum.valueOf(WeekEnum.class, "Friday").getCode()); //5
 </div>
 </div>
 
+            </section>
+    </section>
 </div>
-</div>]]></description>
+]]></description>
       <pubDate>2016-06-27</pubDate>
       <guid>http://127.0.0.1/blog/2016/06/24/java枚举/</guid>
     </item>
