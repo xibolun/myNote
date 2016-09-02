@@ -8,6 +8,9 @@
 #+TAGS: Emacs 
 #+DATE: 2016-07-30
 
+** 子龙山人教程
+*** 编辑代码
+在org-mode当中，当光标定位于代码的src块当中时C-c ' 操作可以打开窗口进行用指定的语言编辑;编辑完成之后源org文件会随之一起改变。这是一个不错的功能
 ** 如何修改spacemacs当中的换行
 spacemacs配置了truncate-lines的功能，SPC+t+l即可打开/关闭truncate-lines
 enable是打开，当字段过长时，不会被截取。

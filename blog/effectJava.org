@@ -19,13 +19,17 @@ public class Elvis{
 #+END_SRC
 
 #+BEGIN_SRC java
-public class Elvis{
-  public static final Evlis INSTANCE = new Elvis();
+  public class Elvis{
+    public static final Evlis INSTANCE = new Elvis();
   
-  public static Elvis getInstance(){
-     return INSTANCE;
+    public static Elvis getInstance(){
+       return INSTANCE;
+    }
+
+      public static void main(){
+          System.out.println("hello");
+      }
   }
-}
 #+END_SRC
 
 #+BEGIN_SRC java
