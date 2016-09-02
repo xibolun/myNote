@@ -4,8 +4,8 @@
     <title>org-page</title>
     <link>http://127.0.0.1</link>
     <description>static site generator</description>
-    <pubDate>Tue, 30 Aug 2016 00:15:05 CST</pubDate>
-    <lastBuildDate>Tue, 30 Aug 2016 00:15:05 CST</lastBuildDate>
+    <pubDate>Fri, 02 Sep 2016 22:58:15 CST</pubDate>
+    <lastBuildDate>Fri, 02 Sep 2016 22:58:15 CST</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
@@ -45,6 +45,10 @@
   public static Elvis getInstance(){
      return INSTANCE;
   }
+
+    public static void main(){
+        System.out.println("hello");
+    }
 }
 </pre>
 </div>
@@ -101,8 +105,50 @@ Boolean("true");
     </section>
 </div>
 ]]></description>
-      <pubDate>2016-08-29</pubDate>
+      <pubDate>2016-09-02</pubDate>
       <guid>http://127.0.0.1/blog/2016/08/16/effect-java笔记-/</guid>
+    </item>
+    <item>
+      <title>Spacemacs </title>
+      <link>http://127.0.0.1/blog/2016/07/30/spacemacs-/</link>
+      <description><![CDATA[<div>
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Spacemacs </h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">子龙山人教程</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">编辑代码</h3>
+<div class="outline-text-3" id="text-orgheadline1">
+<p>
+在org-mode当中，当光标定位于代码的src块当中时C-c ' 操作可以打开窗口进行用指定的语言编辑;编辑完成之后源org文件会随之一起改变。这是一个不错的功能
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">如何修改spacemacs当中的换行</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<p>
+spacemacs配置了truncate-lines的功能，SPC+t+l即可打开/关闭truncate-lines
+enable是打开，当字段过长时，不会被截取。
+disable是关闭，当字段过长时，会自动被截取，换行处理。
+</p>
+</div>
+</div>
+
+            </section>
+    </section>
+</div>
+]]></description>
+      <pubDate>2016-08-30</pubDate>
+      <guid>http://127.0.0.1/blog/2016/07/30/spacemacs-/</guid>
     </item>
     <item>
       <title>马太福音</title>
@@ -313,36 +359,6 @@ Boolean("true");
       <guid>http://127.0.0.1/blog/2016/06/22/马太福音/</guid>
     </item>
     <item>
-      <title>Spacemacs </title>
-      <link>http://127.0.0.1/blog/2016/07/30/spacemacs-/</link>
-      <description><![CDATA[<div>
-    <section id="wrapper">
-        <article class="post">
-            <header>
-                    <h1>Spacemacs </h1>
-            </header>
-            <br />
-            <section id="post-body">
-                
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">如何修改spacemacs当中的换行</h2>
-<div class="outline-text-2" id="text-orgheadline1">
-<p>
-spacemacs配置了truncate-lines的功能，SPC+t+l即可打开/关闭truncate-lines
-enable是打开，当字段过长时，不会被截取。
-disable是关闭，当字段过长时，会自动被截取，换行处理。
-</p>
-</div>
-</div>
-
-            </section>
-    </section>
-</div>
-]]></description>
-      <pubDate>2016-07-30</pubDate>
-      <guid>http://127.0.0.1/blog/2016/07/30/spacemacs-/</guid>
-    </item>
-    <item>
       <title>保罗传道旅程 </title>
       <link>http://127.0.0.1/blog/2016/07/17/保罗传道旅程-/</link>
       <description><![CDATA[<div>
@@ -497,7 +513,7 @@ disable是关闭，当字段过长时，会自动被截取，换行处理。
     </item>
     <item>
       <title>Untitled</title>
-      <link>http://127.0.0.1/blog/2016/08/30/untitled/</link>
+      <link>http://127.0.0.1/blog/2016/09/02/untitled/</link>
       <description><![CDATA[<div>
     <section id="wrapper">
         <article class="post">
@@ -531,7 +547,7 @@ disable是关闭，当字段过长时，会自动被截取，换行处理。
 </div>
 ]]></description>
       <pubDate>2016-07-09</pubDate>
-      <guid>http://127.0.0.1/blog/2016/08/30/untitled/</guid>
+      <guid>http://127.0.0.1/blog/2016/09/02/untitled/</guid>
     </item>
     <item>
       <title>mysql笔记</title>

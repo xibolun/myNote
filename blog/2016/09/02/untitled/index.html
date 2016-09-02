@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>Effect Java笔记  - org-page</title>
+    <title>Untitled - org-page</title>
     <meta charset="utf-8" />
     <meta name="author" content="彭甘雨" />
     <link rel="stylesheet" href="/media/css/style.css">
@@ -21,91 +21,29 @@
     <section id="wrapper">
         <article class="post">
             <header>
-                    <h1>Effect Java笔记 </h1>
+                    <h1>Untitled</h1>
             </header>
             <br />
             <section id="post-body">
-                
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">第2章 对象的销毁和创建</h2>
-<div class="outline-text-2" id="text-orgheadline4">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">私有构造方法来强化单例属性</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+                <p>
+拔示巴是否为外邦人：
+<a href="https://3amthoughts.com/article/people-and-places/ahithophel">https://3amthoughts.com/article/people-and-places/ahithophel</a>
+</p>
+
 <p>
-单例的三种实现方法
+这一家比较有意思哈，分享一下：
 </p>
-<div class="org-src-container">
 
-<pre class="src src-java">public class Elvis{
-  public static final Elvis INSTANCE = new Elvis();
-}
-</pre>
-</div>
+<ul class="org-ul">
+<li>拔示马是以连的女儿，赫人乌利亚的妻子：撒下11：3</li>
+<li>以连是基罗人亚希多弗的儿子：撒下23：34</li>
+<li>基罗是犹大支派的一个产业：书15：51</li>
+</ul>
 
-<div class="org-src-container">
-
-<pre class="src src-java">public class Elvis{
-  public static final Evlis INSTANCE = new Elvis();
-
-  public static Elvis getInstance(){
-     return INSTANCE;
-  }
-
-    public static void main(){
-        System.out.println("hello");
-    }
-}
-</pre>
-</div>
-
-<div class="org-src-container">
-
-<pre class="src src-java">public enum Elvis{
-  INSTANCE;
-}
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">私有构造方法强化不可实例化的能力</h3>
-<div class="outline-text-3" id="text-orgheadline2">
 <p>
-在某些类当中，比如工具类，常量类，是不希望被实例化的。但是在没有构造方法的情况下，会调用默认的无参的构造方法。如果我们创建一个私有的构造方法，则编译器就不会实例化一个无参的构造方法。
+而乌利亚与以连都是大卫的勇士，乌利亚住的地方离王宫不太远，因为大卫可以在王宫可以看到他的家；亚希多弗呢又是侍奉王的，老家基罗离耶路撒冷又有几英里远（资料查考），侍奉王不太方便；以连与乌利亚都是勇士，又是岳父与女婿的关系；所以他们很可能在一起住，就在乌利亚的家里；
+亚希多弗看着自己的孙女婿被大卫用这样的诡计害了，肯定心里有一些不快；一家人多快乐啊，在一起，儿子与孙女婿都那么有出息，又是侍奉王的家庭，自己也侍奉王，多么荣耀，结果被大卫给毁坏了。
 </p>
-</div>
-</div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">避免创建不必要的对象</h3>
-<div class="outline-text-3" id="text-orgheadline3">
-<div class="org-src-container">
-
-<pre class="src src-java">String s = new String("hello");
-String s = "hello";
-</pre>
-</div>
-<p>
-以上的代码在每次执行的时候都会创建一个新的对象。
-</p>
-
-<ol class="org-ol">
-<li><p>
-对于同时提供了静态方法和构造方法的不可变类，静态方法的使用要优于构造方法
-</p>
-<div class="org-src-container">
-
-<pre class="src src-java">Boolean.valueOf("true");
-Boolean("true");
-</pre>
-</div></li>
-<li>我们可以在将一些变量声明于类或方法的抬头，防止多次实例化</li>
-<li></li>
-</ol>
-</div>
-</div>
-</div>
 
             </section>
     </section>
@@ -114,8 +52,8 @@ Boolean("true");
     <div>
     <section id="wrapper">
       <div class="post-meta">
-        <span title="post date" class="post-info">2016-08-16</span>
-        <span title="tags" class="post-info"><a href="/tags/java/">Java</a></span>
+        <span title="post date" class="post-info">2016-09-02</span>
+        <span title="tags" class="post-info">N/A</span>
       </div>
       <br />
       <br />
@@ -124,8 +62,8 @@ Boolean("true");
         <div id="disqus_thread"></div>
         <script type="text/javascript">
           //var disqus_developer = 1;
-          var disqus_identifier = "/blog/2016/08/16/effect-java笔记-/";
-          var disqus_url = "http://127.0.0.1/blog/2016/08/16/effect-java笔记-/";
+          var disqus_identifier = "/blog/2016/09/02/untitled/";
+          var disqus_url = "http://127.0.0.1/blog/2016/09/02/untitled/";
           var disqus_shortname = 'your_disqus_shortname';
           /* * * DON'T EDIT BELOW THIS LINE * * */
           (function() {
