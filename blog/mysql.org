@@ -46,6 +46,7 @@ mysqldump -uroot -p --no-data --comments hf-csa SRV_INFO SRV_BP_APP_INFO > hf-cs
 #+BEGIN_SRC shell
 shell> mysql hf-csa < hf-csa.sql
 shell> mysql -e "source hf-csa.sql" hf-csa
+mysql> use `hf-csa`;
 mysql> source hf-csa.sql 
 #+END_SRC
 ** INFOMATION_SCHEMA
@@ -63,4 +64,37 @@ SELECT ip.IP_ADDRESS,ip.ID,unit.NAME FROM SRV_BP_DEV_IP ip LEFT JOIN SRV_BP_DEV 
   LEFT JOIN SRV_BP_APP_DP_UNIT unit ON dev.SRV_BP_APP_DP_UNIT_ID = unit.ID WHERE
   ip.SRV_INFO_ID = dev.SRV_INFO_ID AND dev.SRV_INFO_ID = unit.SRV_INFO_ID AND ip.SRV_INFO_ID = '9ecbd34c-3ed6-4e61-8d11-0ba526e9ca98';
 #+END_SRC
+** 问题列表
+*** mysql的一些运维命令
+#+BEGIN_SRC shell
+# 查看mysql的端口监听情况
+netstate -nlt | grep 3306
+lsof -i:3306
+# 查看mysql的进程，同时可以看到mysql的一些文件位置
+ps ax | grep mysqld 
+#+END_SRC
+*** ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+#+BEGIN_SRC mysql
+-- 进入安全模式
+➜  ~ mysqld_safe --skip-grant-tables &
 
+-- 直接无密码进入
+➜  ~ mysql -uroot
+
+-- 选择mysql
+mysql> use mysql;
+
+-- 修改密码
+mysql> update user set password=PASSWORD("yunjikeji") where User = 'root';
+
+-- flush 生效
+mysql> flush privileges;
+
+-- 再次用密码尝试登陆
+➜  ~ mysql -uroot -p
+#+END_SRC
+*** Incorrect definition of table performance_schema.events_waits_current: expected column 'NESTING_EVEN
+数据库结构错误，导致mysql启动异常
+#+BEGIN_SRC shell
+➜  ~ mysql_upgrade -u root -p
+#+END_SRC

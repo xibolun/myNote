@@ -1,0 +1,41 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: Java Executor学习 
+#+TAGS: Java 
+#+DATE: 2016-09- 4
+
+** 结构
+- Interface Executor        
+  + Interface ExecutorService
+  + Interface ScheduledExecutorService extedns ExecutorService
+- Interface Future
+- Class Executors
+** 常用方法列表
+*** ExecutorService
+| void    | execute(Runnable commadn) | 父接口Executor的方法 |
+| boolean | isShutdown()              | 判断线程是否关闭     |
+| boolean | isTerminated()            | 判断线程是否结束     |
+| void    | shutdown()                | 关闭线程             |
+| Future  | submit                    | 提交线程             | 
+   
+***  Future 
+| void    | get         | 得到线程执行返回的结果 |
+| boolean | isDone      | 判断线程是否结束       |
+| boolean | isCancelled | 判断线程是否被取消     |
+
+***  Executors
+| static ExecutorService          | newCachedThreadPool()                                             | 带缓存的线程池                           |
+| static ExecutorService          | newCachedThreadPool(ThreadFactory threadFactory)                  | 线程工程创建缓存线程池                   |
+| static ExecutorService          | newFixedThreadPool(int nThreads)                                  | 固定的线程池，需要传入创建的数量         |
+| static ExecutorService          | newFixedThreadPool(int nThreads, ThreadFactory threadFactory)     |                                          |
+| static ExecutorService          | newSingleThreadExecutor()                                         | 单例线程池                               |
+| static ExecutorService          | newSingleThreadPool(ThreadFactory threadFactory)                  |                                          |
+| static ScheduledExecutorService | newScheduledThreadPool(int nThreads)                              | 固定的定时任务线程池，需要传入创建的数量 |
+| static ScheduledExecutorService | newScheduledThreadPool(int nThreads, ThreadFactory threadFactory) |                                          |
+| static ScheduledExecutorService | newSingleThreadScheduledExecutor()                                | 单例定时任务线程池                       |
+| static ScheduledExecutorService | newSingleThreadScheduledPool(ThreadFactory threadFactory)         |                                          |
+
