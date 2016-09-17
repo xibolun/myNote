@@ -6,12 +6,12 @@
 #+OPTIONS:   ^:{}
 #+TITLE: Java Executor学习 
 #+TAGS: Java 
-#+DATE: 2016-09- 4
+#+DATE: 2016-09-04
 
 ** 结构
 - Interface Executor        
-  + Interface ExecutorService
-  + Interface ScheduledExecutorService extedns ExecutorService
+   + Interface ExecutorService
+   + Interface ScheduledExecutorService extedns ExecutorService
 - Interface Future
 - Class Executors
 ** 常用方法列表
@@ -38,4 +38,65 @@
 | static ScheduledExecutorService | newScheduledThreadPool(int nThreads, ThreadFactory threadFactory) |                                          |
 | static ScheduledExecutorService | newSingleThreadScheduledExecutor()                                | 单例定时任务线程池                       |
 | static ScheduledExecutorService | newSingleThreadScheduledPool(ThreadFactory threadFactory)         |                                          |
+
+** Demo
+#+BEGIN_SRC java
+/*先定义两个Runnable  一个发送短信、一个发送邮件*/
+public class SmsSender implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(System.currentTimeMillis() + ": SmsSender method has been getted");
+        }
+    }
+}
+
+public class MailSender implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(System.currentTimeMillis() + ": MailSender has been getted");
+        }
+    }
+}
+#+END_SRC
+
+*** 建并启动线程
+#+BEGIN_SRC java
+public class ExecutorTest {
+    public static void main(String[] args) {
+
+        // 创建线程
+        ExecutorService exec1 = Executors.newFixedThreadPool(1);
+        ExecutorService exec2 = Executors.newCachedThreadPool();
+        ExecutorService exec3 = Executors.newSingleThreadExecutor();
+
+        // 开始启动线程
+        exec1.execute(new MailSender());
+        exec2.execute(new SmsSender());
+        exec3.execute(new SmsSender());
+
+        // 带有返回接口的执行线程
+        Future<String> future = exec3.submit(new Callable<String>() {
+
+            @Override
+            public String call() throws Exception {
+                return "SmsSender call back method";
+            }
+        });
+
+        try {
+            System.out.println(future.get()); //获取future的返回值
+            System.out.println(future.isCancelled());
+            System.out.println(future.isDone());
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        // 关闭线程
+        exec1.shutdown();
+        exec2.shutdown();
+    }
+}
+#+END_SRC
 
