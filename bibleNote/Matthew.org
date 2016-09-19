@@ -5,7 +5,7 @@
 #+LANGUAGE: zh-CN
 #+OPTIONS:   ^:{}
 #+TITLE: 马太福音
-#+TAG: 读经笔记
+#+TAG: BibleReading
 #+DATE: 2016-06-22
 
 * 背景
