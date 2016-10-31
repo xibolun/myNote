@@ -1,0 +1,17 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: Spring RestTemplate 
+#+TAGS:  Java
+#+DATE: 2016-10-22
+
+
+** RestTemplate 方法说明
+| Modifier and Type     | Method and Description                                                  |
+|-----------------------+-------------------------------------------------------------------------|
+| void                  | delete(String url, Map<String,?> urlVariables)                          |
+| <T> ResponseEntity<T> | getForEntity(String url, Class<T> responseType, Object... urlVariables) |
+|                       |                                                                         |

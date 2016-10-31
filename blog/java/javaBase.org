@@ -11,9 +11,29 @@
 *** 运算
 **** 移位运算
 #+BEGIN_SRC java
+a << b  相当于 a*2^b 
+a >> b  相当于 a/2^b
    System.out.println(Integer.toBinaryString(1));
    System.out.println(Integer.toBinaryString(1 << 2));//左移去算 1的二进制后面补2个0
    System.out.println(Integer.toBinaryString(1 << 4));// 1的二进制后面补4个0
    System.out.println(10 >> 2); //右移运算  10的二进制去掉最后两位
+#+END_SRC
+**** 求2的32次方
+#+BEGIN_SRC java
+ public static void powerOperating() {
+        System.out.println(1L << 32);
+        System.out.println(Math.pow(2, 32));
+    }
+#+END_SRC
+**** 交换两个数字 
+#+BEGIN_SRC java
+    public static void swap() {
+        int a = 5;
+        int b = 7;
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
+        System.out.println(a + "," + b);
+    }
 #+END_SRC
 

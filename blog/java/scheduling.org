@@ -75,5 +75,33 @@ cron.expression="*/5 * * * * ?"
         System.out.println("The time is now " + dateFormat.format(new Date()));
     }
 #+END_SRC
+**** 需要配置一下properties，或写一个Configuration的注解类进行处理
+#+BEGIN_SRC 
+@SpringBootApplication
+@EnableScheduling
+public class App {
+
+    public static void main(String[] args) {
+
+        SpringApplication app = new SpringApplication(App.class);
+
+        app.addListeners(new Listener());
+        app.setBannerMode(Banner.Mode.CONSOLE);
+        app.run(args);
+
+    }
+    // 添加property的配置信息
+    @Bean
+    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer properties = new PropertySourcesPlaceholderConfigurer();
+
+        properties.setLocation(new ClassPathResource("application.default.properties"));
+        properties.setIgnoreResourceNotFound(false);
+
+        return properties;
+    }
+
+} 
+#+END_SRC
 ***  cron maker
  这是专门生成cron的一个网站：http://www.cronmaker.com/
