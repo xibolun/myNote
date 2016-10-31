@@ -26,9 +26,9 @@
             <br />
             <section id="post-body">
                 
-<div id="outline-container-orgheadline13" class="outline-2">
-<h2 id="orgheadline13">MySql学习</h2>
-<div class="outline-text-2" id="text-orgheadline13">
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17">MySql学习</h2>
+<div class="outline-text-2" id="text-orgheadline17">
 </div><div id="outline-container-orgheadline1" class="outline-3">
 <h3 id="orgheadline1">启动相关</h3>
 <div class="outline-text-3" id="text-orgheadline1">
@@ -109,6 +109,7 @@ mysqldump -uroot -p -d --add-drop-table hf-csa &gt; hf-csa.sql
 
 <pre class="src src-shell">shell&gt; mysql hf-csa &lt; hf-csa.sql
 shell&gt; mysql -e "source hf-csa.sql" hf-csa
+mysql&gt; use `hf-csa`;
 mysql&gt; source hf-csa.sql
 </pre>
 </div>
@@ -124,8 +125,16 @@ mysql&gt; source hf-csa.sql
 SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有的表
 </pre>
 </div>
+
+<div class="org-src-container">
+
+<pre class="src src-sql">SHOW FULL COLUMNS FROM table_name;                          #查看mysql某表当中的列字段，包括列的character
+SHOW TABLE STATUS where name like 'SRV_BP_APP_NODE_VER';    # 查看某表的状态
+</pre>
 </div>
 </div>
+</div>
+
 <div id="outline-container-orgheadline12" class="outline-3">
 <h3 id="orgheadline12">语法相关</h3>
 <div class="outline-text-3" id="text-orgheadline12">
@@ -142,6 +151,63 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询
 <pre class="src src-shell">SELECT ip.IP_ADDRESS,ip.ID,unit.NAME FROM SRV_BP_DEV_IP ip LEFT JOIN SRV_BP_DEV dev ON ip.SRV_BP_DEV_ID = dev.ID
   LEFT JOIN SRV_BP_APP_DP_UNIT unit ON dev.SRV_BP_APP_DP_UNIT_ID = unit.ID WHERE
   ip.SRV_INFO_ID = dev.SRV_INFO_ID AND dev.SRV_INFO_ID = unit.SRV_INFO_ID AND ip.SRV_INFO_ID = '9ecbd34c-3ed6-4e61-8d11-0ba526e9ca98';
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">问题列表</h3>
+<div class="outline-text-3" id="text-orgheadline16">
+</div><div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13">mysql的一些运维命令</h4>
+<div class="outline-text-4" id="text-orgheadline13">
+<div class="org-src-container">
+
+<pre class="src src-shell"># 查看mysql的端口监听情况
+netstate -nlt | grep 3306
+lsof -i:3306
+# 查看mysql的进程，同时可以看到mysql的一些文件位置
+ps ax | grep mysqld
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14">ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)</h4>
+<div class="outline-text-4" id="text-orgheadline14">
+<div class="org-src-container">
+
+<pre class="src src-mysql">-- 进入安全模式
+➜  ~ mysqld_safe --skip-grant-tables &amp;
+
+-- 直接无密码进入
+➜  ~ mysql -uroot
+
+-- 选择mysql
+mysql&gt; use mysql;
+
+-- 修改密码
+mysql&gt; update user set password=PASSWORD("yunjikeji") where User = 'root';
+
+-- flush 生效
+mysql&gt; flush privileges;
+
+-- 再次用密码尝试登陆
+➜  ~ mysql -uroot -p
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15">Incorrect definition of table performance_schema.events_waits_current: expected column 'NESTING_EVEN</h4>
+<div class="outline-text-4" id="text-orgheadline15">
+<p>
+数据库结构错误，导致mysql启动异常
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell">➜  ~ mysql_upgrade -u root -p
 </pre>
 </div>
 </div>

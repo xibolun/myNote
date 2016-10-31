@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>Java基础 - org-page</title>
+    <title>Spring RestTemplate  - org-page</title>
     <meta charset="utf-8" />
     <meta name="author" content="彭甘雨" />
     <link rel="stylesheet" href="/media/css/style.css">
@@ -21,58 +21,46 @@
     <section id="wrapper">
         <article class="post">
             <header>
-                    <h1>Java基础</h1>
+                    <h1>Spring RestTemplate </h1>
             </header>
             <br />
             <section id="post-body">
                 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">运算</h2>
-<div class="outline-text-2" id="text-orgheadline4">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">移位运算</h3>
-<div class="outline-text-3" id="text-orgheadline1">
-<div class="org-src-container">
 
-<pre class="src src-java">a &lt;&lt; b  相当于 a*2^b 
-a &gt;&gt; b  相当于 a/2^b
-   System.out.println(Integer.toBinaryString(1));
-   System.out.println(Integer.toBinaryString(1 &lt;&lt; 2));//左移去算 1的二进制后面补2个0
-   System.out.println(Integer.toBinaryString(1 &lt;&lt; 4));// 1的二进制后面补4个0
-   System.out.println(10 &gt;&gt; 2); //右移运算  10的二进制去掉最后两位
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">求2的32次方</h3>
-<div class="outline-text-3" id="text-orgheadline2">
-<div class="org-src-container">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">RestTemplate 方法说明</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<pre class="src src-java">public static void powerOperating() {
-       System.out.println(1L &lt;&lt; 32);
-       System.out.println(Math.pow(2, 32));
-   }
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">交换两个数字</h3>
-<div class="outline-text-3" id="text-orgheadline3">
-<div class="org-src-container">
 
-<pre class="src src-java">public static void swap() {
-    int a = 5;
-    int b = 7;
-    a = a ^ b;
-    b = a ^ b;
-    a = a ^ b;
-    System.out.println(a + "," + b);
-}
-</pre>
-</div>
-</div>
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Modifier and Type</th>
+<th scope="col" class="org-left">Method and Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">void</td>
+<td class="org-left">delete(String url, Map&lt;String,?&gt; urlVariables)</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;T&gt; ResponseEntity&lt;T&gt;</td>
+<td class="org-left">getForEntity(String url, Class&lt;T&gt; responseType, Object&#x2026; urlVariables)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -83,7 +71,7 @@ a &gt;&gt; b  相当于 a/2^b
     <div>
     <section id="wrapper">
       <div class="post-meta">
-        <span title="post date" class="post-info">2016-06-26</span>
+        <span title="post date" class="post-info">2016-10-22</span>
         <span title="tags" class="post-info"><a href="/tags/java/">Java</a></span>
       </div>
       <br />
@@ -93,8 +81,8 @@ a &gt;&gt; b  相当于 a/2^b
         <div id="disqus_thread"></div>
         <script type="text/javascript">
           //var disqus_developer = 1;
-          var disqus_identifier = "/blog/2016/06/26/java基础/";
-          var disqus_url = "http://127.0.0.1/blog/2016/06/26/java基础/";
+          var disqus_identifier = "/blog/2016/10/22/spring-resttemplate-/";
+          var disqus_url = "http://127.0.0.1/blog/2016/10/22/spring-resttemplate-/";
           var disqus_shortname = 'your_disqus_shortname';
           /* * * DON'T EDIT BELOW THIS LINE * * */
           (function() {

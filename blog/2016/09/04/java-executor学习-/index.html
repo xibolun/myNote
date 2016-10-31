@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Java Executor学习  - org-page</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="彭甘雨" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <style type="text/css"></style>
+</head>
+
+  <body class="container">
+    <nav class="main-nav">
+        <a href="/blog">Archive</a>
+        <a href="/tags">Tag</a>
+        <a href="/about/">About</a>
+        <a class="cta" href="https://github.com/kedadiannao220">GitHub</a>
+    </nav>
+
+<div>
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Java Executor学习 </h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">结构</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<ul class="org-ul">
+<li>Interface Executor        
+<ul class="org-ul">
+<li>Interface ExecutorService</li>
+<li>Interface ScheduledExecutorService extedns ExecutorService</li>
+</ul></li>
+<li>Interface Future</li>
+<li>Class Executors</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">常用方法列表</h2>
+<div class="outline-text-2" id="text-orgheadline5">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">ExecutorService</h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">void</td>
+<td class="org-left">execute(Runnable commadn)</td>
+<td class="org-left">父接口Executor的方法</td>
+</tr>
+
+<tr>
+<td class="org-left">boolean</td>
+<td class="org-left">isShutdown()</td>
+<td class="org-left">判断线程是否关闭</td>
+</tr>
+
+<tr>
+<td class="org-left">boolean</td>
+<td class="org-left">isTerminated()</td>
+<td class="org-left">判断线程是否结束</td>
+</tr>
+
+<tr>
+<td class="org-left">void</td>
+<td class="org-left">shutdown()</td>
+<td class="org-left">关闭线程</td>
+</tr>
+
+<tr>
+<td class="org-left">Future</td>
+<td class="org-left">submit</td>
+<td class="org-left">提交线程</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Future</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">void</td>
+<td class="org-left">get</td>
+<td class="org-left">得到线程执行返回的结果</td>
+</tr>
+
+<tr>
+<td class="org-left">boolean</td>
+<td class="org-left">isDone</td>
+<td class="org-left">判断线程是否结束</td>
+</tr>
+
+<tr>
+<td class="org-left">boolean</td>
+<td class="org-left">isCancelled</td>
+<td class="org-left">判断线程是否被取消</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">Executors</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">static ExecutorService</td>
+<td class="org-left">newCachedThreadPool()</td>
+<td class="org-left">带缓存的线程池</td>
+</tr>
+
+<tr>
+<td class="org-left">static ExecutorService</td>
+<td class="org-left">newCachedThreadPool(ThreadFactory threadFactory)</td>
+<td class="org-left">线程工程创建缓存线程池</td>
+</tr>
+
+<tr>
+<td class="org-left">static ExecutorService</td>
+<td class="org-left">newFixedThreadPool(int nThreads)</td>
+<td class="org-left">固定的线程池，需要传入创建的数量</td>
+</tr>
+
+<tr>
+<td class="org-left">static ExecutorService</td>
+<td class="org-left">newFixedThreadPool(int nThreads, ThreadFactory threadFactory)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">static ExecutorService</td>
+<td class="org-left">newSingleThreadExecutor()</td>
+<td class="org-left">单例线程池</td>
+</tr>
+
+<tr>
+<td class="org-left">static ExecutorService</td>
+<td class="org-left">newSingleThreadPool(ThreadFactory threadFactory)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">static ScheduledExecutorService</td>
+<td class="org-left">newScheduledThreadPool(int nThreads)</td>
+<td class="org-left">固定的定时任务线程池，需要传入创建的数量</td>
+</tr>
+
+<tr>
+<td class="org-left">static ScheduledExecutorService</td>
+<td class="org-left">newScheduledThreadPool(int nThreads, ThreadFactory threadFactory)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">static ScheduledExecutorService</td>
+<td class="org-left">newSingleThreadScheduledExecutor()</td>
+<td class="org-left">单例定时任务线程池</td>
+</tr>
+
+<tr>
+<td class="org-left">static ScheduledExecutorService</td>
+<td class="org-left">newSingleThreadScheduledPool(ThreadFactory threadFactory)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">Demo</h2>
+<div class="outline-text-2" id="text-orgheadline6">
+<div class="org-src-container">
+
+<pre class="src src-java">/*先定义两个Runnable  一个发送短信、一个发送邮件*/
+public class SmsSender implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 0; i &lt; 100; i++) {
+            System.out.println(System.currentTimeMillis() + ": SmsSender method has been getted");
+        }
+    }
+}
+
+public class MailSender implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 0; i &lt; 100; i++) {
+            System.out.println(System.currentTimeMillis() + ": MailSender has been getted");
+        }
+    }
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7">建并启动线程</h3>
+<div class="outline-text-3" id="text-orgheadline7">
+<div class="org-src-container">
+
+<pre class="src src-java">public class ExecutorTest {
+    public static void main(String[] args) {
+
+        // 创建线程
+        ExecutorService exec1 = Executors.newFixedThreadPool(1);
+        ExecutorService exec2 = Executors.newCachedThreadPool();
+        ExecutorService exec3 = Executors.newSingleThreadExecutor();
+
+        // 开始启动线程
+        exec1.execute(new MailSender());
+        exec2.execute(new SmsSender());
+        exec3.execute(new SmsSender());
+
+        // 带有返回接口的执行线程
+        Future&lt;String&gt; future = exec3.submit(new Callable&lt;String&gt;() {
+
+            @Override
+            public String call() throws Exception {
+                return "SmsSender call back method";
+            }
+        });
+
+        try {
+            System.out.println(future.get()); //获取future的返回值
+            System.out.println(future.isCancelled());
+            System.out.println(future.isDone());
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        // 关闭线程
+        exec1.shutdown();
+        exec2.shutdown();
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+            </section>
+    </section>
+</div>
+
+    <div>
+    <section id="wrapper">
+      <div class="post-meta">
+        <span title="post date" class="post-info">2016-09-04</span>
+        <span title="tags" class="post-info"><a href="/tags/java/">Java</a></span>
+      </div>
+      <br />
+      <br />
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/2016/09/04/java-executor学习-/";
+          var disqus_url = "http://127.0.0.1/blog/2016/09/04/java-executor学习-/";
+          var disqus_shortname = 'your_disqus_shortname';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'your_duoshuo_shortname'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div align="center">
+      <footer id="footer">
+        <p class="small">
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:admin &lt;at&gt; pengganyu &lt;dot&gt; local">彭甘雨</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+        <br />
+      </footer>
+      </div>
+      </section>
+    </div>
+
+  </body>
+</html>

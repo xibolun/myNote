@@ -87,9 +87,9 @@ scheduled Task是定时任务，用于定时执行某段程序
 <li><a id="orgheadline9"></a>zone<br  /></li></ul>
 </div>
 </div>
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">cron</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18">cron</h3>
+<div class="outline-text-3" id="text-orgheadline18">
 </div><div id="outline-container-orgheadline11" class="outline-4">
 <h4 id="orgheadline11">cron学习</h4>
 <div class="outline-text-4" id="text-orgheadline11">
@@ -201,9 +201,9 @@ scheduled Task是定时任务，用于定时执行某段程序
 </table>
 </div></li></ul>
 </div>
-<div id="outline-container-orgheadline15" class="outline-4">
-<h4 id="orgheadline15">cron配置化</h4>
-<div class="outline-text-4" id="text-orgheadline15">
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16">cron配置化</h4>
+<div class="outline-text-4" id="text-orgheadline16">
 </div><ul class="org-ul"><li><a id="orgheadline13"></a>在application当中配置cron值<br  /><div class="outline-text-5" id="text-orgheadline13">
 <div class="org-src-container">
 
@@ -220,11 +220,42 @@ public void reportCurrentTime() {
 }
 </pre>
 </div>
+</div></li>
+<li><a id="orgheadline15"></a>需要配置一下properties，或写一个Configuration的注解类进行处理<br  /><div class="outline-text-5" id="text-orgheadline15">
+<div class="org-src-container">
+
+<pre class="src src-java">@SpringBootApplication
+@EnableScheduling
+public class App {
+
+    public static void main(String[] args) {
+
+        SpringApplication app = new SpringApplication(App.class);
+
+        app.addListeners(new Listener());
+        app.setBannerMode(Banner.Mode.CONSOLE);
+        app.run(args);
+
+    }
+    // 添加property的配置信息
+    @Bean
+    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer properties = new PropertySourcesPlaceholderConfigurer();
+
+        properties.setLocation(new ClassPathResource("application.default.properties"));
+        properties.setIgnoreResourceNotFound(false);
+
+        return properties;
+    }
+
+}
+</pre>
+</div>
 </div></li></ul>
 </div>
-<div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16">cron maker</h4>
-<div class="outline-text-4" id="text-orgheadline16">
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17">cron maker</h4>
+<div class="outline-text-4" id="text-orgheadline17">
 <p>
 这是专门生成cron的一个网站：<a href="http://www.cronmaker.com/">http://www.cronmaker.com/</a>
 </p>
