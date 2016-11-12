@@ -41,7 +41,39 @@
     <div id="outline-container-sec-" class="row" style="padding-top: 70px">
         <div class="col-md-2"></div>
             <h1>Quartz</h1>
-            
+            <div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline13">使用说明</a>
+<ul>
+<li><a href="#orgheadline1">需要执行的类必须implement Job，重写execute方法</a></li>
+<li><a href="#orgheadline2">若job需要被interrupt，则job必须实现interrupt方法</a></li>
+<li><a href="#orgheadline5">JobListener</a>
+<ul>
+<li><a href="#orgheadline3">JobListener的方法列表</a></li>
+<li><a href="#orgheadline4">添加JobListener</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline8">Job的定时任务Trigger可以通过cron表达式，也可能通过方法来实现</a>
+<ul>
+<li><a href="#orgheadline6">类名：SimpleScheduleBuilder</a></li>
+<li><a href="#orgheadline7">方法列表及说明</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline9">Job异常处理，可以继续执行Job，也可以直接退出Job</a></li>
+<li><a href="#orgheadline12">Job之间传参数实现，通过JobDetail 读写参数</a>
+<ul>
+<li><a href="#orgheadline10">写入数据</a></li>
+<li><a href="#orgheadline11">获取数据：在execute方法的context当中存放着当前job的JobDetail</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
 <div id="outline-container-orgheadline13" class="outline-2">
 <h2 id="orgheadline13">使用说明</h2>
 <div class="outline-text-2" id="text-orgheadline13">
