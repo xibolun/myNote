@@ -1,5 +1,5 @@
 #+STARTUP: showall
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:t
 #+OPTIONS: num:nil
 #+OPTIONS: html-postamble:nil
 #+LANGUAGE: zh-CN
