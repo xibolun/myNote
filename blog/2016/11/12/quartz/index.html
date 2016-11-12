@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>Effect Java笔记  - org-page</title>
+    <title>Quartz - org-page</title>
     <meta charset="utf-8" />
     <meta name="author" content="彭甘雨" />
     <link rel="stylesheet" href="/media/css/style.css">
@@ -21,88 +21,75 @@
     <section id="wrapper">
         <article class="post">
             <header>
-                    <h1>Effect Java笔记 </h1>
+                    <h1>Quartz</h1>
             </header>
             <br />
             <section id="post-body">
                 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">第2章 对象的销毁和创建</h2>
-<div class="outline-text-2" id="text-orgheadline4">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">使用说明</h2>
+<div class="outline-text-2" id="text-orgheadline7">
 </div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">私有构造方法来强化单例属性</h3>
-<div class="outline-text-3" id="text-orgheadline1">
-<p>
-单例的三种实现方法
-</p>
-<div class="org-src-container">
-
-<pre class="src src-java">public class Elvis{
-  public static final Elvis INSTANCE = new Elvis();
-}
-</pre>
+<h3 id="orgheadline1">需要执行的类必须implement Job，重写execute方法</h3>
 </div>
-
-<div class="org-src-container">
-
-<pre class="src src-java">public class Elvis{
-  public static final Evlis INSTANCE = new Elvis();
-
-  public static Elvis getInstance(){
-     return INSTANCE;
-  }
-
-    public static void main(){
-        System.out.println("hello");
-    }
-}
-</pre>
-</div>
-
-<div class="org-src-container">
-
-<pre class="src src-java">public enum Elvis{
-  INSTANCE;
-}
-</pre>
-</div>
-</div>
-</div>
-
 <div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">私有构造方法强化不可实例化的能力</h3>
+<h3 id="orgheadline2">若job需要被interrupt，则job必须实现interrupt方法</h3>
 <div class="outline-text-3" id="text-orgheadline2">
-<p>
-在某些类当中，比如工具类，常量类，是不希望被实例化的。但是在没有构造方法的情况下，会调用默认的无参的构造方法。如果我们创建一个私有的构造方法，则编译器就不会实例化一个无参的构造方法。
-</p>
+<div class="org-src-container">
+
+<pre class="src src-java">public void interrupt() throws UnableToInterruptJobException {
+      _log.info("---" + _jobKey + "  -- INTERRUPTING --");
+      _interrupted = true;
+  }
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">避免创建不必要的对象</h3>
+<h3 id="orgheadline3">Job的定时任务可以通过Cron表达式，也可能通过方法来实现</h3>
 <div class="outline-text-3" id="text-orgheadline3">
 <div class="org-src-container">
 
-<pre class="src src-java">String s = new String("hello");
-String s = "hello";
-</pre>
+<pre class="src src-java"></pre>
 </div>
-<p>
-以上的代码在每次执行的时候都会创建一个新的对象。
-</p>
-
-<ol class="org-ol">
-<li><p>
-对于同时提供了静态方法和构造方法的不可变类，静态方法的使用要优于构造方法
-</p>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">Job之间传参数实现，通过JobDetail 读写参数</h3>
+<div class="outline-text-3" id="text-orgheadline6">
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">写入数据</h4>
+<div class="outline-text-4" id="text-orgheadline4">
 <div class="org-src-container">
 
-<pre class="src src-java">Boolean.valueOf("true");
-Boolean("true");
+<pre class="src src-java">JobDetail job1 = newJob(ColorJob.class).withIdentity("job1", "group1").build();
+
+// pass initialization parameters into the job
+job1.getJobDataMap().put(ColorJob.FAVORITE_COLOR, "Green");
+job1.getJobDataMap().put(ColorJob.EXECUTION_COUNT, 1);
 </pre>
-</div></li>
-<li>我们可以在将一些变量声明于类或方法的抬头，防止多次实例化</li>
-<li></li>
-</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">获取数据：在execute方法的context当中存放着当前job的JobDetail</h4>
+<div class="outline-text-4" id="text-orgheadline5">
+<div class="org-src-container">
+
+<pre class="src src-java">public void execute(JobExecutionContext context) throws JobExecutionException {
+
+      // This job simply prints out its job name and the
+      // date and time that it is running
+      JobKey jobKey = context.getJobDetail().getKey();
+
+      // Grab and print passed parameters
+      JobDataMap data = context.getJobDetail().getJobDataMap();
+      String favoriteColor = data.getString(FAVORITE_COLOR);
+      int count = data.getInt(EXECUTION_COUNT);
+  }
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -114,7 +101,7 @@ Boolean("true");
     <div>
     <section id="wrapper">
       <div class="post-meta">
-        <span title="post date" class="post-info">2016-08-16</span>
+        <span title="post date" class="post-info">2016-11-12</span>
         <span title="tags" class="post-info"><a href="/tags/java/">Java</a></span>
       </div>
       <br />
@@ -124,8 +111,8 @@ Boolean("true");
         <div id="disqus_thread"></div>
         <script type="text/javascript">
           //var disqus_developer = 1;
-          var disqus_identifier = "/blog/2016/08/16/effect-java笔记-/";
-          var disqus_url = "http://127.0.0.1/blog/2016/08/16/effect-java笔记-/";
+          var disqus_identifier = "/blog/2016/11/12/quartz/";
+          var disqus_url = "http://127.0.0.1/blog/2016/11/12/quartz/";
           var disqus_shortname = 'your_disqus_shortname';
           /* * * DON'T EDIT BELOW THIS LINE * * */
           (function() {

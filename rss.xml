@@ -4,18 +4,365 @@
     <title>org-page</title>
     <link>http://127.0.0.1</link>
     <description>static site generator</description>
-    <pubDate>Mon, 31 Oct 2016 23:40:36 CST</pubDate>
-    <lastBuildDate>Mon, 31 Oct 2016 23:40:36 CST</lastBuildDate>
+    <pubDate>Sat, 12 Nov 2016 16:07:22 CST</pubDate>
+    <lastBuildDate>Sat, 12 Nov 2016 16:07:22 CST</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
-      <title>释经讲道</title>
-      <link>http://127.0.0.1/blog/2016/10/30/释经讲道/</link>
+      <title>Quartz</title>
+      <link>http://127.0.0.1/blog/2016/11/12/quartz/</link>
       <description><![CDATA[<div>
     <section id="wrapper">
         <article class="post">
             <header>
-                    <h1>释经讲道</h1>
+                    <h1>Quartz</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">使用说明</h2>
+<div class="outline-text-2" id="text-orgheadline7">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">需要执行的类必须implement Job，重写execute方法</h3>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">若job需要被interrupt，则job必须实现interrupt方法</h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<div class="org-src-container">
+
+<pre class="src src-java">public void interrupt() throws UnableToInterruptJobException {
+      _log.info("---" + _jobKey + "  -- INTERRUPTING --");
+      _interrupted = true;
+  }
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">Job的定时任务可以通过Cron表达式，也可能通过方法来实现</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<div class="org-src-container">
+
+<pre class="src src-java"></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">Job之间传参数实现，通过JobDetail 读写参数</h3>
+<div class="outline-text-3" id="text-orgheadline6">
+</div><div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">写入数据</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<div class="org-src-container">
+
+<pre class="src src-java">JobDetail job1 = newJob(ColorJob.class).withIdentity("job1", "group1").build();
+
+// pass initialization parameters into the job
+job1.getJobDataMap().put(ColorJob.FAVORITE_COLOR, "Green");
+job1.getJobDataMap().put(ColorJob.EXECUTION_COUNT, 1);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">获取数据：在execute方法的context当中存放着当前job的JobDetail</h4>
+<div class="outline-text-4" id="text-orgheadline5">
+<div class="org-src-container">
+
+<pre class="src src-java">public void execute(JobExecutionContext context) throws JobExecutionException {
+
+      // This job simply prints out its job name and the
+      // date and time that it is running
+      JobKey jobKey = context.getJobDetail().getKey();
+
+      // Grab and print passed parameters
+      JobDataMap data = context.getJobDetail().getJobDataMap();
+      String favoriteColor = data.getString(FAVORITE_COLOR);
+      int count = data.getInt(EXECUTION_COUNT);
+  }
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+            </section>
+    </section>
+</div>
+]]></description>
+      <pubDate>2016-11-12</pubDate>
+      <guid>http://127.0.0.1/blog/2016/11/12/quartz/</guid>
+    </item>
+    <item>
+      <title>Spring boot Schedule Task </title>
+      <link>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</link>
+      <description><![CDATA[<div>
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Spring boot Schedule Task </h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">基础入门</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+scheduled Task是定时任务，用于定时执行某段程序
+</p>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">官方demo： <a href="https://spring.io/guides/gs/scheduling-tasks/">Scheduling Tasks</a></h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<p>
+需要注意的地方：
+</p>
+<ol class="org-ol">
+<li>在Application.java当中配置@EnableScheduling</li>
+<li>在方法当中配置@Scheduled</li>
+<li>在方法所在的类当中配置component</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">注解列表</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+</div><div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">@EnableScheduling</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<p>
+设置在Application类当中，用于打开定时任务的开头
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">@Scheduled</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<p>
+定时任务的模式注解
+</p>
+</div>
+<ul class="org-ul"><li><a id="orgheadline5"></a>cron<br  /><div class="outline-text-5" id="text-orgheadline5">
+<ul class="org-ul">
+<li>按照unix 平台的cron语法来设置定时任务执行的时间</li>
+<li>参考man crontab</li>
+</ul>
+</div></li>
+<li><a id="orgheadline6"></a>fixedDelay<br  /><div class="outline-text-5" id="text-orgheadline6">
+<ul class="org-ul">
+<li>在下一周期时间g到达时，当上一定时任务执行完之后，才执行此次的定时任务;</li>
+<li>参数long类型，5000为5s；</li>
+<li>fixedDelayString，接收String类型的日期</li>
+</ul>
+</div></li>
+<li><a id="orgheadline7"></a>fixedRate<br  /><div class="outline-text-5" id="text-orgheadline7">
+<ul class="org-ul">
+<li>在下一周期时间到达时，当上一次定时任务未执行完，此次的定时任务也可以执行</li>
+<li>参数同 fixedDelay</li>
+</ul>
+</div></li>
+<li><a id="orgheadline8"></a>initialDelayString<br  /></li>
+<li><a id="orgheadline9"></a>zone<br  /></li></ul>
+</div>
+</div>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18">cron</h3>
+<div class="outline-text-3" id="text-orgheadline18">
+</div><div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">cron学习</h4>
+<div class="outline-text-4" id="text-orgheadline11">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">field</th>
+<th scope="col" class="org-left">allowed value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">second</td>
+<td class="org-left">0-59 , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">minute</td>
+<td class="org-left">0-59 , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">hour</td>
+<td class="org-left">0-23 , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">day of month</td>
+<td class="org-left">1-31 , - / * ? L W C</td>
+</tr>
+
+<tr>
+<td class="org-left">month</td>
+<td class="org-left">1-12 JAN-DEC , - / *</td>
+</tr>
+
+<tr>
+<td class="org-left">day of week</td>
+<td class="org-left">1-7 SUN-SAT , - / * ? L C #</td>
+</tr>
+
+<tr>
+<td class="org-left">year</td>
+<td class="org-left">Null 1970-2099 , - / *</td>
+</tr>
+</tbody>
+</table>
+
+<ol class="org-ol">
+<li>- 分隔起止时间值； eg: minute 5-20 ==&gt; 从5分钟~20分钟内，每分钟执行一次</li>
+<li>/ 分隔开始时间和间隔时间； eg: minute 5/20  ==&gt; 5分钟开始执行，每隔20分钟执行一次</li>
+<li>, 分隔指定时间值，表示枚举；eg minute 5,20  ==&gt; 5分钟和20分钟，每分钟执行一次</li>
+<li>* 表示通配符； eg minute * ==&gt; 表示每分钟都执行</li>
+<li>? 只能出现在dayOfMonth,dayOfWeek，匹配任意值</li>
+<li>L last,最后一个值； dayOfMonth L ==&gt; 每个月的最后一天执行</li>
+<li>W work，工作日执行；</li>
+<li>C</li>
+<li># 分隔，每个月的第几个周几，6#3，每个月的第三个周五</li>
+</ol>
+</div>
+
+<ul class="org-ul"><li><a id="orgheadline12"></a>Demo列表<br  /><div class="outline-text-5" id="text-orgheadline12">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">0 0/5 14,18 * * ?</td>
+<td class="org-left">每天的14:00开始到14:55及每天的18:00开始到18:55，每5分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">0 0-5 14 * * ?</td>
+<td class="org-left">每天的14:00~14：05，每分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">0 10,44 14 ? 3 WED</td>
+<td class="org-left">3月的每周三的14:10,14:44每分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">0 15 10 ? * 6L</td>
+<td class="org-left">每周五10：15，每分钟执行（6是周五，1是周日）</td>
+</tr>
+
+<tr>
+<td class="org-left">0 15 10 ? * 6#3</td>
+<td class="org-left">每个月的第3个周五的10:15执行</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div></li></ul>
+</div>
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16">cron配置化</h4>
+<div class="outline-text-4" id="text-orgheadline16">
+</div><ul class="org-ul"><li><a id="orgheadline13"></a>在application当中配置cron值<br  /><div class="outline-text-5" id="text-orgheadline13">
+<p>
+此处没有引号
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java">cron.expression=*/5 * * * * ?
+</pre>
+</div>
+</div></li>
+<li><a id="orgheadline14"></a>在需要添加定时任务的方法上面添加cron配置的value值即可<br  /><div class="outline-text-5" id="text-orgheadline14">
+<div class="org-src-container">
+
+<pre class="src src-java">@Scheduled(cron = "${cron.expression}")
+public void reportCurrentTime() {
+    System.out.println("The time is now " + dateFormat.format(new Date()));
+}
+</pre>
+</div>
+</div></li>
+<li><a id="orgheadline15"></a>需要配置一下properties，或写一个Configuration的注解类进行处理<br  /><div class="outline-text-5" id="text-orgheadline15">
+<div class="org-src-container">
+
+<pre class="src src-java">@SpringBootApplication
+@EnableScheduling
+public class App {
+
+    public static void main(String[] args) {
+
+        SpringApplication app = new SpringApplication(App.class);
+
+        app.addListeners(new Listener());
+        app.setBannerMode(Banner.Mode.CONSOLE);
+        app.run(args);
+
+    }
+    // 添加property的配置信息
+    @Bean
+    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer properties = new PropertySourcesPlaceholderConfigurer();
+
+        properties.setLocation(new ClassPathResource("application.default.properties"));
+        properties.setIgnoreResourceNotFound(false);
+
+        return properties;
+    }
+
+}
+</pre>
+</div>
+</div></li></ul>
+</div>
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17">cron maker</h4>
+<div class="outline-text-4" id="text-orgheadline17">
+<p>
+这是专门生成cron的一个网站：<a href="http://www.cronmaker.com/">http://www.cronmaker.com/</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+            </section>
+    </section>
+</div>
+]]></description>
+      <pubDate>2016-11-07</pubDate>
+      <guid>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</guid>
+    </item>
+    <item>
+      <title>释经讲道学</title>
+      <link>http://127.0.0.1/blog/2016/10/30/释经讲道学/</link>
+      <description><![CDATA[<div>
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>释经讲道学</h1>
             </header>
             <br />
             <section id="post-body">
@@ -349,88 +696,25 @@
     </section>
 </div>
 ]]></description>
-      <pubDate>2016-10-31</pubDate>
-      <guid>http://127.0.0.1/blog/2016/10/30/释经讲道/</guid>
+      <pubDate>2016-11-06</pubDate>
+      <guid>http://127.0.0.1/blog/2016/10/30/释经讲道学/</guid>
     </item>
     <item>
-      <title>Spring boot Schedule Task </title>
-      <link>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</link>
+      <title>Spring RestTemplate </title>
+      <link>http://127.0.0.1/blog/2016/10/22/spring-resttemplate-/</link>
       <description><![CDATA[<div>
     <section id="wrapper">
         <article class="post">
             <header>
-                    <h1>Spring boot Schedule Task </h1>
+                    <h1>Spring RestTemplate </h1>
             </header>
             <br />
             <section id="post-body">
                 
+
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">基础入门</h2>
+<h2 id="orgheadline1">RestTemplate 方法说明</h2>
 <div class="outline-text-2" id="text-orgheadline1">
-<p>
-scheduled Task是定时任务，用于定时执行某段程序
-</p>
-</div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">官方demo： <a href="https://spring.io/guides/gs/scheduling-tasks/">Scheduling Tasks</a></h3>
-<div class="outline-text-3" id="text-orgheadline2">
-<p>
-需要注意的地方：
-</p>
-<ol class="org-ol">
-<li>在Application.java当中配置@EnableScheduling</li>
-<li>在方法当中配置@Scheduled</li>
-<li>在方法所在的类当中配置component</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">注解列表</h3>
-<div class="outline-text-3" id="text-orgheadline10">
-</div><div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">@EnableScheduling</h4>
-<div class="outline-text-4" id="text-orgheadline3">
-<p>
-设置在Application类当中，用于打开定时任务的开头
-</p>
-</div>
-</div>
-<div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">@Scheduled</h4>
-<div class="outline-text-4" id="text-orgheadline4">
-<p>
-定时任务的模式注解
-</p>
-</div>
-<ul class="org-ul"><li><a id="orgheadline5"></a>cron<br  /><div class="outline-text-5" id="text-orgheadline5">
-<ul class="org-ul">
-<li>按照unix 平台的cron语法来设置定时任务执行的时间</li>
-<li>参考man crontab</li>
-</ul>
-</div></li>
-<li><a id="orgheadline6"></a>fixedDelay<br  /><div class="outline-text-5" id="text-orgheadline6">
-<ul class="org-ul">
-<li>在下一周期时间g到达时，当上一定时任务执行完之后，才执行此次的定时任务;</li>
-<li>参数long类型，5000为5s；</li>
-<li>fixedDelayString，接收String类型的日期</li>
-</ul>
-</div></li>
-<li><a id="orgheadline7"></a>fixedRate<br  /><div class="outline-text-5" id="text-orgheadline7">
-<ul class="org-ul">
-<li>在下一周期时间到达时，当上一次定时任务未执行完，此次的定时任务也可以执行</li>
-<li>参数同 fixedDelay</li>
-</ul>
-</div></li>
-<li><a id="orgheadline8"></a>initialDelayString<br  /></li>
-<li><a id="orgheadline9"></a>zone<br  /></li></ul>
-</div>
-</div>
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">cron</h3>
-<div class="outline-text-3" id="text-orgheadline18">
-</div><div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11">cron学习</h4>
-<div class="outline-text-4" id="text-orgheadline11">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -441,164 +725,22 @@ scheduled Task是定时任务，用于定时执行某段程序
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">field</th>
-<th scope="col" class="org-left">allowed value</th>
+<th scope="col" class="org-left">Modifier and Type</th>
+<th scope="col" class="org-left">Method and Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left">second</td>
-<td class="org-left">0-59 , - / *</td>
+<td class="org-left">void</td>
+<td class="org-left">delete(String url, Map&lt;String,?&gt; urlVariables)</td>
 </tr>
 
 <tr>
-<td class="org-left">minute</td>
-<td class="org-left">0-59 , - / *</td>
-</tr>
-
-<tr>
-<td class="org-left">hour</td>
-<td class="org-left">0-23 , - / *</td>
-</tr>
-
-<tr>
-<td class="org-left">day of month</td>
-<td class="org-left">1-31 , - / * ? L W C</td>
-</tr>
-
-<tr>
-<td class="org-left">month</td>
-<td class="org-left">1-12 JAN-DEC , - / *</td>
-</tr>
-
-<tr>
-<td class="org-left">day of week</td>
-<td class="org-left">1-7 SUN-SAT , - / * ? L C #</td>
-</tr>
-
-<tr>
-<td class="org-left">year</td>
-<td class="org-left">Null 1970-2099 , - / *</td>
+<td class="org-left">&lt;T&gt; ResponseEntity&lt;T&gt;</td>
+<td class="org-left">getForEntity(String url, Class&lt;T&gt; responseType, Object&#x2026; urlVariables)</td>
 </tr>
 </tbody>
 </table>
-
-<ol class="org-ol">
-<li>- 分隔起止时间值； eg: minute 5-20 ==&gt; 从5分钟~20分钟内，每分钟执行一次</li>
-<li>/ 分隔开始时间和间隔时间； eg: minute 5/20  ==&gt; 5分钟开始执行，每隔20分钟执行一次</li>
-<li>, 分隔指定时间值，表示枚举；eg minute 5,20  ==&gt; 5分钟和20分钟，每分钟执行一次</li>
-<li>* 表示通配符； eg minute * ==&gt; 表示每分钟都执行</li>
-<li>? 只能出现在dayOfMonth,dayOfWeek，匹配任意值</li>
-<li>L last,最后一个值； dayOfMonth L ==&gt; 每个月的最后一天执行</li>
-<li>W work，工作日执行；</li>
-<li>C</li>
-<li># 分隔，每个月的第几个周几，6#3，每个月的第三个周五</li>
-</ol>
-</div>
-
-<ul class="org-ul"><li><a id="orgheadline12"></a>Demo列表<br  /><div class="outline-text-5" id="text-orgheadline12">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">0 0/5 14,18 * * ?</td>
-<td class="org-left">每天的14:00开始到14:55及每天的18:00开始到18:55，每5分钟执行</td>
-</tr>
-
-<tr>
-<td class="org-left">0 0-5 14 * * ?</td>
-<td class="org-left">每天的14:00~14：05，每分钟执行</td>
-</tr>
-
-<tr>
-<td class="org-left">0 10,44 14 ? 3 WED</td>
-<td class="org-left">3月的每周三的14:10,14:44每分钟执行</td>
-</tr>
-
-<tr>
-<td class="org-left">0 15 10 ? * 6L</td>
-<td class="org-left">每周五10：15，每分钟执行（6是周五，1是周日）</td>
-</tr>
-
-<tr>
-<td class="org-left">0 15 10 ? * 6#3</td>
-<td class="org-left">每个月的第3个周五的10:15执行</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div></li></ul>
-</div>
-<div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16">cron配置化</h4>
-<div class="outline-text-4" id="text-orgheadline16">
-</div><ul class="org-ul"><li><a id="orgheadline13"></a>在application当中配置cron值<br  /><div class="outline-text-5" id="text-orgheadline13">
-<div class="org-src-container">
-
-<pre class="src src-java">cron.expression="*/5 * * * * ?"
-</pre>
-</div>
-</div></li>
-<li><a id="orgheadline14"></a>在需要添加定时任务的方法上面添加cron配置的value值即可<br  /><div class="outline-text-5" id="text-orgheadline14">
-<div class="org-src-container">
-
-<pre class="src src-java">@Scheduled(cron = "${cron.expression}")
-public void reportCurrentTime() {
-    System.out.println("The time is now " + dateFormat.format(new Date()));
-}
-</pre>
-</div>
-</div></li>
-<li><a id="orgheadline15"></a>需要配置一下properties，或写一个Configuration的注解类进行处理<br  /><div class="outline-text-5" id="text-orgheadline15">
-<div class="org-src-container">
-
-<pre class="src src-java">@SpringBootApplication
-@EnableScheduling
-public class App {
-
-    public static void main(String[] args) {
-
-        SpringApplication app = new SpringApplication(App.class);
-
-        app.addListeners(new Listener());
-        app.setBannerMode(Banner.Mode.CONSOLE);
-        app.run(args);
-
-    }
-    // 添加property的配置信息
-    @Bean
-    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        PropertySourcesPlaceholderConfigurer properties = new PropertySourcesPlaceholderConfigurer();
-
-        properties.setLocation(new ClassPathResource("application.default.properties"));
-        properties.setIgnoreResourceNotFound(false);
-
-        return properties;
-    }
-
-}
-</pre>
-</div>
-</div></li></ul>
-</div>
-<div id="outline-container-orgheadline17" class="outline-4">
-<h4 id="orgheadline17">cron maker</h4>
-<div class="outline-text-4" id="text-orgheadline17">
-<p>
-这是专门生成cron的一个网站：<a href="http://www.cronmaker.com/">http://www.cronmaker.com/</a>
-</p>
-</div>
-</div>
 </div>
 </div>
 
@@ -606,8 +748,8 @@ public class App {
     </section>
 </div>
 ]]></description>
-      <pubDate>2016-10-31</pubDate>
-      <guid>http://127.0.0.1/blog/2016/06/11/spring-boot-schedule-task-/</guid>
+      <pubDate>2016-11-01</pubDate>
+      <guid>http://127.0.0.1/blog/2016/10/22/spring-resttemplate-/</guid>
     </item>
     <item>
       <title>民数记 </title>
@@ -866,63 +1008,6 @@ public class App {
 ]]></description>
       <pubDate>2016-10-22</pubDate>
       <guid>http://127.0.0.1/blog/2016/10/10/民数记-/</guid>
-    </item>
-    <item>
-      <title>Spring RestTemplate </title>
-      <link>http://127.0.0.1/blog/2016/10/22/spring-resttemplate-/</link>
-      <description><![CDATA[<div>
-    <section id="wrapper">
-        <article class="post">
-            <header>
-                    <h1>Spring RestTemplate </h1>
-            </header>
-            <br />
-            <section id="post-body">
-                
-
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">RestTemplate 方法说明</h2>
-<div class="outline-text-2" id="text-orgheadline1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Modifier and Type</th>
-<th scope="col" class="org-left">Method and Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">void</td>
-<td class="org-left">delete(String url, Map&lt;String,?&gt; urlVariables)</td>
-</tr>
-
-<tr>
-<td class="org-left">&lt;T&gt; ResponseEntity&lt;T&gt;</td>
-<td class="org-left">getForEntity(String url, Class&lt;T&gt; responseType, Object&#x2026; urlVariables)</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-            </section>
-    </section>
-</div>
-]]></description>
-      <pubDate>2016-10-22</pubDate>
-      <guid>http://127.0.0.1/blog/2016/10/22/spring-resttemplate-/</guid>
     </item>
     <item>
       <title>mysql笔记</title>
@@ -1946,106 +2031,6 @@ public class MailSender implements Runnable {
 ]]></description>
       <pubDate>2016-09-06</pubDate>
       <guid>http://127.0.0.1/blog/2016/09/04/java-executor学习-/</guid>
-    </item>
-    <item>
-      <title>Effect Java笔记 </title>
-      <link>http://127.0.0.1/blog/2016/08/16/effect-java笔记-/</link>
-      <description><![CDATA[<div>
-    <section id="wrapper">
-        <article class="post">
-            <header>
-                    <h1>Effect Java笔记 </h1>
-            </header>
-            <br />
-            <section id="post-body">
-                
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">第2章 对象的销毁和创建</h2>
-<div class="outline-text-2" id="text-orgheadline4">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">私有构造方法来强化单例属性</h3>
-<div class="outline-text-3" id="text-orgheadline1">
-<p>
-单例的三种实现方法
-</p>
-<div class="org-src-container">
-
-<pre class="src src-java">public class Elvis{
-  public static final Elvis INSTANCE = new Elvis();
-}
-</pre>
-</div>
-
-<div class="org-src-container">
-
-<pre class="src src-java">public class Elvis{
-  public static final Evlis INSTANCE = new Elvis();
-
-  public static Elvis getInstance(){
-     return INSTANCE;
-  }
-
-    public static void main(){
-        System.out.println("hello");
-    }
-}
-</pre>
-</div>
-
-<div class="org-src-container">
-
-<pre class="src src-java">public enum Elvis{
-  INSTANCE;
-}
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">私有构造方法强化不可实例化的能力</h3>
-<div class="outline-text-3" id="text-orgheadline2">
-<p>
-在某些类当中，比如工具类，常量类，是不希望被实例化的。但是在没有构造方法的情况下，会调用默认的无参的构造方法。如果我们创建一个私有的构造方法，则编译器就不会实例化一个无参的构造方法。
-</p>
-</div>
-</div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">避免创建不必要的对象</h3>
-<div class="outline-text-3" id="text-orgheadline3">
-<div class="org-src-container">
-
-<pre class="src src-java">String s = new String("hello");
-String s = "hello";
-</pre>
-</div>
-<p>
-以上的代码在每次执行的时候都会创建一个新的对象。
-</p>
-
-<ol class="org-ol">
-<li><p>
-对于同时提供了静态方法和构造方法的不可变类，静态方法的使用要优于构造方法
-</p>
-<div class="org-src-container">
-
-<pre class="src src-java">Boolean.valueOf("true");
-Boolean("true");
-</pre>
-</div></li>
-<li>我们可以在将一些变量声明于类或方法的抬头，防止多次实例化</li>
-<li></li>
-</ol>
-</div>
-</div>
-</div>
-
-            </section>
-    </section>
-</div>
-]]></description>
-      <pubDate>2016-09-02</pubDate>
-      <guid>http://127.0.0.1/blog/2016/08/16/effect-java笔记-/</guid>
     </item>
   </channel>
 </rss>
