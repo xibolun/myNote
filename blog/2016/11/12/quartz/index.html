@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>Quartz - org-page</title>
-    <meta charset="utf-8" />
-    <meta name="author" content="彭甘雨" />
-    <link rel="stylesheet" href="/media/css/style.css">
-    <link rel="stylesheet" href="/media/css/highlight.css">
-    <style type="text/css"></style>
+  <title>Quartz - org-page</title>
+  <meta charset="utf-8" />
+  <meta name="author" content="彭甘雨" />
+
+  <link rel="alternate" title="RSS Feed" href="/rss.xml" type="application/rss+xml">
+  <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/media/css/posts.css" type="text/css">
 </head>
 
   <body class="container">
-    <nav class="main-nav">
-        <a href="/blog">Archive</a>
-        <a href="/tags">Tag</a>
-        <a href="/about/">About</a>
-        <a class="cta" href="https://github.com/kedadiannao220">GitHub</a>
+<header id="header">
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+<div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">org-page</a>
+        </div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="/">Biblenote</a></li>
+                <li class="active"><a href="/">Blog</a></li>
+                <li class="active"><a href="/">Ezra</a></li>
+          <li><a href="https://github.com/kedadiannao220">GitHub</a></li>
+        </ul>
+</div>
+</div>
     </nav>
+</body>
+</header>
 
-<div>
-    <section id="wrapper">
-        <article class="post">
-            <header>
-                    <h1>Quartz</h1>
-            </header>
-            <br />
-            <section id="post-body">
-                
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">使用说明</h2>
-<div class="outline-text-2" id="text-orgheadline7">
+<section id="content" role="main">
+    <div id="outline-container-sec-" class="row" style="padding-top: 70px">
+        <div class="col-md-2"></div>
+            <h1>Quartz</h1>
+            
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13">使用说明</h2>
+<div class="outline-text-2" id="text-orgheadline13">
 </div><div id="outline-container-orgheadline1" class="outline-3">
 <h3 id="orgheadline1">需要执行的类必须implement Job，重写execute方法</h3>
 </div>
@@ -45,21 +61,169 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3">Job的定时任务可以通过Cron表达式，也可能通过方法来实现</h3>
-<div class="outline-text-3" id="text-orgheadline3">
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">JobListener</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+</div><div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">JobListener的方法列表</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">方法名</th>
+<th scope="col" class="org-left">方法说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">public String getName()</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">public void jobToBeExecuted(JobExecutionContext inContext)</td>
+<td class="org-left">Job将要执行</td>
+</tr>
+
+<tr>
+<td class="org-left">public void jobExecutionVetoed(JobExecutionContext inContext)</td>
+<td class="org-left">Job被拒绝</td>
+</tr>
+
+<tr>
+<td class="org-left">public void jobWasExecuted(JobExecutionContext inContext, JobExecutionException inException)</td>
+<td class="org-left">Job被执行</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">添加JobListener</h4>
+<div class="outline-text-4" id="text-orgheadline4">
 <div class="org-src-container">
 
-<pre class="src src-java"></pre>
+<pre class="src src-java">// Set up the listener
+JobListener listener = new Job1Listener();
+Matcher&lt;JobKey&gt; matcher = KeyMatcher.keyEquals(job.getKey());
+sched.getListenerManager().addJobListener(listener, matcher);
+</pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">Job之间传参数实现，通过JobDetail 读写参数</h3>
-<div class="outline-text-3" id="text-orgheadline6">
-</div><div id="outline-container-orgheadline4" class="outline-4">
-<h4 id="orgheadline4">写入数据</h4>
-<div class="outline-text-4" id="text-orgheadline4">
+</div>
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">Job的定时任务Trigger可以通过cron表达式，也可能通过方法来实现</h3>
+<div class="outline-text-3" id="text-orgheadline8">
+</div><div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">类名：SimpleScheduleBuilder</h4>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">方法列表及说明</h4>
+<div class="outline-text-4" id="text-orgheadline7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">方法名</th>
+<th scope="col" class="org-left">方法说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">withIntervalInHours</td>
+<td class="org-left">每隔几小时执行</td>
+</tr>
+
+<tr>
+<td class="org-left">withIntervalInMinutes</td>
+<td class="org-left">每隔几分钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">withIntervalInSeconds</td>
+<td class="org-left">每隔几秒钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">withIntervalInSeconds</td>
+<td class="org-left">每隔几毫秒钟执行</td>
+</tr>
+
+<tr>
+<td class="org-left">repeatForever</td>
+<td class="org-left">永远执行</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+
+<pre class="src src-java">CronTrigger trigger = newTrigger().withIdentity("trigger1", "group1").withSchedule(cronSchedule("0/20 * * * * ?")).build();
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">Job异常处理，可以继续执行Job，也可以直接退出Job</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+<div class="org-src-container">
+
+<pre class="src src-java">// divide by zero error (only on first run)
+       try {
+           calculation = 4815 / denominator;
+       } catch (Exception e) {
+           _log.info("--- Error in job!");
+           JobExecutionException e2 = new JobExecutionException(e);
+
+           // fix denominator so the next time this job run
+           // it won't fail again
+           dataMap.put("denominator", "1");
+
+           // this job will refire immediately
+           e2.setRefireImmediately(true);
+           throw e2;
+       }
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-java">try {
+          int zero = 0;
+          calculation = 4815 / zero;
+      } catch (Exception e) {
+          _log.info("--- Error in job!");
+          JobExecutionException e2 = new JobExecutionException(e);
+          // Quartz will automatically unschedule
+          // all triggers associated with this job
+          // so that it does not run again
+          e2.setUnscheduleAllTriggers(true);
+          throw e2;
+      }
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">Job之间传参数实现，通过JobDetail 读写参数</h3>
+<div class="outline-text-3" id="text-orgheadline12">
+</div><div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10">写入数据</h4>
+<div class="outline-text-4" id="text-orgheadline10">
 <div class="org-src-container">
 
 <pre class="src src-java">JobDetail job1 = newJob(ColorJob.class).withIdentity("job1", "group1").build();
@@ -71,9 +235,9 @@ job1.getJobDataMap().put(ColorJob.EXECUTION_COUNT, 1);
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-4">
-<h4 id="orgheadline5">获取数据：在execute方法的context当中存放着当前job的JobDetail</h4>
-<div class="outline-text-4" id="text-orgheadline5">
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">获取数据：在execute方法的context当中存放着当前job的JobDetail</h4>
+<div class="outline-text-4" id="text-orgheadline11">
 <div class="org-src-container">
 
 <pre class="src src-java">public void execute(JobExecutionContext context) throws JobExecutionException {
@@ -94,65 +258,13 @@ job1.getJobDataMap().put(ColorJob.EXECUTION_COUNT, 1);
 </div>
 </div>
 
-            </section>
-    </section>
-</div>
-
-    <div>
-    <section id="wrapper">
-      <div class="post-meta">
-        <span title="post date" class="post-info">2016-11-12</span>
-        <span title="tags" class="post-info"><a href="/tags/java/">Java</a></span>
-      </div>
-      <br />
-      <br />
-      <section>
-        <h1>Comments</h1>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-          //var disqus_developer = 1;
-          var disqus_identifier = "/blog/2016/11/12/quartz/";
-          var disqus_url = "http://127.0.0.1/blog/2016/11/12/quartz/";
-          var disqus_shortname = 'your_disqus_shortname';
-          /* * * DON'T EDIT BELOW THIS LINE * * */
-          (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        <div class="ds-thread"></div>
-        <script type="text/javascript">
-          var duoshuoQuery = {short_name:'your_duoshuo_shortname'};
-          (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = 'http://static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0]
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-          })();
-        </script>
-      </section>
-      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
-      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script src="/media/js/main.js"></script>
-      <div align="center">
-      <footer id="footer">
-        <p class="small">
-          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:admin &lt;at&gt; bogon">彭甘雨</a>
-          &nbsp;&nbsp;-&nbsp;&nbsp;
-          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
-          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
-        </p>
-        <br />
-      </footer>
-      </div>
-      </section>
     </div>
+</section>
+
+
+<footer id="footer">
+    <br />
+</footer>
 
   </body>
 </html>
