@@ -1,0 +1,13 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: 在神家当如何行 
+#+TAGS: Ezra 
+#+DATE: 2016-11-12
+
+
+
+ 

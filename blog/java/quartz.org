@@ -17,9 +17,66 @@
         _interrupted = true;
     }
 #+END_SRC
-*** Job的定时任务可以通过Cron表达式，也可能通过方法来实现
+*** JobListener
+**** JobListener的方法列表
+| 方法名                                                                                       | 方法说明    |
+|----------------------------------------------------------------------------------------------+-------------|
+| public String getName()                                                                      |             |
+| public void jobToBeExecuted(JobExecutionContext inContext)                                   | Job将要执行 |
+| public void jobExecutionVetoed(JobExecutionContext inContext)                                | Job被拒绝   |
+| public void jobWasExecuted(JobExecutionContext inContext, JobExecutionException inException) | Job被执行   |
+**** 添加JobListener
 #+BEGIN_SRC java
+        // Set up the listener
+        JobListener listener = new Job1Listener();
+        Matcher<JobKey> matcher = KeyMatcher.keyEquals(job.getKey());
+        sched.getListenerManager().addJobListener(listener, matcher);
+#+END_SRC
+*** Job的定时任务Trigger可以通过cron表达式，也可能通过方法来实现
+**** 类名：SimpleScheduleBuilder
+**** 方法列表及说明
+| 方法名                | 方法说明         |
+|-----------------------+------------------|
+| withIntervalInHours   | 每隔几小时执行   |
+| withIntervalInMinutes | 每隔几分钟执行   |
+| withIntervalInSeconds | 每隔几秒钟执行   |
+| withIntervalInSeconds | 每隔几毫秒钟执行 |
+| repeatForever         | 永远执行         |
 
+#+BEGIN_SRC java
+ CronTrigger trigger = newTrigger().withIdentity("trigger1", "group1").withSchedule(cronSchedule("0/20 * * * * ?")).build();
+#+END_SRC
+*** Job异常处理，可以继续执行Job，也可以直接退出Job
+#+BEGIN_SRC java
+ // divide by zero error (only on first run)
+        try {
+            calculation = 4815 / denominator;
+        } catch (Exception e) {
+            _log.info("--- Error in job!");
+            JobExecutionException e2 = new JobExecutionException(e);
+
+            // fix denominator so the next time this job run
+            // it won't fail again
+            dataMap.put("denominator", "1");
+
+            // this job will refire immediately
+            e2.setRefireImmediately(true);
+            throw e2;
+        }
+#+END_SRC
+#+BEGIN_SRC java
+  try {
+            int zero = 0;
+            calculation = 4815 / zero;
+        } catch (Exception e) {
+            _log.info("--- Error in job!");
+            JobExecutionException e2 = new JobExecutionException(e);
+            // Quartz will automatically unschedule
+            // all triggers associated with this job
+            // so that it does not run again
+            e2.setUnscheduleAllTriggers(true);
+            throw e2;
+        }
 #+END_SRC
 *** Job之间传参数实现，通过JobDetail 读写参数
 **** 写入数据
