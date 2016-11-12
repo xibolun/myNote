@@ -14,4 +14,3 @@
 |-----------------------+-------------------------------------------------------------------------|
 | void                  | delete(String url, Map<String,?> urlVariables)                          |
 | <T> ResponseEntity<T> | getForEntity(String url, Class<T> responseType, Object... urlVariables) |
-|                       |                                                                         |

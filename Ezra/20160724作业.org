@@ -5,7 +5,7 @@
 #+LANGUAGE: zh-CN
 #+OPTIONS:   ^:{}
 #+TITLE: 以撒生平总结  
-#+TAGS: 
+#+TAGS:  Ezra
 #+DATE: 2016-07-24
 
 ** 作业一：传记式研经法-- 以撒生平（按生平年日去写）

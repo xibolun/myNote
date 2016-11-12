@@ -1,10 +1,15 @@
-#+STARTUP: showall 
+#+STARTUP: showall
 #+OPTIONS: toc:nil
 #+OPTIONS: num:nil
 #+OPTIONS: html-postamble:nil
 #+LANGUAGE: zh-CN
 #+OPTIONS:   ^:{}
 #+TITLE: 
+#+TAGS: Ezra
+#+DATE: 2016-03-27
+
+
+
 
 ** 2016.03.27作业
 1. 思想脉络的作业：罗马书1-4章 保罗思路的发展

@@ -1,3 +1,16 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: 释经的方法 
+#+TAGS: Ezra
+#+DATE: 2016-11- 1
+
+
+
+
 ** 第四课：释经的考虑（2）
 *** 二、处境与脉络
 **** 1、 何谓历史处境：

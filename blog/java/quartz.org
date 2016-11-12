@@ -1,0 +1,47 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: Quartz
+#+TAGS: Java 
+#+DATE: 2016-11-12
+
+** 使用说明
+*** 需要执行的类必须implement Job，重写execute方法 
+*** 若job需要被interrupt，则job必须实现interrupt方法
+#+BEGIN_SRC java
+  public void interrupt() throws UnableToInterruptJobException {
+        _log.info("---" + _jobKey + "  -- INTERRUPTING --");
+        _interrupted = true;
+    }
+#+END_SRC
+*** Job的定时任务可以通过Cron表达式，也可能通过方法来实现
+#+BEGIN_SRC java
+
+#+END_SRC
+*** Job之间传参数实现，通过JobDetail 读写参数
+**** 写入数据
+#+BEGIN_SRC java
+  JobDetail job1 = newJob(ColorJob.class).withIdentity("job1", "group1").build();
+  
+  // pass initialization parameters into the job
+  job1.getJobDataMap().put(ColorJob.FAVORITE_COLOR, "Green");
+  job1.getJobDataMap().put(ColorJob.EXECUTION_COUNT, 1);
+#+END_SRC
+**** 获取数据：在execute方法的context当中存放着当前job的JobDetail
+#+BEGIN_SRC java
+  public void execute(JobExecutionContext context) throws JobExecutionException {
+
+        // This job simply prints out its job name and the
+        // date and time that it is running
+        JobKey jobKey = context.getJobDetail().getKey();
+
+        // Grab and print passed parameters
+        JobDataMap data = context.getJobDetail().getJobDataMap();
+        String favoriteColor = data.getString(FAVORITE_COLOR);
+        int count = data.getInt(EXECUTION_COUNT);
+    }
+#+END_SRC
+

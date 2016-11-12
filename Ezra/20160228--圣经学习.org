@@ -4,7 +4,13 @@
 #+OPTIONS: html-postamble:nil
 #+LANGUAGE: zh-CN
 #+OPTIONS:   ^:{}
-#+TITLE: 20160228圣经学习笔记
+#+TITLE: 
+#+TAGS: Ezra
+#+DATE: 2016-11- 1
+
+
+
+
 
 ** 圣经知识概要-旧约历史书
 *** 书卷

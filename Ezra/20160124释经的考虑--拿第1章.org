@@ -1,10 +1,15 @@
 #+STARTUP: showall
 #+OPTIONS: toc:nil
-#+OPTIONS: num:t
+#+OPTIONS: num:nil
 #+OPTIONS: html-postamble:nil
 #+LANGUAGE: zh-CN
 #+OPTIONS:   ^:{}
 #+TITLE: 
+#+TAGS: Ezra
+#+DATE: 2016-11- 1
+
+
+
 
 
 ** 字义与文法

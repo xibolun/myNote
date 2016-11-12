@@ -65,8 +65,10 @@ scheduled Task是定时任务，用于定时执行某段程序
 |                    |                                                             |
 *** cron配置化
 **** 在application当中配置cron值
+
+此处没有引号
 #+BEGIN_SRC java
-cron.expression="*/5 * * * * ?" 
+cron.expression=*/5 * * * * ?
 #+END_SRC
 **** 在需要添加定时任务的方法上面添加cron配置的value值即可
 #+BEGIN_SRC java
@@ -76,7 +78,7 @@ cron.expression="*/5 * * * * ?"
     }
 #+END_SRC
 **** 需要配置一下properties，或写一个Configuration的注解类进行处理
-#+BEGIN_SRC 
+#+BEGIN_SRC  java
 @SpringBootApplication
 @EnableScheduling
 public class App {

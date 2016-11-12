@@ -4,7 +4,7 @@
 #+OPTIONS: html-postamble:nil
 #+LANGUAGE: zh-CN
 #+OPTIONS:   ^:{}
-#+TITLE: 释经讲道
+#+TITLE: 释经讲道学
 #+TAGS:  Ezra
 #+DATE: 2016-10-30
 
