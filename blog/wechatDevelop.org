@@ -1,0 +1,95 @@
+#+STARTUP: showall
+#+OPTIONS: toc:t
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: 微信公众号开发
+#+TAGS: 
+#+DATE: 2017-01-30
+** 配置
+- appId:wx09cd1baae76c3b82
+- appSecret:30daa56a8639b59dfce0688d87b27ba8
+
+** 配置外网映射
+*** 配置原因
+由于微信服务器只支持外网的服务器对接，本地程序开发完成之后需要发布到外网服务器才能调用，这给开发者带了很大的问题；所以将本地开发态的端口映射到公网上去，就可以在本地进行开发调试；
+*** 配置方法
+其他大牛已经提供了配置方法，请参考[[http://ngrok.2bdata.com/#introduction][微信ngrok]]
+** 微信服务器认证接口
+*** 调用说明
+#+BEGIN_SRC java
+ @RequestMapping(method = RequestMethod.GET, value = "/token")
+    @ResponseBody
+    public String authWeChat(@RequestParam("signature") String signature,
+                             @RequestParam("timestamp") String timestamp,
+                             @RequestParam("nonce") String nonce,
+                             @RequestParam("echostr") String echostr) {
+
+        if (CheckUtil.checkSignature(timestamp, nonce, signature)) {
+            return echostr;
+        }
+
+        return null;
+    }
+#+END_SRC
+
+
+*** 开发者配置
+
+** 关注者发送消息接口
+*** 调用说明
+#+BEGIN_SRC java
+   /**
+     * 微信公众号关注者所有信息处理
+     * @param request 关注者发送的消息
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
+    public String processMessage(HttpServletRequest request) {
+        Map<String, String> map = MessageUtil.xmlToMap(request);
+
+        TextMessage req = MessageUtil.mapMessageToTextMessage(map);
+
+        logger.info("接收消息信息为:" + req.toString());
+
+        String resXml = null;
+
+        // 消息回复逻辑
+        switch (req.getMsgType()) {
+            case MsgType.TEXT:// 文本类型消息
+
+                TextMessage tm = weChatBibleReadingService.processDayReading(req);
+
+                resXml = MessageUtil.textToXml(tm);
+
+                break;
+
+            case MsgType.EVENT://事件处理
+                switch (req.getEvent()) {
+                    case MsgType.EVENT_SUBSCRIBE:
+                        resXml = MessageUtil.textToXml(MessageUtil.replaySubScribe(req));
+                        break;
+                }
+        }
+
+        return resXml;
+
+    }
+#+END_SRC
+- 请求方式为post
+- 请求的restful当中我不知道是什么，所以拿着HttpServletRequest做为入参处理
+- request当中是一个xml，需要进行转换处理；具体处理方式依据消息的不同而定义[[https://mp.weixin.qq.com/wiki][接收消息处理]];  可以有文本、视频、事件等 
+** 获取access-token
+https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
+** 素材管理
+
+** 闲林小家公众号相关开发
+*** 功能列表
+- 读经统计
+- 菜单信息
+- 聚会通知(因不支持群发接口，改为通知形式)
+- 文章推送（因不支持群发接口，不推送文章）
+- 生字查询
+- 

@@ -77,6 +77,11 @@
 - 拣选合并git cherry-pick <commit-num>：将其他分支的commit-num所提交的代码merge到当前分支,当前分支不需要再进行commit操作
 - git cherry-pick -n <commit-nums>：merge多个commit号到当前分支，需要在当前分支上再进行commit操作
 
+**** git log
+- git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+- git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' develop  : 只看develop分支
+- git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+
 **** git branch
 - git branch ：查看当前仓库的所有分支列表
 - git branch [branch-name]：创建一个分支（如果是一个新的git仓库，则需要修并提交后才可以创建）

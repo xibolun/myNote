@@ -46,12 +46,24 @@ String s = new String("hello");
 String s = "hello";
 #+END_SRC
 以上的代码在每次执行的时候都会创建一个新的对象。
-
 1. 对于同时提供了静态方法和构造方法的不可变类，静态方法的使用要优于构造方法
       #+BEGIN_SRC java
          Boolean.valueOf("true");
          Boolean("true");
       #+END_SRC
 2. 我们可以在将一些变量声明于类或方法的抬头，防止多次实例化
-3. 
-
+*** 避免无意识的装箱和拆箱操作
+一个long类型的数据，不要定义为Long；一个int类型的数据不要定义为Integer
+** 第3章 对于所有对象都通用的方法 即Object当中的方法
+*** equals的特性
+- 自反性
+- 对称性
+- 传递性
+- 一致性
+*** 若覆盖了equals方法，则必须覆写hashCode方法
+相同的对象必须拥有相同的hashCode
+*** 覆写toString方法
+若覆写toString方法，则会在类被输出的时候，输出相对应的信，有助于排查问题
+** 第4章 类和方法
+*** 如何将一个类当中的private属性修改为公共
+提供一个public的方法，将此属性返回即可。

@@ -1,0 +1,24 @@
+#+STARTUP: showall
+#+OPTIONS: toc:t
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: 
+#+TAGS: 
+#+DATE: 2017-03- 5
+
+
+** 阿里Java开发手册笔记
+- RPC：Remote Procedure Call Protocol(远程过程调用协议)
+- NPE：空指针异常
+- DRY：Don't Repeat Yourself(避免出现重复的代码）
+- OOM：Out Of Memmory
+- GAV：pom.xml文件的GroupID\ArtifactID\Version
+
+** 代码大全
+- BDUF：big design up front(预先做大量的设计)
+- LDUF:little desing up front
+
+*** bookmark：3.08阅读至第六章
+

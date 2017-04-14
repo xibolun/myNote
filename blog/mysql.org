@@ -19,7 +19,10 @@ service mysqld restart
 service mysqld stop
 service mysqld start
 #+END_SRC
-** 其他
+** 其他命令
+#+BEGIN_SRC shell
+mysql -uoot -pP@ssw0rd hf-csa -default-character-set=utf8 < db_qdn672.sql
+#+END_SRC
 ** Mysql Dump
 *** dump数据库
 #+BEGIN_SRC shell
@@ -58,9 +61,6 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询
 #+BEGIN_SRC  sql
  SHOW FULL COLUMNS FROM table_name;                          #查看mysql某表当中的列字段，包括列的character
  SHOW TABLE STATUS where name like 'SRV_BP_APP_NODE_VER';    # 查看某表的状态
-
-
-
 
 #+END_SRC
 

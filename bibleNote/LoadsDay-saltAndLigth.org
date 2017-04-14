@@ -1,0 +1,17 @@
+#+STARTUP: showall
+#+OPTIONS: toc:t
+#+OPTIONS: num:nil
+#+OPTIONS: html-postamble:nil
+#+LANGUAGE: zh-CN
+#+OPTIONS:   ^:{}
+#+TITLE: 盐和光
+#+TAGS: 
+#+DATE: 2017-02- 3
+
+** 盐和光
+*** 盐
+- 
+*** 光
+
+
+

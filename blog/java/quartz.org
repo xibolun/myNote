@@ -25,7 +25,7 @@
 | public void jobToBeExecuted(JobExecutionContext inContext)                                   | Job将要执行 |
 | public void jobExecutionVetoed(JobExecutionContext inContext)                                | Job被拒绝   |
 | public void jobWasExecuted(JobExecutionContext inContext, JobExecutionException inException) | Job被执行   |
-**** 添加JobListener
+**** 在代码当中添加JobListener的片断
 #+BEGIN_SRC java
         // Set up the listener
         JobListener listener = new Job1Listener();
@@ -42,7 +42,7 @@
 | withIntervalInSeconds | 每隔几秒钟执行   |
 | withIntervalInSeconds | 每隔几毫秒钟执行 |
 | repeatForever         | 永远执行         |
-
+**** 用cron表达式来定义
 #+BEGIN_SRC java
  CronTrigger trigger = newTrigger().withIdentity("trigger1", "group1").withSchedule(cronSchedule("0/20 * * * * ?")).build();
 #+END_SRC
