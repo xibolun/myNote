@@ -6,7 +6,6 @@
 #+TODO: TODO(t) | DONE(d)
 #+OPTIONS:   ^:{}
 #+TITLE: JWT学习
-
 ** 什么是JWT?
    jwt的全称是JSON Web Token；JSON Web Token是一个开源标准([[https://tools.ietf.org/html/rfc7519][rfc7519)]] ，是一个轻量，携带着用户信息的json Object对象，安全的进行服务器端与客户端交互；这个对象可以校验、信任，因为它由数字组成；
    轻量：因为轻量，所以可以更好地放在http header里面，在服务器与客户端之间快速交互
@@ -14,6 +13,7 @@
 
 ** 什么时候使用？
    1. 需要认证:用户根据username、password登录后，使用jwt返回一个token给客户端，客户端在请求的时候将token放在http header当中给服务器端，服务器端校验token的合法性，然后处理请求的response
+
    2. 用户信息被改变：
 ** jwt的结构
 *** 基本结构
