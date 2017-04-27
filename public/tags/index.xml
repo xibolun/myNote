@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on penggy Blog</title>
+    <link>https://example.com/tags/</link>
+    <description>Recent content in Tags on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2017 PPAP blog powered by Hugo</copyright>
+    <lastBuildDate>Sat, 22 Apr 2017 08:43:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ezra</title>
+      <link>https://example.com/tags/ezra/</link>
+      <pubDate>Sat, 22 Apr 2017 08:43:30 +0800</pubDate>
+      
+      <guid>https://example.com/tags/ezra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nil</title>
+      <link>https://example.com/tags/nil/</link>
+      <pubDate>Sat, 22 Apr 2017 11:37:15 +0800</pubDate>
+      
+      <guid>https://example.com/tags/nil/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

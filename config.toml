@@ -1,0 +1,21 @@
+theme="hugo-pacman-theme"
+baseurl = "https://example.com"
+languageCode = "en"
+title = "penggy Blog"
+MetaDataFormat = "toml"
+paginate = 9
+copyright = "© 2017 PPAP blog powered by Hugo"
+
+[params]
+  AuthorHomepage = "http://blog.coderzh.com"
+  Description = "一个略懂运维的码农"
+  Subtitle = "一生住在希伯仑"
+  Weibo = "南阳小三轮"
+  WeiboID = 2620846785
+  GitHub = "kedadiannao220"
+  DateFormat = "2006年01月02日"
+  MonthFormat = "2006年01月"
+  FancyBox = true
+
+[permalinks]
+post = "/:year/:month/:day/:title/"

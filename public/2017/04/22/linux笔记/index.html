@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+
+<meta property="og:title" content="Linux笔记" />
+<meta property="og:description" content="Short description" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/2017/04/22/linux%E7%AC%94%E8%AE%B0/" />
+
+
+
+<meta property="article:published_time" content="2017-04-22T11:37:15&#43;08:00"/>
+
+<meta property="article:modified_time" content="2017-04-22T11:37:15&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Linux笔记 
+
+</title>
+<link rel="canonical" href="https://example.com/2017/04/22/linux%E7%AC%94%E8%AE%B0/">
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+            <a href="/"><div class="name"></div></a>
+            
+            <nav>
+                <ul>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="kedadiannao220" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="https://example.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+<section class="main">
+    <div class="container">
+        <div class="content">
+            <div class="page-heading">
+
+    Linux笔记
+
+</div>
+
+            <div class="markdown">
+                <h2 id="常用command">常用Command</h2>
+
+<h3 id="find">find</h3>
+
+<h3 id="awk">awk</h3>
+
+<h4 id="语法">语法</h4>
+
+<pre><code class="language-shell">
+ usage: awk [-F fs] [-v var=value] [-f progfile | 'prog'] [file ...] 
+</code></pre>
+
+<ul>
+<li>-F: 指定分隔域的标识</li>
+<li>-v: 指定命令/参数值</li>
+<li>-f: 指定需要解析的文件</li>
+</ul>
+
+<h4 id="demo">Demo</h4>
+
+<pre><code class="language-shell">
+ awk -F ':' '{print $1}' /etc/passwd                                                  ##输入/etc/passwd当中以:分隔的第一个域
+ awk -F ':' '{print $1 &quot;\t&quot; $2}' /etc/passwd 																				 ##输入/etc/passwd当中以:分隔的第1，2两个域，注意$1与$2之间的字符串要添加&quot;&quot;
+ awk '{count++} END {print count}' /etc/passwd  																		   ##统计文件当中的行数
+ echo -e &quot;A line 1n A line 2&quot; | awk {print}       																		 ##print不带参数的时候，默认打印整行 
+ echo -e &quot;A line 1n A line 2&quot; | awk -F 'n' '{print $1}'  														 ##指定分隔符 'n',并打印第一个field 
+ echo -e &quot;A line 1n A line 2&quot; | awk  '{print $1}' 																		 ## -F为空时，默认以空格分隔 
+ echo | awk '{ var1=&quot;hello&quot;; var2=&quot;world&quot;; print var1,var2}' 											   ##在{}当中定义变量，变量声明之间用 ; 进行分隔
+</code></pre>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+</body>
+</html>
+
