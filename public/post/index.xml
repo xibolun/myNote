@@ -7,10 +7,48 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2017 PPAP blog powered by Hugo</copyright>
-    <lastBuildDate>Sat, 22 Apr 2017 11:37:15 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 06 May 2017 21:00:54 +0800</lastBuildDate>
     
 	<atom:link href="https://example.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>老仆人的榜样</title>
+      <link>https://example.com/2017/05/06/%E8%80%81%E4%BB%86%E4%BA%BA%E7%9A%84%E6%A6%9C%E6%A0%B7/</link>
+      <pubDate>Sat, 06 May 2017 21:00:54 +0800</pubDate>
+      
+      <guid>https://example.com/2017/05/06/%E8%80%81%E4%BB%86%E4%BA%BA%E7%9A%84%E6%A6%9C%E6%A0%B7/</guid>
+      <description>读经  创24:1-27 创24:33 创24:54-56  本论 忠心管理，满有负担  亚伯拉罕将全业都交在他的手下管理，他是亚伯拉罕所信任的人（全业：壮丁318人创14:14，羊群，牛群，金银，仆婢，骆驼和驴） 他也是一个有管理恩赐的人 他年纪老迈（亚伯拉罕140岁左右）却依然在神家里面尽忠，依然在持守着自己的侍奉  抓住机会，多有祷告  v12-14在寻找之前，先有祷告，交托仰望，虽然信心很小，设定条件，来印证神的旨意 v15话也没有说完，人一祷告，神就立马安排，并且超过我们所求所想的 1) v15利百迦是亚伯拉罕的兄弟拿鹤的孙女，属于亚伯拉罕的本地本族满足亚伯拉罕的要求 2) v16是极其俊美，处女 3) v18急忙拿下，托着给他喝（善良） 4) v19-20勤劳，力大（一匹骆驼200升,10匹2000升，让10匹骆驼喝足那得多大的力气)   v17跑上前去，生怕利百加走掉，抓住机会 v26-27在找到之后，再有祷告，向神赞美，感谢神一路的带领  接受使命，忠于所托  v9他没有以自己年迈，路途遥远做为理由和借口来拒绝主人的心意，反而知道这么重要的事情交给他来做，实在是高抬自己，恩行自己，信任自己，他甘心完成主人所给的使命； 没有随便在迦南地找一个女子来充当一下，或者到哈兰随便找找，找不到就回去了；乃是忠心地去找，认真去寻求神旨意 v12他没有因为走了这么远的路有所抱怨（到了地方，就开口祷告），并且没有居高自己（求神施恩给主人，而不是自己） v33没有完成使命之前连饭都不吃（以托付给自己的事情为念） v56为完成使命不顾人情（利百加别了家人，以后可能再也没有见到过）  结论  诗92：12-14（义人发旺如棕树，生长如黎巴嫩的香柏树。他们栽于耶和华的殿中，发旺在我们神的院里。他们年老的时候仍要结果子，要满了汁浆而常发青） 我们是否对神家有负担？ 我们的侍奉是否忠心？ 我们是否凡事祷告？  </description>
+    </item>
+    
+    <item>
+      <title>Spring-SpringBoot</title>
+      <link>https://example.com/2017/04/27/spring-springboot/</link>
+      <pubDate>Thu, 27 Apr 2017 22:44:39 +0800</pubDate>
+      
+      <guid>https://example.com/2017/04/27/spring-springboot/</guid>
+      <description>Spring 1.5.x当中的hibrenate名称转换策略 今天将Spring从1.3.2升级到1.5.x当中，发现所有的查询都会有异常信息，异常信息为小写的表名不存在，本来想修改一下MySQL对大小写的敏感配置就可以了，但是想着1.3版本的为什么就不会有这个问题呢？
+### Spring 1.3版本当中的配置 spring.jpa.hibernate.naming-strategy=org.hibernate.cfg.DefaultNamingStrategy ### Spring 1.5版本当中的配置 spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  由于1.5当中将hibrenate jar包升级，导致hibreanate的一些配置有所变化。 对于名称策略，官方描述如下：Spring Configure JPA properties</description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>https://example.com/2017/04/27/mysql/</link>
+      <pubDate>Thu, 27 Apr 2017 22:43:06 +0800</pubDate>
+      
+      <guid>https://example.com/2017/04/27/mysql/</guid>
+      <description>MySql学习 启动相关 /etc/init.d/mysqld start /etc/init.d/mysqld stop /etc/init.d/mysqld restart service mysqld restart service mysqld stop service mysqld start  其他命令 mysql -uoot -pP@ssw0rd hf-csa -default-character-set=utf8 &amp;lt; db_qdn672.sql  Mysql Dump dump数据库 mysqldump -uroot -p hf-csa &amp;gt; hf-csa.sql  只dump数据库表结构（--no-data -d） mysqldump -uroot -p --no-data --add-drop-table hf-csa &amp;gt; hf-csa.sql mysqldump -uroot -p -d --add-drop-table hf-csa &amp;gt; hf-csa.sql  dump数据库表结构排除某些表 mysqldump -uroot -p --no-data --add-drop-table hf-csa --ignore-table=hf-csa.ACT_GET_PROPERTY &amp;gt; hf-csa.sql  dump数据库某张表，表中间以空格分隔 mysqldump -uroot -p --no-data hf-csa SRV_INFO SRV_BP_APP_INFO &amp;gt; hf-csa.</description>
+    </item>
+    
+    <item>
+      <title>Spring-RestTemplate</title>
+      <link>https://example.com/2017/04/27/spring-resttemplate/</link>
+      <pubDate>Thu, 27 Apr 2017 22:35:25 +0800</pubDate>
+      
+      <guid>https://example.com/2017/04/27/spring-resttemplate/</guid>
+      <description>解决中文乱码的问题和Delete无法传入body的问题 问题说明：RestTemplate中文乱码问题； 回复里面有我的评论，以下为解决方法
+package com.idcos.cloudres.biz.common.util; import org.apache.http.client.methods.HttpEntityEnclosingRequestBase; import org.apache.http.client.methods.HttpUriRequest; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.http.HttpMethod; import org.springframework.http.client.HttpComponentsClientHttpRequestFactory; import org.springframework.http.converter.HttpMessageConverter; import org.springframework.http.converter.StringHttpMessageConverter; import org.springframework.web.client.RestTemplate; import java.net.URI; import java.nio.charset.StandardCharsets; import java.util.List; /** * restful 接口工具类 * Created by guanbin on 2017/3/15. */ public class RestfulUtil { private static final Logger logger = LoggerFactory.getLogger(RestfulUtil.class); /** * 获取StringHttpMessageConverter字符集为utf-8类型的RestTemplate * @return */ public static final RestTemplate getRestTemplate() { RestTemplate restTemplate = new RestTemplate(); List&amp;lt;HttpMessageConverter&amp;lt;?&amp;gt;&amp;gt; converterList = restTemplate.</description>
+    </item>
     
     <item>
       <title>JWT学习</title>
@@ -80,6 +118,15 @@ header  header由两部分组成： type of token : JWT 加密算法: HMAC/SHA25
       
       <guid>https://example.com/2017/04/22/%E8%AE%B2%E9%81%93%E5%AD%A6/</guid>
       <description>讲道学-汪 读经和学习  提后4：2：务要传道；无论得时不得时，总要专心，并用百般的忍耐，各样的教训，责备人，警戒人，劝勉人； 提前4：13：你要以宣读、劝勉 、教导为念。 传道不止在讲台，日常生活当中也可以给别人传道，传福音也是传道 所有的一切都是为了传讲神的话语 一定需要提前预备，态度一定要认真 更多的学习，更多操练  传道人必须尊基督为圣，致力于传讲神的话语并服侍那些神所交托给他的人！  不要浪费弟兄姊妹的时间，对得起弟兄姊妹，不要折磨弟兄姊妹  讲道的目标乃是生命的改变--改变自己，改变别人  我们先改变，再去改变别人，否则我们是一个仅仅会讲，却没有生命的影响力  讲道人的任务并不是讲出一篇道理，而是向人们传讲出神的话语  读了圣经，却再讲别的东西，却没有讲那段的圣经  讲道包括  系统地宣扬神的话 1) 熟悉的讲的多，不熟悉的讲的少，这是问题，我们需要装备的全，对圣经要熟悉 解释意思，以使人们明白 劝勉人们顺服并应用真理  圣经的例子--尼8：8-15  讲道的对象要明确，使别人能够明白  今日的现象  经文仅为踏板（读了圣经，也做了祷告，然后就开始了） 缺乏解经（解释圣经不明白的话，会众就不了解讲的什么） 例证太多（例证太多，会将原来的味道给冲淡） 没有围绕主题 中心不明确 应用不具体  基本结构 引言  吸引听众，让大家有兴趣 引言一定要和圣经有关系  本论  解经 例证 应用  中心思想  观察经文 分段 确定中心思想-对圣经段落所教导的基本真理的概括性的陈述 有效进行解释性信息讲道的奥秘就是发现圣经段落的中心思想并围绕这中心思想来组织你的信息 这一段的主题是什么？ 关于这个主题这段经文说了什么？  内容大纲  将中心思想写下并将要点与支持性的陈述以大纲的形式下来，大纲反映出你的信息的目的 信息的目的为何？ 第一大点 支持、证明、解释、扩展或说明第一点 类推  结论  讲本论当中的结构重复一下，让弟兄姊妹可以抓住重点 挑战弟兄姊妹，让弟兄姊妹去思考，去想怎么办  </description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://example.com/2016/04/27/git/</link>
+      <pubDate>Wed, 27 Apr 2016 22:51:14 +0800</pubDate>
+      
+      <guid>https://example.com/2016/04/27/git/</guid>
+      <description>GIT命令 git clone:  git clone -b develop --single-branch  :从git地址当中clone 指定的develop分支/或者在git repository当中指定此项目的默认branch  git add：  git add :将文件暂存，若多次修改，会暂存多个版本，但提交的快照只会保存最后一次的版本 git add -A ：暂存所有的新增，修改，删除过的文件  git diff：  git diff： 比较工作目录当中未暂存文件与暂存区快照的文件 git diff --cached：比较已经暂存文件与上次提交的快照文件  git commit  git commit -m ：提交添加注释信息 git commit -v ：提交时将修改差异添加至commit信息当中 git commit -a ：可以将示暂存的文件暂存后提交 git commit --amend：撤消刚提交的操作  git remove  rm file：从未暂存文件列表当中删除某文件 git rm：添加移除文件操作的记录信息 git rm --cached：从跟踪清单当中删除某些文件  git reset  git reset HEAD file：撤销此file的add操作 git reset --hard HEAD^：撤销最后一次的commit  git checkout  git checkout -- file：取消对file的修改操作  git remote  git remote：显示远程仓库名称 git remote -v ：显示远程仓库地址 git remote add [name] [url]：添加一个远程仓库 git remote show [remote-name]：显示远程仓库的信息 git remote renmae [remote-oldname] [remote-newname]：重命名remote名称 git remote vm [remote-name]：删除remote  git tag  git tag ：列出现有的标签 git tag -l &#39;v1.</description>
     </item>
     
   </channel>

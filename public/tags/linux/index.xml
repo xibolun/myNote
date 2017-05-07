@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on penggy Blog</title>
+    <link>https://example.com/tags/linux/</link>
+    <description>Recent content in Linux on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2017 PPAP blog powered by Hugo</copyright>
+    <lastBuildDate>Sat, 22 Apr 2017 11:37:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux笔记</title>
+      <link>https://example.com/2017/04/22/linux%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 22 Apr 2017 11:37:15 +0800</pubDate>
+      
+      <guid>https://example.com/2017/04/22/linux%E7%AC%94%E8%AE%B0/</guid>
+      <description>常用Command find awk 语法 usage: awk [-F fs] [-v var=value] [-f progfile | &#39;prog&#39;] [file ...]   -F: 指定分隔域的标识 -v: 指定命令/参数值 -f: 指定需要解析的文件  Demo awk -F &#39;:&#39; &#39;{print $1}&#39; /etc/passwd ##输入/etc/passwd当中以:分隔的第一个域 awk -F &#39;:&#39; &#39;{print $1 &amp;quot;\t&amp;quot; $2}&#39; /etc/passwd ##输入/etc/passwd当中以:分隔的第1，2两个域，注意$1与$2之间的字符串要添加&amp;quot;&amp;quot; awk &#39;{count++} END {print count}&#39; /etc/passwd ##统计文件当中的行数 echo -e &amp;quot;A line 1n A line 2&amp;quot; | awk {print} ##print不带参数的时候，默认打印整行 echo -e &amp;quot;A line 1n A line 2&amp;quot; | awk -F &#39;n&#39; &#39;{print $1}&#39; ##指定分隔符 &#39;n&#39;,并打印第一个field echo -e &amp;quot;A line 1n A line 2&amp;quot; | awk &#39;{print $1}&#39; ## -F为空时，默认以空格分隔 echo | awk &#39;{ var1=&amp;quot;hello&amp;quot;; var2=&amp;quot;world&amp;quot;; print var1,var2}&#39; ##在{}当中定义变量，变量声明之间用 ; 进行分隔  </description>
+    </item>
+    
+  </channel>
+</rss>
