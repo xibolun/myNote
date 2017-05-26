@@ -1,5 +1,5 @@
 theme="hugo-pacman-theme"
-baseurl = "https://example.com"
+baseurl = "localhost:1000"
 languageCode = "en"
 title = "penggy Blog"
 MetaDataFormat = "toml"

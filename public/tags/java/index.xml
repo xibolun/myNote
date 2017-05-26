@@ -2,42 +2,42 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java on penggy Blog</title>
-    <link>https://example.com/tags/java/</link>
+    <link>localhost:1000/tags/java/</link>
     <description>Recent content in Java on penggy Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2017 PPAP blog powered by Hugo</copyright>
     <lastBuildDate>Thu, 27 Apr 2017 22:44:39 +0800</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="localhost:1000/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Spring-SpringBoot</title>
-      <link>https://example.com/2017/04/27/spring-springboot/</link>
+      <link>localhost:1000/2017/04/27/spring-springboot/</link>
       <pubDate>Thu, 27 Apr 2017 22:44:39 +0800</pubDate>
       
-      <guid>https://example.com/2017/04/27/spring-springboot/</guid>
+      <guid>localhost:1000/2017/04/27/spring-springboot/</guid>
       <description>Spring 1.5.x当中的hibrenate名称转换策略 今天将Spring从1.3.2升级到1.5.x当中，发现所有的查询都会有异常信息，异常信息为小写的表名不存在，本来想修改一下MySQL对大小写的敏感配置就可以了，但是想着1.3版本的为什么就不会有这个问题呢？
 ### Spring 1.3版本当中的配置 spring.jpa.hibernate.naming-strategy=org.hibernate.cfg.DefaultNamingStrategy ### Spring 1.5版本当中的配置 spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  由于1.5当中将hibrenate jar包升级，导致hibreanate的一些配置有所变化。 对于名称策略，官方描述如下：Spring Configure JPA properties</description>
     </item>
     
     <item>
       <title>Spring-RestTemplate</title>
-      <link>https://example.com/2017/04/27/spring-resttemplate/</link>
+      <link>localhost:1000/2017/04/27/spring-resttemplate/</link>
       <pubDate>Thu, 27 Apr 2017 22:35:25 +0800</pubDate>
       
-      <guid>https://example.com/2017/04/27/spring-resttemplate/</guid>
+      <guid>localhost:1000/2017/04/27/spring-resttemplate/</guid>
       <description>解决中文乱码的问题和Delete无法传入body的问题 问题说明：RestTemplate中文乱码问题； 回复里面有我的评论，以下为解决方法
 package com.idcos.cloudres.biz.common.util; import org.apache.http.client.methods.HttpEntityEnclosingRequestBase; import org.apache.http.client.methods.HttpUriRequest; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.http.HttpMethod; import org.springframework.http.client.HttpComponentsClientHttpRequestFactory; import org.springframework.http.converter.HttpMessageConverter; import org.springframework.http.converter.StringHttpMessageConverter; import org.springframework.web.client.RestTemplate; import java.net.URI; import java.nio.charset.StandardCharsets; import java.util.List; /** * restful 接口工具类 * Created by guanbin on 2017/3/15. */ public class RestfulUtil { private static final Logger logger = LoggerFactory.getLogger(RestfulUtil.class); /** * 获取StringHttpMessageConverter字符集为utf-8类型的RestTemplate * @return */ public static final RestTemplate getRestTemplate() { RestTemplate restTemplate = new RestTemplate(); List&amp;lt;HttpMessageConverter&amp;lt;?&amp;gt;&amp;gt; converterList = restTemplate.</description>
     </item>
     
     <item>
       <title>JWT学习</title>
-      <link>https://example.com/2017/04/22/jwt%E5%AD%A6%E4%B9%A0/</link>
+      <link>localhost:1000/2017/04/22/jwt%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Sat, 22 Apr 2017 11:37:15 +0800</pubDate>
       
-      <guid>https://example.com/2017/04/22/jwt%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>localhost:1000/2017/04/22/jwt%E5%AD%A6%E4%B9%A0/</guid>
       <description>什么是JWT? jwt的全称是JSON Web Token；JSON Web Token是一个开源标准(rfc7519) ，是一个轻量，携带着用户信息的json Object对象，安全的进行服务器端与客户端交互；这个对象可以校验、信任，因为它由数字组成； 轻量：因为轻量，所以可以更好地放在http header里面，在服务器与客户端之间快速交互 携带用户信息：将用户的重要信息:userId，userName等放在jwt当中，不用再次从数据库当中获取
 什么时候使用？  需要认证:用户根据username、password登录后，使用jwt返回一个token给客户端，客户端在请求的时候将token放在http header当中给服务器端，服务器端校验token的合法性，然后处理请求的response   用户信息被改变：  jwt的结构 基本结构 由header、payload、sinature三部分组成，最终以xxx.yyy.zzz的形式拼接
 header  header由两部分组成： type of token : JWT 加密算法: HMAC/SHA256/RSA  payload  payload里面存放着用户的信息，可以使用claims进行复合拼装,claims由已定义、public、private三部分组成 resolved(已定义)：iss/exp/sub/aud public:url信息 private:用户信息 payload当中的数据都可以由用户自行设置  sinature 签名，根据header、payload和一个用户设置的密码(secret)，生成一个签名，最后将header，payload，sinature拼接成xxx.yyy.zzz形式

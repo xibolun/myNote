@@ -9,19 +9,19 @@
   
   <meta itemprop="name" content="Spring - penggy Blog">
   <meta itemprop="description" content="Spring">
-  <meta itemprop="image" content="https://example.comimg/author.jpg">
+  <meta itemprop="image" content="localhost:1000img/author.jpg">
   
   
   <meta name="twitter:description" content="一个略懂运维的码农">
-  <link rel="alternate" href="https://example.comfeed.xml" title="penggy Blog" type="application/rss+xml"/>
-  <link rel="shortcut icon" href="https://example.comimg/favicon.ico"/>
-  <link rel="apple-touch-icon" href="https://example.comapple-touch-icon.png" />
-  <link rel="apple-touch-icon-precomposed" href="https://example.comapple-touch-icon.png" />
-  <link rel="stylesheet" href="https://example.comhighlight/styles/github.css">
-  <script src="https://example.comhighlight/highlight.pack.js"></script>
+  <link rel="alternate" href="localhost:1000feed.xml" title="penggy Blog" type="application/rss+xml"/>
+  <link rel="shortcut icon" href="localhost:1000img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="localhost:1000apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="localhost:1000apple-touch-icon.png" />
+  <link rel="stylesheet" href="localhost:1000highlight/styles/github.css">
+  <script src="localhost:1000highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-  <link rel="stylesheet" href="https://example.comfont/hack/css/hack.min.css">
-  <link rel="stylesheet" href="https://example.comcss/style.css">
+  <link rel="stylesheet" href="localhost:1000font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="localhost:1000css/style.css">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
     <div>
   
   <div id="textlogo">
-    <h1 class="site-name"><a href="https://example.com" title="penggy Blog">penggy Blog</a></h1>
+    <h1 class="site-name"><a href="localhost:1000" title="penggy Blog">penggy Blog</a></h1>
     <h2 class="blog-motto">一生住在希伯仑</h2>
   </div>
   <div class="navbar"><a class="navbutton navmobile" href="#" title="menu"></a></div>
@@ -54,7 +54,7 @@
       <h2 id="2017-04">2017-04</h2>
       
       <section class="post" itemscope itemprop="blogPost">
-    <a href="https://example.com/2017/04/27/spring-springboot/" title="Spring-SpringBoot" itemprop="url">
+    <a href="#ZgotmplZ" title="Spring-SpringBoot" itemprop="url">
     <h1 itemprop="name">Spring-SpringBoot</h1>
     <p itemprop="description">Spring 1.5.x当中的hibrenate名称转换策略 今天将Spring从1.3.2升级到1.5.x当中，发现所有的查询都会有异常信息，异常信息为小写的表名不存在，本来想修改一下MySQL对大小写的敏感配置就可以了，但是想着1.3版本的为什么就不会有这个问题呢？
 ### Spring 1.3版本当中的配置 spring.jpa.hibernate.naming-strategy=org.hibernate.cfg.DefaultNamingStrategy ### Spring 1.5版本当中的配置 spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  由于1.5当中将hibrenate jar包升级，导致hibreanate的一些配置有所变化。 对于名称策略，官方描述如下：Spring Configure JPA properties</p>
@@ -64,7 +64,7 @@
 
       
       <section class="post" itemscope itemprop="blogPost">
-    <a href="https://example.com/2017/04/27/spring-resttemplate/" title="Spring-RestTemplate" itemprop="url">
+    <a href="#ZgotmplZ" title="Spring-RestTemplate" itemprop="url">
     <h1 itemprop="name">Spring-RestTemplate</h1>
     <p itemprop="description">解决中文乱码的问题和Delete无法传入body的问题 问题说明：RestTemplate中文乱码问题； 回复里面有我的评论，以下为解决方法
 package com.idcos.cloudres.biz.common.util; import org.apache.http.client.methods.HttpEntityEnclosingRequestBase; import org.apache.http.client.methods.HttpUriRequest; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.http.HttpMethod; import org.springframework.http.client.HttpComponentsClientHttpRequestFactory; import org.springframework.http.converter.HttpMessageConverter; import org.springframework.http.converter.StringHttpMessageConverter; import org.springframework.web.client.RestTemplate; import java.net.URI; import java.nio.charset.StandardCharsets; import java.util.List; /** * restful 接口工具类 * Created by guanbin on 2017/3/15. */ public class RestfulUtil { private static final Logger logger = LoggerFactory.getLogger(RestfulUtil.class); /** * 获取StringHttpMessageConverter字符集为utf-8类型的RestTemplate * @return */ public static final RestTemplate getRestTemplate() { RestTemplate restTemplate = new RestTemplate(); List&lt;HttpMessageConverter&lt;?&gt;&gt; converterList = restTemplate.</p>
@@ -89,17 +89,17 @@ package com.idcos.cloudres.biz.common.util; import org.apache.http.client.method
 	<p class="asidetitle"></p>
 		<ul class="clearfix">
       
-			<li><a href="https://example.comtags/ezra" title="ezra">ezra<sup>3</sup></a></li>
+			<li><a href="localhost:1000tags/ezra" title="ezra">ezra<sup>3</sup></a></li>
       
-			<li><a href="https://example.comtags/git" title="git">git<sup>1</sup></a></li>
+			<li><a href="localhost:1000tags/git" title="git">git<sup>1</sup></a></li>
       
-			<li><a href="https://example.comtags/java" title="java">java<sup>3</sup></a></li>
+			<li><a href="localhost:1000tags/java" title="java">java<sup>3</sup></a></li>
       
-			<li><a href="https://example.comtags/linux" title="linux">linux<sup>1</sup></a></li>
+			<li><a href="localhost:1000tags/linux" title="linux">linux<sup>1</sup></a></li>
       
-			<li><a href="https://example.comtags/mysql" title="mysql">mysql<sup>1</sup></a></li>
+			<li><a href="localhost:1000tags/mysql" title="mysql">mysql<sup>1</sup></a></li>
       
-			<li><a href="https://example.comtags/spring" title="spring">spring<sup>2</sup></a></li>
+			<li><a href="localhost:1000tags/spring" title="spring">spring<sup>2</sup></a></li>
       
 		</ul>
 </div>
@@ -113,17 +113,17 @@ package com.idcos.cloudres.biz.common.util; import org.apache.http.client.method
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="https://example.compost/#2017-05">2017年05月</a><span class="archive-list-count">2</span>
+        <a class="archive-list-link" href="localhost:1000post/#2017-05">2017年05月</a><span class="archive-list-count">2</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="https://example.compost/#2017-04">2017年04月</a><span class="archive-list-count">7</span>
+        <a class="archive-list-link" href="localhost:1000post/#2017-04">2017年04月</a><span class="archive-list-count">7</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="https://example.compost/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
+        <a class="archive-list-link" href="localhost:1000post/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
       </li>
       
     </ul>
@@ -137,17 +137,17 @@ package com.idcos.cloudres.biz.common.util; import org.apache.http.client.method
   <p class="asidetitle"></p>
   <div class="tagcloudlist clearfix">
     
-    <a href="https://example.comtags/ezra" style="font-size: 12px;">ezra</a>
+    <a href="localhost:1000tags/ezra" style="font-size: 12px;">ezra</a>
     
-    <a href="https://example.comtags/git" style="font-size: 12px;">git</a>
+    <a href="localhost:1000tags/git" style="font-size: 12px;">git</a>
     
-    <a href="https://example.comtags/java" style="font-size: 12px;">java</a>
+    <a href="localhost:1000tags/java" style="font-size: 12px;">java</a>
     
-    <a href="https://example.comtags/linux" style="font-size: 12px;">linux</a>
+    <a href="localhost:1000tags/linux" style="font-size: 12px;">linux</a>
     
-    <a href="https://example.comtags/mysql" style="font-size: 12px;">mysql</a>
+    <a href="localhost:1000tags/mysql" style="font-size: 12px;">mysql</a>
     
-    <a href="https://example.comtags/spring" style="font-size: 12px;">spring</a>
+    <a href="localhost:1000tags/spring" style="font-size: 12px;">spring</a>
     
   </div>
 </div>
@@ -156,7 +156,7 @@ package com.idcos.cloudres.biz.common.util; import org.apache.http.client.method
 
   
 <div class="rsspart">
-  <a rel="nofollow" href="https://example.comfeed.xml" type="application/rss+xml" target="_blank"></a>
+  <a rel="nofollow" href="localhost:1000feed.xml" type="application/rss+xml" target="_blank"></a>
 </div>
 
 
@@ -180,12 +180,12 @@ package com.idcos.cloudres.biz.common.util; import org.apache.http.client.method
   </div>
   <p class="copyright">Powered by <a href="http://gohugo.io" target="_blank" title="hugo">hugo</a> and Theme by <a href="https://github.com/coderzh/hugo-pacman-theme" target="_blank" title="hugo-pacman-theme">hugo-pacman-theme</a> © 2017
     
-    <a href="https://example.com" title="penggy Blog">penggy Blog</a>
+    <a href="localhost:1000" title="penggy Blog">penggy Blog</a>
     
   </p>
 </div>
 </footer>
-  <script src="https://example.comjs/jquery-2.1.0.min.js"></script>
+  <script src="localhost:1000js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 done = false;
 $(document).ready(function(){
@@ -232,7 +232,7 @@ $(document).ready(function(){
     if (false === done) {
       event.preventDefault();
       var orgVal = $(this).find('#search').val();
-      $(this).find('#search').val('site:https:\/\/example.com ' + orgVal);
+      $(this).find('#search').val('site:localhost:1000 ' + orgVal);
       done = true;
       $(this).submit();
     }

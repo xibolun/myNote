@@ -1,0 +1,39 @@
+#+TITLE: linux-command
+#+DATE: 2017-05-22T10:41:33+08:00
+#+PUBLISHDATE: 2017-05-22T10:41:33+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: linux
+#+DESCRIPTION: 只记录常用的Linux命令用法
+
+* 每天一个linux命令
+** ls
+   - ls -l:列表显示当前目录下的文件
+   - ls -lu:根据文件名称正序排列文件
+   - ls -lt:根据文件修改时间倒序排列
+   - ls -l * | grep "^d":列出当前文件目录下面的所有文件夹信息，其中d为linux当中的目录标识
+   - ls -l * | grep "^-":列出当前文件目录下面的所有文件信息
+   - ll -t --time-style=long-iso:以指定的时间格式显示文件
+   - ls -color[=WHEN]:其中when可以是never|always|auto
+ 
+** cd
+   * cd - ：返回上一次操作的目录
+   * cd !$: 将一个命令的参数做为cd参数
+** pwd
+   * pwd -P: 若当前目录为link,则显示link路径
+   * pwd -L: 若当前目录为link，显示软路径
+** mkdir
+   * mkdir -v: 创建目录成功后显示信息
+   * mkdir -p: 递归创建目录
+   * mkdir -m: 创建带权限的目录
+** rm 
+   * rm -i : 交互式删除(interactive),每次删除都会有提示
+   * rm -f : 强制删除，没有提示
+   * rm -r : --recursive 递归删除
+   * rm -- -f : 删除以f开头的文件  
+** mv
+   * mv -t : target directory;将文件移动至目标目录  mv -t dir file...
+   * mv -f : force；若移动的文件已经存在，强制覆盖
+   * mv dir1 dir2: 若dir2不存在，则将dir1重命名；若dir2存在，将dir1移动到dir2里面
+   * mv -b : backup,若文件存在，则根据备份策略将文件先备份  
+** xargs 
