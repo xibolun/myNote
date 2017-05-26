@@ -6,6 +6,7 @@
 #+DESCRIPTION: Short description
 
 * 第1部分 走近Java
+
 ** 第1章 走近java
    - JDK(java development kit)java开发工具，包括java程序设计语言，api类库，Java虚拟机
    - JRE(java runtime environment)：java se api和java虚拟机称为JRE
