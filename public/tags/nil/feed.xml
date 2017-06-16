@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nil on penggy Blog</title>
+    <link>http://pengganyu.github.io/tags/nil/</link>
+    <description>Recent content in Nil on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 03 Jun 2017 21:03:38 +0800</lastBuildDate>
+    
+	<atom:link href="http://pengganyu.github.io/tags/nil/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>coreJavaII</title>
+      <link>http://pengganyu.github.io/post/corejavaii/</link>
+      <pubDate>Sat, 03 Jun 2017 21:03:38 +0800</pubDate>
+      
+      <guid>http://pengganyu.github.io/post/corejavaii/</guid>
+      <description>Java核心技术卷二 第3章 网络编程 socket socket(String host,String port):获取一个套接字 socket.getInputStream(): 获取流的数据信息 socket.setTimeout(1000): 设置socket连接超时时间 socket.isConnect(): socket.shutdownOutPut(): 半关闭，客户端向服务器</description>
+    </item>
+    
+    <item>
+      <title>coreJavaII</title>
+      <link>http://pengganyu.github.io/post/corejavaii/</link>
+      <pubDate>Sat, 03 Jun 2017 21:03:38 +0800</pubDate>
+      
+      <guid>http://pengganyu.github.io/post/corejavaii/</guid>
+      <description>Java核心技术卷二 第3章 网络编程 socket socket(String host,String port):获取一个套接字 socket.getInputStream(): 获取流的数据信息 socket.setTimeout(1000): 设置socket连接超时时间 socket.isConnect(): socket.shutdownOutPut(): 半关闭，客户端向服务器</description>
+    </item>
+    
+    <item>
+      <title>curl</title>
+      <link>http://pengganyu.github.io/post/curl/</link>
+      <pubDate>Fri, 02 Jun 2017 11:13:01 +0800</pubDate>
+      
+      <guid>http://pengganyu.github.io/post/curl/</guid>
+      <description>CURL命令 添加cookie curl --cookie &amp;quot;access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTY0NTgwMzcsImxvZ2luTmFtZSI6ImFkbWluIiwibmFtZUNOIjoi57O757uf566h55CG5ZGYIiwidGltZW91dCI6MjQsInVzZXJJZCI6IjU3M2E0Njk4ZTRiMGQ5MDY2OGJjOWYwMyIsInVzZXJOYW1lIjoiYWRtaW4ifQ.DuWu64q_xiTHJFxQ8X9nMlGwFo82UtP_-2axvKgWois&amp;quot; http://10.0.106.37:8080/app/backop/6b9ab697-4f81-42e8-8a98-80b1e3f6f0a7/syncmdb</description>
+    </item>
+    
+    <item>
+      <title>curl</title>
+      <link>http://pengganyu.github.io/post/curl/</link>
+      <pubDate>Fri, 02 Jun 2017 11:13:01 +0800</pubDate>
+      
+      <guid>http://pengganyu.github.io/post/curl/</guid>
+      <description>CURL命令 添加cookie curl --cookie &amp;quot;access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTY0NTgwMzcsImxvZ2luTmFtZSI6ImFkbWluIiwibmFtZUNOIjoi57O757uf566h55CG5ZGYIiwidGltZW91dCI6MjQsInVzZXJJZCI6IjU3M2E0Njk4ZTRiMGQ5MDY2OGJjOWYwMyIsInVzZXJOYW1lIjoiYWRtaW4ifQ.DuWu64q_xiTHJFxQ8X9nMlGwFo82UtP_-2axvKgWois&amp;quot; http://10.0.106.37:8080/app/backop/6b9ab697-4f81-42e8-8a98-80b1e3f6f0a7/syncmdb</description>
+    </item>
+    
+  </channel>
+</rss>

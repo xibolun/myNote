@@ -1,0 +1,725 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>coreJava-I - penggy Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  
+  <meta name="description" content="Short description">
+  
+  <meta itemprop="name" content="coreJava-I - penggy Blog">
+  <meta itemprop="description" content="Short description">
+  <meta itemprop="image" content="http://pengganyu.github.io/img/author.jpg">
+  
+  <meta name="twitter:description" content="Short description" />
+  
+  <link rel="shortcut icon" href="http://pengganyu.github.io/img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="http://pengganyu.github.io/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="http://pengganyu.github.io/apple-touch-icon.png" />
+  <link rel="stylesheet" href="http://pengganyu.github.io/highlight/styles/github.css">
+  <script src="http://pengganyu.github.io/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="http://pengganyu.github.io/font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="http://pengganyu.github.io/css/style.css">
+</head>
+
+<body>
+  <header>
+    <div>
+  
+  <div id="imglogo">
+    <a href="http://pengganyu.github.io/"><img src="http://pengganyu.github.io/img/logo.svg" alt="penggy Blog" title="penggy Blog"/></a>
+  </div>
+  
+  <div id="textlogo">
+    <h1 class="site-name"><a href="http://pengganyu.github.io/" title="penggy Blog">penggy Blog</a></h1>
+    <h2 class="blog-motto"></h2>
+  </div>
+  <div class="navbar"><a class="navbutton navmobile" href="#" title="menu"></a></div>
+  <nav class="animated">
+    <ul>
+      
+      <li>
+        <form class="search" method="get" action="https://www.google.com/search">
+          <div>
+            <input type="text" id="search" name="q" placeholder="">
+          </div>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+  </header>
+  <div id="container">
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="http://pengganyu.github.io/post/corejavai/" title="coreJava-I" itemprop="url">coreJava-I</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="" title=""></a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2017-05-23 07:59:24 &#43;0800 CST" itemprop="datePublished">2017年05月23日</time>
+  </p>
+</header>
+
+	<div class="article-content">
+    
+    <h1 id="java核心技术-卷i">Java核心技术--卷I</h1>
+
+<h2 id="第1章-java程序设计概述">第1章 Java程序设计概述</h2>
+
+<h3 id="java发展史">java发展史</h3>
+
+<ul>
+<li>1996年sun公司发布java 1.0版本</li>
+<li>1998年在JavaOne大会上发布java 2.0版本</li>
+<li>2004年在JavaOne会议上发布5.0版本</li>
+<li>2006年年末发布6.0版本</li>
+<li>2009年sun公司被收购</li>
+<li>2011年oracle发布1.7版本</li>
+<li>2013年oracle发布1.8版本</li>
+</ul>
+
+<h2 id="第2章-java程序设计环境">第2章 Java程序设计环境</h2>
+
+<h2 id="第3章-java的基本程序设计结构">第3章 Java的基本程序设计结构</h2>
+
+<h3 id="数据类型">数据类型</h3>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>存储需求</th>
+<th>取值范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>4字节</td>
+<td>>20亿</td>
+</tr>
+
+<tr>
+<td>short</td>
+<td>2字节</td>
+<td></td>
+</tr>
+
+<tr>
+<td>long</td>
+<td>8字节</td>
+<td></td>
+</tr>
+
+<tr>
+<td>byte</td>
+<td>1字节</td>
+<td>-128~127</td>
+</tr>
+
+<tr>
+<td>float</td>
+<td>4字节</td>
+<td></td>
+</tr>
+
+<tr>
+<td>double</td>
+<td>8字节</td>
+<td></td>
+</tr>
+
+<tr>
+<td>boolean</td>
+<td></td>
+<td>false/true</td>
+</tr>
+
+<tr>
+<td>char</td>
+<td>unicode编码</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>前缀0x:16进制</li>
+<li>前缀0:8进制</li>
+<li>前缀0b:二进制</li>
+<li>数字字面量可以加下划线：1_000_000表示1百万</li>
+</ul>
+
+<h3 id="位运算">位运算</h3>
+
+<ul>
+<li>&</li>
+<li>|</li>
+<li>^</li>
+<li>~</li>
+<li>>>:右移</li>
+<li><<:左移</li>
+</ul>
+
+<h3 id="字符串">字符串</h3>
+
+<p>由于在虚拟机当中相同的字符串是共享的，理论上可以使用==来判断两个字符串的值是否相等；实际上只有字符串常量是共享的，而+或substring等操作产生的结果是不共享的</p>
+
+<h2 id="第4章-对象与类">第4章 对象与类</h2>
+
+<h3 id="面向对象程序设计-oop-object-oriented-programming">面向对象程序设计（OOP-Object Oriented Programming）</h3>
+
+<h3 id="对象的三个特性">对象的三个特性</h3>
+
+<ul>
+<li>对象的行为（behavior）</li>
+<li>对象的状态(state)</li>
+<li>对象标识(identity)</li>
+</ul>
+
+<h3 id="表达类关系之间有uml符号">表达类关系之间有UML符号</h3>
+
+<ul>
+<li>继承</li>
+<li>接口实现</li>
+<li>依赖</li>
+<li>聚合</li>
+<li>关联</li>
+<li>直接关联</li>
+</ul>
+
+<h2 id="第5章-继承">第5章 继承</h2>
+
+<ul>
+<li>被final声明的类，不允许被继承，类中的方法也为final的，java当中的String就是final的；Calendar当中的setTime()和getTime()也是final的</li>
+<li>被final声明的类可以在不使用动态绑定，节省系统的开销；</li>
+<li>抽象类不能被实例化，只能实例化它的子类</li>
+<li>hashCode()与equals()的返回值是相同的</li>
+<li>方法当中的入参为 objedct...这种形式叫做 参数可变</li>
+</ul>
+
+<h3 id="继承的设计技巧">继承的设计技巧</h3>
+
+<ol>
+<li>将公共操作和属性放在父类当中</li>
+<li>不要使用受保护的属性</li>
+<li>使用继承实现"is-a"的关系</li>
+<li>除非所有的继承方法都有意义，否则不要放到父类当中</li>
+<li>覆写方法的时候，不要改变预期的行为</li>
+<li>使用多态，而不是instanceOf的判断</li>
+<li>不要过多使用反射</li>
+</ol>
+
+<h2 id="第6章-接口与内部类">第6章 接口与内部类</h2>
+
+<h3 id="接口">接口</h3>
+
+<ul>
+<li>接口不是类，但是定义了对类的需求描述，类必须实现接口里面的方法定义</li>
+<li>接口不是类，所以无法实例化</li>
+<li>接口与抽象类的区别；java里面只支持单继承，接口则可以被多实现；</li>
+</ul>
+
+<h3 id="深度clone">深度clone</h3>
+
+<ul>
+<li>由于每个的父类都是object，而object当中有clone的方法；所以每个类都可以使用clone方法；但结果就是浅clone；即无法拷贝类内部的对象</li>
+<li>如果一个类想要重写clone方法，就必须实现Cloneable接口，同时定义public的clone方法，并实现clone方法</li>
+</ul>
+
+<h3 id="内部类">内部类</h3>
+
+<ul>
+<li>内部类的好处：访问控制和隐式调用</li>
+<li>显式内部类：在实例化对象的时候将对象里面的方法进行实现</li>
+</ul>
+
+<h2 id="第11章-异常-断言-日志和调试">第11章 异常、断言、日志和调试</h2>
+
+<ul>
+<li>java异常都是继承于Throwable；分为error和exception;而exception又分为派生RuntimeException和其他异常</li>
+<li>派生异常RuntimeException包括：错误类型转换、数组访问越界、空指针</li>
+<li>非派生异常包括：试图在文件结尾处读取数据、试图打开一个不存在的文件、找不到类等</li>
+<li>断言: assert 条件：表达式</li>
+<li>断言的启用和禁用：java -ea或java -enableassertions xxx</li>
+<li>LOG日志记录7个级别：SERVER||WARNING||INFO||CONFIG||FINE||FINER|FINEST</li>
+<li>使用ResourceBundle可以对日志进行本地化处理，但是需要在配置en_properties和zh_properties等不同语言的配置文件</li>
+<li>11.6调试技巧一节当中介绍了javac的一些命令和其他的一些特点</li>
+</ul>
+
+<h2 id="第12章-泛型程序设计">第12章 泛型程序设计</h2>
+
+<ul>
+<li>泛型不能使用基础数据类型如：double,int等，只能使用Double、Integer</li>
+<li>无法创建泛型参数的数组；即无法 new Pair<String>[10];如果将10去掉也是语法正确</li>
+<li>不能实例化泛型变量，即new T()是错误的</li>
+<li>泛型无法用static声明</li>
+<li>通配符?，解决泛型之间的调用问题</li>
+</ul>
+
+<h2 id="第13章-集合">第13章 集合</h2>
+
+<h3 id="未完成">未完成</h3>
+
+<ul>
+<li>散列集的add和树集的add有什么算法区别，哪个更快？</li>
+<li>链表和数组列表有什么区别，在使用上面哪个更好？</li>
+<li>Vector里面的一些方法是同步的，在执行的时候效率会比ArrayList低;所以一般都使用ArrayList</li>
+<li>LinkedList可以快速进行数据的增加和删除，但是在get和set的时候就必须去遍历，虽然get方法做了优化，当index> size>>1时，会从list的尾部开始查询</li>
+<li>PriorityQueue是怎么完成排序的</li>
+</ul>
+
+<h3 id="链表">链表</h3>
+
+<h3 id="数组列表">数组列表</h3>
+
+<h3 id="散列集">散列集</h3>
+
+<ul>
+<li>散列集为每个元素计算一个hasCode（散列码）；add一个对象的时候，计算对象的hashCode，和散列表的size进行取余运算，得出的结果就是此对象的位置；</li>
+<li>treeSet对元素进行排序后输出</li>
+<li>linkedHashSet记录元素的添加顺序</li>
+</ul>
+
+<h3 id="树集">树集</h3>
+
+<ul>
+<li>树集的数据结构彩红黑树；迭代器以排好序的顺序访问每个元素；比散列表要慢，因为散列表是不排序的</li>
+</ul>
+
+<h3 id="对象比较">对象比较</h3>
+
+<ul>
+<li>接口Comparable当中的compareTo()，若两个对象a与b相等返回0，a在于b前面，返回负值；a位于b之后返回正值;String当中的compareTo方法是按字典顺序进行比较</li>
+</ul>
+
+<pre><code class="language-java">
+public int compareTo(String anotherString) {
+        int len1 = value.length;
+        int len2 = anotherString.value.length;
+        int lim = Math.min(len1, len2);
+        char v1[] = value;
+        char v2[] = anotherString.value;
+
+        int k = 0;
+        while (k &lt; lim) {
+            char c1 = v1[k];
+            char c2 = v2[k];
+            if (c1 != c2) {
+                return c1 - c2;
+            }
+            k++;
+        }
+        return len1 - len2;
+    }
+</code></pre>
+
+<h3 id="队列与双端队列">队列与双端队列</h3>
+
+<ul>
+<li>queue的 add和offer方法区别，如果队列满了，add会抛出异常，offer返回false</li>
+<li>queue的 remove和poll方法区别，如果队列空，remove会抛出异常，poll会返回null</li>
+<li>queue的 element和peek方法区别，如果队列为空，element会抛出异常，peek会返回null</li>
+<li>Deque为双端对列，只能在队列的两端进行操作，不能在中间操作;实现了pop()和push()相关操作的方法, addFirset,addLast,pollFirst，pollLast等这是queue没有的方法</li>
+<li>Deque的pop方法移除队列当中第一个元素，push将元素放在第一个；FIFO原则 </li>
+</ul>
+
+<h3 id="优先级队列">优先级队列</h3>
+
+<ul>
+<li>PriorityQueue是一个类；内部实现的是二叉树的heap数据结构，将最小的元素放在根部，保证排序</li>
+</ul>
+
+<h3 id="映射表">映射表</h3>
+
+<h3 id="collections">Collections</h3>
+
+<ul>
+<li>映射表就是Map,包括HashMap和TreeMap</li>
+<li>Map的put方法返回一个value信息，如果key已经有value，则将oldValue返回</li>
+<li>Map的keySet不是HashSet，也不是TreeSet</li>
+<li>Map的entrySet返回是键值对信息；可以删除，但不能新增元素</li>
+<li>Map当中的key可以为空</li>
+<li>IdentityHashMap当中的键值列不是以hashCode来计算，而是以(System.identityHashCode来计算，对象之间的比较需要用==而不是equals</li>
+<li>synchronizedMap(Map<K,V> m)获取同步线程执行的map对象</li>
+<li>unmodifiableMap(Map<? extends K,? extends V> m) 获取不可修改的map对象</li>
+<li>checkedList(List<E> list, Class<E> type) 检查对象是否全规，是否存在转换异常等</li>
+<li>binarySearch(List<? extends Comparable<? super T>> list, T key) 集合当中的二分法查找，前提List是一个排序好的集合；若返回值>0，说明匹配到了元素；返回负值i，是元素应该在的地方，保证数组的有序；-i-1;</li>
+</ul>
+
+<h3 id="遗留的集合">遗留的集合</h3>
+
+<ul>
+<li>Hashtable：同步的HashMap</li>
+<li>Enumeration：hashMoreElements和nextElement</li>
+</ul>
+
+<h3 id="属性映射表properties">属性映射表Properties</h3>
+
+<p>key和value都是String类型的</p>
+
+<h3 id="栈stack">栈Stack</h3>
+
+<ul>
+<li>push和pop方法</li>
+<li>peek</li>
+<li>empty</li>
+<li>search返回object所在的index</li>
+</ul>
+
+<h3 id="位集bitset">位集BitSet</h3>
+
+<ul>
+<li>and</li>
+<li>or</li>
+<li>xor</li>
+<li>andNot</li>
+<li>clear</li>
+</ul>
+
+<h2 id="第14章-多线程">第14章 多线程</h2>
+
+<h3 id="守护线程">守护线程</h3>
+
+<ul>
+<li>守护线程不应该操作固有的资源，文件、数据库等，因为当没有其他线程在使用的时候，守护线程会自动关闭</li>
+<li>Thread当中守护线程的最大priority为7，最小为1，Normal为5；此数据会随着操作系统的变化而变化 </li>
+</ul>
+
+<h3 id="为什么不使用stop和suspend方法">为什么不使用stop和suspend方法</h3>
+
+<ul>
+<li>stop无法保证对象的安全，当一个对象调用了方法之后，无法知道什么时候可以让线程stop掉，因为你不知道对象的方法是否执行结束</li>
+<li>suspend方法挂起一个持有锁的对象的线程的时候，那么此锁在恢复之前不可用，其他线程一直在等待，这样容易造成死锁</li>
+</ul>
+
+<h3 id="阻塞队列">阻塞队列</h3>
+
+<ul>
+<li>阻塞队列是一个非常好的处理线程阻塞的方法，使用队列一个线程可以安全的将数据传递给另外一个，其他线程将数据取出，修改完之后再塞入队列</li>
+<li>常用的队列有ArrayQueue,LinkedBlockingQueue,DelayQueue,PriorityBlockingQueue,BlockingQueue,transferQueue;</li>
+</ul>
+
+<h3 id="线程安全的集合">线程安全的集合</h3>
+
+<h4 id="高效的映射表-集合-队列">高效的映射表、集合、队列</h4>
+
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+<div class="article-tags">
+  <span></span>
+  
+  <a href="http://pengganyu.github.io/tags/java">Java,</a>
+  
+  <a href="http://pengganyu.github.io/tags/core">core</a>
+  
+</div>
+
+
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="http://pengganyu.github.io/post/corejavai/" data-title="coreJava-I" data-tsina="" class="share clearfix">
+    </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+
+</div>
+
+    <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+  
+
+
+
+  
+
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+      
+			<li><a href="http://pengganyu.github.io/tags/bible" title="bible">bible<sup>2</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/core" title="core">core<sup>1</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/ezra" title="ezra">ezra<sup>4</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/git" title="git">git<sup>1</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/java" title="java">java<sup>6</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/jvm" title="jvm">jvm<sup>1</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/linux" title="linux">linux<sup>2</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/mysql" title="mysql">mysql<sup>1</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/nginx" title="nginx">nginx<sup>1</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/nil" title="nil">nil<sup>4</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/redis" title="redis">redis<sup>1</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/spring" title="spring">spring<sup>2</sup></a></li>
+      
+			<li><a href="http://pengganyu.github.io/tags/thread" title="thread">thread<sup>1</sup></a></li>
+      
+		</ul>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle">归档</p>
+    <ul class="archive-list">
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="http://pengganyu.github.io/post/#2017-06">2017年06月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="http://pengganyu.github.io/post/#2017-05">2017年05月</a><span class="archive-list-count">5</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="http://pengganyu.github.io/post/#2017-04">2017年04月</a><span class="archive-list-count">8</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="http://pengganyu.github.io/post/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
+      </li>
+      
+    </ul>
+
+  </div>
+
+
+  
+
+<div class="tagcloudlist">
+  <p class="asidetitle">标签云</p>
+  <div class="tagcloudlist clearfix">
+    
+    <a href="http://pengganyu.github.io/tags/bible" style="font-size: 12px;">bible</a>
+    
+    <a href="http://pengganyu.github.io/tags/core" style="font-size: 12px;">core</a>
+    
+    <a href="http://pengganyu.github.io/tags/ezra" style="font-size: 12px;">ezra</a>
+    
+    <a href="http://pengganyu.github.io/tags/git" style="font-size: 12px;">git</a>
+    
+    <a href="http://pengganyu.github.io/tags/java" style="font-size: 12px;">java</a>
+    
+    <a href="http://pengganyu.github.io/tags/jvm" style="font-size: 12px;">jvm</a>
+    
+    <a href="http://pengganyu.github.io/tags/linux" style="font-size: 12px;">linux</a>
+    
+    <a href="http://pengganyu.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+    
+    <a href="http://pengganyu.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+    
+    <a href="http://pengganyu.github.io/tags/nil" style="font-size: 12px;">nil</a>
+    
+    <a href="http://pengganyu.github.io/tags/redis" style="font-size: 12px;">redis</a>
+    
+    <a href="http://pengganyu.github.io/tags/spring" style="font-size: 12px;">spring</a>
+    
+    <a href="http://pengganyu.github.io/tags/thread" style="font-size: 12px;">thread</a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</aside>
+</div>
+
+  </div>
+  <footer><div id="footer" >
+  
+  
+  <div class="social-font clearfix">
+    
+    <a href="http://weibo.com/%e5%8d%97%e9%98%b3%e5%b0%8f%e4%b8%89%e8%bd%ae" target="_blank" title="weibo"></a>
+    
+    
+    
+    <a href="https://github.com/kedadiannao220" target="_blank" title="github"></a>
+    
+    
+    
+  </div>
+  <p class="copyright">Powered by <a href="http://gohugo.io" target="_blank" title="hugo">hugo</a> and Theme by <a href="https://github.com/coderzh/hugo-pacman-theme" target="_blank" title="hugo-pacman-theme">hugo-pacman-theme</a> © 2017
+    
+    <a href="http://pengganyu.github.io/" title="penggy Blog">penggy Blog</a>
+    
+  </p>
+</div>
+</footer>
+  <script src="http://pengganyu.github.io/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+done = false;
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  $('form.search').on('submit', function (event) {
+    if (false === done) {
+      event.preventDefault();
+      var orgVal = $(this).find('#search').val();
+      $(this).find('#search').val('site:http:\/\/pengganyu.github.io\/ ' + orgVal);
+      done = true;
+      $(this).submit();
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});
+</script>
+
+
+<link rel="stylesheet" href="http://pengganyu.github.io/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="http://pengganyu.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+
+</body>
+</html>

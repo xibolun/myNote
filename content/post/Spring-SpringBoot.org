@@ -16,3 +16,24 @@ spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.Ph
 #+END_SRC
 由于1.5当中将hibrenate jar包升级，导致hibreanate的一些配置有所变化。
 对于名称策略，官方描述如下：[[http://docs.spring.io/spring-boot/docs/1.5.0.RELEASE/reference/htmlsingle/#howto-configure-jpa-properties][Spring Configure JPA properties]]
+
+** SpringBoot 配置myBaits的log输出
+   配置logImpl的参数值即可，LOG4J是按照log4j的日志进行输出
+#+BEGIN_SRC xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="logPrefix" value="dao."/>
+		<setting name="logImpl" value="LOG4J"/>
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
+	</settings>
+</configuration>
+#+END_SRC

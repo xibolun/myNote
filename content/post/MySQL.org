@@ -16,32 +16,39 @@ service mysqld restart
 service mysqld stop
 service mysqld start
 #+END_SRC
+
 ** 其他命令
 #+BEGIN_SRC shell
 mysql -uoot -pP@ssw0rd hf-csa -default-character-set=utf8 < db_qdn672.sql
 #+END_SRC
+
 ** Mysql Dump
 *** dump数据库
 #+BEGIN_SRC shell
 mysqldump -uroot -p hf-csa > hf-csa.sql
 #+END_SRC
+
 *** 只dump数据库表结构（--no-data -d）
 #+BEGIN_SRC shell
 mysqldump -uroot -p --no-data --add-drop-table hf-csa > hf-csa.sql
 mysqldump -uroot -p -d --add-drop-table hf-csa > hf-csa.sql
 #+END_SRC
+
 *** dump数据库表结构排除某些表
 #+BEGIN_SRC shell
 mysqldump -uroot -p --no-data --add-drop-table hf-csa --ignore-table=hf-csa.ACT_GET_PROPERTY > hf-csa.sql
 #+END_SRC
+
 *** dump数据库某张表，表中间以空格分隔
 #+BEGIN_SRC shell
 mysqldump -uroot -p --no-data hf-csa SRV_INFO SRV_BP_APP_INFO > hf-csa.sql
 #+END_SRC
+
 *** dump数据库带注释的表结构
 #+BEGIN_SRC shell
 mysqldump -uroot -p --no-data --comments hf-csa SRV_INFO SRV_BP_APP_INFO > hf-csa.sql
 #+END_SRC
+
 *** reload dump File
 #+BEGIN_SRC shell
 shell> mysql hf-csa < hf-csa.sql
@@ -49,6 +56,7 @@ shell> mysql -e "source hf-csa.sql" hf-csa
 mysql> use `hf-csa`;
 mysql> source hf-csa.sql 
 #+END_SRC
+
 ** INFOMATION_SCHEMA
 #+BEGIN_SRC sql
 SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有表的列
@@ -71,6 +79,7 @@ SELECT ip.IP_ADDRESS,ip.ID,unit.NAME FROM SRV_BP_DEV_IP ip LEFT JOIN SRV_BP_DEV 
   LEFT JOIN SRV_BP_APP_DP_UNIT unit ON dev.SRV_BP_APP_DP_UNIT_ID = unit.ID WHERE
   ip.SRV_INFO_ID = dev.SRV_INFO_ID AND dev.SRV_INFO_ID = unit.SRV_INFO_ID AND ip.SRV_INFO_ID = '9ecbd34c-3ed6-4e61-8d11-0ba526e9ca98';
 #+END_SRC
+
 ** 问题列表
 *** mysql的一些运维命令
 #+BEGIN_SRC shell
@@ -80,6 +89,7 @@ lsof -i:3306
 # 查看mysql的进程，同时可以看到mysql的一些文件位置
 ps ax | grep mysqld 
 #+END_SRC
+
 *** ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
 #+BEGIN_SRC mysql
 -- 进入安全模式
@@ -100,8 +110,33 @@ mysql> flush privileges;
 -- 再次用密码尝试登陆
 ➜  ~ mysql -uroot -p
 #+END_SRC
+
 *** Incorrect definition of table performance_schema.events_waits_current: expected column 'NESTING_EVEN
 数据库结构错误，导致mysql启动异常
 #+BEGIN_SRC shell
 ➜  ~ mysql_upgrade -u root -p
 #+END_SRC
+
+*** MAC homebrew安装的mysql相关
+    - my.cnf目录位于：/usr/local/Cellar/mysql/5.7.11/support-files/ 
+    - 启动相关命令：mysql.server start|stop|staus|restart
+
+*** Data source rejected establishment of connection, message from server: "Too many connections
+    由于mysql的连接数过大导致，修改最大连接数即可;
+#+BEGIN_SRC shell
+mysql> show VARIABLES  WHERE variable_name = 'max_connections';
+
+mysql> set GLOBAL max_connections=200;
+#+END_SRC
+    但是在启动java工程的时候仍然会报错，并且重新Mysql后，此值无法生效，又变成了默认值151（有的版本为100）；就想着修改mysql的默认配置文件；去找一个mac平台里面的my.cnf，但是没有；于是从/usr/local/Cellar/mysql/5.7.11/support-files/当中copy一个conf到/etc/my.cnf当中,在my.cnf当中设置max_connections即可，这样每次启动Mysql，都会设置为默认的值；
+    在mac下/etc/my.cnf里面会自动加上权限为只读文件
+#+BEGIN_SRC shell
+[mysqld]
+## set column max value
+max_allowed_packet = 500M
+max_connections=200
+
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 
+#+END_SRC
+
+

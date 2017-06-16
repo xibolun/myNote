@@ -4,41 +4,108 @@
 #+DRAFT: nil
 #+SHOWTOC: t
 #+TAGS: linux
-#+DESCRIPTION: 只记录常用的Linux命令用法
+#+DESCRIPTION: 常用的Linux命令
 
 * 每天一个linux命令
 ** ls
-   - ls -l:列表显示当前目录下的文件
-   - ls -lu:根据文件名称正序排列文件
-   - ls -lt:根据文件修改时间倒序排列
-   - ls -l * | grep "^d":列出当前文件目录下面的所有文件夹信息，其中d为linux当中的目录标识
-   - ls -l * | grep "^-":列出当前文件目录下面的所有文件信息
-   - ll -t --time-style=long-iso:以指定的时间格式显示文件
-   - ls -color[=WHEN]:其中when可以是never|always|auto
+   1. ls -l:列表显示当前目录下的文件
+   2. ls -lu:根据文件名称正序排列文件
+   3. ls -lt:根据文件修改时间倒序排列
+   4. ls -l * | grep "^d":列出当前文件目录下面的所有文件夹信息，其中d为linux当中的目录标识
+   5. ls -l * | grep "^-":列出当前文件目录下面的所有文件信息
+   6. ll -t --time-style=long-iso:以指定的时间格式显示文件
+   7. ls -color[=WHEN]:其中when可以是never|always|auto
  
 ** cd
-   * cd - ：返回上一次操作的目录
-   * cd !$: 将一个命令的参数做为cd参数
+   1. cd - ：返回上一次操作的目录
+   2. cd !$: 将一个命令的参数做为cd参数
 
 ** pwd
-   * pwd -P: 若当前目录为link,则显示link路径
-   * pwd -L: 若当前目录为link，显示软路径
+   1. pwd -P: 若当前目录为link,则显示link路径
+   2. pwd -L: 若当前目录为link，显示软路径
 
 ** mkdir
-   * mkdir -v: 创建目录成功后显示信息
-   * mkdir -p: 递归创建目录
-   * mkdir -m: 创建带权限的目录
+   1. mkdir -v: 创建目录成功后显示信息
+   2. mkdir -p: 递归创建目录
+   3. mkdir -m: 创建带权限的目录
 
 ** rm 
-   * rm -i : 交互式删除(interactive),每次删除都会有提示
-   * rm -f : 强制删除，没有提示
-   * rm -r : --recursive 递归删除
-   * rm -- -f : 删除以f开头的文件  
+   1. rm -i : 交互式删除(interactive),每次删除都会有提示
+   2. rm -f : 强制删除，没有提示
+   3. rm -r : --recursive 递归删除
+   4. rm -- -f : 删除以f开头的文件  
 
 ** mv
-   * mv -t : target directory;将文件移动至目标目录  mv -t dir file...
-   * mv -f : force；若移动的文件已经存在，强制覆盖
-   * mv dir1 dir2: 若dir2不存在，则将dir1重命名；若dir2存在，将dir1移动到dir2里面
-   * mv -b : backup,若文件存在，则根据备份策略将文件先备份  
+   1. mv -t : target directory;将文件移动至目标目录  mv -t dir file...
+   2. mv -f : force；若移动的文件已经存在，强制覆盖
+   3. mv dir1 dir2: 若dir2不存在，则将dir1重命名；若dir2存在，将dir1移动到dir2里面
+   4. mv -b : backup,若文件存在，则根据备份策略将文件先备份  
 
-** xargs 
+** cp
+   1. cp -a : 是否覆盖copy，copy的时候两个文件的时间保持一致;相当于 -dR
+   2. cp -l : copy一个link文件
+   3. cp -R : copy整个目录
+
+** touch
+   1. touch -t : 指定文件的创建时间 touch -t 201211142223 log.log
+   2. touch -r file1 file2: 将file2的时间更新为file1
+
+** cat 
+   1. cat file1 file2 > file: 合并多个文件
+   2. cat >> file : 向文件里面继续添加内容，不会将原内容覆盖
+   3. cat -n file1 file2 : 将file1添加行号后输入到file2当中
+   4. cat -b file1 file2 : 将file1非空白行添加行号后输入到file2当中
+   5. cat > file << EOF : 输入信息到file当中，输入EOF结束
+   6. tac file : 将file的内容倒序显示
+
+** nl
+   1. nl -ba file : 将file的内容显示，并加上行号
+   2. nl -bt file : 将file的内容显示，非空格的加上行号
+   3. nl -nrz file: 将file的内容显示，非空格加上行号，行号默认以6位显示
+   4. nl -nrz -w 3 file: 行号以3位数显示
+
+** more
+   1. more +n : 从第n行开始显示，如果more +3
+   2. more -n : 定义每屏显示的行数
+
+** head 
+   1. head file:  显示文件的前十行
+   2. head -n 5  file: 显示文件的前五行
+   3. head -n -5 file: 显示文件除最后五行之外的内容（mac不支持此命令）
+   4. head -c 5 file: 显示文件5个字节
+   5. head -c -5 file: 显示文件除最后5个字节之外的内容（mac不支持此命令）
+   6. head -v file: 在文件内容的上面显示文件名称
+
+** tail
+   1. tail -n 6 file: 显示文件的最后5行
+   2. tail file: 默认显示文件的最后十行
+   3. tail -f file: 循环显示文件内容，若文件内容有更新，则会显示出来
+   4. tailf -v file: 在文件内容上面显示文件名称
+
+** which
+   1. 如果一个命令在PATH当中，则将第一个搜索到的命令返回
+   2. which -v : 查看命令的版本信息
+
+** whereis
+   1. 说明： whereis搜索的是Linux数据库当中的文件信息，一周同步一次
+   2. whereis -b nginx: 搜索nginx的可执行文件
+   3. whereis -m nginx: 搜索nginx的帮助文件
+   4. whereis -s nginx: 搜索nignx的源文件
+
+** locate
+   1. locate pwd: 搜索含有pwd的文件
+   2. locate /etc/sh: 搜索/etc目录下面以sh开头的文件
+
+** find
+   1. find -amin -2: 查找系统当中最后2分钟被访问的文件
+   2. find -atime -2: 查找系统当中最后2*24小时访问的文件
+   3. find -cmin -2: 查找系统当中最后2分钟被修改状态的文件
+   4. find -ctime -2: 查找系统当中最后2*24小时被修改状态的文件
+   5. find -mmin -2: 查找系统当中最后2分钟被修改的文件
+   6. find -mtime -2: 查找系统当中最后2*24小时被修改的文件
+   7. find . -name "*.log": 在当前目录下面根据名称递归查找文件
+   8. find . -perm 777: 根据文件权限查找文件
+   9. find . -type f -name "*.log" : 根据文件类型查找文件
+   10. find . -type d: 查找文件目录
+   11. find . -type d | sort: 查询文件目录并排序
+   12. find . -size +1000c -print: 根据文件大小来查询，查找1k大小的文件，并进行打印输出
