@@ -2,202 +2,202 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://pengganyu.github.io/post/nginx/</loc>
+    <loc>localhost:1313/post/nginx/</loc>
     <lastmod>2017-06-15T23:47:43+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/thenewtestament/</loc>
+    <loc>localhost:1313/post/thenewtestament/</loc>
     <lastmod>2017-06-15T22:08:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/%E8%AE%B2%E9%81%93%E5%AD%A6/</loc>
+    <loc>localhost:1313/post/%E8%AE%B2%E9%81%93%E5%AD%A6/</loc>
     <lastmod>2017-06-10T08:35:22+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/corejavaii/</loc>
+    <loc>localhost:1313/post/corejavaii/</loc>
     <lastmod>2017-06-03T21:03:38+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/curl/</loc>
+    <loc>localhost:1313/post/curl/</loc>
     <lastmod>2017-06-02T11:13:01+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/%E5%9C%A3%E7%BB%8F%E6%80%BB%E8%AE%BA/</loc>
+    <loc>localhost:1313/post/%E5%9C%A3%E7%BB%8F%E6%80%BB%E8%AE%BA/</loc>
     <lastmod>2017-06-01T07:29:18+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/corejavai/</loc>
+    <loc>localhost:1313/post/corejavai/</loc>
     <lastmod>2017-05-23T07:59:24+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/linux-command/</loc>
+    <loc>localhost:1313/post/linux-command/</loc>
     <lastmod>2017-05-22T10:41:33+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
+    <loc>localhost:1313/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
     <lastmod>2017-05-21T23:13:33+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/redis/</loc>
+    <loc>localhost:1313/post/redis/</loc>
     <lastmod>2017-05-10T13:27:01+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/laobaorendebangyang/</loc>
+    <loc>localhost:1313/post/laobaorendebangyang/</loc>
     <lastmod>2017-05-06T21:00:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/spring-springboot/</loc>
+    <loc>localhost:1313/post/spring-springboot/</loc>
     <lastmod>2017-04-27T22:44:39+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/mysql/</loc>
+    <loc>localhost:1313/post/mysql/</loc>
     <lastmod>2017-04-27T22:43:06+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/spring-resttemplate/</loc>
+    <loc>localhost:1313/post/spring-resttemplate/</loc>
     <lastmod>2017-04-27T22:35:25+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/jwt/</loc>
+    <loc>localhost:1313/post/jwt/</loc>
     <lastmod>2017-04-22T11:37:15+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/mulithread/</loc>
+    <loc>localhost:1313/post/mulithread/</loc>
     <lastmod>2017-04-22T11:37:15+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/linux-awk/</loc>
+    <loc>localhost:1313/post/linux-awk/</loc>
     <lastmod>2017-04-22T11:37:15+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/yabolahanqichudefengxian/</loc>
+    <loc>localhost:1313/post/yabolahanqichudefengxian/</loc>
     <lastmod>2017-04-22T11:37:15+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/jiangdaoxue/</loc>
+    <loc>localhost:1313/post/jiangdaoxue/</loc>
     <lastmod>2017-04-22T08:43:30+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/git/</loc>
+    <loc>localhost:1313/post/git/</loc>
     <lastmod>2016-04-27T22:51:14+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/bible/</loc>
+    <loc>localhost:1313/tags/bible/</loc>
     <lastmod>2017-06-15T22:08:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/categories/</loc>
+    <loc>localhost:1313/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/core/</loc>
+    <loc>localhost:1313/tags/core/</loc>
     <lastmod>2017-05-23T07:59:24+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/ezra/</loc>
+    <loc>localhost:1313/tags/ezra/</loc>
     <lastmod>2017-06-10T08:35:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/git/</loc>
+    <loc>localhost:1313/tags/git/</loc>
     <lastmod>2016-04-27T22:51:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/java/</loc>
+    <loc>localhost:1313/tags/java/</loc>
     <lastmod>2017-05-23T07:59:24+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/jvm/</loc>
+    <loc>localhost:1313/tags/jvm/</loc>
     <lastmod>2017-05-21T23:13:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/linux/</loc>
+    <loc>localhost:1313/tags/linux/</loc>
     <lastmod>2017-05-22T10:41:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/mysql/</loc>
+    <loc>localhost:1313/tags/mysql/</loc>
     <lastmod>2017-04-27T22:43:06+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/nginx/</loc>
+    <loc>localhost:1313/tags/nginx/</loc>
     <lastmod>2017-06-15T23:47:43+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/nil/</loc>
+    <loc>localhost:1313/tags/nil/</loc>
     <lastmod>2017-06-03T21:03:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/post/</loc>
+    <loc>localhost:1313/post/</loc>
     <lastmod>2017-06-15T23:47:43+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/redis/</loc>
+    <loc>localhost:1313/tags/redis/</loc>
     <lastmod>2017-05-10T13:27:01+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/spring/</loc>
+    <loc>localhost:1313/tags/spring/</loc>
     <lastmod>2017-04-27T22:44:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/</loc>
+    <loc>localhost:1313/tags/</loc>
     <lastmod>2017-06-15T22:08:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/tags/thread/</loc>
+    <loc>localhost:1313/tags/thread/</loc>
     <lastmod>2017-04-22T11:37:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://pengganyu.github.io/</loc>
+    <loc>localhost:1313/</loc>
     <lastmod>2017-06-15T23:47:43+08:00</lastmod>
     <priority>0</priority>
   </url>

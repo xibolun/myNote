@@ -9,18 +9,18 @@
   
   <meta itemprop="name" content="深入理解java虚拟机-jvm高级特性与最佳实践 - penggy Blog">
   <meta itemprop="description" content="Short description">
-  <meta itemprop="image" content="http://pengganyu.github.io/img/author.jpg">
+  <meta itemprop="image" content="localhost:1313img/author.jpg">
   
   <meta name="twitter:description" content="Short description" />
   
-  <link rel="shortcut icon" href="http://pengganyu.github.io/img/favicon.ico"/>
-  <link rel="apple-touch-icon" href="http://pengganyu.github.io/apple-touch-icon.png" />
-  <link rel="apple-touch-icon-precomposed" href="http://pengganyu.github.io/apple-touch-icon.png" />
-  <link rel="stylesheet" href="http://pengganyu.github.io/highlight/styles/github.css">
-  <script src="http://pengganyu.github.io/highlight/highlight.pack.js"></script>
+  <link rel="shortcut icon" href="localhost:1313img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="localhost:1313apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="localhost:1313apple-touch-icon.png" />
+  <link rel="stylesheet" href="localhost:1313highlight/styles/github.css">
+  <script src="localhost:1313highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-  <link rel="stylesheet" href="http://pengganyu.github.io/font/hack/css/hack.min.css">
-  <link rel="stylesheet" href="http://pengganyu.github.io/css/style.css">
+  <link rel="stylesheet" href="localhost:1313font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="localhost:1313css/style.css">
 </head>
 
 <body>
@@ -28,11 +28,11 @@
     <div>
   
   <div id="imglogo">
-    <a href="http://pengganyu.github.io/"><img src="http://pengganyu.github.io/img/logo.svg" alt="penggy Blog" title="penggy Blog"/></a>
+    <a href="localhost:1313"><img src="localhost:1313img/logo.svg" alt="penggy Blog" title="penggy Blog"/></a>
   </div>
   
   <div id="textlogo">
-    <h1 class="site-name"><a href="http://pengganyu.github.io/" title="penggy Blog">penggy Blog</a></h1>
+    <h1 class="site-name"><a href="localhost:1313" title="penggy Blog">penggy Blog</a></h1>
     <h2 class="blog-motto"></h2>
   </div>
   <div class="navbar"><a class="navbutton navmobile" href="#" title="menu"></a></div>
@@ -56,7 +56,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="http://pengganyu.github.io/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="深入理解java虚拟机-jvm高级特性与最佳实践" itemprop="url">深入理解java虚拟机-jvm高级特性与最佳实践</a>
+      <a href="#ZgotmplZ" title="深入理解java虚拟机-jvm高级特性与最佳实践" itemprop="url">深入理解java虚拟机-jvm高级特性与最佳实践</a>
   </h1>
   <p class="article-author">By
     
@@ -222,6 +222,36 @@
 </tbody>
 </table>
 
+<ul>
+<li>HotSpot虚拟机默认分配策略为：longs/doubles、ints、shorts/chars、bytes/booleans、oops，相同宽度的字段总是被分配到一起</li>
+<li>HotSpot VM的自动内存管理系统要求对象起始地址必须是8字节的整数倍</li>
+</ul>
+
+<h4 id="2-3-3-对象的访问定位">2.3.3 对象的访问定位</h4>
+
+<ul>
+<li>目前对象的访问方式主流的有两种，一种是使用句柄，另一种是直接指针</li>
+<li>句柄访问：reference数据存放于栈当中，但栈当中实际存储的是对象的句柄地址，句柄地址实际上是放在堆内存当中，它包含着对象实例数据与类型数据各自的地址信息；因为如果使用句柄进行访问，那么堆当中会划分出一块内存做为句柄池</li>
+<li>直接指针：如果为直接指针，那么栈当中的reference存放的就是实际的对象地址</li>
+<li>两者之间的区别：句柄访问的时候，如果对象的实际指针发生变化，只会修改句柄地址指向的指针信息，不会影响reference当中的地址，更加稳定；而使用直接指针的方式就是速度更快，因为不需要通过句柄地址去找对象实际的指针地址，节省再次定位实际对象指针的时间开销；</li>
+</ul>
+
+<h3 id="2-4-实战oom异常">2.4 实战OOM异常</h3>
+
+<ul>
+<li>为什么说程序计数器不会发生OOM异常:此处基本没有内存开销，主要是操作一些语法表达式，对当前线程进行添加flag操作</li>
+</ul>
+
+<h4 id="2-4-1-java堆溢出">2.4.1 Java堆溢出</h4>
+
+<ul>
+<li>jvm启动内存参数指定：Xms:堆的最小值，Xmx:堆的最大值</li>
+<li>当发生OOM异常的时候，第一步需要根据内存映射分析工具（MAT）进行分析，首先判断是内存泄漏还是内存溢出；如果不是内存泄露，那么可以将jvm启动参数适当调大；</li>
+<li>如果是内存泄露，可以通过泄露工具进行查看GC Roots的引用链，找到为什么垃圾回收无法回收此泄露对象</li>
+</ul>
+
+<h4 id="2-4-2-虚拟机栈和本地方法栈溢出">2.4.2 虚拟机栈和本地方法栈溢出</h4>
+
 	</div>
   <footer class="article-footer clearfix">
   
@@ -229,9 +259,9 @@
 <div class="article-tags">
   <span></span>
   
-  <a href="http://pengganyu.github.io/tags/java">Java,</a>
+  <a href="localhost:1313tags/java">Java,</a>
   
-  <a href="http://pengganyu.github.io/tags/jvm">jvm</a>
+  <a href="localhost:1313tags/jvm">jvm</a>
   
 </div>
 
@@ -240,7 +270,7 @@
 
 
   <div class="article-share" id="share">
-    <div data-url="http://pengganyu.github.io/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" data-title="深入理解java虚拟机-jvm高级特性与最佳实践" data-tsina="" class="share clearfix">
+    <div data-url="#ZgotmplZ" data-title="深入理解java虚拟机-jvm高级特性与最佳实践" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -266,31 +296,31 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
       
-			<li><a href="http://pengganyu.github.io/tags/bible" title="bible">bible<sup>2</sup></a></li>
+			<li><a href="localhost:1313tags/bible" title="bible">bible<sup>2</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/core" title="core">core<sup>1</sup></a></li>
+			<li><a href="localhost:1313tags/core" title="core">core<sup>1</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/ezra" title="ezra">ezra<sup>4</sup></a></li>
+			<li><a href="localhost:1313tags/ezra" title="ezra">ezra<sup>4</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/git" title="git">git<sup>1</sup></a></li>
+			<li><a href="localhost:1313tags/git" title="git">git<sup>1</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/java" title="java">java<sup>6</sup></a></li>
+			<li><a href="localhost:1313tags/java" title="java">java<sup>6</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/jvm" title="jvm">jvm<sup>1</sup></a></li>
+			<li><a href="localhost:1313tags/jvm" title="jvm">jvm<sup>1</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/linux" title="linux">linux<sup>2</sup></a></li>
+			<li><a href="localhost:1313tags/linux" title="linux">linux<sup>2</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/mysql" title="mysql">mysql<sup>1</sup></a></li>
+			<li><a href="localhost:1313tags/mysql" title="mysql">mysql<sup>1</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/nginx" title="nginx">nginx<sup>1</sup></a></li>
+			<li><a href="localhost:1313tags/nginx" title="nginx">nginx<sup>1</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/nil" title="nil">nil<sup>4</sup></a></li>
+			<li><a href="localhost:1313tags/nil" title="nil">nil<sup>4</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/redis" title="redis">redis<sup>1</sup></a></li>
+			<li><a href="localhost:1313tags/redis" title="redis">redis<sup>1</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/spring" title="spring">spring<sup>2</sup></a></li>
+			<li><a href="localhost:1313tags/spring" title="spring">spring<sup>2</sup></a></li>
       
-			<li><a href="http://pengganyu.github.io/tags/thread" title="thread">thread<sup>1</sup></a></li>
+			<li><a href="localhost:1313tags/thread" title="thread">thread<sup>1</sup></a></li>
       
 		</ul>
 </div>
@@ -304,22 +334,22 @@
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="http://pengganyu.github.io/post/#2017-06">2017年06月</a><span class="archive-list-count">7</span>
+        <a class="archive-list-link" href="localhost:1313post/#2017-06">2017年06月</a><span class="archive-list-count">7</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="http://pengganyu.github.io/post/#2017-05">2017年05月</a><span class="archive-list-count">5</span>
+        <a class="archive-list-link" href="localhost:1313post/#2017-05">2017年05月</a><span class="archive-list-count">5</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="http://pengganyu.github.io/post/#2017-04">2017年04月</a><span class="archive-list-count">8</span>
+        <a class="archive-list-link" href="localhost:1313post/#2017-04">2017年04月</a><span class="archive-list-count">8</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="http://pengganyu.github.io/post/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
+        <a class="archive-list-link" href="localhost:1313post/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
       </li>
       
     </ul>
@@ -333,31 +363,31 @@
   <p class="asidetitle">标签云</p>
   <div class="tagcloudlist clearfix">
     
-    <a href="http://pengganyu.github.io/tags/bible" style="font-size: 12px;">bible</a>
+    <a href="localhost:1313tags/bible" style="font-size: 12px;">bible</a>
     
-    <a href="http://pengganyu.github.io/tags/core" style="font-size: 12px;">core</a>
+    <a href="localhost:1313tags/core" style="font-size: 12px;">core</a>
     
-    <a href="http://pengganyu.github.io/tags/ezra" style="font-size: 12px;">ezra</a>
+    <a href="localhost:1313tags/ezra" style="font-size: 12px;">ezra</a>
     
-    <a href="http://pengganyu.github.io/tags/git" style="font-size: 12px;">git</a>
+    <a href="localhost:1313tags/git" style="font-size: 12px;">git</a>
     
-    <a href="http://pengganyu.github.io/tags/java" style="font-size: 12px;">java</a>
+    <a href="localhost:1313tags/java" style="font-size: 12px;">java</a>
     
-    <a href="http://pengganyu.github.io/tags/jvm" style="font-size: 12px;">jvm</a>
+    <a href="localhost:1313tags/jvm" style="font-size: 12px;">jvm</a>
     
-    <a href="http://pengganyu.github.io/tags/linux" style="font-size: 12px;">linux</a>
+    <a href="localhost:1313tags/linux" style="font-size: 12px;">linux</a>
     
-    <a href="http://pengganyu.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+    <a href="localhost:1313tags/mysql" style="font-size: 12px;">mysql</a>
     
-    <a href="http://pengganyu.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+    <a href="localhost:1313tags/nginx" style="font-size: 12px;">nginx</a>
     
-    <a href="http://pengganyu.github.io/tags/nil" style="font-size: 12px;">nil</a>
+    <a href="localhost:1313tags/nil" style="font-size: 12px;">nil</a>
     
-    <a href="http://pengganyu.github.io/tags/redis" style="font-size: 12px;">redis</a>
+    <a href="localhost:1313tags/redis" style="font-size: 12px;">redis</a>
     
-    <a href="http://pengganyu.github.io/tags/spring" style="font-size: 12px;">spring</a>
+    <a href="localhost:1313tags/spring" style="font-size: 12px;">spring</a>
     
-    <a href="http://pengganyu.github.io/tags/thread" style="font-size: 12px;">thread</a>
+    <a href="localhost:1313tags/thread" style="font-size: 12px;">thread</a>
     
   </div>
 </div>
@@ -386,12 +416,12 @@
   </div>
   <p class="copyright">Powered by <a href="http://gohugo.io" target="_blank" title="hugo">hugo</a> and Theme by <a href="https://github.com/coderzh/hugo-pacman-theme" target="_blank" title="hugo-pacman-theme">hugo-pacman-theme</a> © 2017
     
-    <a href="http://pengganyu.github.io/" title="penggy Blog">penggy Blog</a>
+    <a href="localhost:1313" title="penggy Blog">penggy Blog</a>
     
   </p>
 </div>
 </footer>
-  <script src="http://pengganyu.github.io/js/jquery-2.1.0.min.js"></script>
+  <script src="localhost:1313js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 done = false;
 $(document).ready(function(){
@@ -438,7 +468,7 @@ $(document).ready(function(){
     if (false === done) {
       event.preventDefault();
       var orgVal = $(this).find('#search').val();
-      $(this).find('#search').val('site:http:\/\/pengganyu.github.io\/ ' + orgVal);
+      $(this).find('#search').val('site:localhost:1313 ' + orgVal);
       done = true;
       $(this).submit();
     }
@@ -507,8 +537,8 @@ $(document).ready(function(){
 </script>
 
 
-<link rel="stylesheet" href="http://pengganyu.github.io/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="http://pengganyu.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" href="localhost:1313fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="localhost:1313fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
   $('.article-content').each(function(i){

@@ -19,7 +19,10 @@ service mysqld start
 
 ** 其他命令
 #+BEGIN_SRC shell
+mysql -uroot -pP@ssw0rd -h55.6.8.142 hf-csa --default-character-set=utf8
 mysql -uoot -pP@ssw0rd hf-csa -default-character-set=utf8 < db_qdn672.sql
+mysqldump --opt --protocol=TCP --user='root' --password='P@ssw0rd' --host='55.6.8.142' -all-databases  --result-file='20170619.sql'
+mysqldump --opt --protocol=TCP --user='root' --password='P@ssw0rd' --host='55.6.8.142' hf-csa  --result-file='20170619.sql'
 #+END_SRC
 
 ** Mysql Dump

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on penggy Blog</title>
-    <link>http://pengganyu.github.io/tags/git/</link>
+    <link>localhost:1313/tags/git/</link>
     <description>Recent content in Git on penggy Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 27 Apr 2016 22:51:14 +0800</lastBuildDate>
     
-	<atom:link href="http://pengganyu.github.io/tags/git/feed.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="localhost:1313/tags/git/feed.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Git</title>
-      <link>http://pengganyu.github.io/post/git/</link>
+      <link>localhost:1313/post/git/</link>
       <pubDate>Wed, 27 Apr 2016 22:51:14 +0800</pubDate>
       
-      <guid>http://pengganyu.github.io/post/git/</guid>
+      <guid>localhost:1313/post/git/</guid>
       <description>GIT命令 git clone: git clone -b develop --single-branch :从git地址当中clone 指定的develop分支/或者在git repository当中指定此项目的默认branc</description>
     </item>
     
