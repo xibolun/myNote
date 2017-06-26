@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nginx on penggy Blog</title>
-    <link>localhost:1313/tags/nginx/</link>
+    <link>/tags/nginx/</link>
     <description>Recent content in Nginx on penggy Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 15 Jun 2017 23:47:43 +0800</lastBuildDate>
     
-	<atom:link href="localhost:1313/tags/nginx/feed.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/nginx/feed.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>nginx</title>
-      <link>localhost:1313/post/nginx/</link>
+      <link>/post/nginx/</link>
       <pubDate>Thu, 15 Jun 2017 23:47:43 +0800</pubDate>
       
-      <guid>localhost:1313/post/nginx/</guid>
+      <guid>/post/nginx/</guid>
       <description>Mac下nginx命令 sudo brew install nginx: brew安装nginx /usr/local/etc/nginx/nginx.conf: nginx配置文件路径 sudo nginx：启动nginx sudo nginx -s stop: 停止nginx sudo nginx -s reload: 重启n</description>
     </item>
     

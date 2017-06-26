@@ -115,7 +115,8 @@
    3. find -cmin -2: 查找系统当中最后2分钟被修改状态的文件
    4. find -ctime -2: 查找系统当中最后2*24小时被修改状态的文件
    5. find -mmin -2: 查找系统当中最后2分钟被修改的文件
-   6. find -mtime -2: 查找系统当中最后2*24小时被修改的文件
+   6. find -mtime +2: 查找系统当中2*24小时之前被修改的文件
+   6. find -mtime -2: 查找系统当中2*24小时之内被修改的文件
    7. find . -name "*.log": 在当前目录下面根据名称递归查找文件
    8. find . -perm 777: 根据文件权限查找文件
    9. find . -type f -name "*.log" : 根据文件类型查找文件
@@ -163,8 +164,35 @@
     - b: 区块设备
     - p: pipe或FIFO文件类型
 
+*** 文件权限
+**** chmod
+    - chmod a+x file: 所有的用户和群组添加x权限
+    - chmod ug+x file:  给当前用户和用户组添加x权限
+    - chmod ug-x file:  给当前用户和用户组减去x权限
+    - chmod u=x file: 将当前用户的file设置为x权限
+    - chmod -R ug+x dir: 对目录进行添加权限
+
+**** chgrp
+     - chgrp -v root file: 修改file的属组
+     - chgrp --reference file1 file2: 将file2的属组修改同file1一样
+     - chgrp -R root dir: 修改dir目录下所有文件的属组为root
+     - chgrp 20 file: 根据id命令查询当中用户组的标识为20，通过标识码对文件进行修改属组操作
+
+**** chown
+     - chown admin: file: 修改file的属主为admin
+     - chown :root file: 修改file的属组为root
+     - chown admin:root file: 修改file的属主为admin，属组为root
+     - chown -R root:root dir: 将dir目录的属主、属组都修改为root
+
 *** 其他
     - 只要不以/开头的目录都是相对路径；以/开头的是绝对路径
     - linux打开data文件： last /var/log/wtmp
     - linux打开二进制文件： xxd等
+
+** 高级
+*** crontab
+    - crontab file: 如何添加一个cron: crontab file: file是写的cron定时脚本；系统会将file的定时任务提交，并以当前用户的名称存放于/var/spool/cron下面
+    - crontab -l : 查询当前用户的定时任务信息
+    - cat /etc/crontab: 里面记录着crontab的用法
+    - service crontab status|stop|restart|start: service crontab服务的生命周期命令
 

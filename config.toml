@@ -1,4 +1,4 @@
-baseUrl="localhost:1313"
+baseUrl=""
 LanguageCode = "zh-CN"
 HasCJKLanguage = true
 Title = "penggy Blog"

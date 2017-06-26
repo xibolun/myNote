@@ -9,18 +9,18 @@
   
   <meta itemprop="name" content="深入理解java虚拟机-jvm高级特性与最佳实践 - penggy Blog">
   <meta itemprop="description" content="Short description">
-  <meta itemprop="image" content="localhost:1313img/author.jpg">
+  <meta itemprop="image" content="img/author.jpg">
   
   <meta name="twitter:description" content="Short description" />
   
-  <link rel="shortcut icon" href="localhost:1313img/favicon.ico"/>
-  <link rel="apple-touch-icon" href="localhost:1313apple-touch-icon.png" />
-  <link rel="apple-touch-icon-precomposed" href="localhost:1313apple-touch-icon.png" />
-  <link rel="stylesheet" href="localhost:1313highlight/styles/github.css">
-  <script src="localhost:1313highlight/highlight.pack.js"></script>
+  <link rel="shortcut icon" href="img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="highlight/styles/github.css">
+  <script src="highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-  <link rel="stylesheet" href="localhost:1313font/hack/css/hack.min.css">
-  <link rel="stylesheet" href="localhost:1313css/style.css">
+  <link rel="stylesheet" href="font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -28,11 +28,11 @@
     <div>
   
   <div id="imglogo">
-    <a href="localhost:1313"><img src="localhost:1313img/logo.svg" alt="penggy Blog" title="penggy Blog"/></a>
+    <a href=""><img src="img/logo.svg" alt="penggy Blog" title="penggy Blog"/></a>
   </div>
   
   <div id="textlogo">
-    <h1 class="site-name"><a href="localhost:1313" title="penggy Blog">penggy Blog</a></h1>
+    <h1 class="site-name"><a href="" title="penggy Blog">penggy Blog</a></h1>
     <h2 class="blog-motto"></h2>
   </div>
   <div class="navbar"><a class="navbutton navmobile" href="#" title="menu"></a></div>
@@ -56,7 +56,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="#ZgotmplZ" title="深入理解java虚拟机-jvm高级特性与最佳实践" itemprop="url">深入理解java虚拟机-jvm高级特性与最佳实践</a>
+      <a href="/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="深入理解java虚拟机-jvm高级特性与最佳实践" itemprop="url">深入理解java虚拟机-jvm高级特性与最佳实践</a>
   </h1>
   <p class="article-author">By
     
@@ -252,6 +252,185 @@
 
 <h4 id="2-4-2-虚拟机栈和本地方法栈溢出">2.4.2 虚拟机栈和本地方法栈溢出</h4>
 
+<ul>
+<li>HotSpot不区分虚拟机栈和本地方法栈，所以参数-Xoss是无效的，只有-Xss是有效的</li>
+</ul>
+
+<pre><code class="language-java">
+/**
+ * Xss参数测试OOM异常与SOE异常
+ *
+ *  -Xss160k
+ * Created by admin on 19/06/2017.
+ */
+public class XssOOM {
+    static int i = 0;
+
+    public static void count() {
+        i++;
+        count();
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(&quot;Total Memroy: &quot; + Runtime.getRuntime().totalMemory() / 1024 / 1024);
+        System.out.println(&quot;Max Memory: &quot; + Runtime.getRuntime().maxMemory() / 1024 / 1024);
+        System.out.println(&quot;Free Memroy: &quot; + Runtime.getRuntime().freeMemory() / 1024 / 1024);
+
+        try {
+            count();
+        } catch (Throwable e) {
+            /**
+             * Total Memroy: 123
+             * Max Memory: 1820
+             * Free Memroy: 117
+             * i值为:825,操作异常:java.lang.StackOverflowError
+             */
+            System.out.println(&quot;i值为:&quot; + i + &quot;,操作异常:&quot; + e);
+        }
+    }
+}
+
+/**
+ * Xss参数测试OOM异常
+ * 
+ * -Xss2M
+ * Created by admin on 19/06/2017.
+ */
+public class XssOOM {
+
+    public static void stopThread() {
+        while (true) {
+
+        }
+    }
+
+    public static void threadNew() {
+        while (true) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    stopThread();
+                }
+            });
+            thread.start();
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(&quot;Total Memroy: &quot; + Runtime.getRuntime().totalMemory() / 1024 / 1024);
+        System.out.println(&quot;Max Memory: &quot; + Runtime.getRuntime().maxMemory() / 1024 / 1024);
+        System.out.println(&quot;Free Memroy: &quot; + Runtime.getRuntime().freeMemory() / 1024 / 1024);
+
+        XssOOM xssOOM = new XssOOM();
+        xssOOM.threadNew();
+
+    }
+}
+</code></pre>
+
+<h4 id="2-4-3-方法区和运行时常量池的溢出">2.4.3 方法区和运行时常量池的溢出</h4>
+
+<ul>
+<li>异常信息为：java.lang.OutOfMemoryError: PermGen space</li>
+<li>通过XX参数来进行控制 -XX:PermSize=10M -XX:MaxPermSize=10M</li>
+<li>运行时常量池属于内存当中的永久代</li>
+</ul>
+
+<h4 id="2-4-4-本地内存溢出">2.4.4 本地内存溢出</h4>
+
+<ul>
+<li>异常信息为：java.lang.OutOfMemoryError: PermGen space</li>
+<li>通过 -XX:MaxDirectMemorySize=2M 来指定直接内存大小的最大值，若不设定，则指与-Xmx的值一样</li>
+</ul>
+
+<h2 id="第3章-垃圾收集器与内存分配策略">第3章 垃圾收集器与内存分配策略</h2>
+
+<h3 id="3-1-概述">3.1 概述</h3>
+
+<ul>
+<li>Lisp语言是最早使用内存分配并GC的语言</li>
+<li>因为垃圾收集成为了高并发的瓶颈，并且需要排查内存溢出等复杂问题</li>
+<li>程序计数器、虚拟机栈、本地方法三个区域是随着线程生而生，线程灭而灭，所以内存的GC是固定的；我们只关心运行时的内存GC，因为只有在运行时我们才知道需要创建什么对象</li>
+</ul>
+
+<h3 id="3-2-对象已死么">3.2 对象已死么</h3>
+
+<h4 id="3-2-1-引用计数算法">3.2.1 引用计数算法</h4>
+
+<ul>
+<li>java堆当中存放着几乎所有的java对象实例，在GC的时候，需要去判断这些对象实例是否已经死亡</li>
+<li>对象引用的时候，计数器+1，引用失效的时候，计数器-1；但这种算法无法处理对象互相引用的问题</li>
+<li>如果两个对象互相引用 ，计数器都不为0，此时GC就不会回收他们</li>
+<li>所以在java没有彩计数器的算法来GC</li>
+</ul>
+
+<h4 id="3-2-2-可达性分析算法">3.2.2 可达性分析算法</h4>
+
+<ul>
+<li>通过一个对象的GC来做为Root，向下搜索看看是否存在引用的链路，若存在，说明是对象实例是活着的，无法GC，若不存在，则GC</li>
+<li>几个对象互相引用，但如果没有实例化，则会被GC掉</li>
+<li>java当中可以做为GC ROOT的对象有以下几种 ：虚拟机栈当中的对象；方法区表类静态属性引用的对象；方法区当中常量引用的对象；本地方法栈中JNI引用的对象</li>
+</ul>
+
+<h4 id="3-2-3-再谈引用">3.2.3 再谈引用</h4>
+
+<ul>
+<li>有一些缓存数据，是没有引用关系的，那么这些如果被GC掉就会非常的可惜，所以java当中将引用分为几个等级；</li>
+<li>强引用（Strong Reference） ：new 出来的对象，这类对象只要引用存在，则不会被回收掉</li>
+<li>软引用（Soft Reference）：只有当内存发生溢出的时候才会把这些对象回收掉</li>
+<li>弱引用（Weak Reference）：只要GC工作的时候，就一定会被回收，存活于两次GC的间隔</li>
+<li>虚引用（Phanton Reference）：存在的目的就是在对象实例被回收的时候发出一个通知，无法实例化对象，属于最弱的引用 </li>
+</ul>
+
+<h4 id="3-2-4-生存还是死亡">3.2.4 生存还是死亡</h4>
+
+<ul>
+<li>一个对象若没有通过GC ROOT来找到对象的引用链，那么此时会被标记并筛选，若对象覆写finalize()方法或finalize()方法已经被虚拟机调用过（只能调用一次，第二次仍然会被GC掉），那么此对象不会被回收</li>
+<li>若没有需要执行finalize()方法，那么虚拟机将其放入F-Queue队列当中进行即将回收处理</li>
+<li>在即将回收处理的时候，对象可以通过finalize()方法当中通过重新建立引用来拯救自己</li>
+</ul>
+
+<h4 id="3-2-5-回收方法区">3.2.5 回收方法区</h4>
+
+<ul>
+<li>方法区当中的内存被称为永久代，永久代当中的内存回收效率很低，因为大家都比较“永久”，所以无法全部回收</li>
+<li>废弃的常量的回收：常量存在于常量池当中，当没有一个对象引用此常量的时候，将在GC的时候清理出常量池</li>
+<li>无用类的回收：当一个类当中的所有实例都被GC；无法通过反射生成类对象的实例；该类的ClassLoader已经被回收的时候,GC会将这些无用的类回收掉</li>
+<li>在操作大量反射的时候，需要注意内存的使用情况，以保证永久代不会溢出</li>
+</ul>
+
+<h3 id="3-3-垃圾收集算法">3.3 垃圾收集算法</h3>
+
+<h4 id="3-3-1-标记-清除算法">3.3.1 标记-清除算法</h4>
+
+<ul>
+<li>它是最基础的垃圾收集算法</li>
+<li>它的不足在于被标记清除的内存会产生大量的碎片，而当内存需要分配大对象的时候，会导致内存不连续而无法分配，需要再次触发垃圾回收机制，所以效率不高</li>
+</ul>
+
+<h4 id="3-3-2-复制算法"><span class="todo TODO">TODO</span> 3.3.2 复制算法</h4>
+
+<ul>
+<li>它的不足：对象过多的时候复制的效率就会下降</li>
+</ul>
+
+<h4 id="3-3-3-标记-整理算法">3.3.3 标记-整理算法</h4>
+
+<ul>
+<li>先进行标记清除算法，然后将存活的对象都向内存的一端移动，以保存内存空间可以连续，不产生碎片</li>
+</ul>
+
+<h4 id="3-3-4-分代收集算法">3.3.4 分代收集算法</h4>
+
+<ul>
+<li>按照对象的存活周期进行分配，将java堆内存分为新生代和老年代两块；</li>
+<li>新生代里面对象经过GC以后存活的很少，采用复制算法进行回收</li>
+<li>老年代里面对象经过GC以后存活的很多，彩标记-整理算法进行回收</li>
+</ul>
+
+<h3 id="3-4-hotspot算法实现">3.4 HotSpot算法实现</h3>
+
 	</div>
   <footer class="article-footer clearfix">
   
@@ -259,9 +438,9 @@
 <div class="article-tags">
   <span></span>
   
-  <a href="localhost:1313tags/java">Java,</a>
+  <a href="tags/java">Java,</a>
   
-  <a href="localhost:1313tags/jvm">jvm</a>
+  <a href="tags/jvm">jvm</a>
   
 </div>
 
@@ -270,7 +449,7 @@
 
 
   <div class="article-share" id="share">
-    <div data-url="#ZgotmplZ" data-title="深入理解java虚拟机-jvm高级特性与最佳实践" data-tsina="" class="share clearfix">
+    <div data-url="/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" data-title="深入理解java虚拟机-jvm高级特性与最佳实践" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -296,31 +475,33 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
       
-			<li><a href="localhost:1313tags/bible" title="bible">bible<sup>2</sup></a></li>
+			<li><a href="tags/bible" title="bible">bible<sup>3</sup></a></li>
       
-			<li><a href="localhost:1313tags/core" title="core">core<sup>1</sup></a></li>
+			<li><a href="tags/core" title="core">core<sup>1</sup></a></li>
       
-			<li><a href="localhost:1313tags/ezra" title="ezra">ezra<sup>4</sup></a></li>
+			<li><a href="tags/docker" title="docker">docker<sup>1</sup></a></li>
       
-			<li><a href="localhost:1313tags/git" title="git">git<sup>1</sup></a></li>
+			<li><a href="tags/ezra" title="ezra">ezra<sup>4</sup></a></li>
       
-			<li><a href="localhost:1313tags/java" title="java">java<sup>6</sup></a></li>
+			<li><a href="tags/git" title="git">git<sup>1</sup></a></li>
       
-			<li><a href="localhost:1313tags/jvm" title="jvm">jvm<sup>1</sup></a></li>
+			<li><a href="tags/java" title="java">java<sup>6</sup></a></li>
       
-			<li><a href="localhost:1313tags/linux" title="linux">linux<sup>2</sup></a></li>
+			<li><a href="tags/jvm" title="jvm">jvm<sup>1</sup></a></li>
       
-			<li><a href="localhost:1313tags/mysql" title="mysql">mysql<sup>1</sup></a></li>
+			<li><a href="tags/linux" title="linux">linux<sup>2</sup></a></li>
       
-			<li><a href="localhost:1313tags/nginx" title="nginx">nginx<sup>1</sup></a></li>
+			<li><a href="tags/mysql" title="mysql">mysql<sup>1</sup></a></li>
       
-			<li><a href="localhost:1313tags/nil" title="nil">nil<sup>4</sup></a></li>
+			<li><a href="tags/nginx" title="nginx">nginx<sup>1</sup></a></li>
       
-			<li><a href="localhost:1313tags/redis" title="redis">redis<sup>1</sup></a></li>
+			<li><a href="tags/nil" title="nil">nil<sup>6</sup></a></li>
       
-			<li><a href="localhost:1313tags/spring" title="spring">spring<sup>2</sup></a></li>
+			<li><a href="tags/redis" title="redis">redis<sup>1</sup></a></li>
       
-			<li><a href="localhost:1313tags/thread" title="thread">thread<sup>1</sup></a></li>
+			<li><a href="tags/spring" title="spring">spring<sup>2</sup></a></li>
+      
+			<li><a href="tags/thread" title="thread">thread<sup>1</sup></a></li>
       
 		</ul>
 </div>
@@ -334,22 +515,22 @@
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="localhost:1313post/#2017-06">2017年06月</a><span class="archive-list-count">7</span>
+        <a class="archive-list-link" href="post/#2017-06">2017年06月</a><span class="archive-list-count">10</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="localhost:1313post/#2017-05">2017年05月</a><span class="archive-list-count">5</span>
+        <a class="archive-list-link" href="post/#2017-05">2017年05月</a><span class="archive-list-count">5</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="localhost:1313post/#2017-04">2017年04月</a><span class="archive-list-count">8</span>
+        <a class="archive-list-link" href="post/#2017-04">2017年04月</a><span class="archive-list-count">8</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="localhost:1313post/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
+        <a class="archive-list-link" href="post/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
       </li>
       
     </ul>
@@ -363,31 +544,33 @@
   <p class="asidetitle">标签云</p>
   <div class="tagcloudlist clearfix">
     
-    <a href="localhost:1313tags/bible" style="font-size: 12px;">bible</a>
+    <a href="tags/bible" style="font-size: 12px;">bible</a>
     
-    <a href="localhost:1313tags/core" style="font-size: 12px;">core</a>
+    <a href="tags/core" style="font-size: 12px;">core</a>
     
-    <a href="localhost:1313tags/ezra" style="font-size: 12px;">ezra</a>
+    <a href="tags/docker" style="font-size: 12px;">docker</a>
     
-    <a href="localhost:1313tags/git" style="font-size: 12px;">git</a>
+    <a href="tags/ezra" style="font-size: 12px;">ezra</a>
     
-    <a href="localhost:1313tags/java" style="font-size: 12px;">java</a>
+    <a href="tags/git" style="font-size: 12px;">git</a>
     
-    <a href="localhost:1313tags/jvm" style="font-size: 12px;">jvm</a>
+    <a href="tags/java" style="font-size: 12px;">java</a>
     
-    <a href="localhost:1313tags/linux" style="font-size: 12px;">linux</a>
+    <a href="tags/jvm" style="font-size: 12px;">jvm</a>
     
-    <a href="localhost:1313tags/mysql" style="font-size: 12px;">mysql</a>
+    <a href="tags/linux" style="font-size: 12px;">linux</a>
     
-    <a href="localhost:1313tags/nginx" style="font-size: 12px;">nginx</a>
+    <a href="tags/mysql" style="font-size: 12px;">mysql</a>
     
-    <a href="localhost:1313tags/nil" style="font-size: 12px;">nil</a>
+    <a href="tags/nginx" style="font-size: 12px;">nginx</a>
     
-    <a href="localhost:1313tags/redis" style="font-size: 12px;">redis</a>
+    <a href="tags/nil" style="font-size: 12px;">nil</a>
     
-    <a href="localhost:1313tags/spring" style="font-size: 12px;">spring</a>
+    <a href="tags/redis" style="font-size: 12px;">redis</a>
     
-    <a href="localhost:1313tags/thread" style="font-size: 12px;">thread</a>
+    <a href="tags/spring" style="font-size: 12px;">spring</a>
+    
+    <a href="tags/thread" style="font-size: 12px;">thread</a>
     
   </div>
 </div>
@@ -416,12 +599,12 @@
   </div>
   <p class="copyright">Powered by <a href="http://gohugo.io" target="_blank" title="hugo">hugo</a> and Theme by <a href="https://github.com/coderzh/hugo-pacman-theme" target="_blank" title="hugo-pacman-theme">hugo-pacman-theme</a> © 2017
     
-    <a href="localhost:1313" title="penggy Blog">penggy Blog</a>
+    <a href="" title="penggy Blog">penggy Blog</a>
     
   </p>
 </div>
 </footer>
-  <script src="localhost:1313js/jquery-2.1.0.min.js"></script>
+  <script src="js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 done = false;
 $(document).ready(function(){
@@ -468,7 +651,7 @@ $(document).ready(function(){
     if (false === done) {
       event.preventDefault();
       var orgVal = $(this).find('#search').val();
-      $(this).find('#search').val('site:localhost:1313 ' + orgVal);
+      $(this).find('#search').val('site: ' + orgVal);
       done = true;
       $(this).submit();
     }
@@ -537,8 +720,8 @@ $(document).ready(function(){
 </script>
 
 
-<link rel="stylesheet" href="localhost:1313fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="localhost:1313fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" href="fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
   $('.article-content').each(function(i){

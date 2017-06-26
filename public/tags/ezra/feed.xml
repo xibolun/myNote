@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ezra on penggy Blog</title>
-    <link>localhost:1313/tags/ezra/</link>
+    <link>/tags/ezra/</link>
     <description>Recent content in Ezra on penggy Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 10 Jun 2017 08:35:22 +0800</lastBuildDate>
     
-	<atom:link href="localhost:1313/tags/ezra/feed.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/ezra/feed.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>讲道学</title>
-      <link>localhost:1313/post/%E8%AE%B2%E9%81%93%E5%AD%A6/</link>
+      <title>讲道学（上）</title>
+      <link>/post/%E8%AE%B2%E9%81%93%E5%AD%A6/</link>
       <pubDate>Sat, 10 Jun 2017 08:35:22 +0800</pubDate>
       
-      <guid>localhost:1313/post/%E8%AE%B2%E9%81%93%E5%AD%A6/</guid>
+      <guid>/post/%E8%AE%B2%E9%81%93%E5%AD%A6/</guid>
       <description>讲道学-汪 基本结构 引言 本论 结论 解经 例证 应用 一、 中心思想 观察经文 分段 确定中心思想-对圣经段落所教导的基本真理的概括性的陈述 有效进行解释性信息讲</description>
     </item>
     
     <item>
       <title>老仆人的榜样</title>
-      <link>localhost:1313/post/laobaorendebangyang/</link>
+      <link>/post/laobaorendebangyang/</link>
       <pubDate>Sat, 06 May 2017 21:00:54 +0800</pubDate>
       
-      <guid>localhost:1313/post/laobaorendebangyang/</guid>
+      <guid>/post/laobaorendebangyang/</guid>
       <description>读经 创24:1-27 创24:33 创24:54-56 本论 忠心管理，满有负担 亚伯拉罕将全业都交在他的手下管理，他是亚伯拉罕所信任的人（全业：壮丁</description>
     </item>
     
     <item>
       <title>学习亚伯拉罕起初的奉献</title>
-      <link>localhost:1313/post/yabolahanqichudefengxian/</link>
+      <link>/post/yabolahanqichudefengxian/</link>
       <pubDate>Sat, 22 Apr 2017 11:37:15 +0800</pubDate>
       
-      <guid>localhost:1313/post/yabolahanqichudefengxian/</guid>
+      <guid>/post/yabolahanqichudefengxian/</guid>
       <description>引言 以弗所书2章12节：【那时、你们与基督无关、在以色列国民以外、在所应许的诸约上是局外人．并且活在世上没有指望、没有 神。】我们本来是没有指</description>
     </item>
     
     <item>
-      <title>讲道学</title>
-      <link>localhost:1313/post/jiangdaoxue/</link>
+      <title>讲道学（下）</title>
+      <link>/post/jiangdaoxue/</link>
       <pubDate>Sat, 22 Apr 2017 08:43:30 +0800</pubDate>
       
-      <guid>localhost:1313/post/jiangdaoxue/</guid>
+      <guid>/post/jiangdaoxue/</guid>
       <description>讲道学-汪 读经和学习 提后4：2：务要传道；无论得时不得时，总要专心，并用百般的忍耐，各样的教训，责备人，警戒人，劝勉人； 提前4：13：你要以</description>
     </item>
     
