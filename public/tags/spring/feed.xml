@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring on penggy Blog</title>
+    <link>/tags/spring/</link>
+    <description>Recent content in Spring on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 27 Apr 2017 22:44:39 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/spring/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring-SpringBoot</title>
+      <link>/post/spring-springboot/</link>
+      <pubDate>Thu, 27 Apr 2017 22:44:39 +0800</pubDate>
+      
+      <guid>/post/spring-springboot/</guid>
+      <description>Spring 1.5.x当中的hibrenate名称转换策略 今天将Spring从1.3.2升级到1.5.x当中，发现所有的查询都会有异常信息，异常信息为</description>
+    </item>
+    
+    <item>
+      <title>Spring-RestTemplate</title>
+      <link>/post/spring-resttemplate/</link>
+      <pubDate>Thu, 27 Apr 2017 22:35:25 +0800</pubDate>
+      
+      <guid>/post/spring-resttemplate/</guid>
+      <description>解决中文乱码的问题和Delete无法传入body的问题 问题说明：RestTemplate中文乱码问题； 回复里面有我的评论，以下为解决方法 package com.idcos.cloudres.biz.common.util;</description>
+    </item>
+    
+  </channel>
+</rss>

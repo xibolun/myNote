@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jvm on penggy Blog</title>
+    <link>/tags/jvm/</link>
+    <description>Recent content in Jvm on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 21 May 2017 23:13:33 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/jvm/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>深入理解java虚拟机-jvm高级特性与最佳实践</title>
+      <link>/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Sun, 21 May 2017 23:13:33 +0800</pubDate>
+      
+      <guid>/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</guid>
+      <description>第1部分 走近Java 第1章 走近java JDK(java development kit)java开发工具，包括java程序设计语言，api类库，Java虚拟机 JRE(java runtime environm</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,16 @@
+#+TITLE: docker
+#+DATE: 2017-06-20T18:33:55+08:00
+#+PUBLISHDATE: 2017-06-20T18:33:55+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: docker
+#+DESCRIPTION: Short description
+
+
+* Get Started
+** command
+   1. docker --version : docker版本
+   2. docker-compose --version : docker compose版本
+   3. docker-machine --version: docker machine版本
+   4. docker ps : 查看docker运行状态
+   5. docker version: 查看docker client和server的状态

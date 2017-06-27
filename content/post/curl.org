@@ -1,0 +1,14 @@
+#+TITLE: curl
+#+DATE: 2017-06-02T11:13:01+08:00
+#+PUBLISHDATE: 2017-06-02T11:13:01+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: nil, nil
+#+DESCRIPTION: Short description
+
+** CURL命令
+
+*** 添加cookie
+#+BEGIN_SRC shell
+curl --cookie "access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTY0NTgwMzcsImxvZ2luTmFtZSI6ImFkbWluIiwibmFtZUNOIjoi57O757uf566h55CG5ZGYIiwidGltZW91dCI6MjQsInVzZXJJZCI6IjU3M2E0Njk4ZTRiMGQ5MDY2OGJjOWYwMyIsInVzZXJOYW1lIjoiYWRtaW4ifQ.DuWu64q_xiTHJFxQ8X9nMlGwFo82UtP_-2axvKgWois"  http://10.0.106.37:8080/app/backop/6b9ab697-4f81-42e8-8a98-80b1e3f6f0a7/syncmdb
+#+END_SRC

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on penggy Blog</title>
+    <link>/tags/linux/</link>
+    <description>Recent content in Linux on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 22 May 2017 10:41:33 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/linux/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux-command</title>
+      <link>/post/linux-command/</link>
+      <pubDate>Mon, 22 May 2017 10:41:33 +0800</pubDate>
+      
+      <guid>/post/linux-command/</guid>
+      <description>每天一个linux命令 文件及目录操作 ls ls -l:列表显示当前目录下的文件 ls -lu:根据文件名称正序排列文件 ls -lt:根据文件修改时间倒序排列 ls</description>
+    </item>
+    
+    <item>
+      <title>Linux笔记-awk</title>
+      <link>/post/linux-awk/</link>
+      <pubDate>Sat, 22 Apr 2017 11:37:15 +0800</pubDate>
+      
+      <guid>/post/linux-awk/</guid>
+      <description>常用Command find awk 语法 usage: awk [-F fs] [-v var=value] [-f progfile | &#39;prog&#39;] [file ...] -F: 指定分隔域的标识 -v: 指定命令/参数值 -f: 指定需要解析的文件 Demo awk -F &#39;:&#39; &#39;{print $1}&#39; /etc/passwd ##输入/etc/p</description>
+    </item>
+    
+  </channel>
+</rss>

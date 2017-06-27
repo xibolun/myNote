@@ -1,0 +1,19 @@
+#+TITLE: BasicJava
+#+DATE: 2017-06-22T11:12:56+08:00
+#+PUBLISHDATE: 2017-06-22T11:12:56+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: nil, nil
+#+DESCRIPTION: Short description
+
+** 名称解释
+*** PO/DTO/VO等
+    - PO: persitant object
+    - VO: value object
+    - DO: domain object（领域对象）
+    - TO: transfer object
+    - BO: business object
+    - POJO: plain ordinary java object（简单无规则java对象）
+    - DAO: data access object （数据库访问对象）
+    - DTO: data transfer object （数据传输对象）
+

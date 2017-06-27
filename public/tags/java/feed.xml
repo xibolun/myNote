@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on penggy Blog</title>
+    <link>/tags/java/</link>
+    <description>Recent content in Java on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 23 May 2017 07:59:24 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/java/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>coreJava-I</title>
+      <link>/post/corejavai/</link>
+      <pubDate>Tue, 23 May 2017 07:59:24 +0800</pubDate>
+      
+      <guid>/post/corejavai/</guid>
+      <description>Java核心技术--卷I 第1章 Java程序设计概述 java发展史 1996年sun公司发布java 1.0版本 1998年在JavaOne大会上发</description>
+    </item>
+    
+    <item>
+      <title>深入理解java虚拟机-jvm高级特性与最佳实践</title>
+      <link>/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Sun, 21 May 2017 23:13:33 +0800</pubDate>
+      
+      <guid>/post/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</guid>
+      <description>第1部分 走近Java 第1章 走近java JDK(java development kit)java开发工具，包括java程序设计语言，api类库，Java虚拟机 JRE(java runtime environm</description>
+    </item>
+    
+    <item>
+      <title>Spring-SpringBoot</title>
+      <link>/post/spring-springboot/</link>
+      <pubDate>Thu, 27 Apr 2017 22:44:39 +0800</pubDate>
+      
+      <guid>/post/spring-springboot/</guid>
+      <description>Spring 1.5.x当中的hibrenate名称转换策略 今天将Spring从1.3.2升级到1.5.x当中，发现所有的查询都会有异常信息，异常信息为</description>
+    </item>
+    
+    <item>
+      <title>Spring-RestTemplate</title>
+      <link>/post/spring-resttemplate/</link>
+      <pubDate>Thu, 27 Apr 2017 22:35:25 +0800</pubDate>
+      
+      <guid>/post/spring-resttemplate/</guid>
+      <description>解决中文乱码的问题和Delete无法传入body的问题 问题说明：RestTemplate中文乱码问题； 回复里面有我的评论，以下为解决方法 package com.idcos.cloudres.biz.common.util;</description>
+    </item>
+    
+    <item>
+      <title>JWT学习</title>
+      <link>/post/jwt/</link>
+      <pubDate>Sat, 22 Apr 2017 11:37:15 +0800</pubDate>
+      
+      <guid>/post/jwt/</guid>
+      <description>什么是JWT? jwt的全称是JSON Web Token；JSON Web Token是一个开源标准(rfc7519) ，是一个轻量，携带着用户信息的json</description>
+    </item>
+    
+    <item>
+      <title>Java多线程学习</title>
+      <link>/post/mulithread/</link>
+      <pubDate>Sat, 22 Apr 2017 11:37:15 +0800</pubDate>
+      
+      <guid>/post/mulithread/</guid>
+      <description>java多线程 第一章 多线程技能 线程与进程的区别 一个进程的启动是由多个线程所支持的；windows进程管理器当中的第一项都一个进程，每一个进程</description>
+    </item>
+    
+  </channel>
+</rss>

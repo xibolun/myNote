@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Thread on penggy Blog</title>
+    <link>/tags/thread/</link>
+    <description>Recent content in Thread on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 22 Apr 2017 11:37:15 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/thread/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Java多线程学习</title>
+      <link>/post/mulithread/</link>
+      <pubDate>Sat, 22 Apr 2017 11:37:15 +0800</pubDate>
+      
+      <guid>/post/mulithread/</guid>
+      <description>java多线程 第一章 多线程技能 线程与进程的区别 一个进程的启动是由多个线程所支持的；windows进程管理器当中的第一项都一个进程，每一个进程</description>
+    </item>
+    
+  </channel>
+</rss>
