@@ -1,4 +1,4 @@
-#+TITLE: linux-command
+#+TITLE: linux命令学习
 #+DATE: 2017-05-22T10:41:33+08:00
 #+PUBLISHDATE: 2017-05-22T10:41:33+08:00
 #+DRAFT: nil
@@ -131,7 +131,6 @@
    18. find / -name "*" : 从系统的根目录开始查询文件列表信息，系统负荷较重
    19. find . -size +100c: 查找大于100c的文件
 
-
 ** 文件和目录属性
 
    - 包括：可变的、不可变的、可分享的、不可分享的
@@ -189,6 +188,9 @@
     - linux打开data文件： last /var/log/wtmp
     - linux打开二进制文件： xxd等
 
+** 系统管理
+*** df
+    - df -h: 以human的方式显示磁盘大小信息
 ** 高级
 *** crontab
     - crontab file: 如何添加一个cron: crontab file: file是写的cron定时脚本；系统会将file的定时任务提交，并以当前用户的名称存放于/var/spool/cron下面

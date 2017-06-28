@@ -3,7 +3,7 @@
 #+PUBLISHDATE: 2017-06-02T11:13:01+08:00
 #+DRAFT: nil
 #+SHOWTOC: t
-#+TAGS: nil, nil
+#+TAGS: curl
 #+DESCRIPTION: Short description
 
 ** CURL命令

@@ -25,6 +25,12 @@ mysqldump --opt --protocol=TCP --user='root' --password='P@ssw0rd' --host='55.6.
 mysqldump --opt --protocol=TCP --user='root' --password='P@ssw0rd' --host='55.6.8.142' hf-csa  --result-file='20170619.sql'
 #+END_SRC
 
+
+** Index
+   - SHOW INDEX FROM  SRV_INFO;  -- 查看表里面的索引信息
+   - ALTER TABLE SRV_INFO_WF_NODE_EXEC_LOG ADD INDEX SRV_INFO_WF_NODE_EXEC_LOG_INDEX1(SRV_INFO_WF_NODE_ID,FROM_STATE,TO_STATE); -- 添加索引
+   - ALTER TABLE SRV_INFO_WF_NODE_EXEC_LOG DROP INDEX SRV_INFO_WF_NODE_EXEC_LOG_INDEX1; -- 删除索引
+
 ** Mysql Dump
 *** dump数据库
 #+BEGIN_SRC shell

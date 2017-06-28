@@ -1,4 +1,4 @@
-baseUrl=""
+baseUrl="/"
 LanguageCode = "zh-CN"
 HasCJKLanguage = true
 Title = "penggy Blog"

@@ -3,7 +3,7 @@
 #+PUBLISHDATE: 2017-06-03T21:03:38+08:00
 #+DRAFT: nil
 #+SHOWTOC: t
-#+TAGS: nil, nil
+#+TAGS: Java, core
 #+DESCRIPTION: Short description
 
 * Java核心技术卷二
