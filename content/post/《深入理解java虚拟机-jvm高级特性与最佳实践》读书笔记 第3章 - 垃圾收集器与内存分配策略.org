@@ -110,3 +110,99 @@
      - 它是Parallel Scavenge的老年代版本，采用多线程和标记-整理算法
      - 在Parallel Old收集器出现之前，只能使用Serial Old，而Serial Old无法使用多CPu环境的资源，导致性能比较差；
      - Parallel Scavenge与Parallel Old配合使用，保证吞吐量优先的垃圾收集器
+
+**** 3.5.6 CMS收集器
+     - CMS(Concurrent Mark Sweep)是一种以缩短系统停顿时间为目标的收集器，基于标记-清除算法实现，又称为并发低停顿收集器（Concurrent Low Pause Collector）
+     - 分四个步骤进行
+     - 1. 初始标记(CMS initial Mark)
+     - 2. 并发标记(CMS Concurrent Mark)
+     - 3. 重新标记(CMS remark)
+     - 4. 并发清除(CMS Concurrent sweep)
+     - 步骤1和步骤2还需要Stop the World
+     - 重新标记是标记那些修改了对象引用而产生的变化引用链
+     - 标记时间停顿长度： 并发标记<重新标记<初始标记
+     - CMS的缺点
+     - 1. 对CPU资源敏感，当CPU数量少的时候，占用资源会比较多，应用就会变得非常的慢
+     - 2. 无法处理浮动垃圾，即在GC过程当中，线程又创建出来的对象，此时无法被清除掉，所以只能等到下一次的GC
+     - 3. 算法为标记-清除，会造成大量的碎片
+
+**** 3.5.7 G1收集器
+     - G1(Garbage-First)是目前收集器的最前沿的技术，始于JDK 6u14，直到JDK 7u14才被商用
+     - G1收集器的特点
+     - 并行与并发：充分利用多核来缩短停顿的时间，通过并发的方式让Java其他线程可以继续运行
+     - 分代收集
+     - 空间整合：G1当中是 标记-整理和复制两种方式，所以不会产生碎片
+     - 可预测停顿：建立预测停顿时间的模型
+     - 分四个步骤进行：
+     - 1. 初始标记
+     - 2. 并发标记
+     - 3. 最终标记
+     - 4. 筛选回收
+
+**** 3.5.8 理解GC日志
+     - 收集器日志形式都是由收集器本身的实现所决定的，每个收集器的日志格式都可以不一样
+     - 启动工程的时候添加jvm参数，打开GC的文件-XX:+PrintGCTimeStamps -XX:+PrintGCDetails -Xloggc:/tmp/gc.log
+     - 查看log信息以获取gc的日志
+
+#+BEGIN_SRC shell
+CommandLine flags: -XX:InitialHeapSize=1073741824 -XX:MaxHeapSize=3221225472 -XX:MaxPermSize=262144000 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:ReservedCodeCacheSize=67108864 -XX:+UseCodeCacheFlushing -XX:+UseCompressedOops -XX:+UseParallelGC
+63.754: [GC [PSYoungGen: 188934K->4025K(888832K)] 300900K->159627K(1588224K), 0.0921650 secs] [Times: user=0.16 sys=0.03, real=0.09 secs] 
+63.847: [Full GC [PSYoungGen: 4025K->0K(888832K)] [ParOldGen: 155602K->150933K(699392K)] 159627K->150933K(1588224K) [PSPermGen: 74746K->74697K(149504K)], 1.3261620 secs] [Times: user=2.64 sys=0.13, real=1.32 secs] 
+
+#+END_SRC
+
+     - InititalHeapSize: 初始堆内存
+     - MaxHeapSize: 最大堆内存
+     - MaxPermSize: 最大永久代内存
+     - UseParallelGC： 使用Parallel Scavenge收集器 
+     - 63.754: GC发生的时间，jvm从开始运行到gc的时间
+     - GC/Full GC: 收集器的停顿类型，用于区别老年代还是新生代，如果有Full，说明这次GC发生了Stop-The-World
+     - PSYoungGen: 新生代（不同的收集器显示的名称不一样，这里为Parallel Scavenge收集器显示）
+     - ParOldGen: 老年代
+     - PSPermGen: 永久代
+     - [PSYoungGen: 188934k-> 4025k(888832k)]: GC前该内存区域已经使用内存大小-> GC后该内存区域已使用内存大小（该内存区域总容量）
+     - 300900k->159627k(15588224k): 方括号外表示 GC前Java Heap已经使用容量-> GC后Java Heap已经使用容量（Java Heap总容量）
+     - 0.0921650 secs: 表示内存区域GC占用时间，单位是秒
+     - [Times: user=0.16 sys=0.03 real=0.09 secs]: 详细的时间，user(消耗cpu的时间) sys(内核消耗cpu时间) real(操作开始到结束所经过的墙钟时间)
+
+
+| Serial | ParNew | Parallel Scavenge |
+|--------+--------+-------------------|
+| DefNew | ParNew | PSYoungGen        |
+
+**** 3.5.9 垃圾收集器参数总结
+    -  [[http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html][Java HotSpot VM Options]] 
+
+*** 3.6 内存分配与回收策略
+    - 对象的内存分配一般都分配在堆上
+
+**** 3.6.1 对象优先在Eden分配
+     - Eden是什么？Eden是新生代区域的一块，还有两块是From和To；Eden是存放新生的对象；From和To称为Survivor,GC后存活下来的对象
+     - Eden满了，那么jvm将发起一次Minor GC，GC后存活下来的对象copy到 Survivor当中；而当Survivor满了，就将GC存活下来的对象copy到老年代当中
+     - 每次GC后，Eden都会被清空掉
+     - Minor GC: 新生代的GC，回收频繁，速度快
+     - Major GC: 老年代的GC（Full GC）比Minor GC慢10倍以上
+
+**** 3.6.2 大对象直接进入老年代
+     - 大对象指需要大量连续内存空间的java对象，大的字符串、数组等；短命的大对象不好处理
+     - -XX:pretenureSizeThreshold参数 可以设置大对象直接进入老年代
+     - 这样做可以避免在新生代回收的时候，使用复制的回收算法而耗费大量的时间
+
+**** 3.6.3 长期存活的对象将进入老年代
+     - jvm为每个对象定义了一个对象年龄计数器；在Eden新生成的对象，Age为0；经过GC后，复制到Survivor当中的对象，Age值为1；
+     - 而在Survivor当中经过一次GC，Age就加1；当Age的值大于 MaxTenuringThreshold设置的值（默认值为15）时，就会copy到老年代当中
+
+**** 3.6.4 动态对象年龄判定
+     - jvm并不是永远按照MaxTenuringThreshold的值来将对象晋升为老年代的
+     - 若Suvrivor当中相同年龄的对象的内存总和大于Survivor空间的一半，此时大于或等于此年龄的对象都会进入老年代
+
+**** 3.6.5 空间分配担保
+     - Suvrivor经过GC后的对象进入老年代，老年代里面是否可以分配是无法确定的，有可能没有足够的容量，那么就要进行一次Full GC
+     - HandlePromotionFailure参数来控制老年代分配内存是否允许失败，若允许失败，则进行一次Full GC;
+
+*** 3.7 本章小结
+    - 本章介绍了垃圾收集的算法
+    - jdk1.7 垃圾收集器特点和运作原理
+    - jvm内存分配及回收规则
+    - GC日志查看
+    - 一些jvm options的意义

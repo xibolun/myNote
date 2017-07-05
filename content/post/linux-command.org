@@ -190,7 +190,72 @@
 
 ** 系统管理
 *** df
-    - df -h: 以human的方式显示磁盘大小信息
+    - df是查看系统磁盘的使用情况
+    - df -h: 以human的方式显示磁盘大小信息,以1024为单位进行转换
+    - df -H: 以1000为单位进行转换
+    - df -t ext3: 显示指定类型的磁盘
+    - df -T: 列出文件系统类型
+
+*** du 
+    - du是查看文件和目录的磁盘使用情况
+    - du -ah: 列出当前目录下所以文件和目录的大小
+    - du -h file: 显示file大小
+    - du -h dir: 显示dir大小
+    - du -sh: 显示总和
+    - du -c file1,file2: 显示每一个文件的大小，并统计总和
+    - du -ah | sort -nr: 根据文件的空间大小进行倒序排列，不加nr为正序排列，其中r为reverse
+
+*** top
+**** 第一行 top
+     - 10:53:42: 系统时间
+     - up 24 days: 开机24天
+     - 1 user: 当前有一个人登陆
+     - load average: 负载使用情况
+
+**** 第二行 Tasks
+     - 65 totle: 总共有65个进程
+     - 1 running: 有一个running的
+     - 63 sleeping: 63个在休眠
+     - 0 stopped: 0个停止的
+     - 0 zombie: 0个僵尸进程
+
+**** 第三行 %Cpu(s)
+     - 0.0 us: 用户空间占用CPU的百分比
+     - 3.4 sy: 内核空间占用CPU的百分比
+     - 0.0 ni: 改变过优先级的进程占用CPU的百分比
+     - 90 id: 空间CPU百分比
+     - 0.0 wa: IO等待占用CPU的百分比
+     - 0.0 hi: Hardware IRQ 硬中断占用CPU百分比
+     - 0.2 si: Software Interrupts 软件中断占用CPU百分比
+
+**** 第四行 内存状态
+     - total: 总共内存大小，物理内存
+     - free: 空间内存大小
+     - used: 已用内存大小
+     - buff/cache: 缓存使用大小
+
+**** 第五行 Swap信息
+     - Swap指当内存不够用的时候，会将一部分硬盘转换为内存使用
+     - total: 交换区容量
+     - used: 使用总量
+     - free: 空间总量
+     - cached: 缓存总量
+
+**** 第六行 空
+
+**** 第七行 各进程的状态监控
+
+**** 操作技巧
+     - b : 高亮当前正在running的进程
+     - 1 : 可以切换主机不同CPU的监控信息
+     - x : 对CPU的占用量排序列高亮显示
+     - k : 按k，然后输入进程id，可以kill此进程
+     - shift + > 或shift +<: 向右或向左改变排序列，默认是以%CPU进行排序
+     - top -c : 监控的command列显示完整的命令
+     - top -n 2: 更新两次后终止刷新
+     - top -d 3: 以3s为周期进行更新
+     - top -p id: 显示指定id号的进程
+
 ** 高级
 *** crontab
     - crontab file: 如何添加一个cron: crontab file: file是写的cron定时脚本；系统会将file的定时任务提交，并以当前用户的名称存放于/var/spool/cron下面

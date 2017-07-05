@@ -14,3 +14,6 @@
    3. docker-machine --version: docker machine版本
    4. docker ps : 查看docker运行状态
    5. docker version: 查看docker client和server的状态
+   6. docker exec -it de2ef4052dce /bin/bash: 进入某个docker实例
+   7. docker run -h='cmdb' --name cmdb -d -p 180:80 -p 122:22 dcosapp1.0
+   8. docker save -o dcosapp.tar dcosapp1.0

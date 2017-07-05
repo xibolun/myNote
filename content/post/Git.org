@@ -114,7 +114,8 @@
 - 在git当中修改一个文件，文件状态为modified，git提示信息为changes not staged for commit文件之前就是被跟踪的，现在也是被跟踪
 
 *** git其他命令
-- 查看git tag 日期，信息：git for-each-ref --format="%(refname:short) %(taggerdate) %(subject) %(body)" refs/tags 
+- 查看git tag 日期，信息：git for-each-ref --format="%(refname:short) %(taggerdate) %(subject) %(body)" refs/tags
+- 添加.gitignore之后，git还会标记ignore的文件，用git rm -rf --cached FILENAME将缓存删除
 
 *** git文章
 - [[http://rogerdudler.github.io/git-guide/][The simple guide no deep shit]]

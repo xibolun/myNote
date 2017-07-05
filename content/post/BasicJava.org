@@ -17,3 +17,6 @@
     - DAO: data access object （数据库访问对象）
     - DTO: data transfer object （数据传输对象）
 
+*** JVM Options
+    -  [[http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html][Java HotSpot VM Options]] 
+
