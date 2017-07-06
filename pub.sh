@@ -1,3 +1,5 @@
+git push
+
 rm -rf public/* -y
 
 hugo
