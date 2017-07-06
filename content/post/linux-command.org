@@ -256,6 +256,17 @@
      - top -d 3: 以3s为周期进行更新
      - top -p id: 显示指定id号的进程
 
+*** free
+    - free : 显示系统内存使用和空间情况
+    - free -m : 以MB显示
+    - free -k : 以KB显示
+    - free -b : 以Byte显示
+    - free -g : 以GB为单位显示
+    - free -t : 显示内存总和列
+    - free -V : 显示版本信息
+    - free -s 10 : 10s刷新一次内存
+    - cat /proc/meminfo : 查看系统内存情况
+
 ** 高级
 *** crontab
     - crontab file: 如何添加一个cron: crontab file: file是写的cron定时脚本；系统会将file的定时任务提交，并以当前用户的名称存放于/var/spool/cron下面

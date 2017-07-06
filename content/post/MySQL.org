@@ -5,7 +5,7 @@
 #+TAGS: mysql
 #+DESCRIPTION: Short description
 
-* MySql学习
+* MySql日常杂学
 ** 启动相关
 #+BEGIN_SRC shell
 /etc/init.d/mysqld start
@@ -25,13 +25,25 @@ mysqldump --opt --protocol=TCP --user='root' --password='P@ssw0rd' --host='55.6.
 mysqldump --opt --protocol=TCP --user='root' --password='P@ssw0rd' --host='55.6.8.142' hf-csa  --result-file='20170619.sql'
 #+END_SRC
 
-
 ** Index
    - SHOW INDEX FROM  SRV_INFO;  -- 查看表里面的索引信息
    - ALTER TABLE SRV_INFO_WF_NODE_EXEC_LOG ADD INDEX SRV_INFO_WF_NODE_EXEC_LOG_INDEX1(SRV_INFO_WF_NODE_ID,FROM_STATE,TO_STATE); -- 添加索引
    - ALTER TABLE SRV_INFO_WF_NODE_EXEC_LOG DROP INDEX SRV_INFO_WF_NODE_EXEC_LOG_INDEX1; -- 删除索引
 
-** Mysql Dump
+** MySQL优化
+*** 表字段
+    - 整数类型不要使用INT，使用TINYINT、SMALLINT、MEDIUM_INT,非负添加UNSIGNED
+    - VARCHAR的长度只分配真正需要的空间
+    - 使用TIMESTAMP而非DATETIME
+    - 单表字段不超过20
+    - 用整型来存IP
+
+*** 查询类
+   - 不用SELECT *
+   - OR改写为IN: or的效率是N级别，而IN的效率是Log(n)级别
+   - WHERE的子句不用!=或者<>操作，否则引擎放弃使用索引而进行全表扫描
+
+** Mysql Dump 
 *** dump数据库
 #+BEGIN_SRC shell
 mysqldump -uroot -p hf-csa > hf-csa.sql
