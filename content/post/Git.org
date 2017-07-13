@@ -99,7 +99,12 @@
 - git branch -a : 查看本地和远程的所有分支
 - git branch --track origin/develop : 从远程的branch下载分支，并在本地创建develop
 - git push --delete origin develop: 删除远程的develop分支
-***** 如何重命名远程分支
+
+**** git clean 
+     - git clean -f : remove untracked files
+     - git clean -fd : remove untracked directories
+
+*** 如何重命名远程分支
 - git branch --track origin devel ：从远程下载devel分支至本地（如果本地没有远程分支的代码）
 - git branch -m devel develop :将devel重命名为develop
 - git push origin develop: 提交develop分支至远程
