@@ -1,0 +1,12 @@
+#+TITLE: python学习笔记--Django
+#+DATE: 2017-07-21T23:27:10+08:00
+#+PUBLISHDATE: 2017-07-21T23:27:10+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: python
+#+DESCRIPTION: Short description
+
+** 环境搭建
+   - 安装python3
+   - 安装pip
+   - 安装Django:pip install Django

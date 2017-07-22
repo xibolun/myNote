@@ -10,6 +10,7 @@
     - python打开python的解释器，若命令不存在，请检查Path环境变量
     - Ctrl+D或quit() 关闭Interpreter; windows是Ctrl+z
     - Interpreter里面自带命令历史，可以通过ctroller+P去查找上一个命令
+    - python3 xx.py: 执行python
 
 ** 3 Using Python as a Calculator
 
@@ -19,3 +20,10 @@
 >>> 10 / 3   ## 10除以3
 3.3333333333333335
 #+END_SRC
+
+
+** 包管理工具pip
+   - easy_install pip  安装包管理工具；或从官网下载
+   - pip install --upgrade pip : 升级包管理工具
+   - pip install markdown     使用pip安装软件包
+   - pip freeze: pip安装的软件包列表
