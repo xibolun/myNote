@@ -116,20 +116,21 @@
    4. find -ctime -2: 查找系统当中最后2*24小时被修改状态的文件
    5. find -mmin -2: 查找系统当中最后2分钟被修改的文件
    6. find -mtime +2: 查找系统当中2*24小时之前被修改的文件
-   6. find -mtime -2: 查找系统当中2*24小时之内被修改的文件
-   7. find . -name "*.log": 在当前目录下面根据名称递归查找文件
-   8. find . -perm 777: 根据文件权限查找文件
-   9. find . -type f -name "*.log" : 根据文件类型查找文件
-   10. find . -type d: 查找文件目录
-   11. find . -type d | sort: 查询文件目录并排序
-   12. find . -size +1000c -print: 根据文件大小来查询，查找1k大小的文件，并进行打印输出
-   13. find . -name "*SETTING*.sql" -exec ls -l {} \;     find与exec的套用；说明{}为find查出来的结果 命令必须以;结尾，\为转义
-   14. find . -name "*SETTING*.sql" -exec rm -rf  {} \;  查询文件并删除他们
-   15. find . -name "*PORTAL*.sql" -exec  grep "ROLE" {} \;  查询文件并grep文件当中的"ROLE"
-   16. find . -name "*PORTAL*.sql" -exec  mv  {} /tmp \;    查询文件并将文件列表移动至/tmp目录;还可以使用cp命令进行拷贝
-   17. find . -name "[A-Z]*" :  查询文件名称以大写字母开头的文件，-name 支持参数
-   18. find / -name "*" : 从系统的根目录开始查询文件列表信息，系统负荷较重
-   19. find . -size +100c: 查找大于100c的文件
+   7. find -mtime -2: 查找系统当中2*24小时之内被修改的文件
+   8. find -mtime +2 | xargs rm -rf : 查找系统当中2*24小时之前被修改的文件，并删除他们
+   9. find . -name "*.log": 在当前目录下面根据名称递归查找文件
+   10. find . -perm 777: 根据文件权限查找文件
+   11. find . -type f -name "*.log" : 根据文件类型查找文件
+   12. find . -type d: 查找文件目录
+   13. find . -type d | sort: 查询文件目录并排序
+   14. find . -size +1000c -print: 根据文件大小来查询，查找1k大小的文件，并进行打印输出
+   15. find . -name "*SETTING*.sql" -exec ls -l {} \;     find与exec的套用；说明{}为find查出来的结果 命令必须以;结尾，\为转义
+   16. find . -name "*SETTING*.sql" -exec rm -rf  {} \;  查询文件并删除他们
+   17. find . -name "*PORTAL*.sql" -exec  grep "ROLE" {} \;  查询文件并grep文件当中的"ROLE"
+   18. find . -name "*PORTAL*.sql" -exec  mv  {} /tmp \;    查询文件并将文件列表移动至/tmp目录;还可以使用cp命令进行拷贝
+   19. find . -name "[A-Z]*" :  查询文件名称以大写字母开头的文件，-name 支持参数
+   20. find / -name "*" : 从系统的根目录开始查询文件列表信息，系统负荷较重
+   21. find . -size +100c: 查找大于100c的文件;c是bytes，M是以MB，k是以KB，G是以GB
 
 ** 文件和目录属性
 
@@ -273,4 +274,6 @@
     - crontab -l : 查询当前用户的定时任务信息
     - cat /etc/crontab: 里面记录着crontab的用法
     - service crontab status|stop|restart|start: service crontab服务的生命周期命令
+    - crontab -r : 删除当前用户的cron
 
+      

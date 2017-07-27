@@ -6,6 +6,8 @@
 #+TAGS: python
 #+DESCRIPTION: Short description
 
+* 基础
+
 ** 2 Using the Python Interpreter
     - python打开python的解释器，若命令不存在，请检查Path环境变量
     - Ctrl+D或quit() 关闭Interpreter; windows是Ctrl+z
@@ -22,8 +24,33 @@
 #+END_SRC
 
 
-** 包管理工具pip
+* 生态
+** 工具
+*** pip3 包管理工具
    - easy_install pip  安装包管理工具；或从官网下载
    - pip install --upgrade pip : 升级包管理工具
    - pip install markdown     使用pip安装软件包
    - pip freeze: pip安装的软件包列表
+
+*** ipython
+   - import inspect && print(inspect.get(range)) : 即可看到range函数的说明信息
+   - brew install  ipython : 安装ipython的函数说明，使用方法range?  中间没有空格
+   - range?   快速查找函数说明
+   - 支持命令行相关工具
+
+** 其他类库
+*** python读取excel xlrd
+#+BEGIN_SRC python3
+import xlrd
+
+if __name__ == '__main__':
+    data = xlrd.open_workbook("/tmp/test.xlsx")
+    sheet = data.sheets()[0]
+    nrows = sheet.nrows
+    ncols = sheet.ncols
+    for rowNum in range(0, nrows):
+        row = sheet.row_values(rowNum)
+        for colNum in range(0, ncols):
+            cell = row[colNum]
+            print(cell)
+#+END_SRC
