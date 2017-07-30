@@ -8,6 +8,15 @@
 
 * 基础
 
+** 语法
+   - and : &&
+   - or  : ||
+   - elif : if else
+   - if、for后面是:
+   - if __name__ == '__main__':  main方法，方法的入口
+   - str(10) : 将int转换为str
+   - int('1'): 将str转换为int
+
 ** 2 Using the Python Interpreter
     - python打开python的解释器，若命令不存在，请检查Path环境变量
     - Ctrl+D或quit() 关闭Interpreter; windows是Ctrl+z
@@ -39,7 +48,7 @@
    - 支持命令行相关工具
 
 ** 其他类库
-*** python读取excel xlrd
+*** xlrd : python读取excel 
 #+BEGIN_SRC python3
 import xlrd
 
