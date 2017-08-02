@@ -6,6 +6,15 @@
 #+TAGS: Java
 #+DESCRIPTION: Short description
 
+** 一些颠覆认知的问题
+
+*** Java的String地址是相等的
+#+BEGIN_SRC java
+        System.out.println("a" == "a");   //true
+        System.out.println("a".equals("a"));  //true
+#+END_SRC
+
+
 ** 名称解释
 *** PO/DTO/VO等
     - PO: persitant object
