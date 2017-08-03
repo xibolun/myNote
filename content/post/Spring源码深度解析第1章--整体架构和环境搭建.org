@@ -1,0 +1,26 @@
+#+TITLE: Spring源码深度解析第1章--整体架构和环境搭建
+#+DATE: 2017-08-03T21:41:19+08:00
+#+PUBLISHDATE: 2017-08-03T21:41:19+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: Java, Spring
+#+DESCRIPTION: Short description
+
+** Spring的整体架构
+*** CoreContainer
+   - Core、 Beans、Context、 Expression、 Language
+
+*** Data Access/Integration
+    - JDBC、ORM、 OXM、JMS、Transaction
+
+*** WEB
+    - WEB、WEB-Servlet、WEB-Struts、Web-Porlet
+
+*** AOP
+    - Aspects 、 Instrumentation
+
+*** Test
+
+** 环境搭建
+   - github地址：git@github.com:spring-projects/spring-framework.git
+   - 导入Eclipse或IDEA
