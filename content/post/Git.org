@@ -126,5 +126,28 @@
 - [[http://rogerdudler.github.io/git-guide/][The simple guide no deep shit]]
 
 
-*** 利用git.oschina来搭建自己的仓库
-**** [[http://git.oschina.net/oschina/git-osc/wikis/%25E5%25B8%25AE%25E5%258A%25A9#ssh-keys][git.oschina生成公钥]] 
+*** ssh认证原理
+#+BEGIN_SRC txt
+ssh 的密钥认证就是使用了这一特性。服务器和客户端都各自拥有自己的公钥和密钥。 为了说明方便，以下将使用这些符号。
+Ac 客户端公钥
+Bc 客户端密钥
+As 服务器公钥
+Bs 服务器密钥
+在认证之前，客户端需要通过某种方法将公钥 Ac 登录到服务器上。
+认证过程分为两个步骤。
+一、 会话密 钥(session key)生成
+1. 客户端 请求连接服务器，服务器将 As 发送给客户端。
+2. 服务器生成会话ID(session id)，设为 p，发送给客户端。
+3. 客户端生成会话密钥(session key)，设为 q，并计算 r = p xor q。
+4. 客户端将 r 用 As 进行加密，结果发送给服务器。
+5. 服务器用 Bs 进行解密，获得 r。
+6. 服务器进行 r xor p 的运算，获得 q。
+7. 至此服务器和客户端都知道了会话密钥q，以后的传输都将被 q 加密。
+二、 认证
+1. 服务器 生成随机数 x，并用 Ac 加密后生成结果 S(x)，发送给客户端
+2. 客户端使用 Bc 解密 S(x) 得到 x
+3. 客户端计算 q + x 的 md5 值 n(q+x)，q为上一步得到的会话密钥
+4. 服务器计算 q + x 的 md5 值 m(q+x)
+5. 客户端将 n(q+x) 发送给服务器
+6. 服务器比较 m(q+x) 和 n(q+x)，两者相同则认证成功
+#+END_SRC

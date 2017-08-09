@@ -6,11 +6,37 @@
 #+TAGS: Java, Spring
 #+DESCRIPTION: Short description
 
-** 2.1 容器基本用法
+** 2.4 Spring核心类介绍
 
-** 2.2 功能分析
+[[http://120.25.192.95:3000/spring/beanfactory.png][DefaultListableBeanFactory]]
 
-** 2.3 工程搭建
+[[http://120.25.192.95:3000/spring/xmlBeanDefinitionReader.png][XmlBeanDefinitionReader]]
 
-** 2.4 Spring的结构组成
+** 2.5 容器的基础xmlBeanFactory
+*** 2.5.1 配置文件封装
+    - IOC的第一步就是加载配置文件，获取配置文件的信息，去找到定义的对应的bean
+    - Resource的作用是将配置文件资源进行统一封装，不管你是File/URL等配置，都统一封装为Resource，供BeanFactory使用
+    - [[http://120.25.192.95:3000/spring/resource.png][Resource继承关系类图]] 
+    - FileSystemResource：需要给出文件的路径信息即可获取到文件的配置，因为实现上是调用了File.getInputStream()方法；或给出文件在classes当中的路径即可；
+    - ClassPathResource：加载编译目录当中的配置文件，不需要路径信息，直接输入文件名称即可；若找不到，则去classes里面看文件是否存在，若不存在，需要配置到编译路径当中
+    - UrlResource: 可以访问file/http/ftp资源信息，可以通过获取某个类的classLoader即可得到对应的classes路径信息，就可以通过name来获取配置文件所在的路径的URL
+    - ServletContextResource: 暂时不研究
 
+#+BEGIN_SRC java
+        //FileSystemResource
+        Resource fileRes1 = new FileSystemResource(
+            "/Users/admin/projects/myPro/src/resource/beanFactory.xml");
+        Resource fileRes2 = new FileSystemResource("src/resource/beanFactory.xml");
+
+        // ClassPathResource
+        Resource classRes = new ClassPathResource("beanFactory.xml");
+
+        // UrlResource
+        //输出结果:/Users/admin/projects/myPro/target/classes/beanFactory.xml
+        System.out.println(TestClass.class.getClassLoader().getResource("beanFactory.xml").getPath());
+
+        Resource urlRes = new UrlResource(
+            TestClass.class.getClassLoader().getResource("beanFactory.xml"));
+#+END_SRC
+
+*** 2.5.2 加载bean
