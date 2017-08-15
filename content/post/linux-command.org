@@ -268,6 +268,15 @@
     - free -s 10 : 10s刷新一次内存
     - cat /proc/meminfo : 查看系统内存情况
 
+*** lsof
+    - lsof -c java : 打开java进程正在使用的文件
+    - lsof -u root: 打开某个用户正在使用的文件
+    - lsof -u ^root : 打开除了某个用户正在使用的文件
+    - lsof -i : 列出所有的网络连接
+    - lsof -i tcp/udp: 列出所有的tcp、udp网络连接信息
+    - lsof -i:8080 : 列出8080端口被哪个应用使用
+    - lsof -i tcp:80: 列出指定的tcp协议80端口
+
 ** 高级
 *** crontab
     - crontab file: 如何添加一个cron: crontab file: file是写的cron定时脚本；系统会将file的定时任务提交，并以当前用户的名称存放于/var/spool/cron下面

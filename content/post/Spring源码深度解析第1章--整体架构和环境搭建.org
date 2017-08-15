@@ -22,5 +22,11 @@
 *** Test
 
 ** 环境搭建
+原本以为导入工程是一个非常简单的事情，但是spring的编译采用了gradle；之前没有使用过 [[gradle.org][gradle]] ，所以费了一些事；
    - github地址：git@github.com:spring-projects/spring-framework.git
-   - 导入Eclipse或IDEA
+   - 最新版本的spring-framework要求jdk 1.8以上版本
+   - gradle环境搭建: [[https://gradle.org/install/][官网搭建手册]] ,我使用了homebrew，网速不给力，直接FANQIANG;设置代理 export https_proxy=http://localhost:8090
+   - 有导入和eclipse和idea两种，分别对应两个md文件的说明，我采用了idea导入
+   - 编译工程并下载jar包： gradle build.gradle，大概需要下载6125个jar包的样子
+   - 导入idea，需要配置gradle的HOME； /usr/local/Cellar/gradle/4.1/libexec
+   - 导入idea，需要配置java的环境变量：jdk1.8

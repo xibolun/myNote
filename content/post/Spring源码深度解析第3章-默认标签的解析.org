@@ -1,0 +1,50 @@
+#+TITLE: Spring源码深度解析第3章--默认标签的解析
+#+DATE: 2017-08-15T22:40:13+08:00
+#+PUBLISHDATE: 2017-08-15T22:40:13+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: Java, Spring
+#+DESCRIPTION: Short description
+
+** 3.1 bean标签的解析及注册
+   - BeanDefinitionParserDelegate默认解析的标签有四种：import,alias,beans,bean，首先理解bean的解析
+   - 在默认的processDefaultElement里面处理Bean的definition逻辑如下：
+#+BEGIN_SRC java
+protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
+    // 根据element获取BeanDefinitionHolder，里面包括着bean的名称,alias数组列表及BeanDefinition
+		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
+		if (bdHolder != null) {
+      // 查看此beanName下面是否存在子的定义，继续再解析一次
+			bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);
+			try {
+				// Register the final decorated instance.
+        // 以下为真正开始注册beanDefinition
+				BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
+			}
+			catch (BeanDefinitionStoreException ex) {
+				getReaderContext().error("Failed to register bean definition with name '" +
+						bdHolder.getBeanName() + "'", ele, ex);
+			}
+			// Send registration event. 发送事件
+			getReaderContext().fireComponentRegistered(new BeanComponentDefinition(bdHolder));
+		}
+	}
+
+#+END_SRC
+    -  BeanDefinitionParserDelegate类当中有多个parseBeanDefinitionElement方法，是多态的
+    -  BeanDefinitionParserDelegate当中的parseBeanDefinitionElement首先会解析id和name，以及alias，然后调用真正解析其他属性的parseBeanDefinitionElement方法
+#+BEGIN_SRC java
+	public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, BeanDefinition containingBean) {}
+#+END_SRC
+
+    - BeanDefinitionParserDelegate当中的parseBeanDefinitionElement下面的方法，会真正解析ele里面的Attribute,描述信息，元数据，Look-up,Construct，Qualifier,Property等信息
+#+BEGIN_SRC java
+public AbstractBeanDefinition parseBeanDefinitionElement(Element ele, String beanName, BeanDefinition containingBean) {}
+#+END_SRC
+
+    - 解析完成之后会返回BeanDefinitionHolder，里面包涵着xml里面定义的bean的所有属性
+    - 调用BeanDefinitionReaderUtils.registerBeanDefinition方法进行注册
+#+BEGIN_SRC java
+BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
+#+END_SRC
+
