@@ -1,0 +1,134 @@
+#+TITLE: Spring源码深度解析第5章--bean的加载
+#+DATE: 2017-08-21T22:26:10+08:00
+#+PUBLISHDATE: 2017-08-21T22:26:10+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: Java, Spring
+#+DESCRIPTION: Short description
+
+** 5.1 FactoryBean的使用
+
+#+BEGIN_SRC java
+  /*** AbstractBeanFactory.doGetBean方法加载bean **/
+
+	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,
+			@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {}
+#+END_SRC
+
+*** 转换beanName
+    - spring的FactoryBean是以&开头的，若一个beanName是以&开头的，说明是FactoryBean，需要截图&后面的内容
+    - 判断此name是否为aliasName，若在aliasMap当中可以找得到，那么需要给出alias的真正名称
+#+BEGIN_SRC java
+		final String beanName = transformedBeanName(name);
+
+protected String transformedBeanName(String name) {
+		return canonicalName(BeanFactoryUtils.transformedBeanName(name));
+	}
+#+END_SRC
+
+#+BEGIN_SRC java
+public static String transformedBeanName(String name) {
+		Assert.notNull(name, "'name' must not be null");
+		String beanName = name;
+		while (beanName.startsWith(BeanFactory.FACTORY_BEAN_PREFIX)) {
+			beanName = beanName.substring(BeanFactory.FACTORY_BEAN_PREFIX.length());
+		}
+		return beanName;
+	}
+
+	public String canonicalName(String name) {
+		String canonicalName = name;
+		// Handle aliasing...
+		String resolvedName;
+		do {
+			resolvedName = this.aliasMap.get(canonicalName);
+			if (resolvedName != null) {
+				canonicalName = resolvedName;
+			}
+		}
+		while (resolvedName != null);
+		return canonicalName;
+	}
+#+END_SRC
+
+*** 根据beanName在单例当中查找Bean,单例可以解决循环依赖
+#+BEGIN_SRC java
+		Object sharedInstance = getSingleton(beanName);
+#+END_SRC
+
+#+BEGIN_SRC java
+  /** Cache of early singleton objects: bean name --> bean instance */
+	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
+
+	/** Cache of singleton factories: bean name --> ObjectFactory */
+	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
+
+	/** Cache of singleton objects: bean name --> bean instance */
+	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
+
+	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
+		Object singletonObject = this.singletonObjects.get(beanName);
+		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
+			synchronized (this.singletonObjects) {
+				singletonObject = this.earlySingletonObjects.get(beanName);
+				if (singletonObject == null && allowEarlyReference) {
+					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
+					if (singletonFactory != null) {
+						singletonObject = singletonFactory.getObject();
+						this.earlySingletonObjects.put(beanName, singletonObject);
+						this.singletonFactories.remove(beanName);
+					}
+				}
+			}
+		}
+		return (singletonObject != NULL_OBJECT ? singletonObject : null);
+	}
+#+END_SRC
+
+  - 首先看缓存的singletonObjects当中是否存在bean，若存在直接就返回
+  - 若不存在，则去查找缓存的earlySingletonObjects当中是否存在
+  - 若不存在，则查找singlegonFactories当中是否存在
+  - 若存在，则将bean缓存起来
+
+*** 若在单例的缓存当中不存在，则判断bean是否在创建当中
+#+BEGIN_SRC java
+      // Fail if we're already creating this bean instance:
+			// We're assumably within a circular reference.
+			if (isPrototypeCurrentlyInCreation(beanName)) {
+				throw new BeanCurrentlyInCreationException(beanName);
+			}
+  
+       /** 使用了多线程共享 **/
+	private final ThreadLocal<Object> prototypesCurrentlyInCreation =
+			new NamedThreadLocal<>("Prototype beans currently in creation");
+
+	protected boolean isPrototypeCurrentlyInCreation(String beanName) {
+		Object curVal = this.prototypesCurrentlyInCreation.get();
+		return (curVal != null &&
+				(curVal.equals(beanName) || (curVal instanceof Set && ((Set<?>) curVal).contains(beanName))));
+	}
+#+END_SRC
+
+*** 若不在创建当中，去parentFactory当中找
+#+BEGIN_SRC java
+
+			// Check if bean definition exists in this factory.
+			BeanFactory parentBeanFactory = getParentBeanFactory();
+			if (parentBeanFactory != null && !containsBeanDefinition(beanName)) {
+				// Not found -> check parent.
+				String nameToLookup = originalBeanName(name);
+				if (parentBeanFactory instanceof AbstractBeanFactory) {
+					return ((AbstractBeanFactory) parentBeanFactory).doGetBean(
+							nameToLookup, requiredType, args, typeCheckOnly);
+				}
+				else if (args != null) {
+					// Delegation to parent with explicit args.
+					return (T) parentBeanFactory.getBean(nameToLookup, args);
+				}
+				else {
+					// No args -> delegate to standard getBean method.
+					return parentBeanFactory.getBean(nameToLookup, requiredType);
+				}
+			}
+#+END_SRC
+
