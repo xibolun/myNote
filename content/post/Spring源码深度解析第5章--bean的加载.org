@@ -16,7 +16,7 @@
 #+END_SRC
 
 *** 转换beanName
-    - spring的FactoryBean是以&开头的，若一个beanName是以&开头的，说明是FactoryBean，需要截图&后面的内容
+    - spring的FactoryBean是以&开头的，若一个beanName是以&开头的，说明是FactoryBean，需要截取&后面的内容
     - 判断此name是否为aliasName，若在aliasMap当中可以找得到，那么需要给出alias的真正名称
 #+BEGIN_SRC java
 		final String beanName = transformedBeanName(name);
@@ -51,6 +51,7 @@ public static String transformedBeanName(String name) {
 	}
 #+END_SRC
 
+** 5.2 缓存中获取单例bean
 *** 根据beanName在单例当中查找Bean,单例可以解决循环依赖
 #+BEGIN_SRC java
 		Object sharedInstance = getSingleton(beanName);
@@ -89,7 +90,11 @@ public static String transformedBeanName(String name) {
   - 若不存在，则去查找缓存的earlySingletonObjects当中是否存在
   - 若不存在，则查找singlegonFactories当中是否存在
   - 若存在，则将bean缓存起来
+  - singletonObjects里面在存放着BeanName和BeanInstance之前的关系
+  - singletonFactories里面存放着BeanName和FactoryBean之间的关系
 
+
+** 5.5 准备开始创建Bean
 *** 若在单例的缓存当中不存在，则判断bean是否在创建当中
 #+BEGIN_SRC java
       // Fail if we're already creating this bean instance:
@@ -132,3 +137,69 @@ public static String transformedBeanName(String name) {
 			}
 #+END_SRC
 
+
+** 5.6 循环依赖-spring如何解决循环依赖
+#+BEGIN_SRC java
+      // Fail if we're already creating this bean instance:
+			// We're assumably within a circular reference.
+			if (isPrototypeCurrentlyInCreation(beanName)) {
+				throw new BeanCurrentlyInCreationException(beanName);
+			}
+#+END_SRC
+    - 将需要创建的beanName放入到prototypesCurrentlyInCreation当中，若已经存在则抛出异常
+    - 若循环依赖，抛出异常BeanCurrentlyInCreationException
+
+** 5.7 创建bean
+#+BEGIN_SRC java
+	protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final @Nullable Object[] args)
+			throws BeanCreationException {}
+
+    /** 若是单例的，清除缓存 ，并重新实例化**/
+		BeanWrapper instanceWrapper = null;
+		if (mbd.isSingleton()) {
+			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
+		}
+		if (instanceWrapper == null) {
+			instanceWrapper = createBeanInstance(beanName, mbd, args);
+		}
+
+
+		// Initialize the bean instance.
+		Object exposedObject = bean;
+		try {
+			populateBean(beanName, mbd, instanceWrapper);
+			if (exposedObject != null) {
+				exposedObject = initializeBean(beanName, exposedObject, mbd);
+			}
+		}
+#+END_SRC
+
+   - 整个Spring实例化bean就是放到createBeanInstance或者initializeBean当中
+
+*** 5.7.5 注册bean--AbstractBeanFactory.registerDisposableBeanIfNecessary
+#+BEGIN_SRC java
+	protected void registerDisposableBeanIfNecessary(String beanName, Object bean, RootBeanDefinition mbd) {
+		AccessControlContext acc = (System.getSecurityManager() != null ? getAccessControlContext() : null);
+		if (!mbd.isPrototype() && requiresDestruction(bean, mbd)) {
+			if (mbd.isSingleton()) {
+				// Register a DisposableBean implementation that performs all destruction
+				// work for the given bean: DestructionAwareBeanPostProcessors,
+				// DisposableBean interface, custom destroy method.
+				registerDisposableBean(beanName,
+						new DisposableBeanAdapter(bean, beanName, mbd, getBeanPostProcessors(), acc));
+			}
+			else {
+				// A bean with a custom scope...
+				Scope scope = this.scopes.get(mbd.getScope());
+				if (scope == null) {
+					throw new IllegalStateException("No Scope registered for scope name '" + mbd.getScope() + "'");
+				}
+				scope.registerDestructionCallback(beanName,
+						new DisposableBeanAdapter(bean, beanName, mbd, getBeanPostProcessors(), acc));
+			}
+		}
+	}
+#+END_SRC
+
+   - 所有的bean都会放到disposable当中，disposable是一个LinkedHashMap,beanName作为key，bean作为value
+   - 若为单例，直接放入到disposabled当中，若为自定义范围，则调用自定义的接口进行处理

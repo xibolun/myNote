@@ -1,0 +1,119 @@
+#+TITLE: Spring源码深度解析第6章--容器的功能扩展
+#+DATE: 2017-08-29T23:12:31+08:00
+#+PUBLISHDATE: 2017-08-29T23:12:31+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: Java, Spring
+#+DESCRIPTION: Short description
+
+** 概述
+spring不仅仅提供了xmlBeanFactory，还提供了ApplictionContext用于扩展BeanFactory当中的功能;ApplicationContext拥有BeanFactory所有的功能;
+#+BEGIN_SRC java
+        ApplicationContext factory = new ClassPathXmlApplicationContext("beanFactory.xml");
+#+END_SRC
+
+下面对此代码进行分析，ClassPathXmlApplicationContext如何处理加载bean的
+
+** 6.1 设置配置路径
+#+BEGIN_SRC java
+	public ClassPathXmlApplicationContext(String configLocation) throws BeansException {
+		this(new String[] {configLocation}, true, null);
+	}
+#+END_SRC
+#+BEGIN_SRC java
+public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent)
+			throws BeansException {
+
+		super(parent);
+		setConfigLocations(configLocations);
+		if (refresh) {
+			refresh();
+		}
+	}
+#+END_SRC
+
+#+BEGIN_SRC java
+public void setConfigLocations(String... locations) {
+		if (locations != null) {
+			Assert.noNullElements(locations, "Config locations must not be null");
+			this.configLocations = new String[locations.length];
+			for (int i = 0; i < locations.length; i++) {
+				this.configLocations[i] = resolvePath(locations[i]).trim();
+			}
+		}
+		else {
+			this.configLocations = null;
+		}
+	}
+#+END_SRC
+
+- 将路径配置转换为String[]进行处理
+- 解析配置信息并将其放入到AbstractRefreshableConfigApplicationContext.configLocations当中，其中configLocations是一个String[]；
+- refresh()刷新配置信息
+
+** 6.2 扩展功能
+#+BEGIN_SRC java
+public void refresh() throws BeansException, IllegalStateException {
+		synchronized (this.startupShutdownMonitor) {
+			// Prepare this context for refreshing.
+			prepareRefresh();
+
+			// Tell the subclass to refresh the internal bean factory.
+			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
+
+			// Prepare the bean factory for use in this context.
+			prepareBeanFactory(beanFactory);
+
+			try {
+				// Allows post-processing of the bean factory in context subclasses.
+				postProcessBeanFactory(beanFactory);
+
+				// Invoke factory processors registered as beans in the context.
+				invokeBeanFactoryPostProcessors(beanFactory);
+
+				// Register bean processors that intercept bean creation.
+				registerBeanPostProcessors(beanFactory);
+
+				// Initialize message source for this context.
+				initMessageSource();
+
+				// Initialize event multicaster for this context.
+				initApplicationEventMulticaster();
+
+				// Initialize other special beans in specific context subclasses.
+				onRefresh();
+
+				// Check for listener beans and register them.
+				registerListeners();
+
+				// Instantiate all remaining (non-lazy-init) singletons.
+				finishBeanFactoryInitialization(beanFactory);
+
+				// Last step: publish corresponding event.
+				finishRefresh();
+			}
+
+			catch (BeansException ex) {
+				if (logger.isWarnEnabled()) {
+					logger.warn("Exception encountered during context initialization - " +
+							"cancelling refresh attempt: " + ex);
+				}
+
+				// Destroy already created singletons to avoid dangling resources.
+				destroyBeans();
+
+				// Reset 'active' flag.
+				cancelRefresh(ex);
+
+				// Propagate exception to caller.
+				throw ex;
+			}
+
+			finally {
+				// Reset common introspection caches in Spring's core, since we
+				// might not ever need metadata for singleton beans anymore...
+				resetCommonCaches();
+			}
+		}
+	}
+#+END_SRC
