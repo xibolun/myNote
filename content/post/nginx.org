@@ -15,3 +15,17 @@ sudo nginx -s stop: 停止nginx
 sudo nginx -s reload: 重启nginx
 
 #+END_SRC
+
+** 静态资源配置
+#+BEGIN_SRC shell
+server {
+    listen       4000;
+    server_name  localhost;
+    root   /home/www/christ;
+    location / {
+        autoindex on;
+        autoindex_exact_size on;
+        autoindex_localtime on;
+    }
+}
+#+END_SRC
