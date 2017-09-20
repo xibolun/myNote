@@ -25,6 +25,11 @@
     - 准备第一遍看看大纲，知道一个大概，后续在第二遍的时候争取弄懂原理
     - 静态和动态的代理模式在日常工作当中使用较少，没有细看
 
+*** 在看到第11章之后有以下心得
+    - 目前发现Spring Boot的起来，导致Spring的使用方式发生一些变化，准备看Spring Boot的一些东西
+    - 像JMS，事务，RPC等使用方式也不太一样，准备把Spring Boot好好用用
+    - 当然Spring Boot是基于Spring开发的，所以源码在一定程度上是通用的
+
 ** Spring的整体架构
 *** CoreContainer
    - Core、 Beans、Context、 Expression、 Language
