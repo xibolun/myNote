@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Springs on My New Hugo Site</title>
-    <link>http://kedadiannao220.hugo.io/spring/</link>
+    <link>http://kedadiannao220.github.io/spring/</link>
     <description>Recent content in Springs on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://kedadiannao220.hugo.io/spring/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://kedadiannao220.github.io/spring/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring-resttemplate/</link>
+      <link>http://kedadiannao220.github.io/spring/spring-resttemplate/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring-resttemplate/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring-resttemplate/</guid>
       <description>解决中文乱码的问题和Delete无法传入body的问题 问题说明：RestTemplate中文乱码问题； 回复里面有我的评论，以下为解决方法
 package com.idcos.cloudres.biz.common.util; import org.apache.http.client.methods.HttpEntityEnclosingRequestBase; import org.apache.http.client.methods.HttpUriRequest; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.http.HttpMethod; import org.springframework.http.client.HttpComponentsClientHttpRequestFactory; import org.springframework.http.converter.HttpMessageConverter; import org.springframework.http.converter.StringHttpMessageConverter; import org.springframework.web.client.RestTemplate; import java.net.URI; import java.nio.charset.StandardCharsets; import java.util.List; /** * restful 接口工具类 * Created by guanbin on 2017/3/15. */ public class RestfulUtil { private static final Logger logger = LoggerFactory.getLogger(RestfulUtil.class); /** * 获取StringHttpMessageConverter字符集为utf-8类型的RestTemplate * @return */ public static final RestTemplate getRestTemplate() { RestTemplate restTemplate = new RestTemplate(); List&amp;lt;HttpMessageConverter&amp;lt;?&amp;gt;&amp;gt; converterList = restTemplate.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring-springboot/</link>
+      <link>http://kedadiannao220.github.io/spring/spring-springboot/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring-springboot/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring-springboot/</guid>
       <description> Spring 1.5.x当中的hibrenate名称转换策略 今天将Spring从1.3.2升级到1.5.x当中，发现所有的查询都会有异常信息，异常信息为小写的表名不存在，本来想修改一下MySQL对大小写的敏感配置就可以了，但是想着1.3版本的为什么就不会有这个问题呢？
 ### Spring 1.3版本当中的配置 spring.jpa.hibernate.naming-strategy=org.hibernate.cfg.DefaultNamingStrategy ### Spring 1.5版本当中的配置 spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  由于1.5当中将hibrenate jar包升级，导致hibreanate的一些配置有所变化。 对于名称策略，官方描述如下：Spring Configure JPA properties
 SpringBoot 配置myBaits的log输出 配置logImpl的参数值即可，LOG4J是按照log4j的日志进行输出
@@ -34,29 +34,29 @@ SpringBoot 配置myBaits的log输出 配置logImpl的参数值即可，LOG4J是�
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC1%E7%AB%A0--%E5%85%A5%E9%97%A8/</link>
+      <link>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC1%E7%AB%A0--%E5%85%A5%E9%97%A8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC1%E7%AB%A0--%E5%85%A5%E9%97%A8/</guid>
+      <guid>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC1%E7%AB%A0--%E5%85%A5%E9%97%A8/</guid>
       <description> 前言 SpringBoot可以让Spring不再成为开发的绊脚石，轻量配置或者完全不需要配置
 内容 Spring精要  自动配置：若配置了datasource，则会根据配置注入对应的数据库驱动等 起步依赖：将你所需要的依赖全都打包好，解决冲突，解决大量依赖等 命令行界面：命令行工具，SpringBoot cli Actuator：可以更好的观察Spring应用的情况  初始化Spring Boot项目  官网的quick start里面有简单的demo 也可以在官网的配置界面进行配置 或使用IDE(Eclipse/Idea)进行配置 或使用cli进行初始化  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC2%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</link>
+      <link>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC2%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC2%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</guid>
+      <guid>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC2%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</guid>
       <description> 注解 属性文件外置配置  要想使用属性文件外置配置，根据 Generating your own meta-data using the annotation processor 需要配置spring-boot-configuration-processor依赖  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-configuration-processor&amp;lt;/artifactId&amp;gt; &amp;lt;optional&amp;gt;true&amp;lt;/optional&amp;gt; &amp;lt;/dependency&amp;gt;   配置properties文件  amazon.accountId=pengganyu   PropertyConfig信息，需要添加@ConfigurationProperties注解  package com.idcos.automate.config; import org.springframework.boot.context.properties.ConfigurationProperties; import org.springframework.stereotype.Component; @Component @ConfigurationProperties(prefix = &amp;quot;amazon&amp;quot;) public class PropertyConfig { private String accountId; public String getAccountId() { return accountId; } public void setAccountId(String accountId) { this.accountId = accountId; } }  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC7%E7%AB%A0--actuator/</link>
+      <link>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC7%E7%AB%A0--actuator/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC7%E7%AB%A0--actuator/</guid>
+      <guid>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC7%E7%AB%A0--actuator/</guid>
       <description>说明  SpringBoot实战第4章讲测试 SpringBoot实战第5章讲Groovy SpringBoot实战第6章讲Grails  由于在工作当中使用Groovy和Grails都非常的少，所以就大概看了一下，SpringBoot对于两种语言的处理和支持
 前言 7.1 Actuator端点 PATH DESCRIPTION
 /autoconfig
@@ -76,37 +76,37 @@ SpringBoot 配置myBaits的log输出 配置logImpl的参数值即可，LOG4J是�
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC10%E7%AB%A0--%E4%BA%8B%E5%8A%A1/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC10%E7%AB%A0--%E4%BA%8B%E5%8A%A1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC10%E7%AB%A0--%E4%BA%8B%E5%8A%A1/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC10%E7%AB%A0--%E4%BA%8B%E5%8A%A1/</guid>
       <description>前言 以JDBC的形式操作数据库，需要控制获得连接、关闭连接、事务提交、回滚等操作，而Spring的声明式事务处理可以从复杂的事务处理中脱离出来，只需要按配置规则配置即可使用。</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC12%E7%AB%A0--%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC12%E7%AB%A0--%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC12%E7%AB%A0--%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC12%E7%AB%A0--%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1/</guid>
       <description>目前调用远程接口可以使用一些RPC框架，或者使用Spring Template；或Web Service等</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC13%E7%AB%A0--spring%E6%B6%88%E6%81%AF/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC13%E7%AB%A0--spring%E6%B6%88%E6%81%AF/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC13%E7%AB%A0--spring%E6%B6%88%E6%81%AF/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC13%E7%AB%A0--spring%E6%B6%88%E6%81%AF/</guid>
       <description>Spring与ActiveMQ的集成：ActiveMQ</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC1%E7%AB%A0--%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC1%E7%AB%A0--%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC1%E7%AB%A0--%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC1%E7%AB%A0--%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
       <description>学习说明 在看到第五章的时候有以下心得 看源码是一个枯燥的过程，因为你并没有参与到实际的开发和设计当中，所以有一些命名和思路不会非常明确，并且写代码的人的风格和思维都和自己不太一样；在学习的过程当中有很多的难题
  看了源码可以做什么？ 这是什么鬼东西 为什么要这样写？ 这代码注释都不明确 看了半天，也许又得回到起点重新再看一遍，思路断了 类层级很深，根本不知道哪个调用哪个 无助，焦虑让自己无法承受  但是还是坚持下去，自己的路只能自己走，并且要坚持下去；也许坚持下去没有意义，也许会有意义；在这个过程当中的经历我反正享受到了，这样就够了。
 在看到第七章的时候有以下心得  AOP自己现在已经大概会用了，但是原理在看的过程当中还是非常的吃力 准备第一遍看看大纲，知道一个大概，后续在第二遍的时候争取弄懂原理 静态和动态的代理模式在日常工作当中使用较少，没有细看  在看到第11章之后有以下心得  目前发现Spring Boot的起来，导致Spring的使用方式发生一些变化，准备看Spring Boot的一些东西 像JMS，事务，RPC等使用方式也不太一样，准备把Spring Boot好好用用 当然Spring Boot是基于Spring开发的，所以源码在一定程度上是通用的  Spring的整体架构 CoreContainer  Core、 Beans、Context、 Expression、 Language  Data Access/Integration  JDBC、ORM、 OXM、JMS、Transaction  WEB  WEB、WEB-Servlet、WEB-Struts、Web-Porlet  AOP  Aspects 、 Instrumentation  Test 环境搭建 原本以为导入工程是一个非常简单的事情，但是spring的编译采用了gradle；之前没有使用过 gradle ，所以费了一些事；
@@ -115,46 +115,46 @@ SpringBoot 配置myBaits的log输出 配置logImpl的参数值即可，LOG4J是�
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC2%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC2%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC2%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC2%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0/</guid>
       <description>2.3 最简单的例子 public class MyTestBean { private String testStr = &amp;quot;testStr&amp;quot;; public String getTestStr() { return this.testStr; } public void setTestStr(String str) { this.testStr = str; } }  &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; ?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&amp;quot;&amp;gt; &amp;lt;bean id=&amp;quot;myTestBean&amp;quot; class=&amp;quot;com.spring.MyTestBean&amp;quot;/&amp;gt; &amp;lt;/beans&amp;gt;  public class TestClass { @Test public void test() throws IOException { // ClassPathResource Resource res = new ClassPathResource(&amp;quot;beanFactory.xml&amp;quot;); BeanFactory beanFactory = new XBeanXmlBeanFactory(res); MyTestBean myTestBean = (MyTestBean) beanFactory.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC3%E7%AB%A0-%E9%BB%98%E8%AE%A4%E6%A0%87%E7%AD%BE%E7%9A%84%E8%A7%A3%E6%9E%90/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC3%E7%AB%A0-%E9%BB%98%E8%AE%A4%E6%A0%87%E7%AD%BE%E7%9A%84%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC3%E7%AB%A0-%E9%BB%98%E8%AE%A4%E6%A0%87%E7%AD%BE%E7%9A%84%E8%A7%A3%E6%9E%90/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC3%E7%AB%A0-%E9%BB%98%E8%AE%A4%E6%A0%87%E7%AD%BE%E7%9A%84%E8%A7%A3%E6%9E%90/</guid>
       <description>3.1 bean标签的解析及注册  DefaultBeanDefinitionDocumentReader.parseDefaultElement:解析的标签有四种：import,alias,beans,bean  private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) { if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) { importBeanDefinitionResource(ele); } else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) { processAliasRegistration(ele); } else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) { processBeanDefinition(ele, delegate); } else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) { // recurse doRegisterBeanDefinitions(ele); } }   首先理解bean的解析, 在默认的processDefaultElement里面处理Bean的definition逻辑如下：  protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) { // 根据element获取BeanDefinitionHolder，里面包括着bean的名称,alias数组列表及BeanDefinition BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele); if (bdHolder != null) { // 查看此beanName下面是否存在子的定义，继续再解析一次 bdHolder = delegate.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC4%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E8%A7%A3%E6%9E%90/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC4%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC4%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E8%A7%A3%E6%9E%90/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC4%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E8%A7%A3%E6%9E%90/</guid>
       <description> 4.1 自定义标签的使用  为了方便非标准的spring bean配置，spring提供了自定义标签的功能 原理为使用spring提供AbstractBeanDefinitionParser来解析xml里面的元素数据，放到BeanDefinition当中 将BeanDefinition注册即可 此种配置方式在现实当中已经不常用，像现在的SpringBoot就不需要xml的配置 故此本章只需要知道，了解即可，没有必要深入学习  &amp;lt;user email = &amp;quot;email&amp;quot;,id=&amp;quot;id&amp;gt;&amp;lt;/user&amp;gt;  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC5%E7%AB%A0--bean%E7%9A%84%E5%8A%A0%E8%BD%BD/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC5%E7%AB%A0--bean%E7%9A%84%E5%8A%A0%E8%BD%BD/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC5%E7%AB%A0--bean%E7%9A%84%E5%8A%A0%E8%BD%BD/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC5%E7%AB%A0--bean%E7%9A%84%E5%8A%A0%E8%BD%BD/</guid>
       <description>5.1 FactoryBean的使用 /*** AbstractBeanFactory.doGetBean方法加载bean **/ protected &amp;lt;T&amp;gt; T doGetBean(final String name, @Nullable final Class&amp;lt;T&amp;gt; requiredType, @Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {}  转换beanName  spring的FactoryBean是以&amp;amp;开头的，若一个beanName是以&amp;amp;开头的，说明是FactoryBean，需要截取&amp;amp;后面的内容 判断此name是否为aliasName，若在aliasMap当中可以找得到，那么需要给出alias的真正名称  final String beanName = transformedBeanName(name); protected String transformedBeanName(String name) { return canonicalName(BeanFactoryUtils.transformedBeanName(name)); }  public static String transformedBeanName(String name) { Assert.notNull(name, &amp;quot;&#39;name&#39; must not be null&amp;quot;); String beanName = name; while (beanName.startsWith(BeanFactory.FACTORY_BEAN_PREFIX)) { beanName = beanName.substring(BeanFactory.FACTORY_BEAN_PREFIX.length()); } return beanName; } public String canonicalName(String name) { String canonicalName = name; // Handle aliasing.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC6%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC6%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC6%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC6%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95/</guid>
       <description>概述 spring不仅仅提供了xmlBeanFactory，还提供了ApplictionContext用于扩展BeanFactory当中的功能;ApplicationContext拥有BeanFactory所有的功能;
 ApplicationContext factory = new ClassPathXmlApplicationContext(&amp;quot;beanFactory.xml&amp;quot;);  下面对此代码进行分析，ClassPathXmlApplicationContext如何处理加载bean的
 6.1 设置配置路径 public ClassPathXmlApplicationContext(String configLocation) throws BeansException { this(new String[] {configLocation}, true, null); }  public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent) throws BeansException { super(parent); setConfigLocations(configLocations); if (refresh) { refresh(); } }  public void setConfigLocations(String... locations) { if (locations != null) { Assert.noNullElements(locations, &amp;quot;Config locations must not be null&amp;quot;); this.configLocations = new String[locations.length]; for (int i = 0; i &amp;lt; locations.</description>
@@ -162,28 +162,28 @@ ApplicationContext factory = new ClassPathXmlApplicationContext(&amp;quot;beanFa
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/</guid>
       <description>前言 什么是AOP？为什么要玩AOP  AOP是Aspect Oriented Programming，意即面向切面编程 面向对向编程是竖向的方式；无法对多个对象进行同时的操作，只能在每个对象当中引入公共的代码，这样就导致代码的重复；程序不易维护；所以就有了AOP 比如说你怎么在所有的controller的方法里面输入一行hello world？如果不使用切面，你可能写个工具类，每个controller方法都需要添加一行代码、而切面就不需要这样操作  7.1 学习使用AOP 一个demo  在Spring boot当中简化了xml配置，只需要在切面的方法上面添加@Configuration注解即可 以下demo为切所有的controller层，其中execution及Pointcut、Around的用法后面会再深入学习  @Aspect @Configuration public class AspectController { @Pointcut(&amp;quot;execution(* com.idcos.automate.web.controller..*.*(..))&amp;quot;) public void pointcut() { System.out.println(&amp;quot;start aspect ......&amp;quot;); } @Before(&amp;quot;pointcut()&amp;quot;) public void beforeCut() { System.out.println(&amp;quot;beforeCut&amp;quot;); } @After(&amp;quot;pointcut()&amp;quot;) public void afterCut() { System.out.println(&amp;quot;afterCut&amp;quot;); } @AfterThrowing(&amp;quot;pointcut()&amp;quot;) public void afterThrowing() { System.out.println(&amp;quot;afterThrowing&amp;quot;); } @AfterReturning(&amp;quot;pointcut()&amp;quot;) public void afterReturning() { System.out.println(&amp;quot;afterReturning&amp;quot;); } @Around(&amp;quot;pointcut()&amp;quot;) public Object doAround(ProceedingJoinPoint pjp) throws Throwable { System.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC8%E7%AB%A0--%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5jdbc/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC8%E7%AB%A0--%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5jdbc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC8%E7%AB%A0--%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5jdbc/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC8%E7%AB%A0--%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5jdbc/</guid>
       <description> 前言  什么是JDBC（Java DataBase Connectivity Java数据库连接） 怎么使用JDBC？  引入数据库驱动jar包 Java在程序当中加载驱动Class.forName(&amp;ldquo;com.mysql.jdbc.Driver&amp;rdquo;) 创建数据库对象 创建statement对象 调用Statement对象执行sql语句 关闭数据库连接  其他像Spring Data Jpa或者使用mybatis，或者Hibernate等框架也可以完成数据库的操作 此章不再这里做展开  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/</guid>
       <description>前言  MyBatis 之前叫iBatis，是Apache的一个开源项目，后来迁移到了Google Code当中，改名为MyBatis 官网介绍如下：MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Old Java Objects,普通的 Java对象)映射成数据库中的记录。  与Spring Boot整合 基本整合 因为当前最流行的是Spring boot框架，所以在将Spring boot与MyBatis整合一下
 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.mybatis.spring.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mybatis-spring-boot-starter&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.3.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;  package com.idcos.automate.dal.mybatis; import com.idcos.automate.dal.auto.dataobject.xl.BibleTextDO; import org.apache.ibatis.annotations.Mapper; import org.apache.ibatis.annotations.Param; import org.apache.ibatis.annotations.Select; @Mapper public interface BibleTextMapper { @Select(&amp;quot;SELECT * FROM BIBLE_TEXT WHERE ID = #{id}&amp;quot;) BibleTextDO findOne(@Param(&amp;quot;id&amp;quot;) String id); }  package com.idcos.gen; import com.idcos.Application; import com.idcos.automate.dal.mybatis.BibleTextMapper; import org.</description>
     </item>

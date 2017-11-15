@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My New Hugo Site</title>
-    <link>http://kedadiannao220.hugo.io/</link>
+    <link>http://kedadiannao220.github.io/</link>
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://kedadiannao220.hugo.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://kedadiannao220.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/basicjava/</link>
+      <link>http://kedadiannao220.github.io/basicjava/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/basicjava/</guid>
+      <guid>http://kedadiannao220.github.io/basicjava/</guid>
       <description>一些颠覆认知的问题 Java的String地址是相等的 System.out.println(&amp;quot;a&amp;quot; == &amp;quot;a&amp;quot;); //true System.out.println(&amp;quot;a&amp;quot;.equals(&amp;quot;a&amp;quot;)); //true  Integer的valueOf存在默认值-127~127的区间 Integer f1 = 100, f2 = 100, f3 = 150, f4 = 150; System.out.println(f1 == f2);// true System.out.println(f3 == f4);// false  switch case在处理String的时候，比对的是String的hashCode public class Test { public Test() { } public static void main(String[] args) { String str = &amp;quot;test&amp;quot;; byte var3 = -1; switch(str.hashCode()) { case 97: if(str.equals(&amp;quot;a&amp;quot;)) { var3 = 0; } break; case 98: if(str.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/git/</link>
+      <link>http://kedadiannao220.github.io/git/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/git/</guid>
+      <guid>http://kedadiannao220.github.io/git/</guid>
       <description>GIT命令 git clone:  git clone -b develop &amp;ndash;single-branch &amp;lt;git-address&amp;gt; :从git地址当中clone 指定的develop分支/或者在git repository当中指定此项目的默认branch  git add：  git add :将文件暂存，若多次修改，会暂存多个版本，但提交的快照只会保存最后一次的版本 git add -A ：暂存所有的新增，修改，删除过的文件  git diff：  git diff： 比较工作目录当中未暂存文件与暂存区快照的文件 git diff &amp;ndash;cached：比较已经暂存文件与上次提交的快照文件  git commit  git commit -m ：提交添加注释信息 git commit -v ：提交时将修改差异添加至commit信息当中 git commit -a ：可以将示暂存的文件暂存后提交 git commit &amp;ndash;amend：撤消刚提交的操作  git remove  rm file：从未暂存文件列表当中删除某文件 git rm：添加移除文件操作的记录信息 git rm &amp;ndash;cached：从跟踪清单当中删除某些文件  git reset  git reset HEAD file：撤销此file的add操作 git reset &amp;ndash;hard HEAD\^：撤销最后一次的commit  git checkout  git checkout &amp;ndash; file：取消对file的修改操作  git remote  git remote：显示远程仓库名称 git remote -v ：显示远程仓库地址 git remote add [name] [url]：添加一个远程仓库 git remote show [remote-name]：显示远程仓库的信息 git remote renmae [remote-oldname] [remote-newname]：重命名remote名称 git remote vm [remote-name]：删除remote  git tag  git tag ：列出现有的标签 git tag -l &amp;lsquo;v1.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/maven/</link>
+      <link>http://kedadiannao220.github.io/maven/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/maven/</guid>
+      <guid>http://kedadiannao220.github.io/maven/</guid>
       <description> 简介 Maven Document
 概念讲述 什么是SNAPSHOT 有的版本号当中以SNAPSHOT为后缀，说明此版本为开发状态，不稳定；
 POM Profile  用户自己的设置: (%USER~HOME~%/.m2/settings.xml) 全局设置: (\${maven.home}/conf/settings.xml) &amp;lt;activation&amp;gt;: 当jdk版本为1.3,1.4,1.5的时候触发，支持区间的写法  &amp;lt;activation&amp;gt; &amp;lt;jdk&amp;gt;[1.3,1.6)&amp;lt;/jdk&amp;gt; &amp;lt;/activation&amp;gt;  使用 常用命令  这些命令都是一个一个的plugin Maven Plugins ; mvn -h里面不会显示这些plugin 每一个plugin都是一个maven工程； mvn idea:idea: 生成idea的工程 mvn eclipse:eclipse: 生成eclipse工程 mvn clean : 清理工程 mvn test/compile: 运行测试、编译工程 mvn deploy : 发布至远程仓库 mvn install: 发布工程至本地仓库 mvn package: 将工程打包，包文件存放于target目录  常用操作 上传文件至repository mvn deploy:deploy-file -DgroupId=com.egfbank.iam -DartifactId=yylm-fcs-iam -Dversion=1.0 -Dpackaging-jar -Dfile=./yylm-fcs-iam-1.0-SNAPSHOT.jar -Durl=http://maven2.idcos.com:8081/repository/thirdparty/ -DrepositoryId=thirdparty   repositoryId需要在 .m2/setting.xml里面配置名称及用户名和密码 若有报错可以使用 mvn -X 进行debug模式  TODO 如何利用nexus搭建私有镜像库 </description>
@@ -41,84 +41,84 @@ POM Profile  用户自己的设置: (%USER~HOME~%/.m2/settings.xml) 全局设置
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/mysql/</link>
+      <link>http://kedadiannao220.github.io/mysql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/mysql/</guid>
+      <guid>http://kedadiannao220.github.io/mysql/</guid>
       <description>MySql日常杂学 启动相关 /etc/init.d/mysqld start /etc/init.d/mysqld stop /etc/init.d/mysqld restart service mysqld restart service mysqld stop service mysqld start  其他命令 mysql -uroot -pP@ssw0rd -h55.6.8.142 hf-csa --default-character-set=utf8 mysql -uoot -pP@ssw0rd hf-csa -default-character-set=utf8 &amp;lt; db_qdn672.sql mysqldump --opt --protocol=TCP --user=&#39;root&#39; --password=&#39;P@ssw0rd&#39; --host=&#39;55.6.8.142&#39; -all-databases --result-file=&#39;20170619.sql&#39; mysqldump --opt --protocol=TCP --user=&#39;root&#39; --password=&#39;P@ssw0rd&#39; --host=&#39;55.6.8.142&#39; hf-csa --result-file=&#39;20170619.sql&#39;  Index  SHOW INDEX FROM SRV~INFO~; &amp;ndash; 查看表里面的索引信息 ALTER TABLE SRV~INFOWFNODEEXECLOG~ ADD INDEX SRV~INFOWFNODEEXECLOGINDEX1~(SRV~INFOWFNODEID~,FROM~STATE~,TO~STATE~); &amp;ndash; 添加索引 ALTER TABLE SRV~INFOWFNODEEXECLOG~ DROP INDEX SRV~INFOWFNODEEXECLOGINDEX1~; &amp;ndash; 删除索引  MySQL优化 表字段  整数类型不要使用INT，使用TINYINT、SMALLINT、MEDIUM~INT~,非负添加UNSIGNED VARCHAR的长度只分配真正需要的空间 使用TIMESTAMP而非DATETIME 单表字段不超过20 用整型来存IP  查询类  不用SELECT * OR改写为IN: or的效率是N级别，而IN的效率是Log(n)级别 WHERE的子句不用!</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/curl/</link>
+      <link>http://kedadiannao220.github.io/curl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/curl/</guid>
+      <guid>http://kedadiannao220.github.io/curl/</guid>
       <description> CURL概述 CURL(command line url viewer),是命令行工具，发出网络请求，得到并提取数据，显示在标准输出里面，支持多种协议
 CURL命令  curl -o file url: 保存url的网页 curl -C -o url: 断点下载文件 curl -L url: 跳转至某个页面 curl -i url: 显示url的头部信息 curl -v url: 显示请求的通信过程  body请求  curl -X POST &amp;ndash;data &amp;ldquo;data=xxx&amp;rdquo; url: 将参数信息放到&amp;ndash;data里面 或-d curl url?data=xxx : get请求直接在后面拼装参数即可，curl默认是get请求 curl -u username:password url: http认证 curl -u username url: 输入用户后再提示输入密码，为了安全 curl -u username:password -T file ftp://ftpserver.com: 上传文件到ftp  添加cookie curl --cookie &amp;quot;access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTY0NTgwMzcsImxvZ2luTmFtZSI6ImFkbWluIiwibmFtZUNOIjoi57O757uf566h55CG5ZGYIiwidGltZW91dCI6MjQsInVzZXJJZCI6IjU3M2E0Njk4ZTRiMGQ5MDY2OGJjOWYwMyIsInVzZXJOYW1lIjoiYWRtaW4ifQ.DuWu64q_xiTHJFxQ8X9nMlGwFo82UtP_-2axvKgWois&amp;quot; http://10.0.106.37:8080/app/backop/6b9ab697-4f81-42e8-8a98-80b1e3f6f0a7/syncmdb  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/docker/</link>
+      <link>http://kedadiannao220.github.io/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/docker/</guid>
+      <guid>http://kedadiannao220.github.io/docker/</guid>
       <description>Get Started command  docker &amp;ndash;version : docker版本 docker command &amp;ndash;help : 查看某个命令的帮助 docker-compose &amp;ndash;version : docker compose版本 docker-machine &amp;ndash;version: docker machine版本 docker version: 查看docker client和server的状态 docker run -h=&amp;lsquo;cmdb&amp;rsquo; &amp;ndash;name cmdb -d -p 180:80 -p 122:22 dcosapp1.0 docker save -o dcosapp.tar dcosapp1.0  镜像  docker pull ubuntu:14.04 : 下载ubuntu:14.04镜像 docker images : 列出镜像 docker images -q : 只列出镜像ID docker images -f since=hello-world : -f 过滤出某些镜像；since/before ​  容器 启动容器  docker run -it ubuntu:14.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/dubbo%E5%AD%A6%E4%B9%A0--%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</link>
+      <link>http://kedadiannao220.github.io/dubbo%E5%AD%A6%E4%B9%A0--%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/dubbo%E5%AD%A6%E4%B9%A0--%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</guid>
+      <guid>http://kedadiannao220.github.io/dubbo%E5%AD%A6%E4%B9%A0--%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</guid>
       <description>前言 最近比较寂寞，想学dubbo，又不想按照官网那种方式进行配置，想集成于spring boot；所以上网找了一下有没有spring boot dubbo这样的玩意；于是就发现了spring-boot-starter-dubbo 并且还有一个spring-boot-starter-dubbo-sample; 欣喜若狂地下载下来，竟然启动不起来；于是改巴改巴，将坑都给填填，以后再详细研究原理
 环境搭建步骤  下载zookeeper，解压并启动； 下载sample代码，分别启动server和client 启动client成功后，client和server和console里面分别打印abccc即可成功  POM文件修改  pom文件里面的spring boot starter-parent的1.3.6.RELEASE版本号在maven中央仓库里面没有，改成了1.3.5.RELEASE pom文件里面的spring-boot-starter-dubbo的1.0.0-SNAPSHOT在maven中央仓库里面也没有，改成了1.0.0  坑一： 运行了zookeeper启动命令，但是状态却是没有启动 ➜ bin sh zkServer.sh start ZooKeeper JMX enabled by default Using config: /Users/admin/projects/zookeeper-3.4.8/bin/../conf/zoo.cfg -n Starting zookeeper ... STARTED ➜ bin sh zkServer.sh status ZooKeeper JMX enabled by default Using config: /Users/admin/projects/zookeeper-3.4.8/bin/../conf/zoo.cfg Error contacting service. It is probably not running.  解决方法：使用前置启动：sh zkServer.sh start-foreground ➜ bin sh zkServer.sh start-foreground ZooKeeper JMX enabled by default Using config: /Users/admin/projects/zookeeper-3.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01~2%E7%AB%A0/</link>
+      <link>http://kedadiannao220.github.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01~2%E7%AB%A0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01~2%E7%AB%A0/</guid>
+      <guid>http://kedadiannao220.github.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01~2%E7%AB%A0/</guid>
       <description>前言 为什么要阅读本书  如何编写简单、干净、易读的代码，尤其是对于集合的操作 如何简单地使用并行计算提高性能 如何准确地为问题建模 如果写出更简单的并发代码 如何测试和调试Lambda表达式  第1章 简介 ?什么是函数式编程  核心是：在思考问题时，使用不可变值和函数，函数对一个值进行处理，映射成另一个值  第2章 Lambda表达式 第一个Lambda表达式 new Button().addActionListener(e -&amp;gt; { System.out.println(&amp;quot;hello world&amp;quot;); });  重要函数接口 public static void functionInterface() { /** * Predicate&amp;lt;T&amp;gt; 入参T,返回boolean */ Predicate&amp;lt;Integer&amp;gt; persi = x -&amp;gt; x &amp;gt; 6; System.out.println(persi.test(10)); /** * BinaryOperator&amp;lt;T&amp;gt; 入参T,T，返回T */ BinaryOperator&amp;lt;Integer&amp;gt; binaryOperator = (x, y) -&amp;gt; x + y; System.out.println(binaryOperator.apply(10, 2)); /** * Consumer&amp;lt;T&amp;gt; 入参T，无返回void */ Consumer&amp;lt;Integer&amp;gt; consumer = (x) -&amp;gt; System.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC3%E7%AB%A0/</link>
+      <link>http://kedadiannao220.github.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC3%E7%AB%A0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC3%E7%AB%A0/</guid>
+      <guid>http://kedadiannao220.github.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC3%E7%AB%A0/</guid>
       <description>第3章 流 外部迭代与内部迭代 public static void innerLoop() { /** * 运算结果为：50005000共计耗时：3 * 运算结果为：50005000共计耗时：119 */ int sum = 0; Set&amp;lt;Integer&amp;gt; set = new HashSet&amp;lt;&amp;gt;(); for (int i = 0; i &amp;lt;= 10000; i++) { set.add(i); } long start = System.currentTimeMillis(); for (int i : set) { sum += i; } long end = System.currentTimeMillis() - start; System.out.println(&amp;quot;运算结果为：&amp;quot; + sum + &amp;quot;共计耗时：&amp;quot; + end); long _start = System.currentTimeMillis(); sum = set.stream().reduce((count, x) -&amp;gt; count + x).</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC4%E7%AB%A0--%E7%B1%BB%E5%BA%93/</link>
+      <link>http://kedadiannao220.github.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC4%E7%AB%A0--%E7%B1%BB%E5%BA%93/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC4%E7%AB%A0--%E7%B1%BB%E5%BA%93/</guid>
+      <guid>http://kedadiannao220.github.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC4%E7%AB%A0--%E7%B1%BB%E5%BA%93/</guid>
       <description>第4章 类库 数据类型  int占用4字节，Integer占用16字节;Integer为整形对象 在最坏的情况下，Integer[]要比int[]多占用6倍的内存 所以拆箱效率比装箱快  public static void mapToFun() { System.out.println(Stream.of(new Integer(20)).mapToInt(x -&amp;gt; x.intValue()).count()); System.out.println(Stream.of(new Integer(20)).mapToLong(x -&amp;gt; x.longValue()).count()); System.out.println(Stream.of(new Integer(20)).mapToDouble(x -&amp;gt; x.doubleValue()).count()); } public static void intStream() { System.out.println(IntStream.of(1, 2, 3).average().getAsDouble()); System.out.println(IntStream.of(1, 2, 3).max().getAsInt()); System.out.println(IntStream.of(1, 2, 3).min().getAsInt()); System.out.println(IntStream.of(1, 2, 3).findFirst().getAsInt()); System.out.println(IntStream.of(1, 2, 3).findAny().getAsInt()); System.out.println(IntStream.of(1, 2, 3).count()); System.out.println(IntStream.of(1, 2, 3).sum()); System.out.println(IntStream.of(1, 2, 3).limit(2).findFirst().getAsInt()); IntStream.range(1, 10).forEach(x -&amp;gt; System.out.println(x)); }  Optional public static void OptionalTest() { System.out.println(Optional.of(&amp;quot;ab&amp;quot;).get()); // System.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC5%E7%AB%A0--%E9%AB%98%E7%BA%A7%E9%9B%86%E5%90%88%E7%B1%BB%E5%92%8C%E6%94%B6%E9%9B%86%E5%99%A8/</link>
+      <link>http://kedadiannao220.github.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC5%E7%AB%A0--%E9%AB%98%E7%BA%A7%E9%9B%86%E5%90%88%E7%B1%BB%E5%92%8C%E6%94%B6%E9%9B%86%E5%99%A8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC5%E7%AB%A0--%E9%AB%98%E7%BA%A7%E9%9B%86%E5%90%88%E7%B1%BB%E5%92%8C%E6%94%B6%E9%9B%86%E5%99%A8/</guid>
+      <guid>http://kedadiannao220.github.io/java/java8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC5%E7%AB%A0--%E9%AB%98%E7%BA%A7%E9%9B%86%E5%90%88%E7%B1%BB%E5%92%8C%E6%94%B6%E9%9B%86%E5%99%A8/</guid>
       <description> 第5章 方法引用 </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/java/corejavai/</link>
+      <link>http://kedadiannao220.github.io/java/corejavai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/java/corejavai/</guid>
+      <guid>http://kedadiannao220.github.io/java/corejavai/</guid>
       <description>Java核心技术&amp;ndash;卷I 第1章 Java程序设计概述 java发展史  1996年sun公司发布java 1.0版本 1998年在JavaOne大会上发布java 2.0版本 2004年在JavaOne会议上发布5.0版本 2006年年末发布6.0版本 2009年sun公司被收购 2011年oracle发布1.7版本 2013年oracle发布1.8版本  第2章 Java程序设计环境 第3章 Java的基本程序设计结构 数据类型 类型 存储需求 取值范围
 int 4字节 &amp;gt;20亿 short 2字节
 long 8字节
@@ -135,38 +135,38 @@ boolean false/true char unicode编码
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/java/corejavaii/</link>
+      <link>http://kedadiannao220.github.io/java/corejavaii/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/java/corejavaii/</guid>
+      <guid>http://kedadiannao220.github.io/java/corejavaii/</guid>
       <description> Java核心技术卷二 第3章 网络编程 socket  socket(String host,String port):获取一个套接字 socket.getInputStream(): 获取流的数据信息 socket.setTimeout(1000): 设置socket连接超时时间 socket.isConnect(): socket.shutdownOutPut(): 半关闭，客户端向服务器端发送完数据之后就关闭套接字 socket.isInputShutdown()): 测试Input是否shutdown socket.isOutputShutdown()): 校验outPut是否shutdown  ServerSocket SocketChannel URL 第5章 国际化 第8章 JavaBean构件 第9章 安全 Java提供三种安全机制  语言设计特性（对数组边界进行检查，无不受检查的类型转换，无指针算法等） 访问控制机制，用于控制代码能够执行操作（文件访问，网络访问） 代码签名，作者可以使用标准的加密算法来认证java代码，准备知道代码被谁创建，被谁修改  类加载器 Java程序的三个类加载器  引导类加载器：通常从rt.jar当中进行加载，是虚拟机不可缺少的部分 扩展类加载器：项目或工程当中引入的jar包 系统类加载器：环境变量所配置的jre当中的类  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC2%E7%AB%A0---java%E5%86%85%E5%AD%98%E5%8C%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC2%E7%AB%A0---java%E5%86%85%E5%AD%98%E5%8C%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC2%E7%AB%A0---java%E5%86%85%E5%AD%98%E5%8C%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC2%E7%AB%A0---java%E5%86%85%E5%AD%98%E5%8C%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/</guid>
       <description>第2部分 自动内存管理机制 第2章 Java内存区域与内存溢出异常 2.1 概述 C语言的内存管理是由开发者自行操作的，所以当开发者经验不足的时候就会写出内存溢出的代码；而java的内存则由虚拟机进行管理，开发人员不用担心内存回收和使用的问题；但是当内存溢出的时候，如果不懂得jvm是怎么操作内存的，排查问题就会比较麻烦
 2.2 运行时数据区域  虚拟机栈 本地方法栈 方法区 堆 程序计数器  2.2.1 程序计数器  程序计数器是一块小的区域，每一个线程都有独立的程序计数器，保证线程在切换的时候可以恢复到正确的执行位置；字节码解释器就是通过改变程序计数器来执行for、while、swtich等表达式;  2.2.2 java虚拟机栈  java虚拟机栈是线程私有的，生命周期与线程相同,每个方法在创建使用的时候都会创建一个栈帧，方法的调用对应着方法所对应的栈帧从入栈到出栈的过程 虚拟机栈局部变量表存放着java的基础数据类型，对象引用和returnAddress类型，其中long和double占用了两个slot 若线程请求的栈的深度大于虚拟机所允许的深度，抛StackOverflowError 若线程请求的内存大小超出了可以申请的内存，抛OutOfMemoryError  2.2.3 本地方法栈  本地方法栈为线程找到本地的Native方法，虚拟机栈为线程使用java服务 本地方法栈同虚拟机栈一样会抛出两个异常  2.2.4 java堆（java Heap）  堆是内存当中管理最大的一块，堆里面的内存供线程共享 堆内存由虚拟机启动时创建，存放对象实例、数组 java堆可以处于物理上面内存不连续，扩展一般通过Xmx和Xms来控制  2.2.5 方法区  方法区的内存同堆内存一样，供线程共享 存放着已经被虚拟机加载的类、常量、静态变量、即时编译后的代码数据 当方法区无法满足线程所申请的内存时，抛出OOM异常  2.2.6 运行时常量池（Runtime Constant Pool）  用于存放类当中的常量信息 常量池属于方法区的一部分  2.2.7 直接内存（Direct Memory）  直接内存不是运行时数据区域，也不是java虚拟机里面定义的内存，但是可以将一些数据信息放到直接内存当中，避免在堆内存和方法区当中来回复制，以提高效率 若服务器物理内存不足时，会抛出OOM异常  2.3 HotSpot虚拟机对象探秘 2.3.1 对象创建  对象创建的步骤是什么？虚拟机遇到new关键字，检查常量池当中是否存在类的引用，并检查此类是否加载，初始化等；若没有加载，则会走类加载的流程；若已经加载，则进入堆内存的分配；若堆内存是规整的，则使用指针碰撞的方式进行分配，若不规整，则根据虚拟机记录的空闲列表进行分配 如何保证对象在多个线程创建的时候是不会重复的？对象在创建的时候，每个线程会在堆内存当中预先分配一小段内存叫做本地线程分配缓冲区（Thread Local Allocation Buffer TLAB）当TLAB分配完的时候才会进行同步创建堆内存的处理；另一种方式是直接同步进行创建  2.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC3%E7%AB%A0---%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC3%E7%AB%A0---%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC3%E7%AB%A0---%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC3%E7%AB%A0---%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</guid>
       <description>第3章 垃圾收集器与内存分配策略 3.1 概述  Lisp语言是最早使用内存分配并GC的语言 因为垃圾收集成为了高并发的瓶颈，并且需要排查内存溢出等复杂问题 程序计数器、虚拟机栈、本地方法三个区域是随着线程生而生，线程灭而灭，所以内存的GC是固定的；我们只关心运行时的内存GC，因为只有在运行时我们才知道需要创建什么对象  3.2 对象已死么  java堆当中存放着几乎所有的java对象实例，在GC的时候，需要去判断这些对象实例是否已经死亡  3.2.1 引用计数算法  对象引用的时候，计数器+1，引用失效的时候，计数器-1；但这种算法无法处理对象互相引用的问题 如果两个对象互相引用 ，计数器都不为0，此时GC就不会回收他们 所以在java没有彩计数器的算法来GC  3.2.2 可达性分析算法  通过一个对象的GC来做为Root，向下搜索看看是否存在引用的链路，若存在，说明是对象实例是活着的，无法GC，若不存在，则GC 几个对象互相引用，但如果没有实例化，则会被GC掉 java当中可以做为GC ROOT的对象有以下几种 ：虚拟机栈当中的对象；方法区表类静态属性引用的对象；方法区当中常量引用的对象；本地方法栈中JNI引用的对象 弊端：当应用工程比较大的时候，在几百兆的内存当中去查询引用链是非常花费时间的；并且不能保证在查找的过程当中，引用链路会发生变化  3.2.3 再谈引用  有一些缓存数据，是没有引用关系的，那么这些如果被GC掉就会非常的可惜，所以java当中将引用分为几个等级； 强引用（Strong Reference） ：new 出来的对象，这类对象只要引用存在，则不会被回收掉 软引用（Soft Reference）：只有当内存发生溢出的时候才会把这些对象回收掉 弱引用（Weak Reference）：只要GC工作的时候，就一定会被回收，存活于两次GC的间隔 虚引用（Phanton Reference）：存在的目的就是在对象实例被回收的时候发出一个通知，无法实例化对象，属于最弱的引用  3.2.4 生存还是死亡  一个对象若没有通过GC ROOT来找到对象的引用链，那么此时会被标记并筛选，若对象覆写finalize()方法或finalize()方法已经被虚拟机调用过（只能调用一次，第二次仍然会被GC掉），那么此对象不会被回收 若没有需要执行finalize()方法，那么虚拟机将其放入F-Queue队列当中进行即将回收处理 在即将回收处理的时候，对象可以通过finalize()方法当中通过重新建立引用来拯救自己  3.2.5 回收方法区  方法区当中的内存被称为永久代，永久代当中的内存回收效率很低，因为大家都比较“永久”，所以无法全部回收 废弃的常量的回收：常量存在于常量池当中，当没有一个对象引用此常量的时候，将在GC的时候清理出常量池 无用类的回收：当一个类当中的所有实例都被GC；无法通过反射生成类对象的实例；该类的ClassLoader已经被回收的时候,GC会将这些无用的类回收掉 在操作大量反射的时候，需要注意内存的使用情况，以保证永久代不会溢出  3.3 垃圾收集算法 3.3.1 标记-清除算法  它是最基础的垃圾收集算法 它的不足在于被标记清除的内存会产生大量的碎片，而当内存需要分配大对象的时候，会导致内存不连续而无法分配，需要再次触发垃圾回收机制，所以效率不高  TODO 3.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
       <description>第4章 虚拟机性能监控与故障处理 4.1 概述  工具永远都是知识技能的一层包装 我的mac的jdk PATH为/Library/Java/JavaVirtualMachines/jdk1.7.0~79~.jdk/Contents/Home  4.2 JDK命令行工具 工具名称 作用
 jps JVM Process Status Tool, 显示指定系统内所有的HotSpot虚拟机进程 jstat JVM Statistics Monitoring Tool,用于收集HotSpot虚拟机各方面的运行数据 jinfo Configuration Info for Java,显示虚拟机的配置信息 jmap Memory Map for Java,生成虚拟机的内存转储快照 jhat Jvm Heap Dump Brower，用于分析headump文件，它会建立一个HTTP/HTML服务器，让用户可以在浏览器上查看分析结果 jstack Stack Trace for Java， 显示虚拟机的线程快照
 4.2.1 jps: 虚拟机进程监控工具  jps -q : 输入LVMID(Local Virtual Machine Identifier)，虚拟机执行主类名称以及这些进程的本地虚拟机唯一ID jps -m : 输出虚拟机进程启动时传递给主类main()函数的参数 jps -l : 输出主类的全名，如果进程执行的是jar包，输入jar路径 jps -v : 输出虚拟机进程启动时jvm参数  # .</description>
@@ -174,46 +174,46 @@ jps JVM Process Status Tool, 显示指定系统内所有的HotSpot虚拟机进�
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC5%E7%AB%A0-%E8%B0%83%E4%BC%98%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC5%E7%AB%A0-%E8%B0%83%E4%BC%98%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC5%E7%AB%A0-%E8%B0%83%E4%BC%98%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC5%E7%AB%A0-%E8%B0%83%E4%BC%98%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/</guid>
       <description> 5.1 概述 5.2 案例分析 5.2.1 高性能硬件上的程序部署策略  如何解决老年代太大? 重启或者定时触发Full GC 64位的JDK消耗的内存一般比32位JDK大，这是由于指针膨胀，以及数据类型对齐补白等因素导致 64位的JDK的性能测试结果普遍低于32位JDK 根据实际情况可以选择对应的垃圾收集器 大量的缓存做为集中式部署  5.2.2 集群间同步导致的内存溢出  内存经常异常，可以先添加 -XX:+HeapDumpOnOutOfMemroyError参数 分析dump文件，定位问题的原因  5.2.3 堆外内存导致的溢出错误  由于Direct Memroy内存不会进入堆当中，它只能等待老年代满了之后Full GC，然后清理掉内存的废弃对象，否则就只能等到内存溢出异常，自己回收 -XX: MaxDirectMemroySize 调整大小，内存不足时再抛出OOM或OOE异常  5.2.4 外部命令导致系统很慢  查看CPU资源消耗情况 外部shell脚本调用Runtime.getRuntime().exec()方法，频繁调用会导致CPU和内存的负担很重，因为会clone出来一个进程，结束后再关闭掉  5.2.7  Java的GUI程序当中一般加入 -Dsun.awt.keepWorkingSetOnMinimize=true 来保证程在恢复最小化时能够立即响应  5.3 实战Eclipse运行速度调优 </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC6%E7%AB%A0-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC6%E7%AB%A0-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC6%E7%AB%A0-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC6%E7%AB%A0-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</guid>
       <description>第6章 类文件结构 6.1 概述  代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步 二进制本地机器码不再是唯一的选择  6.2 无关性基石  一次编写，到处运行 JVM通过JSR-292实现了对其他语言在jvm上面运行，像Clojure、Groovy、JRuby、Jython、Scala等；通过对应语言的编译器，将代码都编译成Class文件  6.3 Class类文件结构  Class文件是一组以8位字节为基础单位的二进制流 Class文件结构采用一种类似于C语言结构体的伪结构来存储数据，有两种数据类型：无符号和表 无符号类型属于基本数据类型，以u1、u2、u4、u8来代表1个字节、2个字节、4个字节、8个字节的无符号数，用于描述数字，索引引用、数量值或者UTF-8编码构成字符串等 表是由多个无符号或者其他表作为数据项构成的复合数据类型，表一般以~info结尾~，用于描述层次关系的复合结构数据，整个Class文件就是一张表  6.3.1 魔数与Class文件的版本  每个Class文件的头4个字节称为魔数，唯一作用是确定这个文件是否被虚拟机接受的Class文件 文件的扩展名称可以随意改动，基于安全方面的考虑采用了魔数 vim打开.class文件，输入:%!xxd即可转换为十六进制 4个字节后面存储的是Class文件的版本号，即0xcafebabe 第5、6个字节是次版本号 0x0000 第7、8个字节是主版本号 0x0033  00000000: cafe babe 0000 0033 002d 0a00 0700 2609  6.3.2 常量池  紧接着主次版本号之后的是常量池入口，常量池是 占用Class文件最多的资源仓库， 占用Class文件空间最大的数据项目， 与其他项目关联最多的数据类型， Class文件当中第一个出现的表类型数据项目 由于常量池当中常量的数量无法固定，所以放置一项u2类型数据 常量池容量计数值从1开始，而不是从0开始 常量池当中存放大类的常量：字面量和符号引用 字面量(literal)与Java语言的常量概念接近，final声明或者字符串等 符号引用(symbolic References)类似于编译原理方面的概念，包括下面三类常量:类和接口的全限定名、字段的名称和描述符  6.3.3 访问标志  两个字节来代表，用于记录访问标志是public、final、注解、枚举等  6.3.4 类索引、父类索引与接口索引集合  类索引和父类索引是u2类型的数据、接口索引是u2类型数据的集合 因为对象都继承于Object，那么所有Java类的父类索引都不为0  6.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC7%E7%AB%A0-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC7%E7%AB%A0-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC7%E7%AB%A0-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC7%E7%AB%A0-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</guid>
       <description>第7章 虚拟机类加载机制 7.1 概述  jvm是怎么加载这些Class文件信息的？ Class文件进入jvm会发生什么变化？ jvm把类的数据从Class文件添加到内存，并对数据进行校验，转换解析和初始化，最终形成可以被jvm直接使用的java类型，这就是jvm的类加载机制 类型的加载、连接和初始化都是在运行期间完成的，这样做可以动态扩展，但会开销一些性能问题  7.2 类加载时机  类的生命周期 加载(loading)、验证(Verification)、准备(Preparation)、解析(Resolution)、初始化(Initialization)、使用(Using)、卸载(Unloading)七个阶段。 其中验证、准备、解析统称为连接，解析有可能在初始化的时候才开始 什么时候开始初始化：1)遇到new、getstatic、putstatic或invokestatic这4条字节码指令 2)使用reflect包的方法对类进行反射调用时 3)父类没有初始化 4)需要执行含有main方法主类 5)MethodHandle实例所调用的类  public class SuperClassLoad { static int value = 1000; static { System.out.println(&amp;quot;SuperClass init!&amp;quot;); } } class SubClass extends SuperClassLoad { static { System.out.println(&amp;quot;SubClass init!&amp;quot;); } } class mainTest { public static void main(String[] args) { /** * 没有使用SubClass当中的属性,所以不会被加载,不会输出SubClass init * SuperClass init! * 1000 */ System.out.println(SubClass.value); } }  public class ConstantLoad { public static final String CODE = &amp;quot;Java&amp;quot;; static { System.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AB%A0-%E8%B5%B0%E8%BF%91java/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AB%A0-%E8%B5%B0%E8%BF%91java/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AB%A0-%E8%B5%B0%E8%BF%91java/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AB%A0-%E8%B5%B0%E8%BF%91java/</guid>
       <description> 第1部分 走近Java 第1章 走近java  JDK(java development kit)java开发工具，包括java程序设计语言，api类库，Java虚拟机 JRE(java runtime environment)：java se api和java虚拟机称为JRE Java体系的四个平台  Java Card:支持小内存设备的应用：智能卡等 Java ME(java micro Edition):支持面向移动终端的应用：手机，平板等 Java SE(java Standard Edition):支持面向桌面级应用：windows应用 Java EE(java Enterprise Edition):支持多层架构的企业级应用：erp,crm   java虚拟机发展史  Sun Classic VM是世界上第一款商用Java虚拟机（1996年1月23）;后续被Exact VM取代； Exact VM：准确式内存管理，拥有两级即时编译器、编译器与解释器混合工作模式等 HotSpot VM:是Sun JDK和OpenJDK中所带的虚拟机，目前使用范围最广，不是Sun公司开发的，而是Longview Technologies小公司设计，后被Sun收购；  HotSpot:热点代码探测技术  JRockit VM:由BEA公司研发，曾经号称“世界上速度最快的Java虚拟机”，JRockit的垃圾收集器和MissionControl服务套件等部分的实现处于领先水平 J9 VM: IBM研发的用于IBM产品和AIX、z/OS这些平台  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jwt/</link>
+      <link>http://kedadiannao220.github.io/jwt/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jwt/</guid>
+      <guid>http://kedadiannao220.github.io/jwt/</guid>
       <description>什么是JWT? jwt的全称是JSON Web Token；JSON Web Token是一个开源标准(rfc7519) ，是一个轻量，携带着用户信息的json Object对象，安全的进行服务器端与客户端交互；这个对象可以校验、信任，因为它由数字组成； 轻量：因为轻量，所以可以更好地放在http header里面，在服务器与客户端之间快速交互 携带用户信息：将用户的重要信息:userId，userName等放在jwt当中，不用再次从数据库当中获取
 什么时候使用？  需要认证:用户根据username、password登录后，使用jwt返回一个token给客户端，客户端在请求的时候将token放在http header当中给服务器端，服务器端校验token的合法性，然后处理请求的response
  用户信息被改变：
@@ -228,84 +228,84 @@ sinature 签名，根据header、payload和一个用户设置的密码(secret)�
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/linux-awk/</link>
+      <link>http://kedadiannao220.github.io/linux-awk/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/linux-awk/</guid>
+      <guid>http://kedadiannao220.github.io/linux-awk/</guid>
       <description> 常用Command find awk 语法 usage: awk [-F fs] [-v var=value] [-f progfile | &#39;prog&#39;] [file ...]   -F: 指定分隔域的标识 -v: 指定命令/参数值 -f: 指定需要解析的文件  Demo awk -F &#39;:&#39; &#39;{print $1}&#39; /etc/passwd ##输入/etc/passwd当中以:分隔的第一个域 awk -F &#39;:&#39; &#39;{print $1 &amp;quot;\t&amp;quot; $2}&#39; /etc/passwd ##输入/etc/passwd当中以:分隔的第1，2两个域，注意$1与$2之间的字符串要添加&amp;quot;&amp;quot; awk &#39;{count++} END {print count}&#39; /etc/passwd ##统计文件当中的行数 echo -e &amp;quot;A line 1n A line 2&amp;quot; | awk {print} ##print不带参数的时候，默认打印整行 echo -e &amp;quot;A line 1n A line 2&amp;quot; | awk -F &#39;n&#39; &#39;{print $1}&#39; ##指定分隔符 &#39;n&#39;,并打印第一个field echo -e &amp;quot;A line 1n A line 2&amp;quot; | awk &#39;{print $1}&#39; ## -F为空时，默认以空格分隔 echo | awk &#39;{ var1=&amp;quot;hello&amp;quot;; var2=&amp;quot;world&amp;quot;; print var1,var2}&#39; ##在{}当中定义变量，变量声明之间用 ; 进行分隔  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/linux-command/</link>
+      <link>http://kedadiannao220.github.io/linux-command/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/linux-command/</guid>
+      <guid>http://kedadiannao220.github.io/linux-command/</guid>
       <description>每天一个linux命令 文件及目录操作 ls  ls -l:列表显示当前目录下的文件 ls -lu:根据文件名称正序排列文件 ls -lt:根据文件修改时间倒序排列 ls -l * | grep &amp;ldquo;^d^&amp;rdquo;:列出当前文件目录下面的所有文件夹信息，其中d为linux当中的目录标识 ls -l * | grep &amp;ldquo;\^-&amp;rdquo;:列出当前文件目录下面的所有文件信息 ll -t &amp;ndash;time-style=long-iso:以指定的时间格式显示文件 ls -color[=WHEN]:其中when可以是never|always|auto  cd  cd - ：返回上一次操作的目录 cd !\$: 将一个命令的参数做为cd参数  pwd  pwd -P: 若当前目录为link,则显示link路径 pwd -L: 若当前目录为link，显示软路径  mkdir  mkdir -v: 创建目录成功后显示信息 mkdir -p: 递归创建目录 mkdir -m: 创建带权限的目录  rm  rm -i : 交互式删除(interactive),每次删除都会有提示 rm -f : 强制删除，没有提示 rm -r : &amp;ndash;recursive 递归删除 rm &amp;ndash; -f : 删除以f开头的文件  mv  mv -t : target directory;将文件移动至目标目录 mv -t dir file&amp;hellip; mv -f : force；若移动的文件已经存在，强制覆盖 mv dir1 dir2: 若dir2不存在，则将dir1重命名；若dir2存在，将dir1移动到dir2里面 mv -b : backup,若文件存在，则根据备份策略将文件先备份  cp  cp -a : 是否覆盖copy，copy的时候两个文件的时间保持一致;相当于 -dR cp -l : copy一个link文件 cp -R : copy整个目录  touch  touch -t : 指定文件的创建时间 touch -t 201211142223 log.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/mongodb/</link>
+      <link>http://kedadiannao220.github.io/mongodb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/mongodb/</guid>
+      <guid>http://kedadiannao220.github.io/mongodb/</guid>
       <description>启动 mongodump -h localhost --username dbuser --password dbuser -o /tmp/mongodb-directory -d directory\_db\_dev mongorestore -d hf-cmdb0622-1 --drop --dir=/root/mongodb\_production-backup-file.201701192300/hf-cmdb/ mongo --username dbuser --password dbuser  基本命令  启动mongodb ： mongod &amp;ndash;dbpath /Users/admin/projects/mongodb/data/db
  连接mongodb : mongo  数据类型  String Integer Boolean Double keys Arrays Timestamp Object Null Symbol Date Object ID Binary Data Code Regular expression  命令介绍  show dbs: 列出数据库列表 use local: 切换数据库 db: 查看当前的数据库 db.test.insert({&amp;ldquo;name&amp;rdquo;:&amp;ldquo;zhangsan&amp;rdquo;}): 插入数据，其中test为数据库的库名 db.dropDatabase(): 删除当前的数据库 db.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/mulithread/</link>
+      <link>http://kedadiannao220.github.io/mulithread/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/mulithread/</guid>
+      <guid>http://kedadiannao220.github.io/mulithread/</guid>
       <description>java多线程 第一章 多线程技能 线程与进程的区别  一个进程的启动是由多个线程所支持的；windows进程管理器当中的第一项都一个进程，每一个进程可以由多个线程组成；每个线程的任务是不同的，互不影响 进程之间的数据不可以共享，而线程可以  关键句  一个进程至少有一个线程在运行 代码的执行结果与执行顺序和调用顺序无关（调用随机性） star方法的执行顺序不代表线程的执行顺序 Thread类也实现了Runnable接口，所以Thread的构造方法当中也可以传入Threa对象 数据和方法若不做设置，会出现线程不安全的情况，导致同一份数据被多个线程操作，通过在run方法前添加synchronized关键字，控制线程的执行队列，如果有其他线程在操作，那么就需要等待其他线程执行完之后当前线程才可以操作，run方法被称做“互斥区”或“临界区” 虽然synchronized可以解决数据安全的问题，但如果多个线程都在排队想要操作数据,而存在一个线程在操作，一直没有结束，那么其他所有的线程都必须在排队 run与start的区别是：start返回当前线程的名称是被Thread-0线程调用的结果 isAlive()方法用于判断线程是否活动；true/false取决于线程是否结束 getName()方法用于获取当前线程的名称 sleep()方法用于休眠当前线程 getId()方法用于获取当前线程的id interrupted()方法与isInterrupted()方法 suspend()方法暂停线程，resume()方法恢复线程，但suspend()方法会独占公共变量，将变量永远锁住，并且会导致数据不同步的情况 Thread.yield()方法会放弃当前cpu资源，让利给其他资源使用，这样会导致线程执行时间变长 Thread.getPriority()方法可以获取线程的优先级，对应的setPriority()可以设置线程的优先级 线程的优先级具有以下特点  继承性：两个线程如果是子父关系，那么priority相等 规则性：优先级高的会大部分先执行完 随机性：随机执行各线程，而非根据优先级高的来执行 优先级高的线程执行速度要快于优先级低的  isDaemon()判断一个线程是否是daemon线程（守护线程）;如果是守护线程，如果线程都已经结束了，此标志才会被置为false  第二章 对象及变量的并发访问 2.1  方法内部的变更不存在非线程安全问题 synchronized只会锁对象，不会锁方法；即创建多个对象，会产生多个锁；若只创建一个对象，则线程会顺序执行 线程A调用obejct对象当中的synchronized方法时，B线程可以调用其他没有被同步的方法；如果B线程调用了其他也被synchronized声明的方法时，也需要排队等待，需要同步执行 什么是脏读：因非线程安全取到的被修改过的数据；对于会产生脏读的方法需要添加synchronized 什么叫锁重入：当一个synchronized声明的方法内部调用了其他被声明synchronized方法； 一个线程遇到异常，它所持有的锁会全部释放 同步不具有继承性；即子类的方法若没有被synchronized声明，而父类的方法被声明了，那么调用子类的时候不会排队  2.2  synchronized的弊端在于，一个方法若处理时间过长，其他线程需要排队很久；解决方法，将方法当中仅需要同步等待执行的代码声明为synchronized(同步代码块)；这样其他线程就可以访问其他没有被同步的代码 synchronized(this)间具有同步性，如果在一个对象当中，那么代码块之间是同步的；即不同的线程调用同一对象的不同synchronized(this)声明代码块时会同步执行 若synchronized(非this)对象，那么不周的线程操作不同的对象的代码块的时候不是同步，而是异步 对于static的synchronized，有一个问题  package com.pgy.thread.sync; /** * Created by admin on 10/05/2017. */ public class staticSyncTest { public static void main(String[] args) { ThreadA tha = new ThreadA(); tha.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/nginx/</link>
+      <link>http://kedadiannao220.github.io/nginx/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/nginx/</guid>
+      <guid>http://kedadiannao220.github.io/nginx/</guid>
       <description> Mac下nginx命令 sudo brew install nginx: brew安装nginx /usr/local/etc/nginx/nginx.conf: nginx配置文件路径 sudo nginx：启动nginx sudo nginx -s stop: 停止nginx sudo nginx -s reload: 重启nginx  静态资源配置 server { listen 4000; server_name localhost; root /home/www/christ; location / { autoindex on; autoindex_exact_size on; autoindex_localtime on; } }  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <link>http://kedadiannao220.github.io/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://kedadiannao220.github.io/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
       <description>基础 语法  and : &amp;amp;&amp;amp; or : || elif : if else if、for后面是: if ~name~_ == &amp;lsquo;~main~_&amp;lsquo;: main方法，方法的入口 str(10) : 将int转换为str int(&amp;lsquo;1&amp;rsquo;): 将str转换为int  2 Using the Python Interpreter  python打开python的解释器，若命令不存在，请检查Path环境变量 Ctrl+D或quit() 关闭Interpreter; windows是Ctrl+z Interpreter里面自带命令历史，可以通过ctroller+P去查找上一个命令 python3 xx.py: 执行python  3 Using Python as a Calculator &amp;gt;&amp;gt;&amp;gt; 2** 3 ## 2的3次方 8 &amp;gt;&amp;gt;&amp;gt; 10 / 3 ## 10除以3 3.3333333333333335  生态 工具 pip3 包管理工具  easy~install~ pip 安装包管理工具；或从官网下载 pip install &amp;ndash;upgrade pip : 升级包管理工具 pip install markdown 使用pip安装软件包 pip freeze: pip安装的软件包列表  ipython  import inspect &amp;amp;&amp;amp; print(inspect.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/redis/</link>
+      <link>http://kedadiannao220.github.io/redis/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/redis/</guid>
+      <guid>http://kedadiannao220.github.io/redis/</guid>
       <description>redis-cli del &amp;lsquo;LOGIN~ERRORLIMIT~:zhangbo&amp;rsquo;</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring-resttemplate/</link>
+      <link>http://kedadiannao220.github.io/spring/spring-resttemplate/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring-resttemplate/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring-resttemplate/</guid>
       <description>解决中文乱码的问题和Delete无法传入body的问题 问题说明：RestTemplate中文乱码问题； 回复里面有我的评论，以下为解决方法
 package com.idcos.cloudres.biz.common.util; import org.apache.http.client.methods.HttpEntityEnclosingRequestBase; import org.apache.http.client.methods.HttpUriRequest; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.http.HttpMethod; import org.springframework.http.client.HttpComponentsClientHttpRequestFactory; import org.springframework.http.converter.HttpMessageConverter; import org.springframework.http.converter.StringHttpMessageConverter; import org.springframework.web.client.RestTemplate; import java.net.URI; import java.nio.charset.StandardCharsets; import java.util.List; /** * restful 接口工具类 * Created by guanbin on 2017/3/15. */ public class RestfulUtil { private static final Logger logger = LoggerFactory.getLogger(RestfulUtil.class); /** * 获取StringHttpMessageConverter字符集为utf-8类型的RestTemplate * @return */ public static final RestTemplate getRestTemplate() { RestTemplate restTemplate = new RestTemplate(); List&amp;lt;HttpMessageConverter&amp;lt;?&amp;gt;&amp;gt; converterList = restTemplate.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring-springboot/</link>
+      <link>http://kedadiannao220.github.io/spring/spring-springboot/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring-springboot/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring-springboot/</guid>
       <description> Spring 1.5.x当中的hibrenate名称转换策略 今天将Spring从1.3.2升级到1.5.x当中，发现所有的查询都会有异常信息，异常信息为小写的表名不存在，本来想修改一下MySQL对大小写的敏感配置就可以了，但是想着1.3版本的为什么就不会有这个问题呢？
 ### Spring 1.3版本当中的配置 spring.jpa.hibernate.naming-strategy=org.hibernate.cfg.DefaultNamingStrategy ### Spring 1.5版本当中的配置 spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  由于1.5当中将hibrenate jar包升级，导致hibreanate的一些配置有所变化。 对于名称策略，官方描述如下：Spring Configure JPA properties
 SpringBoot 配置myBaits的log输出 配置logImpl的参数值即可，LOG4J是按照log4j的日志进行输出
@@ -314,29 +314,29 @@ SpringBoot 配置myBaits的log输出 配置logImpl的参数值即可，LOG4J是�
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC1%E7%AB%A0--%E5%85%A5%E9%97%A8/</link>
+      <link>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC1%E7%AB%A0--%E5%85%A5%E9%97%A8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC1%E7%AB%A0--%E5%85%A5%E9%97%A8/</guid>
+      <guid>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC1%E7%AB%A0--%E5%85%A5%E9%97%A8/</guid>
       <description> 前言 SpringBoot可以让Spring不再成为开发的绊脚石，轻量配置或者完全不需要配置
 内容 Spring精要  自动配置：若配置了datasource，则会根据配置注入对应的数据库驱动等 起步依赖：将你所需要的依赖全都打包好，解决冲突，解决大量依赖等 命令行界面：命令行工具，SpringBoot cli Actuator：可以更好的观察Spring应用的情况  初始化Spring Boot项目  官网的quick start里面有简单的demo 也可以在官网的配置界面进行配置 或使用IDE(Eclipse/Idea)进行配置 或使用cli进行初始化  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC2%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</link>
+      <link>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC2%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC2%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</guid>
+      <guid>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC2%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE/</guid>
       <description> 注解 属性文件外置配置  要想使用属性文件外置配置，根据 Generating your own meta-data using the annotation processor 需要配置spring-boot-configuration-processor依赖  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-configuration-processor&amp;lt;/artifactId&amp;gt; &amp;lt;optional&amp;gt;true&amp;lt;/optional&amp;gt; &amp;lt;/dependency&amp;gt;   配置properties文件  amazon.accountId=pengganyu   PropertyConfig信息，需要添加@ConfigurationProperties注解  package com.idcos.automate.config; import org.springframework.boot.context.properties.ConfigurationProperties; import org.springframework.stereotype.Component; @Component @ConfigurationProperties(prefix = &amp;quot;amazon&amp;quot;) public class PropertyConfig { private String accountId; public String getAccountId() { return accountId; } public void setAccountId(String accountId) { this.accountId = accountId; } }  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC7%E7%AB%A0--actuator/</link>
+      <link>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC7%E7%AB%A0--actuator/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC7%E7%AB%A0--actuator/</guid>
+      <guid>http://kedadiannao220.github.io/spring/springboot%E5%AE%9E%E6%88%98%E7%AC%AC7%E7%AB%A0--actuator/</guid>
       <description>说明  SpringBoot实战第4章讲测试 SpringBoot实战第5章讲Groovy SpringBoot实战第6章讲Grails  由于在工作当中使用Groovy和Grails都非常的少，所以就大概看了一下，SpringBoot对于两种语言的处理和支持
 前言 7.1 Actuator端点 PATH DESCRIPTION
 /autoconfig
@@ -356,37 +356,37 @@ SpringBoot 配置myBaits的log输出 配置logImpl的参数值即可，LOG4J是�
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC10%E7%AB%A0--%E4%BA%8B%E5%8A%A1/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC10%E7%AB%A0--%E4%BA%8B%E5%8A%A1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC10%E7%AB%A0--%E4%BA%8B%E5%8A%A1/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC10%E7%AB%A0--%E4%BA%8B%E5%8A%A1/</guid>
       <description>前言 以JDBC的形式操作数据库，需要控制获得连接、关闭连接、事务提交、回滚等操作，而Spring的声明式事务处理可以从复杂的事务处理中脱离出来，只需要按配置规则配置即可使用。</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC12%E7%AB%A0--%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC12%E7%AB%A0--%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC12%E7%AB%A0--%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC12%E7%AB%A0--%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1/</guid>
       <description>目前调用远程接口可以使用一些RPC框架，或者使用Spring Template；或Web Service等</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC13%E7%AB%A0--spring%E6%B6%88%E6%81%AF/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC13%E7%AB%A0--spring%E6%B6%88%E6%81%AF/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC13%E7%AB%A0--spring%E6%B6%88%E6%81%AF/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC13%E7%AB%A0--spring%E6%B6%88%E6%81%AF/</guid>
       <description>Spring与ActiveMQ的集成：ActiveMQ</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC1%E7%AB%A0--%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC1%E7%AB%A0--%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC1%E7%AB%A0--%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC1%E7%AB%A0--%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
       <description>学习说明 在看到第五章的时候有以下心得 看源码是一个枯燥的过程，因为你并没有参与到实际的开发和设计当中，所以有一些命名和思路不会非常明确，并且写代码的人的风格和思维都和自己不太一样；在学习的过程当中有很多的难题
  看了源码可以做什么？ 这是什么鬼东西 为什么要这样写？ 这代码注释都不明确 看了半天，也许又得回到起点重新再看一遍，思路断了 类层级很深，根本不知道哪个调用哪个 无助，焦虑让自己无法承受  但是还是坚持下去，自己的路只能自己走，并且要坚持下去；也许坚持下去没有意义，也许会有意义；在这个过程当中的经历我反正享受到了，这样就够了。
 在看到第七章的时候有以下心得  AOP自己现在已经大概会用了，但是原理在看的过程当中还是非常的吃力 准备第一遍看看大纲，知道一个大概，后续在第二遍的时候争取弄懂原理 静态和动态的代理模式在日常工作当中使用较少，没有细看  在看到第11章之后有以下心得  目前发现Spring Boot的起来，导致Spring的使用方式发生一些变化，准备看Spring Boot的一些东西 像JMS，事务，RPC等使用方式也不太一样，准备把Spring Boot好好用用 当然Spring Boot是基于Spring开发的，所以源码在一定程度上是通用的  Spring的整体架构 CoreContainer  Core、 Beans、Context、 Expression、 Language  Data Access/Integration  JDBC、ORM、 OXM、JMS、Transaction  WEB  WEB、WEB-Servlet、WEB-Struts、Web-Porlet  AOP  Aspects 、 Instrumentation  Test 环境搭建 原本以为导入工程是一个非常简单的事情，但是spring的编译采用了gradle；之前没有使用过 gradle ，所以费了一些事；
@@ -395,46 +395,46 @@ SpringBoot 配置myBaits的log输出 配置logImpl的参数值即可，LOG4J是�
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC2%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC2%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC2%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC2%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0/</guid>
       <description>2.3 最简单的例子 public class MyTestBean { private String testStr = &amp;quot;testStr&amp;quot;; public String getTestStr() { return this.testStr; } public void setTestStr(String str) { this.testStr = str; } }  &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; ?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&amp;quot;&amp;gt; &amp;lt;bean id=&amp;quot;myTestBean&amp;quot; class=&amp;quot;com.spring.MyTestBean&amp;quot;/&amp;gt; &amp;lt;/beans&amp;gt;  public class TestClass { @Test public void test() throws IOException { // ClassPathResource Resource res = new ClassPathResource(&amp;quot;beanFactory.xml&amp;quot;); BeanFactory beanFactory = new XBeanXmlBeanFactory(res); MyTestBean myTestBean = (MyTestBean) beanFactory.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC3%E7%AB%A0-%E9%BB%98%E8%AE%A4%E6%A0%87%E7%AD%BE%E7%9A%84%E8%A7%A3%E6%9E%90/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC3%E7%AB%A0-%E9%BB%98%E8%AE%A4%E6%A0%87%E7%AD%BE%E7%9A%84%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC3%E7%AB%A0-%E9%BB%98%E8%AE%A4%E6%A0%87%E7%AD%BE%E7%9A%84%E8%A7%A3%E6%9E%90/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC3%E7%AB%A0-%E9%BB%98%E8%AE%A4%E6%A0%87%E7%AD%BE%E7%9A%84%E8%A7%A3%E6%9E%90/</guid>
       <description>3.1 bean标签的解析及注册  DefaultBeanDefinitionDocumentReader.parseDefaultElement:解析的标签有四种：import,alias,beans,bean  private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) { if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) { importBeanDefinitionResource(ele); } else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) { processAliasRegistration(ele); } else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) { processBeanDefinition(ele, delegate); } else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) { // recurse doRegisterBeanDefinitions(ele); } }   首先理解bean的解析, 在默认的processDefaultElement里面处理Bean的definition逻辑如下：  protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) { // 根据element获取BeanDefinitionHolder，里面包括着bean的名称,alias数组列表及BeanDefinition BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele); if (bdHolder != null) { // 查看此beanName下面是否存在子的定义，继续再解析一次 bdHolder = delegate.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC4%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E8%A7%A3%E6%9E%90/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC4%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC4%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E8%A7%A3%E6%9E%90/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC4%E7%AB%A0--%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E8%A7%A3%E6%9E%90/</guid>
       <description> 4.1 自定义标签的使用  为了方便非标准的spring bean配置，spring提供了自定义标签的功能 原理为使用spring提供AbstractBeanDefinitionParser来解析xml里面的元素数据，放到BeanDefinition当中 将BeanDefinition注册即可 此种配置方式在现实当中已经不常用，像现在的SpringBoot就不需要xml的配置 故此本章只需要知道，了解即可，没有必要深入学习  &amp;lt;user email = &amp;quot;email&amp;quot;,id=&amp;quot;id&amp;gt;&amp;lt;/user&amp;gt;  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC5%E7%AB%A0--bean%E7%9A%84%E5%8A%A0%E8%BD%BD/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC5%E7%AB%A0--bean%E7%9A%84%E5%8A%A0%E8%BD%BD/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC5%E7%AB%A0--bean%E7%9A%84%E5%8A%A0%E8%BD%BD/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC5%E7%AB%A0--bean%E7%9A%84%E5%8A%A0%E8%BD%BD/</guid>
       <description>5.1 FactoryBean的使用 /*** AbstractBeanFactory.doGetBean方法加载bean **/ protected &amp;lt;T&amp;gt; T doGetBean(final String name, @Nullable final Class&amp;lt;T&amp;gt; requiredType, @Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {}  转换beanName  spring的FactoryBean是以&amp;amp;开头的，若一个beanName是以&amp;amp;开头的，说明是FactoryBean，需要截取&amp;amp;后面的内容 判断此name是否为aliasName，若在aliasMap当中可以找得到，那么需要给出alias的真正名称  final String beanName = transformedBeanName(name); protected String transformedBeanName(String name) { return canonicalName(BeanFactoryUtils.transformedBeanName(name)); }  public static String transformedBeanName(String name) { Assert.notNull(name, &amp;quot;&#39;name&#39; must not be null&amp;quot;); String beanName = name; while (beanName.startsWith(BeanFactory.FACTORY_BEAN_PREFIX)) { beanName = beanName.substring(BeanFactory.FACTORY_BEAN_PREFIX.length()); } return beanName; } public String canonicalName(String name) { String canonicalName = name; // Handle aliasing.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC6%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC6%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC6%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC6%E7%AB%A0--%E5%AE%B9%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95/</guid>
       <description>概述 spring不仅仅提供了xmlBeanFactory，还提供了ApplictionContext用于扩展BeanFactory当中的功能;ApplicationContext拥有BeanFactory所有的功能;
 ApplicationContext factory = new ClassPathXmlApplicationContext(&amp;quot;beanFactory.xml&amp;quot;);  下面对此代码进行分析，ClassPathXmlApplicationContext如何处理加载bean的
 6.1 设置配置路径 public ClassPathXmlApplicationContext(String configLocation) throws BeansException { this(new String[] {configLocation}, true, null); }  public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent) throws BeansException { super(parent); setConfigLocations(configLocations); if (refresh) { refresh(); } }  public void setConfigLocations(String... locations) { if (locations != null) { Assert.noNullElements(locations, &amp;quot;Config locations must not be null&amp;quot;); this.configLocations = new String[locations.length]; for (int i = 0; i &amp;lt; locations.</description>
@@ -442,38 +442,38 @@ ApplicationContext factory = new ClassPathXmlApplicationContext(&amp;quot;beanFa
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/</guid>
       <description>前言 什么是AOP？为什么要玩AOP  AOP是Aspect Oriented Programming，意即面向切面编程 面向对向编程是竖向的方式；无法对多个对象进行同时的操作，只能在每个对象当中引入公共的代码，这样就导致代码的重复；程序不易维护；所以就有了AOP 比如说你怎么在所有的controller的方法里面输入一行hello world？如果不使用切面，你可能写个工具类，每个controller方法都需要添加一行代码、而切面就不需要这样操作  7.1 学习使用AOP 一个demo  在Spring boot当中简化了xml配置，只需要在切面的方法上面添加@Configuration注解即可 以下demo为切所有的controller层，其中execution及Pointcut、Around的用法后面会再深入学习  @Aspect @Configuration public class AspectController { @Pointcut(&amp;quot;execution(* com.idcos.automate.web.controller..*.*(..))&amp;quot;) public void pointcut() { System.out.println(&amp;quot;start aspect ......&amp;quot;); } @Before(&amp;quot;pointcut()&amp;quot;) public void beforeCut() { System.out.println(&amp;quot;beforeCut&amp;quot;); } @After(&amp;quot;pointcut()&amp;quot;) public void afterCut() { System.out.println(&amp;quot;afterCut&amp;quot;); } @AfterThrowing(&amp;quot;pointcut()&amp;quot;) public void afterThrowing() { System.out.println(&amp;quot;afterThrowing&amp;quot;); } @AfterReturning(&amp;quot;pointcut()&amp;quot;) public void afterReturning() { System.out.println(&amp;quot;afterReturning&amp;quot;); } @Around(&amp;quot;pointcut()&amp;quot;) public Object doAround(ProceedingJoinPoint pjp) throws Throwable { System.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC8%E7%AB%A0--%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5jdbc/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC8%E7%AB%A0--%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5jdbc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC8%E7%AB%A0--%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5jdbc/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC8%E7%AB%A0--%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5jdbc/</guid>
       <description> 前言  什么是JDBC（Java DataBase Connectivity Java数据库连接） 怎么使用JDBC？  引入数据库驱动jar包 Java在程序当中加载驱动Class.forName(&amp;ldquo;com.mysql.jdbc.Driver&amp;rdquo;) 创建数据库对象 创建statement对象 调用Statement对象执行sql语句 关闭数据库连接  其他像Spring Data Jpa或者使用mybatis，或者Hibernate等框架也可以完成数据库的操作 此章不再这里做展开  </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/</link>
+      <link>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/</guid>
+      <guid>http://kedadiannao220.github.io/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/</guid>
       <description>前言  MyBatis 之前叫iBatis，是Apache的一个开源项目，后来迁移到了Google Code当中，改名为MyBatis 官网介绍如下：MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Old Java Objects,普通的 Java对象)映射成数据库中的记录。  与Spring Boot整合 基本整合 因为当前最流行的是Spring boot框架，所以在将Spring boot与MyBatis整合一下
 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.mybatis.spring.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mybatis-spring-boot-starter&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.3.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;  package com.idcos.automate.dal.mybatis; import com.idcos.automate.dal.auto.dataobject.xl.BibleTextDO; import org.apache.ibatis.annotations.Mapper; import org.apache.ibatis.annotations.Param; import org.apache.ibatis.annotations.Select; @Mapper public interface BibleTextMapper { @Select(&amp;quot;SELECT * FROM BIBLE_TEXT WHERE ID = #{id}&amp;quot;) BibleTextDO findOne(@Param(&amp;quot;id&amp;quot;) String id); }  package com.idcos.gen; import com.idcos.Application; import com.idcos.automate.dal.mybatis.BibleTextMapper; import org.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC1%E7%AB%A0---%E8%B5%B0%E8%BF%91java/</link>
+      <link>http://kedadiannao220.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC1%E7%AB%A0---%E8%B5%B0%E8%BF%91java/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC1%E7%AB%A0---%E8%B5%B0%E8%BF%91java/</guid>
+      <guid>http://kedadiannao220.github.io/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC1%E7%AB%A0---%E8%B5%B0%E8%BF%91java/</guid>
       <description> 第1部分 走近Java 第1章 走近java  JDK(java development kit)java开发工具，包括java程序设计语言，api类库，Java虚拟机 JRE(java runtime environment)：java se api和java虚拟机称为JRE Java体系的四个平台  Java Card:支持小内存设备的应用：智能卡等 Java ME(java micro Edition):支持面向移动终端的应用：手机，平板等 Java SE(java Standard Edition):支持面向桌面级应用：windows应用 Java EE(java Enterprise Edition):支持多层架构的企业级应用：erp,crm   java虚拟机发展史  Sun Classic VM是世界上第一款商用Java虚拟机（1996年1月23）;后续被Exact VM取代； Exact VM：准确式内存管理，拥有两级即时编译器、编译器与解释器混合工作模式等 HotSpot VM:是Sun JDK和OpenJDK中所带的虚拟机，目前使用范围最广，不是Sun公司开发的，而是Longview Technologies小公司设计，后被Sun收购；  HotSpot:热点代码探测技术  JRockit VM:由BEA公司研发，曾经号称“世界上速度最快的Java虚拟机”，JRockit的垃圾收集器和MissionControl服务套件等部分的实现处于领先水平 J9 VM: IBM研发的用于IBM产品和AIX、z/OS这些平台  </description>
     </item>
     

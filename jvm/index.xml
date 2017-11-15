@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jvms on My New Hugo Site</title>
-    <link>http://kedadiannao220.hugo.io/jvm/</link>
+    <link>http://kedadiannao220.github.io/jvm/</link>
     <description>Recent content in Jvms on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://kedadiannao220.hugo.io/jvm/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://kedadiannao220.github.io/jvm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC2%E7%AB%A0---java%E5%86%85%E5%AD%98%E5%8C%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC2%E7%AB%A0---java%E5%86%85%E5%AD%98%E5%8C%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC2%E7%AB%A0---java%E5%86%85%E5%AD%98%E5%8C%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC2%E7%AB%A0---java%E5%86%85%E5%AD%98%E5%8C%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%BC%82%E5%B8%B8/</guid>
       <description>第2部分 自动内存管理机制 第2章 Java内存区域与内存溢出异常 2.1 概述 C语言的内存管理是由开发者自行操作的，所以当开发者经验不足的时候就会写出内存溢出的代码；而java的内存则由虚拟机进行管理，开发人员不用担心内存回收和使用的问题；但是当内存溢出的时候，如果不懂得jvm是怎么操作内存的，排查问题就会比较麻烦
 2.2 运行时数据区域  虚拟机栈 本地方法栈 方法区 堆 程序计数器  2.2.1 程序计数器  程序计数器是一块小的区域，每一个线程都有独立的程序计数器，保证线程在切换的时候可以恢复到正确的执行位置；字节码解释器就是通过改变程序计数器来执行for、while、swtich等表达式;  2.2.2 java虚拟机栈  java虚拟机栈是线程私有的，生命周期与线程相同,每个方法在创建使用的时候都会创建一个栈帧，方法的调用对应着方法所对应的栈帧从入栈到出栈的过程 虚拟机栈局部变量表存放着java的基础数据类型，对象引用和returnAddress类型，其中long和double占用了两个slot 若线程请求的栈的深度大于虚拟机所允许的深度，抛StackOverflowError 若线程请求的内存大小超出了可以申请的内存，抛OutOfMemoryError  2.2.3 本地方法栈  本地方法栈为线程找到本地的Native方法，虚拟机栈为线程使用java服务 本地方法栈同虚拟机栈一样会抛出两个异常  2.2.4 java堆（java Heap）  堆是内存当中管理最大的一块，堆里面的内存供线程共享 堆内存由虚拟机启动时创建，存放对象实例、数组 java堆可以处于物理上面内存不连续，扩展一般通过Xmx和Xms来控制  2.2.5 方法区  方法区的内存同堆内存一样，供线程共享 存放着已经被虚拟机加载的类、常量、静态变量、即时编译后的代码数据 当方法区无法满足线程所申请的内存时，抛出OOM异常  2.2.6 运行时常量池（Runtime Constant Pool）  用于存放类当中的常量信息 常量池属于方法区的一部分  2.2.7 直接内存（Direct Memory）  直接内存不是运行时数据区域，也不是java虚拟机里面定义的内存，但是可以将一些数据信息放到直接内存当中，避免在堆内存和方法区当中来回复制，以提高效率 若服务器物理内存不足时，会抛出OOM异常  2.3 HotSpot虚拟机对象探秘 2.3.1 对象创建  对象创建的步骤是什么？虚拟机遇到new关键字，检查常量池当中是否存在类的引用，并检查此类是否加载，初始化等；若没有加载，则会走类加载的流程；若已经加载，则进入堆内存的分配；若堆内存是规整的，则使用指针碰撞的方式进行分配，若不规整，则根据虚拟机记录的空闲列表进行分配 如何保证对象在多个线程创建的时候是不会重复的？对象在创建的时候，每个线程会在堆内存当中预先分配一小段内存叫做本地线程分配缓冲区（Thread Local Allocation Buffer TLAB）当TLAB分配完的时候才会进行同步创建堆内存的处理；另一种方式是直接同步进行创建  2.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC3%E7%AB%A0---%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC3%E7%AB%A0---%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC3%E7%AB%A0---%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC3%E7%AB%A0---%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</guid>
       <description>第3章 垃圾收集器与内存分配策略 3.1 概述  Lisp语言是最早使用内存分配并GC的语言 因为垃圾收集成为了高并发的瓶颈，并且需要排查内存溢出等复杂问题 程序计数器、虚拟机栈、本地方法三个区域是随着线程生而生，线程灭而灭，所以内存的GC是固定的；我们只关心运行时的内存GC，因为只有在运行时我们才知道需要创建什么对象  3.2 对象已死么  java堆当中存放着几乎所有的java对象实例，在GC的时候，需要去判断这些对象实例是否已经死亡  3.2.1 引用计数算法  对象引用的时候，计数器+1，引用失效的时候，计数器-1；但这种算法无法处理对象互相引用的问题 如果两个对象互相引用 ，计数器都不为0，此时GC就不会回收他们 所以在java没有彩计数器的算法来GC  3.2.2 可达性分析算法  通过一个对象的GC来做为Root，向下搜索看看是否存在引用的链路，若存在，说明是对象实例是活着的，无法GC，若不存在，则GC 几个对象互相引用，但如果没有实例化，则会被GC掉 java当中可以做为GC ROOT的对象有以下几种 ：虚拟机栈当中的对象；方法区表类静态属性引用的对象；方法区当中常量引用的对象；本地方法栈中JNI引用的对象 弊端：当应用工程比较大的时候，在几百兆的内存当中去查询引用链是非常花费时间的；并且不能保证在查找的过程当中，引用链路会发生变化  3.2.3 再谈引用  有一些缓存数据，是没有引用关系的，那么这些如果被GC掉就会非常的可惜，所以java当中将引用分为几个等级； 强引用（Strong Reference） ：new 出来的对象，这类对象只要引用存在，则不会被回收掉 软引用（Soft Reference）：只有当内存发生溢出的时候才会把这些对象回收掉 弱引用（Weak Reference）：只要GC工作的时候，就一定会被回收，存活于两次GC的间隔 虚引用（Phanton Reference）：存在的目的就是在对象实例被回收的时候发出一个通知，无法实例化对象，属于最弱的引用  3.2.4 生存还是死亡  一个对象若没有通过GC ROOT来找到对象的引用链，那么此时会被标记并筛选，若对象覆写finalize()方法或finalize()方法已经被虚拟机调用过（只能调用一次，第二次仍然会被GC掉），那么此对象不会被回收 若没有需要执行finalize()方法，那么虚拟机将其放入F-Queue队列当中进行即将回收处理 在即将回收处理的时候，对象可以通过finalize()方法当中通过重新建立引用来拯救自己  3.2.5 回收方法区  方法区当中的内存被称为永久代，永久代当中的内存回收效率很低，因为大家都比较“永久”，所以无法全部回收 废弃的常量的回收：常量存在于常量池当中，当没有一个对象引用此常量的时候，将在GC的时候清理出常量池 无用类的回收：当一个类当中的所有实例都被GC；无法通过反射生成类对象的实例；该类的ClassLoader已经被回收的时候,GC会将这些无用的类回收掉 在操作大量反射的时候，需要注意内存的使用情况，以保证永久代不会溢出  3.3 垃圾收集算法 3.3.1 标记-清除算法  它是最基础的垃圾收集算法 它的不足在于被标记清除的内存会产生大量的碎片，而当内存需要分配大对象的时候，会导致内存不连续而无法分配，需要再次触发垃圾回收机制，所以效率不高  TODO 3.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
       <description>第4章 虚拟机性能监控与故障处理 4.1 概述  工具永远都是知识技能的一层包装 我的mac的jdk PATH为/Library/Java/JavaVirtualMachines/jdk1.7.0~79~.jdk/Contents/Home  4.2 JDK命令行工具 工具名称 作用
 jps JVM Process Status Tool, 显示指定系统内所有的HotSpot虚拟机进程 jstat JVM Statistics Monitoring Tool,用于收集HotSpot虚拟机各方面的运行数据 jinfo Configuration Info for Java,显示虚拟机的配置信息 jmap Memory Map for Java,生成虚拟机的内存转储快照 jhat Jvm Heap Dump Brower，用于分析headump文件，它会建立一个HTTP/HTML服务器，让用户可以在浏览器上查看分析结果 jstack Stack Trace for Java， 显示虚拟机的线程快照
 4.2.1 jps: 虚拟机进程监控工具  jps -q : 输入LVMID(Local Virtual Machine Identifier)，虚拟机执行主类名称以及这些进程的本地虚拟机唯一ID jps -m : 输出虚拟机进程启动时传递给主类main()函数的参数 jps -l : 输出主类的全名，如果进程执行的是jar包，输入jar路径 jps -v : 输出虚拟机进程启动时jvm参数  # .</description>
@@ -42,37 +42,37 @@ jps JVM Process Status Tool, 显示指定系统内所有的HotSpot虚拟机进�
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC5%E7%AB%A0-%E8%B0%83%E4%BC%98%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC5%E7%AB%A0-%E8%B0%83%E4%BC%98%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC5%E7%AB%A0-%E8%B0%83%E4%BC%98%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC5%E7%AB%A0-%E8%B0%83%E4%BC%98%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E6%88%98/</guid>
       <description> 5.1 概述 5.2 案例分析 5.2.1 高性能硬件上的程序部署策略  如何解决老年代太大? 重启或者定时触发Full GC 64位的JDK消耗的内存一般比32位JDK大，这是由于指针膨胀，以及数据类型对齐补白等因素导致 64位的JDK的性能测试结果普遍低于32位JDK 根据实际情况可以选择对应的垃圾收集器 大量的缓存做为集中式部署  5.2.2 集群间同步导致的内存溢出  内存经常异常，可以先添加 -XX:+HeapDumpOnOutOfMemroyError参数 分析dump文件，定位问题的原因  5.2.3 堆外内存导致的溢出错误  由于Direct Memroy内存不会进入堆当中，它只能等待老年代满了之后Full GC，然后清理掉内存的废弃对象，否则就只能等到内存溢出异常，自己回收 -XX: MaxDirectMemroySize 调整大小，内存不足时再抛出OOM或OOE异常  5.2.4 外部命令导致系统很慢  查看CPU资源消耗情况 外部shell脚本调用Runtime.getRuntime().exec()方法，频繁调用会导致CPU和内存的负担很重，因为会clone出来一个进程，结束后再关闭掉  5.2.7  Java的GUI程序当中一般加入 -Dsun.awt.keepWorkingSetOnMinimize=true 来保证程在恢复最小化时能够立即响应  5.3 实战Eclipse运行速度调优 </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC6%E7%AB%A0-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC6%E7%AB%A0-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC6%E7%AB%A0-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC6%E7%AB%A0-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</guid>
       <description>第6章 类文件结构 6.1 概述  代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步 二进制本地机器码不再是唯一的选择  6.2 无关性基石  一次编写，到处运行 JVM通过JSR-292实现了对其他语言在jvm上面运行，像Clojure、Groovy、JRuby、Jython、Scala等；通过对应语言的编译器，将代码都编译成Class文件  6.3 Class类文件结构  Class文件是一组以8位字节为基础单位的二进制流 Class文件结构采用一种类似于C语言结构体的伪结构来存储数据，有两种数据类型：无符号和表 无符号类型属于基本数据类型，以u1、u2、u4、u8来代表1个字节、2个字节、4个字节、8个字节的无符号数，用于描述数字，索引引用、数量值或者UTF-8编码构成字符串等 表是由多个无符号或者其他表作为数据项构成的复合数据类型，表一般以~info结尾~，用于描述层次关系的复合结构数据，整个Class文件就是一张表  6.3.1 魔数与Class文件的版本  每个Class文件的头4个字节称为魔数，唯一作用是确定这个文件是否被虚拟机接受的Class文件 文件的扩展名称可以随意改动，基于安全方面的考虑采用了魔数 vim打开.class文件，输入:%!xxd即可转换为十六进制 4个字节后面存储的是Class文件的版本号，即0xcafebabe 第5、6个字节是次版本号 0x0000 第7、8个字节是主版本号 0x0033  00000000: cafe babe 0000 0033 002d 0a00 0700 2609  6.3.2 常量池  紧接着主次版本号之后的是常量池入口，常量池是 占用Class文件最多的资源仓库， 占用Class文件空间最大的数据项目， 与其他项目关联最多的数据类型， Class文件当中第一个出现的表类型数据项目 由于常量池当中常量的数量无法固定，所以放置一项u2类型数据 常量池容量计数值从1开始，而不是从0开始 常量池当中存放大类的常量：字面量和符号引用 字面量(literal)与Java语言的常量概念接近，final声明或者字符串等 符号引用(symbolic References)类似于编译原理方面的概念，包括下面三类常量:类和接口的全限定名、字段的名称和描述符  6.3.3 访问标志  两个字节来代表，用于记录访问标志是public、final、注解、枚举等  6.3.4 类索引、父类索引与接口索引集合  类索引和父类索引是u2类型的数据、接口索引是u2类型数据的集合 因为对象都继承于Object，那么所有Java类的父类索引都不为0  6.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC7%E7%AB%A0-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC7%E7%AB%A0-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC7%E7%AB%A0-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC7%E7%AB%A0-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</guid>
       <description>第7章 虚拟机类加载机制 7.1 概述  jvm是怎么加载这些Class文件信息的？ Class文件进入jvm会发生什么变化？ jvm把类的数据从Class文件添加到内存，并对数据进行校验，转换解析和初始化，最终形成可以被jvm直接使用的java类型，这就是jvm的类加载机制 类型的加载、连接和初始化都是在运行期间完成的，这样做可以动态扩展，但会开销一些性能问题  7.2 类加载时机  类的生命周期 加载(loading)、验证(Verification)、准备(Preparation)、解析(Resolution)、初始化(Initialization)、使用(Using)、卸载(Unloading)七个阶段。 其中验证、准备、解析统称为连接，解析有可能在初始化的时候才开始 什么时候开始初始化：1)遇到new、getstatic、putstatic或invokestatic这4条字节码指令 2)使用reflect包的方法对类进行反射调用时 3)父类没有初始化 4)需要执行含有main方法主类 5)MethodHandle实例所调用的类  public class SuperClassLoad { static int value = 1000; static { System.out.println(&amp;quot;SuperClass init!&amp;quot;); } } class SubClass extends SuperClassLoad { static { System.out.println(&amp;quot;SubClass init!&amp;quot;); } } class mainTest { public static void main(String[] args) { /** * 没有使用SubClass当中的属性,所以不会被加载,不会输出SubClass init * SuperClass init! * 1000 */ System.out.println(SubClass.value); } }  public class ConstantLoad { public static final String CODE = &amp;quot;Java&amp;quot;; static { System.</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AB%A0-%E8%B5%B0%E8%BF%91java/</link>
+      <link>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AB%A0-%E8%B5%B0%E8%BF%91java/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kedadiannao220.hugo.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AB%A0-%E8%B5%B0%E8%BF%91java/</guid>
+      <guid>http://kedadiannao220.github.io/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AB%A0-%E8%B5%B0%E8%BF%91java/</guid>
       <description> 第1部分 走近Java 第1章 走近java  JDK(java development kit)java开发工具，包括java程序设计语言，api类库，Java虚拟机 JRE(java runtime environment)：java se api和java虚拟机称为JRE Java体系的四个平台  Java Card:支持小内存设备的应用：智能卡等 Java ME(java micro Edition):支持面向移动终端的应用：手机，平板等 Java SE(java Standard Edition):支持面向桌面级应用：windows应用 Java EE(java Enterprise Edition):支持多层架构的企业级应用：erp,crm   java虚拟机发展史  Sun Classic VM是世界上第一款商用Java虚拟机（1996年1月23）;后续被Exact VM取代； Exact VM：准确式内存管理，拥有两级即时编译器、编译器与解释器混合工作模式等 HotSpot VM:是Sun JDK和OpenJDK中所带的虚拟机，目前使用范围最广，不是Sun公司开发的，而是Longview Technologies小公司设计，后被Sun收购；  HotSpot:热点代码探测技术  JRockit VM:由BEA公司研发，曾经号称“世界上速度最快的Java虚拟机”，JRockit的垃圾收集器和MissionControl服务套件等部分的实现处于领先水平 J9 VM: IBM研发的用于IBM产品和AIX、z/OS这些平台  </description>
     </item>
     
