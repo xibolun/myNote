@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> &middot; My New Hugo Site</title>
+
+  
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/print.css" media="print">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/poole.css">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/syntax.css">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://kedadiannao220.hugo.io/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="http://kedadiannao220.hugo.io/">Home</a> </li>
+      
+    </ul>
+
+    <p>&copy; 2017. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1></h1>
+  <span class="post-date">Mon, Jan 1, 0001</span>
+  
+
+<h1 id="每天一个linux命令">每天一个linux命令</h1>
+
+<h2 id="文件及目录操作">文件及目录操作</h2>
+
+<h3 id="ls">ls</h3>
+
+<ol>
+<li>ls -l:列表显示当前目录下的文件</li>
+<li>ls -lu:根据文件名称正序排列文件</li>
+<li>ls -lt:根据文件修改时间倒序排列</li>
+<li>ls -l * | grep
+&ldquo;^d^&rdquo;:列出当前文件目录下面的所有文件夹信息，其中d为linux当中的目录标识</li>
+<li>ls -l * | grep &ldquo;\^-&rdquo;:列出当前文件目录下面的所有文件信息</li>
+<li>ll -t &ndash;time-style=long-iso:以指定的时间格式显示文件</li>
+<li>ls -color[=WHEN]:其中when可以是never|always|auto</li>
+</ol>
+
+<h3 id="cd">cd</h3>
+
+<ol>
+<li>cd - ：返回上一次操作的目录</li>
+<li>cd !\$: 将一个命令的参数做为cd参数</li>
+</ol>
+
+<h3 id="pwd">pwd</h3>
+
+<ol>
+<li>pwd -P: 若当前目录为link,则显示link路径</li>
+<li>pwd -L: 若当前目录为link，显示软路径</li>
+</ol>
+
+<h3 id="mkdir">mkdir</h3>
+
+<ol>
+<li>mkdir -v: 创建目录成功后显示信息</li>
+<li>mkdir -p: 递归创建目录</li>
+<li>mkdir -m: 创建带权限的目录</li>
+</ol>
+
+<h3 id="rm">rm</h3>
+
+<ol>
+<li>rm -i : 交互式删除(interactive),每次删除都会有提示</li>
+<li>rm -f : 强制删除，没有提示</li>
+<li>rm -r : &ndash;recursive 递归删除</li>
+<li>rm &ndash; -f : 删除以f开头的文件</li>
+</ol>
+
+<h3 id="mv">mv</h3>
+
+<ol>
+<li>mv -t : target directory;将文件移动至目标目录 mv -t dir file&hellip;</li>
+<li>mv -f : force；若移动的文件已经存在，强制覆盖</li>
+<li>mv dir1 dir2:
+若dir2不存在，则将dir1重命名；若dir2存在，将dir1移动到dir2里面</li>
+<li>mv -b : backup,若文件存在，则根据备份策略将文件先备份</li>
+</ol>
+
+<h3 id="cp">cp</h3>
+
+<ol>
+<li>cp -a : 是否覆盖copy，copy的时候两个文件的时间保持一致;相当于 -dR</li>
+<li>cp -l : copy一个link文件</li>
+<li>cp -R : copy整个目录</li>
+</ol>
+
+<h3 id="touch">touch</h3>
+
+<ol>
+<li>touch -t : 指定文件的创建时间 touch -t 201211142223 log.log</li>
+<li>touch -r file1 file2: 将file2的时间更新为file1</li>
+</ol>
+
+<h3 id="cat">cat</h3>
+
+<ol>
+<li>cat file1 file2 &gt; file: 合并多个文件</li>
+<li>cat &gt;&gt; file : 向文件里面继续添加内容，不会将原内容覆盖</li>
+<li>cat -n file1 file2 : 将file1添加行号后输入到file2当中</li>
+<li>cat -b file1 file2 : 将file1非空白行添加行号后输入到file2当中</li>
+<li>cat &gt; file &lt;&lt; EOF : 输入信息到file当中，输入EOF结束</li>
+<li>tac file : 将file的内容倒序显示</li>
+</ol>
+
+<h3 id="nl">nl</h3>
+
+<ol>
+<li>nl -ba file : 将file的内容显示，并加上行号</li>
+<li>nl -bt file : 将file的内容显示，非空格的加上行号</li>
+<li>nl -nrz file: 将file的内容显示，非空格加上行号，行号默认以6位显示</li>
+<li>nl -nrz -w 3 file: 行号以3位数显示</li>
+</ol>
+
+<h3 id="more">more</h3>
+
+<ol>
+<li>more +n : 从第n行开始显示，如果more +3</li>
+<li>more -n : 定义每屏显示的行数</li>
+</ol>
+
+<h3 id="head">head</h3>
+
+<ol>
+<li>head file: 显示文件的前十行</li>
+<li>head -n 5 file: 显示文件的前五行</li>
+<li>head -n -5 file: 显示文件除最后五行之外的内容（mac不支持此命令）</li>
+<li>head -c 5 file: 显示文件5个字节</li>
+<li>head -c -5 file: 显示文件除最后5个字节之外的内容（mac不支持此命令）</li>
+<li>head -v file: 在文件内容的上面显示文件名称</li>
+</ol>
+
+<h3 id="tail">tail</h3>
+
+<ol>
+<li>tail -n 6 file: 显示文件的最后5行</li>
+<li>tail file: 默认显示文件的最后十行</li>
+<li>tail -f file: 循环显示文件内容，若文件内容有更新，则会显示出来</li>
+<li>tailf -v file: 在文件内容上面显示文件名称</li>
+</ol>
+
+<h3 id="tar">tar</h3>
+
+<ol>
+<li>tar本身没有压缩，需要调用其他的压缩命令实现</li>
+<li>tar -cvf log.tar log :
+将log目录打包，没有压缩；v显示过程，f指定压缩文件</li>
+<li>tar -czvf log.tar.gz log:
+将log目录打包，并压缩成支持gzip解压的包；打包文件还可以起名为tgz</li>
+<li>tar -czpvf log.tgz log: 将log里面的文件权限不变进行压缩</li>
+<li>tar &ndash;excule</li>
+<li>tar -cjvf log.tar.bz2 log: 将log目录打包，并压缩成支持bz2解压的包</li>
+<li>tar -ztf log.tgz: 显示tgz里面的文件列表</li>
+<li>tar -xvf log.tgz aaa.sql: 将压缩包当中的aaa.sql单独解压出来</li>
+<li>tar -xvf log.tgz: 解压tgz文件</li>
+</ol>
+
+<h2 id="文件查找命令">文件查找命令</h2>
+
+<h3 id="which">which</h3>
+
+<ol>
+<li>如果一个命令在PATH当中，则将第一个搜索到的命令返回</li>
+<li>which -v : 查看命令的版本信息</li>
+</ol>
+
+<h3 id="whereis">whereis</h3>
+
+<ol>
+<li>说明： whereis搜索的是Linux数据库当中的文件信息，一周同步一次</li>
+<li>whereis -b nginx: 搜索nginx的可执行文件</li>
+<li>whereis -m nginx: 搜索nginx的帮助文件</li>
+<li>whereis -s nginx: 搜索nignx的源文件</li>
+</ol>
+
+<h3 id="locate">locate</h3>
+
+<ol>
+<li>locate pwd: 搜索含有pwd的文件</li>
+<li>locate /etc/sh: 搜索/etc目录下面以sh开头的文件</li>
+</ol>
+
+<h3 id="find">find</h3>
+
+<ol>
+<li>find -amin -2: 查找系统当中最后2分钟被访问的文件</li>
+<li>find -atime -2: 查找系统当中最后2*24小时访问的文件</li>
+<li>find -cmin -2: 查找系统当中最后2分钟被修改状态的文件</li>
+<li>find -ctime -2: 查找系统当中最后2*24小时被修改状态的文件</li>
+<li>find -mmin -2: 查找系统当中最后2分钟被修改的文件</li>
+<li>find -mtime +2: 查找系统当中2*24小时之前被修改的文件</li>
+<li>find -mtime -2: 查找系统当中2*24小时之内被修改的文件</li>
+<li>find -mtime +2 | xargs rm -rf :
+查找系统当中2*24小时之前被修改的文件，并删除他们</li>
+<li>find . -name &ldquo;*.log&rdquo;: 在当前目录下面根据名称递归查找文件</li>
+<li>find . -perm 777: 根据文件权限查找文件</li>
+<li>find . -type f -name &ldquo;*.log&rdquo; : 根据文件类型查找文件</li>
+<li>find . -type d: 查找文件目录</li>
+<li>find . -type d | sort: 查询文件目录并排序</li>
+<li>find . -size +1000c -print:
+根据文件大小来查询，查找1k大小的文件，并进行打印输出</li>
+<li>find . -name &ldquo;<strong>SETTING</strong>.sql&rdquo; -exec ls -l {}  
+find与exec的套用；说明{}为find查出来的结果 命令必须以;结尾，\为转义</li>
+<li>find . -name &ldquo;<strong>SETTING</strong>.sql&rdquo; -exec rm -rf {}   查询文件并删除他们</li>
+<li>find . -name &ldquo;<strong>PORTAL</strong>.sql&rdquo; -exec grep &ldquo;ROLE&rdquo; {}  
+查询文件并grep文件当中的&rdquo;ROLE&rdquo;</li>
+<li>find . -name &ldquo;<strong>PORTAL</strong>.sql&rdquo; -exec mv {} /tmp  
+查询文件并将文件列表移动至/tmp目录;还可以使用cp命令进行拷贝</li>
+<li>find . -name &ldquo;[A-Z]*&rdquo; : 查询文件名称以大写字母开头的文件，-name
+支持参数</li>
+<li>find / -name &ldquo;*&rdquo; : 从系统的根目录开始查询文件列表信息，系统负荷较重</li>
+<li>find . -size +100c:
+查找大于100c的文件;c是bytes，M是以MB，k是以KB，G是以GB</li>
+</ol>
+
+<h2 id="文件和目录属性">文件和目录属性</h2>
+
+<ul>
+<li>包括：可变的、不可变的、可分享的、不可分享的</li>
+<li>各文件的目录结构和属性参考<a href="http://www.pathname.com/fhs/">FHS</a></li>
+</ul>
+
+<h3 id="linux目录结构说明">linux目录结构说明</h3>
+
+<ul>
+<li>bin: 常用的命令存放</li>
+<li>boot: 开机所需要的信息</li>
+<li>dev: 设备相关的信息</li>
+<li>etc: 系统设置</li>
+<li>home: 操作者的目录</li>
+<li>lib: 函数库</li>
+<li>media: 媒体相关</li>
+<li>mnt: 挂载</li>
+<li>opt: 第三方软件</li>
+<li>root: 系统管理员目录</li>
+<li>sbin: root权限相关的系统设定操作</li>
+<li>srv: 服务信息</li>
+<li>tmp: 临时目录</li>
+<li>lost+found:</li>
+<li>proc: 临时目录，存放内存的数据及其他信息</li>
+<li>sys: 核心系统所记录的内存数据</li>
+</ul>
+
+<h3 id="文件类型">文件类型</h3>
+
+<ul>
+<li>s:
+数据接口文件sockets,client与服务器通信的文件，如果mysql.sock:srwxrwxrwx</li>
+<li>-: 普通文件</li>
+<li>d: 目录</li>
+<li>c: 设备文件</li>
+<li>l: link文件</li>
+<li>b: 区块设备</li>
+<li>p: pipe或FIFO文件类型</li>
+</ul>
+
+<h3 id="文件权限">文件权限</h3>
+
+<h4 id="chmod">chmod</h4>
+
+<ul>
+<li>chmod a+x file: 所有的用户和群组添加x权限</li>
+<li>chmod ug+x file: 给当前用户和用户组添加x权限</li>
+<li>chmod ug-x file: 给当前用户和用户组减去x权限</li>
+<li>chmod u=x file: 将当前用户的file设置为x权限</li>
+<li>chmod -R ug+x dir: 对目录进行添加权限</li>
+</ul>
+
+<h4 id="chgrp">chgrp</h4>
+
+<ul>
+<li>chgrp -v root file: 修改file的属组</li>
+<li>chgrp &ndash;reference file1 file2: 将file2的属组修改同file1一样</li>
+<li>chgrp -R root dir: 修改dir目录下所有文件的属组为root</li>
+<li>chgrp 20 file:
+根据id命令查询当中用户组的标识为20，通过标识码对文件进行修改属组操作</li>
+</ul>
+
+<h4 id="chown">chown</h4>
+
+<ul>
+<li>chown admin: file: 修改file的属主为admin</li>
+<li>chown :root file: 修改file的属组为root</li>
+<li>chown admin:root file: 修改file的属主为admin，属组为root</li>
+<li>chown -R root:root dir: 将dir目录的属主、属组都修改为root</li>
+</ul>
+
+<h3 id="其他">其他</h3>
+
+<ul>
+<li>只要不以/开头的目录都是相对路径；以/开头的是绝对路径</li>
+<li>linux打开data文件： last /var/log/wtmp</li>
+<li>linux打开二进制文件： xxd等</li>
+</ul>
+
+<h2 id="系统管理">系统管理</h2>
+
+<h3 id="df">df</h3>
+
+<ul>
+<li>df是查看系统磁盘的使用情况</li>
+<li>df -h: 以human的方式显示磁盘大小信息,以1024为单位进行转换</li>
+<li>df -H: 以1000为单位进行转换</li>
+<li>df -t ext3: 显示指定类型的磁盘</li>
+<li>df -T: 列出文件系统类型</li>
+</ul>
+
+<h3 id="du">du</h3>
+
+<ul>
+<li>du是查看文件和目录的磁盘使用情况</li>
+<li>du -ah: 列出当前目录下所以文件和目录的大小</li>
+<li>du -h file: 显示file大小</li>
+<li>du -h dir: 显示dir大小</li>
+<li>du -sh: 显示总和</li>
+<li>du -c file1,file2: 显示每一个文件的大小，并统计总和</li>
+<li>du -ah | sort -nr:
+根据文件的空间大小进行倒序排列，不加nr为正序排列，其中r为reverse</li>
+</ul>
+
+<h3 id="top">top</h3>
+
+<h4 id="第一行-top">第一行 top</h4>
+
+<ul>
+<li>10:53:42: 系统时间</li>
+<li>up 24 days: 开机24天</li>
+<li>1 user: 当前有一个人登陆</li>
+<li>load average: 负载使用情况</li>
+</ul>
+
+<h4 id="第二行-tasks">第二行 Tasks</h4>
+
+<ul>
+<li>65 totle: 总共有65个进程</li>
+<li>1 running: 有一个running的</li>
+<li>63 sleeping: 63个在休眠</li>
+<li>0 stopped: 0个停止的</li>
+<li>0 zombie: 0个僵尸进程</li>
+</ul>
+
+<h4 id="第三行-cpu-s">第三行 %Cpu(s)</h4>
+
+<ul>
+<li>0.0 us: 用户空间占用CPU的百分比</li>
+<li>3.4 sy: 内核空间占用CPU的百分比</li>
+<li>0.0 ni: 改变过优先级的进程占用CPU的百分比</li>
+<li>90 id: 空间CPU百分比</li>
+<li>0.0 wa: IO等待占用CPU的百分比</li>
+<li>0.0 hi: Hardware IRQ 硬中断占用CPU百分比</li>
+<li>0.2 si: Software Interrupts 软件中断占用CPU百分比</li>
+</ul>
+
+<h4 id="第四行-内存状态">第四行 内存状态</h4>
+
+<ul>
+<li>total: 总共内存大小，物理内存</li>
+<li>free: 空间内存大小</li>
+<li>used: 已用内存大小</li>
+<li>buff/cache: 缓存使用大小</li>
+</ul>
+
+<h4 id="第五行-swap信息">第五行 Swap信息</h4>
+
+<ul>
+<li>Swap指当内存不够用的时候，会将一部分硬盘转换为内存使用</li>
+<li>total: 交换区容量</li>
+<li>used: 使用总量</li>
+<li>free: 空间总量</li>
+<li>cached: 缓存总量</li>
+</ul>
+
+<h4 id="第六行-空">第六行 空</h4>
+
+<h4 id="第七行-各进程的状态监控">第七行 各进程的状态监控</h4>
+
+<h4 id="操作技巧">操作技巧</h4>
+
+<ul>
+<li>b : 高亮当前正在running的进程</li>
+<li>1 : 可以切换主机不同CPU的监控信息</li>
+<li>x : 对CPU的占用量排序列高亮显示</li>
+<li>k : 按k，然后输入进程id，可以kill此进程</li>
+<li>shift + &gt; 或shift +&lt;:
+向右或向左改变排序列，默认是以%CPU进行排序</li>
+<li>top -c : 监控的command列显示完整的命令</li>
+<li>top -n 2: 更新两次后终止刷新</li>
+<li>top -d 3: 以3s为周期进行更新</li>
+<li>top -p id: 显示指定id号的进程</li>
+</ul>
+
+<h3 id="free">free</h3>
+
+<ul>
+<li>free : 显示系统内存使用和空间情况</li>
+<li>free -m : 以MB显示</li>
+<li>free -k : 以KB显示</li>
+<li>free -b : 以Byte显示</li>
+<li>free -g : 以GB为单位显示</li>
+<li>free -t : 显示内存总和列</li>
+<li>free -V : 显示版本信息</li>
+<li>free -s 10 : 10s刷新一次内存</li>
+<li>cat /proc/meminfo : 查看系统内存情况</li>
+</ul>
+
+<h3 id="lsof">lsof</h3>
+
+<ul>
+<li>lsof -c java : 打开java进程正在使用的文件</li>
+<li>lsof -u root: 打开某个用户正在使用的文件</li>
+<li>lsof -u ^root^ : 打开除了某个用户正在使用的文件</li>
+<li>lsof -i : 列出所有的网络连接</li>
+<li>lsof -i tcp/udp: 列出所有的tcp、udp网络连接信息</li>
+<li>lsof -i:8080 : 列出8080端口被哪个应用使用</li>
+<li>lsof -i tcp:80: 列出指定的tcp协议80端口</li>
+</ul>
+
+<h2 id="高级">高级</h2>
+
+<h3 id="crontab">crontab</h3>
+
+<ul>
+<li>crontab file: 如何添加一个cron: crontab file:
+file是写的cron定时脚本；系统会将file的定时任务提交，并以当前用户的名称存放于/var/spool/cron下面</li>
+<li>crontab -l : 查询当前用户的定时任务信息</li>
+<li>cat /etc/crontab: 里面记录着crontab的用法</li>
+<li>service crontab status|stop|restart|start: service
+crontab服务的生命周期命令</li>
+<li>crontab -r : 删除当前用户的cron</li>
+</ul>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

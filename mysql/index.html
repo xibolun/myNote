@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> &middot; My New Hugo Site</title>
+
+  
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/print.css" media="print">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/poole.css">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/syntax.css">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://kedadiannao220.hugo.io/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="http://kedadiannao220.hugo.io/">Home</a> </li>
+      
+    </ul>
+
+    <p>&copy; 2017. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1></h1>
+  <span class="post-date">Mon, Jan 1, 0001</span>
+  
+
+<h1 id="mysql日常杂学">MySql日常杂学</h1>
+
+<h2 id="启动相关">启动相关</h2>
+
+<pre><code class="language-shell">/etc/init.d/mysqld start
+/etc/init.d/mysqld stop
+/etc/init.d/mysqld restart
+
+service mysqld restart
+service mysqld stop
+service mysqld start
+</code></pre>
+
+<h2 id="其他命令">其他命令</h2>
+
+<pre><code class="language-shell">mysql -uroot -pP@ssw0rd -h55.6.8.142 hf-csa --default-character-set=utf8
+mysql -uoot -pP@ssw0rd hf-csa -default-character-set=utf8 &lt; db_qdn672.sql
+mysqldump --opt --protocol=TCP --user='root' --password='P@ssw0rd' --host='55.6.8.142' -all-databases  --result-file='20170619.sql'
+mysqldump --opt --protocol=TCP --user='root' --password='P@ssw0rd' --host='55.6.8.142' hf-csa  --result-file='20170619.sql'
+</code></pre>
+
+<h2 id="index">Index</h2>
+
+<ul>
+<li>SHOW INDEX FROM SRV~INFO~; &ndash; 查看表里面的索引信息</li>
+<li>ALTER TABLE SRV~INFOWFNODEEXECLOG~ ADD INDEX
+SRV~INFOWFNODEEXECLOGINDEX1~(SRV~INFOWFNODEID~,FROM~STATE~,TO~STATE~);
+&ndash; 添加索引</li>
+<li>ALTER TABLE SRV~INFOWFNODEEXECLOG~ DROP INDEX
+SRV~INFOWFNODEEXECLOGINDEX1~; &ndash; 删除索引</li>
+</ul>
+
+<h2 id="mysql优化">MySQL优化</h2>
+
+<h3 id="表字段">表字段</h3>
+
+<ul>
+<li>整数类型不要使用INT，使用TINYINT、SMALLINT、MEDIUM~INT~,非负添加UNSIGNED</li>
+<li>VARCHAR的长度只分配真正需要的空间</li>
+<li>使用TIMESTAMP而非DATETIME</li>
+<li>单表字段不超过20</li>
+<li>用整型来存IP</li>
+</ul>
+
+<h3 id="查询类">查询类</h3>
+
+<ul>
+<li>不用SELECT *</li>
+<li>OR改写为IN: or的效率是N级别，而IN的效率是Log(n)级别</li>
+<li>WHERE的子句不用!=或者&lt;&gt;操作，否则引擎放弃使用索引而进行全表扫描</li>
+</ul>
+
+<h2 id="mysql-dump">Mysql Dump</h2>
+
+<h3 id="dump数据库">dump数据库</h3>
+
+<pre><code class="language-shell">mysqldump -uroot -p hf-csa &gt; hf-csa.sql
+</code></pre>
+
+<h3 id="只dump数据库表结构-no-data-d">只dump数据库表结构（&ndash;no-data -d）</h3>
+
+<pre><code class="language-shell">mysqldump -uroot -p --no-data --add-drop-table hf-csa &gt; hf-csa.sql
+mysqldump -uroot -p -d --add-drop-table hf-csa &gt; hf-csa.sql
+</code></pre>
+
+<h3 id="dump数据库表结构排除某些表">dump数据库表结构排除某些表</h3>
+
+<pre><code class="language-shell">mysqldump -uroot -p --no-data --add-drop-table hf-csa --ignore-table=hf-csa.ACT_GET_PROPERTY &gt; hf-csa.sql
+</code></pre>
+
+<h3 id="dump数据库某张表-表中间以空格分隔">dump数据库某张表，表中间以空格分隔</h3>
+
+<pre><code class="language-shell">mysqldump -uroot -p --no-data hf-csa SRV_INFO SRV_BP_APP_INFO &gt; hf-csa.sql
+</code></pre>
+
+<h3 id="dump数据库带注释的表结构">dump数据库带注释的表结构</h3>
+
+<pre><code class="language-shell">mysqldump -uroot -p --no-data --comments hf-csa SRV_INFO SRV_BP_APP_INFO &gt; hf-csa.sql
+</code></pre>
+
+<h3 id="reload-dump-file">reload dump File</h3>
+
+<pre><code class="language-shell">shell&gt; mysql hf-csa &lt; hf-csa.sql
+shell&gt; mysql -e &quot;source hf-csa.sql&quot; hf-csa
+mysql&gt; use `hf-csa`;
+mysql&gt; source hf-csa.sql 
+</code></pre>
+
+<h2 id="infomation-schema">INFOMATION~SCHEMA~</h2>
+
+<pre><code class="language-sql">SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有表的列
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有的表
+</code></pre>
+
+<pre><code class="language-sql"> SHOW FULL COLUMNS FROM table_name;                          #查看mysql某表当中的列字段，包括列的character
+ SHOW TABLE STATUS where name like 'SRV_BP_APP_NODE_VER';    # 查看某表的状态
+
+</code></pre>
+
+<h2 id="语法相关">语法相关</h2>
+
+<h3 id="left-join-right-join-inner-join">LEFT JOIN，RIGHT JOIN, INNER JOIN</h3>
+
+<ul>
+<li>LEFT JOIN：以左边的表为基准显示查询结果</li>
+<li>RIGHT JOIN：以右边的表为基准显示查询结果</li>
+<li>INNER JOIN：只显示符合条件的查询结果</li>
+</ul>
+
+<pre><code class="language-shell">SELECT ip.IP_ADDRESS,ip.ID,unit.NAME FROM SRV_BP_DEV_IP ip LEFT JOIN SRV_BP_DEV dev ON ip.SRV_BP_DEV_ID = dev.ID
+  LEFT JOIN SRV_BP_APP_DP_UNIT unit ON dev.SRV_BP_APP_DP_UNIT_ID = unit.ID WHERE
+  ip.SRV_INFO_ID = dev.SRV_INFO_ID AND dev.SRV_INFO_ID = unit.SRV_INFO_ID AND ip.SRV_INFO_ID = '9ecbd34c-3ed6-4e61-8d11-0ba526e9ca98';
+</code></pre>
+
+<h2 id="问题列表">问题列表</h2>
+
+<h3 id="mysql的一些运维命令">mysql的一些运维命令</h3>
+
+<pre><code class="language-shell"># 查看mysql的端口监听情况
+netstate -nlt | grep 3306
+lsof -i:3306
+# 查看mysql的进程，同时可以看到mysql的一些文件位置
+ps ax | grep mysqld 
+</code></pre>
+
+<h3 id="error-1045-28000-access-denied-for-user-root-localhost-using-password-yes">ERROR 1045 (28000): Access denied for user &lsquo;root&rsquo;@&lsquo;localhost&rsquo; (using password: YES)</h3>
+
+<pre><code class="language-mysql">-- 进入安全模式
+➜  ~ mysqld_safe --skip-grant-tables &amp;
+
+-- 直接无密码进入
+➜  ~ mysql -uroot
+
+-- 选择mysql
+mysql&gt; use mysql;
+
+-- 修改密码
+mysql&gt; update user set password=PASSWORD(&quot;yunjikeji&quot;) where User = 'root';
+
+-- flush 生效
+mysql&gt; flush privileges;
+
+-- 再次用密码尝试登陆
+➜  ~ mysql -uroot -p
+</code></pre>
+
+<h3 id="incorrect-definition-of-table-performance-schema-events-waitscurrent-expected-column-nesting-even">Incorrect definition of table performance~schema~.events~waitscurrent~: expected column &lsquo;NESTING~EVEN~</h3>
+
+<p>数据库结构错误，导致mysql启动异常</p>
+
+<pre><code class="language-shell">➜  ~ mysql_upgrade -u root -p
+</code></pre>
+
+<h3 id="mac-homebrew安装的mysql相关">MAC homebrew安装的mysql相关</h3>
+
+<ul>
+<li>my.cnf目录位于：/usr/local/Cellar/mysql/5.7.11/support-files/</li>
+<li>启动相关命令：mysql.server start|stop|staus|restart</li>
+</ul>
+
+<h3 id="data-source-rejected-establishment-of-connection-message-from-server-too-many-connections">Data source rejected establishment of connection, message from server: &ldquo;Too many connections</h3>
+
+<p>由于mysql的连接数过大导致，修改最大连接数即可;</p>
+
+<pre><code class="language-shell">mysql&gt; show VARIABLES  WHERE variable_name = 'max_connections';
+
+mysql&gt; set GLOBAL max_connections=200;
+</code></pre>
+
+<p>但是在启动java工程的时候仍然会报错，并且重新Mysql后，此值无法生效，又变成了默认值151（有的版本为100）；就想着修改mysql的默认配置文件；去找一个mac平台里面的my.cnf，但是没有；于是从/usr/local/Cellar/mysql/5.7.11/support-files/当中copy一个conf到/etc/my.cnf当中,在my.cnf当中设置max~connections即可~，这样每次启动Mysql，都会设置为默认的值；
+在mac下/etc/my.cnf里面会自动加上权限为只读文件</p>
+
+<pre><code class="language-shell">[mysqld]
+## set column max value
+max_allowed_packet = 500M
+max_connections=200
+
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 
+</code></pre>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> &middot; My New Hugo Site</title>
+
+  
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/print.css" media="print">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/poole.css">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/syntax.css">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://kedadiannao220.hugo.io/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="http://kedadiannao220.hugo.io/">Home</a> </li>
+      
+    </ul>
+
+    <p>&copy; 2017. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1></h1>
+  <span class="post-date">Mon, Jan 1, 0001</span>
+  
+
+<h2 id="3-1-bean标签的解析及注册">3.1 bean标签的解析及注册</h2>
+
+<ul>
+<li>DefaultBeanDefinitionDocumentReader.parseDefaultElement:解析的标签有四种：import,alias,beans,bean</li>
+</ul>
+
+<pre><code class="language-java">    private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) {
+        if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) {
+            importBeanDefinitionResource(ele);
+        }
+        else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) {
+            processAliasRegistration(ele);
+        }
+        else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) {
+            processBeanDefinition(ele, delegate);
+        }
+        else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) {
+            // recurse
+            doRegisterBeanDefinitions(ele);
+        }
+    }
+</code></pre>
+
+<ul>
+<li>首先理解bean的解析,
+在默认的processDefaultElement里面处理Bean的definition逻辑如下：</li>
+</ul>
+
+<pre><code class="language-java">protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
+    // 根据element获取BeanDefinitionHolder，里面包括着bean的名称,alias数组列表及BeanDefinition
+        BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
+        if (bdHolder != null) {
+      // 查看此beanName下面是否存在子的定义，继续再解析一次
+            bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);
+            try {
+                // Register the final decorated instance.
+        // 以下为真正开始注册beanDefinition
+                BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
+            }
+            catch (BeanDefinitionStoreException ex) {
+                getReaderContext().error(&quot;Failed to register bean definition with name '&quot; +
+                        bdHolder.getBeanName() + &quot;'&quot;, ele, ex);
+            }
+            // Send registration event. 发送事件
+            getReaderContext().fireComponentRegistered(new BeanComponentDefinition(bdHolder));
+        }
+    }
+
+</code></pre>
+
+<ul>
+<li>BeanDefinitionParserDelegate类当中有多个parseBeanDefinitionElement方法，是多态的</li>
+<li>BeanDefinitionParserDelegate当中的parseBeanDefinitionElement首先会解析id和name，以及alias，然后调用真正解析其他属性的parseBeanDefinitionElement方法</li>
+</ul>
+
+<pre><code class="language-java">    public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, BeanDefinition containingBean) {}
+</code></pre>
+
+<ul>
+<li>BeanDefinitionParserDelegate当中的parseBeanDefinitionElement下面的方法，会真正解析ele里面的Attribute,描述信息，元数据，Look-up,Construct，Qualifier,Property等信息</li>
+</ul>
+
+<pre><code class="language-java">public AbstractBeanDefinition parseBeanDefinitionElement(Element ele, String beanName, BeanDefinition containingBean) {}
+</code></pre>
+
+<ul>
+<li>解析完成之后会返回BeanDefinitionHolder，里面包涵着xml里面定义的bean的所有属性</li>
+<li>调用BeanDefinitionReaderUtils.registerBeanDefinition方法进行注册</li>
+</ul>
+
+<pre><code class="language-java">BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
+</code></pre>
+
+<ul>
+<li>对应不同的Register去注册对应的bean信息；<img src="http://120.25.192.95:3000/spring/BeanDefinitionRegistry.png" alt="" /></li>
+<li>由于我是使用xmlbeanFactory的方式去实现，所以注册器会使用DefaultListableBeanFactory</li>
+</ul>
+
+<pre><code class="language-java">    public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition)
+            throws BeanDefinitionStoreException {
+    oldBeanDefinition = this.beanDefinitionMap.get(beanName);
+    //  是否已经注册
+        if (oldBeanDefinition != null) {
+
+    }else{
+       if (hasBeanCreationStarted()) {
+         synchronized (this.beanDefinitionMap) {
+                    this.beanDefinitionMap.put(beanName, beanDefinition);
+                    List&lt;String&gt; updatedDefinitions = new ArrayList&lt;String&gt;(this.beanDefinitionNames.size() + 1);
+                    updatedDefinitions.addAll(this.beanDefinitionNames);
+                    updatedDefinitions.add(beanName);
+                    this.beanDefinitionNames = updatedDefinitions;
+                    if (this.manualSingletonNames.contains(beanName)) {
+                        Set&lt;String&gt; updatedSingletons = new LinkedHashSet&lt;String&gt;(this.manualSingletonNames);
+                        updatedSingletons.remove(beanName);
+                        this.manualSingletonNames = updatedSingletons;
+                    }
+                }else{
+            //  private final Map&lt;String, BeanDefinition&gt; beanDefinitionMap = new ConcurrentHashMap&lt;String, BeanDefinition&gt;(256);
+           this.beanDefinitionMap.put(beanName, beanDefinition);
+                   this.beanDefinitionNames.add(beanName);
+                   this.manualSingletonNames.remove(beanName);
+
+       }
+    }
+    // 清除缓存信息
+    if (oldBeanDefinition != null || containsSingleton(beanName)) {
+            resetBeanDefinition(beanName);
+        }
+}
+</code></pre>
+
+<ul>
+<li>最终会将bean的名称和定义信息放入到ConcurrentHashMap当中</li>
+</ul>
+
+<h2 id="3-2-alias标签解析">3.2 alias标签解析</h2>
+
+<ul>
+<li>DefaultBeanDefinitionDocumentReader.processAliasRegistration方法解析alias标签并完成注册信息</li>
+</ul>
+
+<pre><code class="language-java">    protected void processAliasRegistration(Element ele) {
+        String name = ele.getAttribute(NAME_ATTRIBUTE);
+        String alias = ele.getAttribute(ALIAS_ATTRIBUTE);
+        boolean valid = true;
+        if (!StringUtils.hasText(name)) {
+            getReaderContext().error(&quot;Name must not be empty&quot;, ele);
+            valid = false;
+        }
+        if (!StringUtils.hasText(alias)) {
+            getReaderContext().error(&quot;Alias must not be empty&quot;, ele);
+            valid = false;
+        }
+        if (valid) {
+            try {
+      // 注册alias信息
+                getReaderContext().getRegistry().registerAlias(name, alias);
+            }
+            catch (Exception ex) {
+                getReaderContext().error(&quot;Failed to register alias '&quot; + alias +
+                        &quot;' for bean with name '&quot; + name + &quot;'&quot;, ele, ex);
+            }
+            getReaderContext().fireAliasRegistered(name, alias, extractSource(ele));
+        }
+    }
+</code></pre>
+
+<ul>
+<li>注册器是SimpleAliasRegistry，继承了AliasRegistry</li>
+</ul>
+
+<h2 id="3-3-import标签解析">3.3 import标签解析</h2>
+
+<h3 id="import标签示例">import标签示例</h3>
+
+<pre><code class="language-xml">    &lt;import resource=&quot;classpath*:&quot;&gt;&lt;/import&gt;
+    &lt;import resource=&quot;http:&quot;&gt;&lt;/import&gt;
+    &lt;import resource=&quot;file:&quot;&gt;&lt;/import&gt;
+</code></pre>
+
+<ul>
+<li>将import标签当中的resource封装为Resource类，Resource可以包涵classpath，url，file对象</li>
+<li>解析Resource，判断是相对路径还是绝对路径</li>
+<li>根据Resource去loadBeanDefinitions</li>
+<li>加载完成之后，通知监听器
+getReaderContext().fireImportProcessed(location, actResArray,
+extractSource(ele));</li>
+</ul>
+
+<h2 id="3-4-beans标签解析">3.4 beans标签解析</h2>
+
+<h3 id="beans标签示例">beans标签示例</h3>
+
+<ul>
+<li>spring在解析的时候将beans标签定义为NESTED~BEANSELEMENT~=&ldquo;beans&rdquo;</li>
+<li>beans标签的属性非常的多，但是肯定是循环去解析，因为beans里面是一个一个的小bean</li>
+</ul>
+
+<pre><code class="language-java">protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
+        if (delegate.isDefaultNamespace(root)) {
+            NodeList nl = root.getChildNodes();
+            for (int i = 0; i &lt; nl.getLength(); i++) {
+                Node node = nl.item(i);
+                if (node instanceof Element) {
+                    Element ele = (Element) node;
+                    if (delegate.isDefaultNamespace(ele)) {
+            //又回到默认解析的地方，去判断标签属性，再次进行解析
+                        parseDefaultElement(ele, delegate);
+                    }
+                    else {
+            //解析自定义标签
+                        delegate.parseCustomElement(ele);
+                    }
+                }
+            }
+        }
+        else {
+            delegate.parseCustomElement(root);
+        }
+    }
+</code></pre>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

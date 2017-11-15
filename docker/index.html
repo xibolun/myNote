@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> &middot; My New Hugo Site</title>
+
+  
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/print.css" media="print">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/poole.css">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/syntax.css">
+  <link rel="stylesheet" href="http://kedadiannao220.hugo.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://kedadiannao220.hugo.io/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="http://kedadiannao220.hugo.io/">Home</a> </li>
+      
+    </ul>
+
+    <p>&copy; 2017. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1></h1>
+  <span class="post-date">Mon, Jan 1, 0001</span>
+  
+
+<h1 id="get-started">Get Started</h1>
+
+<h2 id="command">command</h2>
+
+<ol>
+<li>docker &ndash;version : docker版本</li>
+<li>docker command &ndash;help : 查看某个命令的帮助</li>
+<li>docker-compose &ndash;version : docker compose版本</li>
+<li>docker-machine &ndash;version: docker machine版本</li>
+<li>docker version: 查看docker client和server的状态</li>
+<li>docker run -h=&lsquo;cmdb&rsquo; &ndash;name cmdb -d -p 180:80 -p 122:22 dcosapp1.0</li>
+<li>docker save -o dcosapp.tar dcosapp1.0</li>
+</ol>
+
+<h2 id="镜像">镜像</h2>
+
+<ul>
+<li>docker pull ubuntu:14.04 : 下载ubuntu:14.04镜像</li>
+<li>docker images : 列出镜像</li>
+<li>docker images -q : 只列出镜像ID</li>
+<li>docker images -f since=hello-world : -f 过滤出某些镜像；since/before</li>
+<li>​</li>
+</ul>
+
+<h2 id="容器">容器</h2>
+
+<h3 id="启动容器">启动容器</h3>
+
+<ol>
+<li>docker run -it ubuntu:14.04 : 启动一个容器</li>
+<li>docker run -itd ubuntu:14.04 : 启动一个detach的容器，可以使用docker
+attach或者docker exec重新连接</li>
+<li>docker run -it -n pengganyu : 启动容器时添加容器名称</li>
+<li>docker run -it -v /tmp ubuntu:14.04 : 创建容器时添加Volumn</li>
+<li>docker run -it -v /tmp:/tmp ubuntu:14.04 :
+创建容器时添加/tmp卷，同时连接host的/tmp目录，host的/tmp与容器里面的/tmp共享</li>
+</ol>
+
+<h3 id="其他">其他</h3>
+
+<ol>
+<li>docker create ubuntu:14.04 : 创建一个容器</li>
+<li>docker ps : 查看running状态的docker运行状态；</li>
+<li>docker ps -a : 查看所有的容器列表，包括没有运行的和已经Exited</li>
+<li>docker run -it ubuntu:14.04 /bin/bash :
+启动一个bash终端，退出则容器销毁</li>
+<li>docker exec -it de2ef4052dce /bin/bash: 进入某个docker容器</li>
+<li>docker rm bfa78720b949 : 删除某个容器，其中bfa78720b949为容器的ID号</li>
+<li>ctrl+d :
+退出容器，此时容器也就不再running了，若想重新再running，可以使用docker
+start bfa</li>
+<li>docker export de2ef4052dce &gt; test.tar : 将容器导出至tar</li>
+<li>docker import test.tar - test/ubuntu:v1.0 : 导入容器</li>
+</ol>
+
+<h2 id="数据管理">数据管理</h2>
+
+<h3 id="创建docker与本地主机的共享">创建docker与本地主机的共享</h3>
+
+<ol>
+<li>docker run -it -v /tmp:/tmp ubuntu:14.04 :
+创建容器时添加/tmp卷，同时连接host的/tmp目录，host的/tmp与容器里面的/tmp共享</li>
+<li>第一个tmp为docker里面的数据卷，第二个/tmp为本机的/tmp目录</li>
+<li>本机目录必须为绝对路径</li>
+</ol>
+
+<h3 id="创建docker与其他docker的共享">创建docker与其他docker的共享</h3>
+
+<ol>
+<li>创建docker hf-csa-manager ： docker run -it -v hf-csa-manager &ndash;name
+hf-csa-manager ubuntu:14.04 /bin/bash</li>
+<li>创建docker hf-cmdb : docker run -it &ndash;volumes-from hf-csa-manager
+&ndash;name hf-cmdb ubuntu:14.04 /bin/bash</li>
+<li>两个docker的hf-csa-manager目录数据即可共享</li>
+</ol>
+
+<h2 id="网络配置">网络配置</h2>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>
