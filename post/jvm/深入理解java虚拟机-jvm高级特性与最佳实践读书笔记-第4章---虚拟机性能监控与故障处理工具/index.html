@@ -1,0 +1,587 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>深入理解Java虚拟机--第4章 虚拟机性能监控与故障处理 - penggy Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  
+  <meta name="description" content="第4章 虚拟机性能监控与故障处理 4.1 概述 工具永远都是知识技能的一层包装 我的mac的jdk PATH为/Library/Java/JavaVirtu">
+  
+  <meta itemprop="name" content="深入理解Java虚拟机--第4章 虚拟机性能监控与故障处理 - penggy Blog">
+  <meta itemprop="description" content="第4章 虚拟机性能监控与故障处理 4.1 概述 工具永远都是知识技能的一层包装 我的mac的jdk PATH为/Library/Java/JavaVirtu">
+  <meta itemprop="image" content="/img/author.jpg">
+  
+  
+  <meta name="twitter:description" content="">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/highlight/styles/github.css">
+  <script src="/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="/font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <header>
+    <div>
+  
+  <div id="imglogo">
+    <a href="/"><img src="/img/logo.svg" alt="penggy Blog" title="penggy Blog"/></a>
+  </div>
+  
+  <div id="textlogo">
+    <h1 class="site-name"><a href="/" title="penggy Blog">penggy Blog</a></h1>
+    <h2 class="blog-motto"></h2>
+  </div>
+  <div class="navbar"><a class="navbutton navmobile" href="#" title="menu"></a></div>
+  <nav class="animated">
+    <ul>
+      
+      <li><a href="/post/">首页</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+      <li>
+        <form class="search" method="get" action="https://www.google.com/search">
+          <div>
+            <input type="text" id="search" name="q" placeholder="">
+          </div>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+  </header>
+  <div id="container">
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="/post/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/" title="深入理解Java虚拟机--第4章 虚拟机性能监控与故障处理" itemprop="url">深入理解Java虚拟机--第4章 虚拟机性能监控与故障处理</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="" title=""></a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2017-07-05 23:36:24 &#43;0800 CST" itemprop="datePublished">2017年07月05日</time>
+  </p>
+</header>
+
+	<div class="article-content">
+    
+    
+
+<h1 id="第4章-虚拟机性能监控与故障处理">第4章 虚拟机性能监控与故障处理</h1>
+
+<h2 id="4-1-概述">4.1 概述</h2>
+
+<ul>
+<li>工具永远都是知识技能的一层包装</li>
+<li>我的mac的jdk
+PATH为/Library/Java/JavaVirtualMachines/jdk1.7.0~79~.jdk/Contents/Home</li>
+</ul>
+
+<h2 id="4-2-jdk命令行工具">4.2 JDK命令行工具</h2>
+
+<p>工具名称   作用</p>
+
+<hr />
+
+<p>jps        JVM Process Status Tool, 显示指定系统内所有的HotSpot虚拟机进程
+  jstat      JVM Statistics Monitoring Tool,用于收集HotSpot虚拟机各方面的运行数据
+  jinfo      Configuration Info for Java,显示虚拟机的配置信息
+  jmap       Memory Map for Java,生成虚拟机的内存转储快照
+  jhat       Jvm Heap Dump Brower，用于分析headump文件，它会建立一个HTTP/HTML服务器，让用户可以在浏览器上查看分析结果
+  jstack     Stack Trace for Java， 显示虚拟机的线程快照</p>
+
+<h3 id="4-2-1-jps-虚拟机进程监控工具">4.2.1 jps: 虚拟机进程监控工具</h3>
+
+<ul>
+<li>jps -q : 输入LVMID(Local Virtual Machine
+Identifier)，虚拟机执行主类名称以及这些进程的本地虚拟机唯一ID</li>
+<li>jps -m : 输出虚拟机进程启动时传递给主类main()函数的参数</li>
+<li>jps -l : 输出主类的全名，如果进程执行的是jar包，输入jar路径</li>
+<li>jps -v : 输出虚拟机进程启动时jvm参数</li>
+</ul>
+
+<pre><code class="language-shell"># ./jps -q
+19959
+# ./jps -m
+19974 Jps -m
+# ./jps -l
+19904 sun.tools.jps.Jps
+# ./jps -v
+19919 Jps -Dapplication.home=/usr/java/jdk1.7.0_80 -Xms8m
+</code></pre>
+
+<h3 id="4-2-2-jstat-虚拟机统计信息监视工具">4.2.2 jstat: 虚拟机统计信息监视工具</h3>
+
+<ul>
+<li>jstat是用于监视虚拟机的各种运行状态信息的命令行工具</li>
+<li>jstat可以显示本地或远程虚拟机进程中的类装载，内存，垃圾收集，JIT编译等运行数据</li>
+<li>jstat -class vmId : 查看java进程的类加载信息</li>
+<li>jstat -gc vmId: 查看java进程的堆状况</li>
+<li>-gcutil : 输出已使用空间占总空间的百分比</li>
+<li>-gccapacity : 输出Java堆各个区域使用内存的情况，最大、最小空间</li>
+<li>-gccause : 输出导致上一次GC的原因</li>
+<li>-gcnew : 新生代gc</li>
+<li>-gcnewcapcacity :</li>
+<li>-gcold : 老年代GC</li>
+<li>-compiler : JIT编译器编译过的方法、耗时等</li>
+<li>-printcompilation : 输出已经被JIT编译过的方法</li>
+</ul>
+
+<h3 id="4-2-3-jinfo-java配置信息工具">4.2.3 jinfo: Java配置信息工具</h3>
+
+<ul>
+<li>jinfo pid : 查看java进程里面jvm的配置信息</li>
+</ul>
+
+<h3 id="4-2-4-jmap-java内存映像工具">4.2.4 jmap: Java内存映像工具</h3>
+
+<ul>
+<li>jmap: Memory Map for Java，用于生成堆转储快照</li>
+<li>jmap pid : 查看进程堆快照</li>
+<li>jmp -heap pid : 查看进程的堆详细信息</li>
+<li>jmap -dump:format=b,file=/tmp/aa.bin 660 : dump文件</li>
+</ul>
+
+<pre><code class="language-shell"># ./jmap 660Attaching to process ID 660, please wait...Debugger attached successfully.
+Server compiler detected.
+JVM version is 24.80-b11
+0x0000000000400000      7K      /usr/java/jdk1.7.0_80/jre/bin/java
+0x00007f3d8ef56000      36K     /usr/java/jdk1.7.0_80/jre/lib/amd64/headless/libmawt.so
+0x00007f3d8f15d000      755K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libawt.so
+0x00007f3d8f9de000      108K    /usr/lib64/libresolv-2.17.so
+0x00007f3d8fbf8000      26K     /usr/lib64/libnss_dns-2.17.so
+0x00007f3dac8b3000      86K     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+0x00007f3dacacf000      250K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libsunec.so
+0x00007f3daceac000      44K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libmanagement.so
+0x00007f3dad0e5000      113K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libnet.so
+0x00007f3dad2fc000      89K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libnio.so
+0x00007f3dadb13000      21K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libdt_socket.so
+0x00007f3db16ae000      107K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libzip.so
+0x00007f3db18c6000      60K     /usr/lib64/libnss_files-2.17.so
+0x00007f3dbc1cc000      14K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libnpt.so
+0x00007f3dbc3cf000      264K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libjdwp.so
+0x00007f3dbc60a000      214K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libjava.so
+0x00007f3dbc835000      63K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libverify.so
+0x00007f3dbca43000      43K     /usr/lib64/librt-2.17.so
+0x00007f3dbcc4b000      1114K   /usr/lib64/libm-2.17.so
+0x00007f3dbcf4d000      14879K  /usr/java/jdk1.7.0_80/jre/lib/amd64/server/libjvm.so
+0x00007f3dbddc7000      2058K   /usr/lib64/libc-2.17.so
+0x00007f3dbe188000      19K     /usr/lib64/libdl-2.17.so
+0x00007f3dbe38c000      96K     /usr/java/jdk1.7.0_80/jre/lib/amd64/jli/libjli.so
+0x00007f3dbe5a1000      138K    /usr/lib64/libpthread-2.17.so
+0x00007f3dbe7bd000      160K    /usr/lib64/ld-2.17.so
+
+# ./jmap -heap 660
+Attaching to process ID 660, please wait...
+Debugger attached successfully.
+Server compiler detected.
+JVM version is 24.80-b11
+
+using thread-local object allocation.
+Mark Sweep Compact GC                     ## CMS垃圾回收器
+
+Heap Usage:                               ## 各区域堆的使用情况
+New Generation (Eden + 1 Survivor Space):
+   capacity = 161021952 (153.5625MB)
+   used     = 101349832 (96.65473175048828MB)
+   free     = 59672120 (56.90776824951172MB)
+   62.94162425754222% used
+Eden Space:
+   capacity = 143130624 (136.5MB)
+   used     = 98631840 (94.06265258789062MB)
+   free     = 44498784 (42.437347412109375MB)
+   68.91036819625687% used
+From Space:
+   capacity = 17891328 (17.0625MB)
+   used     = 2717992 (2.5920791625976562MB)
+   free     = 15173336 (14.470420837402344MB)
+   15.191672747825091% used
+To Space:
+   capacity = 17891328 (17.0625MB)
+   used     = 0 (0.0MB)
+   free     = 17891328 (17.0625MB)
+   0.0% used
+tenured generation:
+   capacity = 357957632 (341.375MB)
+   used     = 283893288 (270.74173736572266MB)
+   free     = 74064344 (70.63326263427734MB)
+   79.3091870716141% used
+Perm Generation:
+   capacity = 134217728 (128.0MB)
+   used     = 71081288 (67.78839874267578MB)
+   free     = 63136440 (60.21160125732422MB)
+   52.959686517715454% used
+
+
+
+</code></pre>
+
+<h3 id="4-2-5-jhat-虚拟机堆转快照分析工具">4.2.5 jhat: 虚拟机堆转快照分析工具</h3>
+
+<ul>
+<li>jhat: JVM Heap Analysis Tool</li>
+<li>分析是一个比较耗时而且消耗硬件资源的过程</li>
+<li>jhat的分析比较丑陋，还不如使用VisualVM</li>
+<li>jhat针对于dump文件进行分析</li>
+</ul>
+
+<h3 id="4-2-6-jstack-java堆栈追踪工具">4.2.6 jstack: Java堆栈追踪工具</h3>
+
+<ul>
+<li>jstack: Stack Trace for Java;
+用于生成虚拟机当前时刻的线程快照信息，即每一个线程在正在执行的方法堆栈的集合</li>
+<li>可以定位线程的出现长时间卡顿的原因，线程卡顿的时候后台在做什么操作，需要等待的资源</li>
+<li>jstack -F vmId : 强行输出堆栈信息</li>
+<li>jstack -l vmId : 显示堆栈信息和锁信息</li>
+<li>jstack -m vmId : 显示C/C++堆栈信息，若调用本地方法的话</li>
+</ul>
+
+<h3 id="4-2-7-hsdis-jit生成代码反汇编">4.2.7 HSDIS: JIT生成代码反汇编</h3>
+
+<ul>
+<li>JIT代码的反汇编插件</li>
+</ul>
+
+<h2 id="4-3-jdk可视化工具">4.3 JDK可视化工具</h2>
+
+<ul>
+<li>JDK中提供了JConsole和VisualVM两个可视化工具</li>
+<li>JConsole是JDK1.5时提供</li>
+<li>VisualVM是JDK1.6Update7版本提供</li>
+</ul>
+
+<h3 id="4-3-1-jconsole">4.3.1 JConsole</h3>
+
+<ul>
+<li>JConsole可以通过remote连接运行服务器</li>
+</ul>
+
+<h3 id="4-3-2-visualvm">4.3.2 VisualVM</h3>
+
+<ul>
+<li>visualVM可以安装插件</li>
+</ul>
+
+<h4 id="定位java慢的问题">定位java慢的问题</h4>
+
+<ol>
+<li>top ,然后 shift + h ，看线程，观察哪个线程异常记录下pid</li>
+<li>jstack $java主进程pid &gt; a.log  打出线程到文件</li>
+<li>printf &lsquo;0x%x\n&rsquo;  异常线程pid转为16进制</li>
+<li>打开a.log搜0x625c 看线程堆栈定位问题。</li>
+</ol>
+
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="/post/jvm/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA-jvm%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC4%E7%AB%A0---%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/" data-title="深入理解Java虚拟机--第4章 虚拟机性能监控与故障处理" data-tsina="" class="share clearfix">
+    </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+
+</div>
+
+    <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+  
+
+<div class="categorieslist">
+  <p class="asidetitle">分类</p>
+  <ul>
+    
+    <li><a href="/categories/%e6%8a%80%e6%9c%af%e6%96%87%e7%ab%a0" title="技术文章">技术文章<sup>4</sup></a></li>
+    
+  </ul>
+</div>
+
+
+
+  
+
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+      
+			<li><a href="/tags/activemq" title="activemq">activemq<sup>2</sup></a></li>
+      
+			<li><a href="/tags/mongo" title="mongo">mongo<sup>3</sup></a></li>
+      
+			<li><a href="/tags/neo4j" title="neo4j">neo4j<sup>1</sup></a></li>
+      
+		</ul>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle">归档</p>
+    <ul class="archive-list">
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-12">2017年12月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-11">2017年11月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-10">2017年10月</a><span class="archive-list-count">4</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-09">2017年09月</a><span class="archive-list-count">12</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-08">2017年08月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-07">2017年07月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-06">2017年06月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-05">2017年05月</a><span class="archive-list-count">4</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-04">2017年04月</a><span class="archive-list-count">6</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#0001-01">0001年01月</a><span class="archive-list-count">1</span>
+      </li>
+      
+    </ul>
+
+  </div>
+
+
+  
+
+<div class="tagcloudlist">
+  <p class="asidetitle">标签云</p>
+  <div class="tagcloudlist clearfix">
+    
+    <a href="/tags/activemq" style="font-size: 12px;">activemq</a>
+    
+    <a href="/tags/mongo" style="font-size: 12px;">mongo</a>
+    
+    <a href="/tags/neo4j" style="font-size: 12px;">neo4j</a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</aside>
+</div>
+
+  </div>
+  <footer><div id="footer" >
+  
+  
+  <div class="social-font clearfix">
+    
+    <a href="http://weibo.com/%e5%8d%97%e9%98%b3%e5%b0%8f%e4%b8%89%e8%bd%ae" target="_blank" title="weibo"></a>
+    
+    
+    
+    <a href="https://github.com/kedadiannao220" target="_blank" title="github"></a>
+    
+    
+    
+  </div>
+  <p class="copyright">Powered by <a href="http://gohugo.io" target="_blank" title="hugo">hugo</a> and Theme by <a href="https://github.com/coderzh/hugo-pacman-theme" target="_blank" title="hugo-pacman-theme">hugo-pacman-theme</a> © 2017
+    
+    <a href="/" title="penggy Blog">penggy Blog</a>
+    
+  </p>
+</div>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+done = false;
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  $('form.search').on('submit', function (event) {
+    if (false === done) {
+      event.preventDefault();
+      var orgVal = $(this).find('#search').val();
+      $(this).find('#search').val('site:\/ ' + orgVal);
+      done = true;
+      $(this).submit();
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+
+</body>
+</html>

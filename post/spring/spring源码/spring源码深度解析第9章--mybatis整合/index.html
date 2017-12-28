@@ -1,0 +1,577 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Spring源码深度解析第9章--MyBatis整合 - penggy Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  
+  <meta name="description" content="前言 MyBatis 之前叫iBatis，是Apache的一个开源项目，后来迁移到了Google Code当中，改名为MyBatis 官网介绍如下：MyBati">
+  
+  <meta itemprop="name" content="Spring源码深度解析第9章--MyBatis整合 - penggy Blog">
+  <meta itemprop="description" content="前言 MyBatis 之前叫iBatis，是Apache的一个开源项目，后来迁移到了Google Code当中，改名为MyBatis 官网介绍如下：MyBati">
+  <meta itemprop="image" content="/img/author.jpg">
+  
+  
+  <meta name="twitter:description" content="">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/highlight/styles/github.css">
+  <script src="/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="/font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <header>
+    <div>
+  
+  <div id="imglogo">
+    <a href="/"><img src="/img/logo.svg" alt="penggy Blog" title="penggy Blog"/></a>
+  </div>
+  
+  <div id="textlogo">
+    <h1 class="site-name"><a href="/" title="penggy Blog">penggy Blog</a></h1>
+    <h2 class="blog-motto"></h2>
+  </div>
+  <div class="navbar"><a class="navbutton navmobile" href="#" title="menu"></a></div>
+  <nav class="animated">
+    <ul>
+      
+      <li><a href="/post/">首页</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+      <li>
+        <form class="search" method="get" action="https://www.google.com/search">
+          <div>
+            <input type="text" id="search" name="q" placeholder="">
+          </div>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+  </header>
+  <div id="container">
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="/post/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/" title="Spring源码深度解析第9章--MyBatis整合" itemprop="url">Spring源码深度解析第9章--MyBatis整合</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="" title=""></a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2017-09-12 23:36:24 &#43;0800 CST" itemprop="datePublished">2017年09月12日</time>
+  </p>
+</header>
+
+	<div class="article-content">
+    
+    
+
+<h2 id="前言">前言</h2>
+
+<ul>
+<li><a href="http://www.mybatis.org/mybatis-3/zh/index.html">MyBatis</a>
+之前叫iBatis，是Apache的一个开源项目，后来迁移到了Google
+Code当中，改名为MyBatis</li>
+<li>官网介绍如下：MyBatis 是一款优秀的持久层框架，它支持定制化
+SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC
+代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML
+或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Old Java
+Objects,普通的 Java对象)映射成数据库中的记录。</li>
+</ul>
+
+<h2 id="与spring-boot整合">与Spring Boot整合</h2>
+
+<h3 id="基本整合">基本整合</h3>
+
+<p>因为当前最流行的是Spring boot框架，所以在将Spring boot与MyBatis整合一下</p>
+
+<pre><code class="language-shell">&lt;dependency&gt;
+    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;1.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<pre><code class="language-java">package com.idcos.automate.dal.mybatis;
+
+import com.idcos.automate.dal.auto.dataobject.xl.BibleTextDO;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+@Mapper
+public interface BibleTextMapper {
+
+    @Select(&quot;SELECT * FROM BIBLE_TEXT WHERE ID = #{id}&quot;)
+    BibleTextDO findOne(@Param(&quot;id&quot;) String id);
+}
+</code></pre>
+
+<pre><code class="language-java">package com.idcos.gen;
+
+import com.idcos.Application;
+import com.idcos.automate.dal.mybatis.BibleTextMapper;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
+@WebAppConfiguration
+public class MybatisTest {
+
+    @Autowired
+    private BibleTextMapper bibleTextMapper;
+
+    @Test
+    public void testFindOne() {
+        System.out.println(bibleTextMapper.findOne(&quot;1&quot;));
+    }
+}
+</code></pre>
+
+<ul>
+<li>注意若MyBatis版本太低，不存在@Mapper注解，当前工程MyBatis版本号为3.4.4</li>
+</ul>
+
+<h4 id="参考">参考</h4>
+
+<p>[[** <a href="https://github.com/mybatis/spring-boot-starter">https://github.com/mybatis/spring-boot-starter</a>][MyBatis
+Spring-Boot-Starter]]</p>
+
+<h3 id="xml整合">xml整合</h3>
+
+<ul>
+<li>引入依赖</li>
+</ul>
+
+<pre><code class="language-shell">
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;1.5.7.RELEASE&lt;/version&gt;
+        &lt;relativePath /&gt; 
+    &lt;/parent&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- 1.3.0 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;${mybatis.spring.boot.starter}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- DB --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;${mysql.connector.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+&lt;dependencies&gt;
+</code></pre>
+
+<ul>
+<li>配置数据源及mapper路径</li>
+</ul>
+
+<pre><code class="language-shell">#server.port=8080
+spring.profiles.active=local
+spring.jpa.database=MYSQL
+spring.jpa.show-sql=true
+spring.jpa.hibernate.naming-strategy=org.hibernate.cfg.DefaultNamingStrategy
+spring.datasource.username=root
+spring.datasource.url=jdbc:mysql://mysql.dev.idcos.net:3306/gf-csa?characterEncoding=UTF-8&amp;useSSL=false
+spring.datasource.password=P@ssw0rd
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.test-on-borrow=true
+spring.datasource.validation-interval=30
+spring.datasource.validation-query=SELECT 1
+
+# mybatis
+mybatis.mapper-locations=classpath:mapper/*.xml
+## 表结构别名，配置PO对象所在的包路径
+mybatis.type-aliases-package=com.idcos.automate.dal.auto.dataobject
+
+</code></pre>
+
+<ul>
+<li>配置mapper接口类</li>
+</ul>
+
+<pre><code class="language-java">package com.idcos.automate.dal.mybatis;
+
+import com.idcos.automate.dal.auto.dataobject.xl.BibleBookDO;
+
+import java.util.List;
+
+public interface BibleBookMapper {
+
+    List&lt;BibleBookDO&gt; findAll();
+}
+</code></pre>
+
+<ul>
+<li>配置mapper接口所对应的xml文件</li>
+</ul>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot; &gt;
+&lt;!--namespace对应mapper接口实体--&gt;
+&lt;mapper namespace=&quot;com.idcos.automate.dal.mybatis.BibleBookMapper&quot;&gt;
+    &lt;!--使用resultType来指定返回值信息，由于配置了alias，所以此处可以直接使用类名称--&gt;
+    &lt;select id=&quot;findAll&quot; resultType=&quot;BibleBookDO&quot;&gt;
+                SELECT * FROM BIBLE_BOOK
+        &lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre>
+
+<ul>
+<li>扫描启动</li>
+</ul>
+
+<pre><code class="language-java">package com.idcos;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@SpringBootApplication
+@EnableAutoConfiguration
+@EnableScheduling
+@ImportResource({ &quot;classpath*:spring/*.xml&quot; })
+//mapper所在的包
+@MapperScan(&quot;com.idcos.automate.dal.mybatis&quot;)
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+</code></pre>
+
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="/post/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC9%E7%AB%A0--mybatis%E6%95%B4%E5%90%88/" data-title="Spring源码深度解析第9章--MyBatis整合" data-tsina="" class="share clearfix">
+    </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+
+</div>
+
+    <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+  
+
+<div class="categorieslist">
+  <p class="asidetitle">分类</p>
+  <ul>
+    
+    <li><a href="/categories/%e6%8a%80%e6%9c%af%e6%96%87%e7%ab%a0" title="技术文章">技术文章<sup>4</sup></a></li>
+    
+  </ul>
+</div>
+
+
+
+  
+
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+      
+			<li><a href="/tags/activemq" title="activemq">activemq<sup>2</sup></a></li>
+      
+			<li><a href="/tags/mongo" title="mongo">mongo<sup>3</sup></a></li>
+      
+			<li><a href="/tags/neo4j" title="neo4j">neo4j<sup>1</sup></a></li>
+      
+		</ul>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle">归档</p>
+    <ul class="archive-list">
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-12">2017年12月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-11">2017年11月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-10">2017年10月</a><span class="archive-list-count">4</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-09">2017年09月</a><span class="archive-list-count">12</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-08">2017年08月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-07">2017年07月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-06">2017年06月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-05">2017年05月</a><span class="archive-list-count">4</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-04">2017年04月</a><span class="archive-list-count">6</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#0001-01">0001年01月</a><span class="archive-list-count">1</span>
+      </li>
+      
+    </ul>
+
+  </div>
+
+
+  
+
+<div class="tagcloudlist">
+  <p class="asidetitle">标签云</p>
+  <div class="tagcloudlist clearfix">
+    
+    <a href="/tags/activemq" style="font-size: 12px;">activemq</a>
+    
+    <a href="/tags/mongo" style="font-size: 12px;">mongo</a>
+    
+    <a href="/tags/neo4j" style="font-size: 12px;">neo4j</a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</aside>
+</div>
+
+  </div>
+  <footer><div id="footer" >
+  
+  
+  <div class="social-font clearfix">
+    
+    <a href="http://weibo.com/%e5%8d%97%e9%98%b3%e5%b0%8f%e4%b8%89%e8%bd%ae" target="_blank" title="weibo"></a>
+    
+    
+    
+    <a href="https://github.com/kedadiannao220" target="_blank" title="github"></a>
+    
+    
+    
+  </div>
+  <p class="copyright">Powered by <a href="http://gohugo.io" target="_blank" title="hugo">hugo</a> and Theme by <a href="https://github.com/coderzh/hugo-pacman-theme" target="_blank" title="hugo-pacman-theme">hugo-pacman-theme</a> © 2017
+    
+    <a href="/" title="penggy Blog">penggy Blog</a>
+    
+  </p>
+</div>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+done = false;
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  $('form.search').on('submit', function (event) {
+    if (false === done) {
+      event.preventDefault();
+      var orgVal = $(this).find('#search').val();
+      $(this).find('#search').val('site:\/ ' + orgVal);
+      done = true;
+      $(this).submit();
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+
+</body>
+</html>

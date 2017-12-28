@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neo4j on penggy Blog</title>
+    <link>/tags/neo4j/</link>
+    <description>Recent content in Neo4j on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 26 Dec 2017 23:36:24 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/neo4j/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Neo4j JavaReference</title>
+      <link>/post/neo4j-javareference/</link>
+      <pubDate>Tue, 26 Dec 2017 23:36:24 +0800</pubDate>
+      
+      <guid>/post/neo4j-javareference/</guid>
+      <description>Neo4j JavaReference Extending Neo4j 自定义程序 neo4j里面有一套程序模板，可以让用户进行使用并调用 neo4j-procedure-template 内置程序列表 db.constraints db.indexes db.labels db.propertyKeys db.relationshipTypes dbms.changePassword dbms.components dbms.procedures dbms.queryJmx 远程debugger 在neo4j.c</description>
+    </item>
+    
+  </channel>
+</rss>
