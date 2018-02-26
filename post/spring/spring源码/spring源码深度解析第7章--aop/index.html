@@ -1,0 +1,867 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Spring源码深度解析第7章--AOP - penggy Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  
+  <meta name="description" content="前言 什么是AOP？为什么要玩AOP AOP是Aspect Oriented Programming，意即面向切面编程 面向对向编程是竖向的方式；无法对多个对象进行">
+  
+  <meta itemprop="name" content="Spring源码深度解析第7章--AOP - penggy Blog">
+  <meta itemprop="description" content="前言 什么是AOP？为什么要玩AOP AOP是Aspect Oriented Programming，意即面向切面编程 面向对向编程是竖向的方式；无法对多个对象进行">
+  <meta itemprop="image" content="/img/author.jpg">
+  
+  
+  <meta name="twitter:description" content="">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/highlight/styles/github.css">
+  <script src="/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="/font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <header>
+    <div>
+  
+  <div id="imglogo">
+    <a href="/"><img src="/img/logo.svg" alt="penggy Blog" title="penggy Blog"/></a>
+  </div>
+  
+  <div id="textlogo">
+    <h1 class="site-name"><a href="/" title="penggy Blog">penggy Blog</a></h1>
+    <h2 class="blog-motto"></h2>
+  </div>
+  <div class="navbar"><a class="navbutton navmobile" href="#" title="menu"></a></div>
+  <nav class="animated">
+    <ul>
+      
+      <li><a href="/post/">首页</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+      <li>
+        <form class="search" method="get" action="https://www.google.com/search">
+          <div>
+            <input type="text" id="search" name="q" placeholder="">
+          </div>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+  </header>
+  <div id="container">
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="/post/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/" title="Spring源码深度解析第7章--AOP" itemprop="url">Spring源码深度解析第7章--AOP</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="" title=""></a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2017-09-04 23:36:24 &#43;0800 CST" itemprop="datePublished">2017年09月04日</time>
+  </p>
+</header>
+
+	<div class="article-content">
+    
+    
+
+<h2 id="前言">前言</h2>
+
+<h3 id="什么是aop-为什么要玩aop">什么是AOP？为什么要玩AOP</h3>
+
+<ul>
+<li>AOP是Aspect Oriented Programming，意即面向切面编程</li>
+<li>面向对向编程是竖向的方式；无法对多个对象进行同时的操作，只能在每个对象当中引入公共的代码，这样就导致代码的重复；程序不易维护；所以就有了AOP</li>
+<li>比如说你怎么在所有的controller的方法里面输入一行hello
+world？如果不使用切面，你可能写个工具类，每个controller方法都需要添加一行代码、而切面就不需要这样操作</li>
+</ul>
+
+<h2 id="7-1-学习使用aop">7.1 学习使用AOP</h2>
+
+<h3 id="一个demo">一个demo</h3>
+
+<ul>
+<li>在Spring
+boot当中简化了xml配置，只需要在切面的方法上面添加@Configuration注解即可</li>
+<li>以下demo为切所有的controller层，其中execution及Pointcut、Around的用法后面会再深入学习</li>
+</ul>
+
+<pre><code class="language-java">@Aspect
+@Configuration
+public class AspectController {
+    @Pointcut(&quot;execution(* com.idcos.automate.web.controller..*.*(..))&quot;)
+    public void pointcut() {
+        System.out.println(&quot;start aspect ......&quot;);
+    }
+
+    @Before(&quot;pointcut()&quot;)
+    public void beforeCut() {
+        System.out.println(&quot;beforeCut&quot;);
+    }
+
+
+    @After(&quot;pointcut()&quot;)
+    public void afterCut() {
+        System.out.println(&quot;afterCut&quot;);
+    }
+
+    @AfterThrowing(&quot;pointcut()&quot;)
+    public void afterThrowing() {
+        System.out.println(&quot;afterThrowing&quot;);
+    }
+
+    @AfterReturning(&quot;pointcut()&quot;)
+    public void afterReturning() {
+        System.out.println(&quot;afterReturning&quot;);
+    }
+
+    @Around(&quot;pointcut()&quot;)
+    public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
+        System.out.println(&quot;start aspect&quot;);
+        RequestAttributes ra = RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes sra = (ServletRequestAttributes) ra;
+        HttpServletRequest request = sra.getRequest();
+
+        String url = request.getRequestURL().toString();
+        String method = request.getMethod();
+        String uri = request.getRequestURI();
+        String queryString = request.getQueryString();
+
+        // result的值就是被拦截方法的返回值
+        Object result = pjp.proceed();
+
+        System.out.println(JSON.toJSONString(result));
+        return result;
+    }
+}
+
+</code></pre>
+
+<h3 id="核心概念">核心概念</h3>
+
+<ol>
+<li>横切关注点，切哪些方法，切完之后需要做什么事情</li>
+<li>aspect： 横切，标记此类是一个切面类，对横切的抽象</li>
+<li>joinpoint：连接点，连接点可以是方法，属性或者构造方法</li>
+<li>Pointcut： 切入点，对连接点进行拦截定义</li>
+<li>advice：
+通知，拦截到连接点后进行通知，通知分为前置(Before)、环绕(Around),后置(After)、异常(AfterThrowing),最终(AfterReturning)，也即为执行顺序</li>
+<li>target： 目标对象，代理的目标对象</li>
+<li>weave：织入</li>
+<li>introduction：引入</li>
+</ol>
+
+<h2 id="7-2-动态aop自定义标签">7.2 动态AOP自定义标签</h2>
+
+<h3 id="7-2-1-spring如何解析aspect相关的标签">7.2.1 Spring如何解析Aspect相关的标签？</h3>
+
+<pre><code class="language-java">public class AopNamespaceHandler extends NamespaceHandlerSupport {
+
+    /**
+     * Register the {@link BeanDefinitionParser BeanDefinitionParsers} for the
+     * '{@code config}', '{@code spring-configured}', '{@code aspectj-autoproxy}'
+     * and '{@code scoped-proxy}' tags.
+     */
+    @Override
+    public void init() {
+        // In 2.0 XSD as well as in 2.1 XSD.
+        registerBeanDefinitionParser(&quot;config&quot;, new ConfigBeanDefinitionParser());
+        registerBeanDefinitionParser(&quot;aspectj-autoproxy&quot;, new AspectJAutoProxyBeanDefinitionParser());
+        registerBeanDefinitionDecorator(&quot;scoped-proxy&quot;, new ScopedProxyBeanDefinitionDecorator());
+
+        // Only in 2.0 XSD: moved to context namespace as of 2.1
+        registerBeanDefinitionParser(&quot;spring-configured&quot;, new SpringConfiguredBeanDefinitionParser());
+    }
+
+}
+</code></pre>
+
+<p>可以看出当遇到aspectj相关的xml标签的时候，都会使用AspectJAutoProxyBeanDefinitionParser解析器进行解析</p>
+
+<h2 id="7-3-创建aop代理">7.3 创建AOP代理</h2>
+
+<ul>
+<li>本部分是AOP的核心</li>
+<li>怎么提取Advisor</li>
+<li>怎么获取Aspect注解</li>
+<li>怎么加载增加器</li>
+</ul>
+
+<pre><code class="language-java">// 开始处理AOP信息
+// AbstractAutoProxyCreator.postProcessAfterInitialization
+    public Object postProcessAfterInitialization(@Nullable Object bean, String beanName) throws BeansException {
+        if (bean != null) {
+            Object cacheKey = getCacheKey(bean.getClass(), beanName);
+            if (!this.earlyProxyReferences.contains(cacheKey)) {
+                return wrapIfNecessary(bean, beanName, cacheKey);
+            }
+        }
+        return bean;
+    }
+
+// wrapIfNecessary里面包括着对于bean的处理逻辑
+
+protected Object wrapIfNecessary(Object bean, String beanName, Object cacheKey) {
+        // 若已经处理，则无需再处理
+        if (StringUtils.hasLength(beanName) &amp;&amp; this.targetSourcedBeans.contains(beanName)) {
+            return bean;
+        }
+        // 若不需要增强，则直接返回
+        if (Boolean.FALSE.equals(this.advisedBeans.get(cacheKey))) {
+            return bean;
+        }
+        // 是否是基础设施类； 是否跳过代理
+        if (isInfrastructureClass(bean.getClass()) || shouldSkip(bean.getClass(), beanName)) {
+            this.advisedBeans.put(cacheKey, Boolean.FALSE);
+            return bean;
+        }
+
+        // Create proxy if we have advice.
+        Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(bean.getClass(), beanName, null);
+        if (specificInterceptors != DO_NOT_PROXY) {
+            this.advisedBeans.put(cacheKey, Boolean.TRUE);
+            Object proxy = createProxy(
+                    bean.getClass(), beanName, specificInterceptors, new SingletonTargetSource(bean));
+            this.proxyTypes.put(cacheKey, proxy.getClass());
+            return proxy;
+        }
+
+        this.advisedBeans.put(cacheKey, Boolean.FALSE);
+        return bean;
+    }
+</code></pre>
+
+<h3 id="7-3-1-获取增强器">7.3.1 获取增强器</h3>
+
+<pre><code class="language-java">    @Override
+    @Nullable
+    protected Object[] getAdvicesAndAdvisorsForBean(Class&lt;?&gt; beanClass, String beanName, @Nullable TargetSource targetSource) {
+        List&lt;Advisor&gt; advisors = findEligibleAdvisors(beanClass, beanName);
+        if (advisors.isEmpty()) {
+            return DO_NOT_PROXY;
+        }
+        return advisors.toArray();
+    }
+
+
+protected List&lt;Advisor&gt; findEligibleAdvisors(Class&lt;?&gt; beanClass, String beanName) {
+// 其中findCandidateAdvisors就是获取增强器
+        List&lt;Advisor&gt; candidateAdvisors = findCandidateAdvisors();
+        List&lt;Advisor&gt; eligibleAdvisors = findAdvisorsThatCanApply(candidateAdvisors, beanClass, beanName);
+        extendAdvisors(eligibleAdvisors);
+        if (!eligibleAdvisors.isEmpty()) {
+            eligibleAdvisors = sortAdvisors(eligibleAdvisors);
+        }
+        return eligibleAdvisors;
+    }
+
+
+    @Override
+    protected List&lt;Advisor&gt; findCandidateAdvisors() {
+        // Add all the Spring advisors found according to superclass rules.
+        List&lt;Advisor&gt; advisors = super.findCandidateAdvisors();
+        // Build Advisors for all AspectJ aspects in the bean factory.
+        if (this.aspectJAdvisorsBuilder != null) {
+            // 加载所有有关Aspect注解的相关增加数据信息
+            // 遍历beanFactory当中的bean，寻找是否存在Aspect相关注解，并将解析的结果放入缓存当中
+            advisors.addAll(this.aspectJAdvisorsBuilder.buildAspectJAdvisors());
+        }
+        return advisors;
+    }
+
+// 其中getAdvisors是处理Advisor最核心的逻辑
+List&lt;Advisor&gt; classAdvisors = this.advisorFactory.getAdvisors(factory);
+
+
+
+</code></pre>
+
+<h4 id="寻找pointcut里面的expression">寻找pointCut里面的expression</h4>
+
+<pre><code class="language-java">
+// ReflectiveAspectJAdvisorFactory.getPointcut()
+    @Nullable
+    private AspectJExpressionPointcut getPointcut(Method candidateAdviceMethod, Class&lt;?&gt; candidateAspectClass) {
+        AspectJAnnotation&lt;?&gt; aspectJAnnotation =
+                AbstractAspectJAdvisorFactory.findAspectJAnnotationOnMethod(candidateAdviceMethod);
+        if (aspectJAnnotation == null) {
+            return null;
+        }
+
+        AspectJExpressionPointcut ajexp =
+                new AspectJExpressionPointcut(candidateAspectClass, new String[0], new Class&lt;?&gt;[0]);
+        ajexp.setExpression(aspectJAnnotation.getPointcutExpression());
+        if (this.beanFactory != null) {
+            ajexp.setBeanFactory(this.beanFactory);
+        }
+        return ajexp;
+    }
+</code></pre>
+
+<h4 id="切点信息增强">切点信息增强</h4>
+
+<pre><code class="language-java">public InstantiationModelAwarePointcutAdvisorImpl(AspectJExpressionPointcut declaredPointcut,
+            Method aspectJAdviceMethod, AspectJAdvisorFactory aspectJAdvisorFactory,
+            MetadataAwareAspectInstanceFactory aspectInstanceFactory, int declarationOrder, String aspectName) {
+
+        this.declaredPointcut = declaredPointcut;
+        this.declaringClass = aspectJAdviceMethod.getDeclaringClass();
+        this.methodName = aspectJAdviceMethod.getName();
+        this.parameterTypes = aspectJAdviceMethod.getParameterTypes();
+        this.aspectJAdviceMethod = aspectJAdviceMethod;
+        this.aspectJAdvisorFactory = aspectJAdvisorFactory;
+        this.aspectInstanceFactory = aspectInstanceFactory;
+        this.declarationOrder = declarationOrder;
+        this.aspectName = aspectName;
+
+        if (aspectInstanceFactory.getAspectMetadata().isLazilyInstantiated()) {
+            // Static part of the pointcut is a lazy type.
+            Pointcut preInstantiationPointcut = Pointcuts.union(
+                    aspectInstanceFactory.getAspectMetadata().getPerClausePointcut(), this.declaredPointcut);
+
+            // Make it dynamic: must mutate from pre-instantiation to post-instantiation state.
+            // If it's not a dynamic pointcut, it may be optimized out
+            // by the Spring AOP infrastructure after the first evaluation.
+            this.pointcut = new PerTargetInstantiationModelPointcut(
+                    this.declaredPointcut, preInstantiationPointcut, aspectInstanceFactory);
+            this.lazy = true;
+        }
+        else {
+            // A singleton aspect.
+            this.pointcut = this.declaredPointcut;
+            this.lazy = false;
+            this.instantiatedAdvice = instantiateAdvice(this.declaredPointcut);
+        }
+    }
+</code></pre>
+
+<h4 id="处理before-after等注解信息">处理before、after等注解信息</h4>
+
+<pre><code class="language-java">@Override
+    public Advice getAdvice(Method candidateAdviceMethod, AspectJExpressionPointcut expressionPointcut,
+            MetadataAwareAspectInstanceFactory aspectInstanceFactory, int declarationOrder, String aspectName) {
+
+        Class&lt;?&gt; candidateAspectClass = aspectInstanceFactory.getAspectMetadata().getAspectClass();
+        validate(candidateAspectClass);
+
+        AspectJAnnotation&lt;?&gt; aspectJAnnotation =
+                AbstractAspectJAdvisorFactory.findAspectJAnnotationOnMethod(candidateAdviceMethod);
+        if (aspectJAnnotation == null) {
+            return null;
+        }
+
+        // If we get here, we know we have an AspectJ method.
+        // Check that it's an AspectJ-annotated class
+        if (!isAspect(candidateAspectClass)) {
+            throw new AopConfigException(&quot;Advice must be declared inside an aspect type: &quot; +
+                    &quot;Offending method '&quot; + candidateAdviceMethod + &quot;' in class [&quot; +
+                    candidateAspectClass.getName() + &quot;]&quot;);
+        }
+
+        if (logger.isDebugEnabled()) {
+            logger.debug(&quot;Found AspectJ method: &quot; + candidateAdviceMethod);
+        }
+
+        AbstractAspectJAdvice springAdvice;
+
+        switch (aspectJAnnotation.getAnnotationType()) {
+            case AtBefore:
+                springAdvice = new AspectJMethodBeforeAdvice(
+                        candidateAdviceMethod, expressionPointcut, aspectInstanceFactory);
+                break;
+            case AtAfter:
+                springAdvice = new AspectJAfterAdvice(
+                        candidateAdviceMethod, expressionPointcut, aspectInstanceFactory);
+                break;
+            case AtAfterReturning:
+                springAdvice = new AspectJAfterReturningAdvice(
+                        candidateAdviceMethod, expressionPointcut, aspectInstanceFactory);
+                AfterReturning afterReturningAnnotation = (AfterReturning) aspectJAnnotation.getAnnotation();
+                if (StringUtils.hasText(afterReturningAnnotation.returning())) {
+                    springAdvice.setReturningName(afterReturningAnnotation.returning());
+                }
+                break;
+            case AtAfterThrowing:
+                springAdvice = new AspectJAfterThrowingAdvice(
+                        candidateAdviceMethod, expressionPointcut, aspectInstanceFactory);
+                AfterThrowing afterThrowingAnnotation = (AfterThrowing) aspectJAnnotation.getAnnotation();
+                if (StringUtils.hasText(afterThrowingAnnotation.throwing())) {
+                    springAdvice.setThrowingName(afterThrowingAnnotation.throwing());
+                }
+                break;
+            case AtAround:
+                springAdvice = new AspectJAroundAdvice(
+                        candidateAdviceMethod, expressionPointcut, aspectInstanceFactory);
+                break;
+            case AtPointcut:
+                if (logger.isDebugEnabled()) {
+                    logger.debug(&quot;Processing pointcut '&quot; + candidateAdviceMethod.getName() + &quot;'&quot;);
+                }
+                return null;
+            default:
+                throw new UnsupportedOperationException(
+                        &quot;Unsupported advice type on method: &quot; + candidateAdviceMethod);
+        }
+
+        // Now to configure the advice...
+        springAdvice.setAspectName(aspectName);
+        springAdvice.setDeclarationOrder(declarationOrder);
+        String[] argNames = this.parameterNameDiscoverer.getParameterNames(candidateAdviceMethod);
+        if (argNames != null) {
+            springAdvice.setArgumentNamesFromStringArray(argNames);
+        }
+        springAdvice.calculateArgumentBindings();
+        return springAdvice;
+    }
+</code></pre>
+
+<h3 id="7-3-2-寻找匹配增强器">7.3.2 寻找匹配增强器</h3>
+
+<pre><code class="language-java">        List&lt;Advisor&gt; eligibleAdvisors = findAdvisorsThatCanApply(candidateAdvisors, beanClass, beanName);
+
+
+// 最终找到最合适的增强器在于
+public static boolean canApply(Pointcut pc, Class&lt;?&gt; targetClass, boolean hasIntroductions) {
+        Assert.notNull(pc, &quot;Pointcut must not be null&quot;);
+        if (!pc.getClassFilter().matches(targetClass)) {
+            return false;
+        }
+
+        MethodMatcher methodMatcher = pc.getMethodMatcher();
+        if (methodMatcher == MethodMatcher.TRUE) {
+            // No need to iterate the methods if we're matching any method anyway...
+            return true;
+        }
+
+        IntroductionAwareMethodMatcher introductionAwareMethodMatcher = null;
+        if (methodMatcher instanceof IntroductionAwareMethodMatcher) {
+            introductionAwareMethodMatcher = (IntroductionAwareMethodMatcher) methodMatcher;
+        }
+
+        Set&lt;Class&lt;?&gt;&gt; classes = new LinkedHashSet&lt;&gt;(ClassUtils.getAllInterfacesForClassAsSet(targetClass));
+        classes.add(targetClass);
+        for (Class&lt;?&gt; clazz : classes) {
+            Method[] methods = ReflectionUtils.getAllDeclaredMethods(clazz);
+            for (Method method : methods) {
+                if ((introductionAwareMethodMatcher != null &amp;&amp;
+                        introductionAwareMethodMatcher.matches(method, targetClass, hasIntroductions)) ||
+                        methodMatcher.matches(method, targetClass)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+</code></pre>
+
+<h3 id="7-3-3-创建代理">7.3.3 创建代理</h3>
+
+<ul>
+<li>在wrapIfNecessary当中获取增强器之后，开始创建代理</li>
+</ul>
+
+<pre><code class="language-java">// Create proxy if we have advice.
+        Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(bean.getClass(), beanName, null);
+        if (specificInterceptors != DO_NOT_PROXY) {
+            this.advisedBeans.put(cacheKey, Boolean.TRUE);
+            Object proxy = createProxy(
+                    bean.getClass(), beanName, specificInterceptors, new SingletonTargetSource(bean));
+            this.proxyTypes.put(cacheKey, proxy.getClass());
+            return proxy;
+        }
+
+</code></pre>
+
+<h4 id="创建代理">创建代理</h4>
+
+<pre><code class="language-java">    protected Object createProxy(Class&lt;?&gt; beanClass, @Nullable String beanName,
+            @Nullable Object[] specificInterceptors, TargetSource targetSource) {
+
+        if (this.beanFactory instanceof ConfigurableListableBeanFactory) {
+            AutoProxyUtils.exposeTargetClass((ConfigurableListableBeanFactory) this.beanFactory, beanName, beanClass);
+        }
+
+        ProxyFactory proxyFactory = new ProxyFactory();
+// 配置proxy属性
+        proxyFactory.copyFrom(this);
+
+// 处理proxy信息
+        if (!proxyFactory.isProxyTargetClass()) {
+            if (shouldProxyTargetClass(beanClass, beanName)) {
+                proxyFactory.setProxyTargetClass(true);
+            }
+            else {
+                evaluateProxyInterfaces(beanClass, proxyFactory);
+            }
+        }
+
+// 拦截器转换增强器
+        Advisor[] advisors = buildAdvisors(beanName, specificInterceptors);
+        proxyFactory.addAdvisors(advisors);
+        proxyFactory.setTargetSource(targetSource);
+        customizeProxyFactory(proxyFactory);
+
+        proxyFactory.setFrozen(this.freezeProxy);
+        if (advisorsPreFiltered()) {
+            proxyFactory.setPreFiltered(true);
+        }
+
+        return proxyFactory.getProxy(getProxyClassLoader());
+    }
+
+
+// 最终创建AOPproxy
+    @Override
+    public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException {
+        if (config.isOptimize() || config.isProxyTargetClass() || hasNoUserSuppliedProxyInterfaces(config)) {
+            Class&lt;?&gt; targetClass = config.getTargetClass();
+            if (targetClass == null) {
+                throw new AopConfigException(&quot;TargetSource cannot determine target class: &quot; +
+                        &quot;Either an interface or a target is required for proxy creation.&quot;);
+            }
+            if (targetClass.isInterface() || Proxy.isProxyClass(targetClass)) {
+                return new JdkDynamicAopProxy(config);
+            }
+            return new ObjenesisCglibAopProxy(config);
+        }
+        else {
+            return new JdkDynamicAopProxy(config);
+        }
+    }
+
+</code></pre>
+
+<h4 id="两种代理模式">两种代理模式</h4>
+
+<h2 id="7-4-静态aop示例">7.4 静态AOP示例</h2>
+
+<h2 id="7-5-创建aop静态代理">7.5 创建AOP静态代理</h2>
+
+<ul>
+<li>静态代理：在jvm启动的时候通过改变目标对象字节码的方式来完成对目标对象的增强，比动态代理效率要高</li>
+</ul>
+
+<h3 id="7-5-1-instrumentation">7.5.1 Instrumentation</h3>
+
+<ul>
+<li>这玩意是一个接口，retransformClasses()这个方法可以将agent里面的代码动态添加到指定的类文件当中</li>
+<li>需要在启动的时候添加java -javaagent:xxx.jar xxx类</li>
+</ul>
+
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="/post/spring/spring%E6%BA%90%E7%A0%81/spring%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E7%AC%AC7%E7%AB%A0--aop/" data-title="Spring源码深度解析第7章--AOP" data-tsina="" class="share clearfix">
+    </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+
+</div>
+
+    <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+  
+
+<div class="categorieslist">
+  <p class="asidetitle">分类</p>
+  <ul>
+    
+    <li><a href="/categories/%e6%8a%80%e6%9c%af%e6%96%87%e7%ab%a0" title="技术文章">技术文章<sup>4</sup></a></li>
+    
+  </ul>
+</div>
+
+
+
+  
+
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+      
+			<li><a href="/tags/activemq" title="activemq">activemq<sup>2</sup></a></li>
+      
+			<li><a href="/tags/mongo" title="mongo">mongo<sup>3</sup></a></li>
+      
+			<li><a href="/tags/neo4j" title="neo4j">neo4j<sup>1</sup></a></li>
+      
+		</ul>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle">归档</p>
+    <ul class="archive-list">
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-12">2017年12月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-11">2017年11月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-10">2017年10月</a><span class="archive-list-count">4</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-09">2017年09月</a><span class="archive-list-count">12</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-08">2017年08月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-07">2017年07月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-06">2017年06月</a><span class="archive-list-count">7</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-05">2017年05月</a><span class="archive-list-count">4</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2017-04">2017年04月</a><span class="archive-list-count">6</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#2016-04">2016年04月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="/post/#0001-01">0001年01月</a><span class="archive-list-count">1</span>
+      </li>
+      
+    </ul>
+
+  </div>
+
+
+  
+
+<div class="tagcloudlist">
+  <p class="asidetitle">标签云</p>
+  <div class="tagcloudlist clearfix">
+    
+    <a href="/tags/activemq" style="font-size: 12px;">activemq</a>
+    
+    <a href="/tags/mongo" style="font-size: 12px;">mongo</a>
+    
+    <a href="/tags/neo4j" style="font-size: 12px;">neo4j</a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</aside>
+</div>
+
+  </div>
+  <footer><div id="footer" >
+  
+  
+  <div class="social-font clearfix">
+    
+    <a href="http://weibo.com/%e5%8d%97%e9%98%b3%e5%b0%8f%e4%b8%89%e8%bd%ae" target="_blank" title="weibo"></a>
+    
+    
+    
+    <a href="https://github.com/kedadiannao220" target="_blank" title="github"></a>
+    
+    
+    
+  </div>
+  <p class="copyright">Powered by <a href="http://gohugo.io" target="_blank" title="hugo">hugo</a> and Theme by <a href="https://github.com/coderzh/hugo-pacman-theme" target="_blank" title="hugo-pacman-theme">hugo-pacman-theme</a> © 2017
+    
+    <a href="/" title="penggy Blog">penggy Blog</a>
+    
+  </p>
+</div>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+done = false;
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  $('form.search').on('submit', function (event) {
+    if (false === done) {
+      event.preventDefault();
+      var orgVal = $(this).find('#search').val();
+      $(this).find('#search').val('site:\/ ' + orgVal);
+      done = true;
+      $(this).submit();
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+
+</body>
+</html>
