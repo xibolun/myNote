@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Awk学习 &middot; penggy Blog</title>
+
+  
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="penggy Blog" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://kedadiannao220.github.io/"><h1>penggy Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://kedadiannao220.github.io/">Home</a> </li>
+      <li><a href="/post/"> 首页 </a></li><li><a href="/about/"> 关于 </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Awk学习</h1>
+  <span class="post-date">Sat, Apr 22, 2017</span>
+  
+
+<h2 id="常用command">常用Command</h2>
+
+<h3 id="find">find</h3>
+
+<h3 id="awk">awk</h3>
+
+<h4 id="语法">语法</h4>
+
+<pre><code class="language-shell"> usage: awk [-F fs] [-v var=value] [-f progfile | 'prog'] [file ...] 
+</code></pre>
+
+<ul>
+<li>-F: 指定分隔域的标识</li>
+<li>-v: 指定命令/参数值</li>
+<li>-f: 指定需要解析的文件</li>
+</ul>
+
+<h4 id="demo">Demo</h4>
+
+<pre><code class="language-shell"> awk -F ':' '{print $1}' /etc/passwd                                                  ##输入/etc/passwd当中以:分隔的第一个域
+ awk -F ':' '{print $1 &quot;\t&quot; $2}' /etc/passwd                                                                                 ##输入/etc/passwd当中以:分隔的第1，2两个域，注意$1与$2之间的字符串要添加&quot;&quot;
+ awk '{count++} END {print count}' /etc/passwd                                                                             ##统计文件当中的行数
+ echo -e &quot;A line 1n A line 2&quot; | awk {print}                                                                              ##print不带参数的时候，默认打印整行 
+ echo -e &quot;A line 1n A line 2&quot; | awk -F 'n' '{print $1}'                                                          ##指定分隔符 'n',并打印第一个field 
+ echo -e &quot;A line 1n A line 2&quot; | awk  '{print $1}'                                                                        ## -F为空时，默认以空格分隔 
+ echo | awk '{ var1=&quot;hello&quot;; var2=&quot;world&quot;; print var1,var2}'                                               ##在{}当中定义变量，变量声明之间用 ; 进行分隔
+</code></pre>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

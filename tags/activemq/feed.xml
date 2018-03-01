@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Activemq on penggy Blog</title>
+    <link>https://kedadiannao220.github.io/tags/activemq/</link>
+    <description>Recent content in Activemq on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 27 Dec 2017 16:38:18 +0800</lastBuildDate>
+    
+	<atom:link href="https://kedadiannao220.github.io/tags/activemq/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AMQ Topic Subsriber Model</title>
+      <link>https://kedadiannao220.github.io/post/activemq--topicsubscriber/</link>
+      <pubDate>Wed, 27 Dec 2017 16:38:18 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/activemq--topicsubscriber/</guid>
+      <description>Topic Subsriber模式 订阅模式分为非持久订阅(Non-Durable Topic Subscribers)和持久订阅模式（Durable Topic Subscr</description>
+    </item>
+    
+    <item>
+      <title>ActiveMQ Queue Model</title>
+      <link>https://kedadiannao220.github.io/post/activemq--queue/</link>
+      <pubDate>Tue, 01 Aug 2017 23:36:24 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/activemq--queue/</guid>
+      <description>ActiveMQ是干什么的？ Apache ActiveMQ 是一个开源的消息集成服务 支持多语言，支持JMS1.1 J2EE1.4 首先需要了解什么是JMS和JMS相关的API：Java</description>
+    </item>
+    
+  </channel>
+</rss>

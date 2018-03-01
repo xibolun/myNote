@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Spring源码深度解析第2章--容器的基本实现 &middot; penggy Blog</title>
+
+  
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="penggy Blog" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://kedadiannao220.github.io/"><h1>penggy Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://kedadiannao220.github.io/">Home</a> </li>
+      <li><a href="/post/"> 首页 </a></li><li><a href="/about/"> 关于 </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Spring源码深度解析第2章--容器的基本实现</h1>
+  <span class="post-date">Thu, Aug 3, 2017</span>
+  
+
+<h2 id="2-3-最简单的例子">2.3 最简单的例子</h2>
+
+<pre><code class="language-java">public class MyTestBean {
+
+    private String testStr = &quot;testStr&quot;;
+
+    public String getTestStr() {
+        return this.testStr;
+    }
+
+    public void setTestStr(String str) {
+        this.testStr = str;
+    }
+}
+</code></pre>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+
+    &lt;bean id=&quot;myTestBean&quot; class=&quot;com.spring.MyTestBean&quot;/&gt;
+
+&lt;/beans&gt;
+</code></pre>
+
+<pre><code class="language-java">public class TestClass {
+
+    @Test
+    public void test() throws IOException {
+
+        // ClassPathResource
+        Resource res = new ClassPathResource(&quot;beanFactory.xml&quot;);
+
+        BeanFactory beanFactory = new XBeanXmlBeanFactory(res);
+
+        MyTestBean myTestBean = (MyTestBean) beanFactory.getBean(&quot;myTestBean&quot;);
+
+        System.out.println(myTestBean.getTestStr());
+    }
+}
+
+</code></pre>
+
+<h2 id="2-4-spring核心类介绍">2.4 Spring核心类介绍</h2>
+
+<p><img src="http://120.25.192.95:3000/spring/beanfactory.png" alt="" /></p>
+
+<p><img src="http://120.25.192.95:3000/spring/xmlBeanDefinitionReader.png" alt="" /></p>
+
+<h2 id="2-5-容器的基础xmlbeanfactory">2.5 容器的基础xmlBeanFactory</h2>
+
+<h3 id="2-5-1-配置文件封装">2.5.1 配置文件封装</h3>
+
+<ul>
+<li>IOC的第一步就是加载配置文件，获取配置文件的信息，去找到定义的对应的bean</li>
+<li>Resource的作用是将配置文件资源进行统一封装，不管你是File/URL等配置，都统一封装为Resource，供BeanFactory使用</li>
+<li><img src="http://120.25.192.95:3000/spring/resource.png" alt="" /></li>
+<li>FileSystemResource：需要给出文件的路径信息即可获取到文件的配置，因为实现上是调用了File.getInputStream()方法；或给出文件在classes当中的路径即可；</li>
+<li>ClassPathResource：加载编译目录当中的配置文件，不需要路径信息，直接输入文件名称即可；若找不到，则去classes里面看文件是否存在，若不存在，需要配置到编译路径当中</li>
+<li>UrlResource:
+可以访问file/http/ftp资源信息，可以通过获取某个类的classLoader即可得到对应的classes路径信息，就可以通过name来获取配置文件所在的路径的URL</li>
+<li>ServletContextResource: 暂时不研究</li>
+</ul>
+
+<pre><code class="language-java">        //FileSystemResource
+        Resource fileRes1 = new FileSystemResource(
+            &quot;/Users/admin/projects/myPro/src/resource/beanFactory.xml&quot;);
+        Resource fileRes2 = new FileSystemResource(&quot;src/resource/beanFactory.xml&quot;);
+
+        // ClassPathResource
+        Resource classRes = new ClassPathResource(&quot;beanFactory.xml&quot;);
+
+        // UrlResource
+        //输出结果:/Users/admin/projects/myPro/target/classes/beanFactory.xml
+        System.out.println(TestClass.class.getClassLoader().getResource(&quot;beanFactory.xml&quot;).getPath());
+
+        Resource urlRes = new UrlResource(
+            TestClass.class.getClassLoader().getResource(&quot;beanFactory.xml&quot;));
+</code></pre>
+
+<h3 id="2-5-2-加载bean">2.5.2 加载bean</h3>
+
+<pre><code class="language-java">        BeanFactory beanFactory = new XBeanXmlBeanFactory(res);
+        MyTestBean myTestBean = (MyTestBean) beanFactory.getBean(&quot;myTestBean&quot;);
+</code></pre>
+
+<h4 id="封装资源文件">封装资源文件</h4>
+
+<ul>
+<li>这个工作是由XmlBeanDefinitionReader完成的</li>
+<li>首先封装Resource为EncodedResource，防止出现编码不一的情况，使用默认的encode；</li>
+<li>然后再loadBeanDefinitions</li>
+</ul>
+
+<pre><code class="language-java">    public int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException {
+        return loadBeanDefinitions(new EncodedResource(resource));
+    }
+</code></pre>
+
+<h4 id="loadbeandefinitions">loadBeanDefinitions</h4>
+
+<pre><code class="language-java">public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefinitionStoreException {
+        Assert.notNull(encodedResource, &quot;EncodedResource must not be null&quot;);
+        if (logger.isInfoEnabled()) {
+            logger.info(&quot;Loading XML bean definitions from &quot; + encodedResource.getResource());
+        }
+
+        Set&lt;EncodedResource&gt; currentResources = this.resourcesCurrentlyBeingLoaded.get();
+        if (currentResources == null) {
+            currentResources = new HashSet&lt;&gt;(4);
+            this.resourcesCurrentlyBeingLoaded.set(currentResources);
+        }
+        if (!currentResources.add(encodedResource)) {
+            throw new BeanDefinitionStoreException(
+                    &quot;Detected cyclic loading of &quot; + encodedResource + &quot; - check your import definitions!&quot;);
+        }
+        try {
+            InputStream inputStream = encodedResource.getResource().getInputStream();
+            try {
+                InputSource inputSource = new InputSource(inputStream);
+                if (encodedResource.getEncoding() != null) {
+                    inputSource.setEncoding(encodedResource.getEncoding());
+                }
+                // 真正开始解析Bean的信息
+                return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
+            }
+            finally {
+                inputStream.close();
+            }
+        }
+        catch (IOException ex) {
+            throw new BeanDefinitionStoreException(
+                    &quot;IOException parsing XML document from &quot; + encodedResource.getResource(), ex);
+        }
+        finally {
+            currentResources.remove(encodedResource);
+            if (currentResources.isEmpty()) {
+                this.resourcesCurrentlyBeingLoaded.remove();
+            }
+        }
+    }
+
+protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource)
+            throws BeanDefinitionStoreException {
+        try {
+      // 解析xml to Document
+            Document doc = doLoadDocument(inputSource, resource);
+      // 解析Document，注册Bean信息
+            return registerBeanDefinitions(doc, resource);
+        }
+}
+</code></pre>
+
+<h4 id="解析xml">解析xml</h4>
+
+<ul>
+<li>将EncodedResource转换为InputStream</li>
+<li>将InputStream转换为InputSource</li>
+<li>用SAX解析InputSource，获取Document，返回xml里面的Bean信息</li>
+<li>获取EntityResolver；解析DTD文件的声明</li>
+</ul>
+
+<pre><code class="language-java">    protected EntityResolver getEntityResolver() {
+        if (this.entityResolver == null) {
+            // Determine default EntityResolver to use.
+            ResourceLoader resourceLoader = getResourceLoader();
+            if (resourceLoader != null) {
+                this.entityResolver = new ResourceEntityResolver(resourceLoader);
+            }
+            else {
+                this.entityResolver = new DelegatingEntityResolver(getBeanClassLoader());
+            }
+        }
+        return this.entityResolver;
+    }
+
+</code></pre>
+
+<ul>
+<li>解析InputSource的时候首先获取验证模式是XSD还是DTD</li>
+</ul>
+
+<pre><code class="language-java">protected int getValidationModeForResource(Resource resource) {
+        int validationModeToUse = getValidationMode();
+        if (validationModeToUse != VALIDATION_AUTO) {
+            return validationModeToUse;
+        }
+        int detectedMode = detectValidationMode(resource);
+        if (detectedMode != VALIDATION_AUTO) {
+            return detectedMode;
+        }
+        return VALIDATION_XSD;
+    }
+</code></pre>
+
+<h4 id="注册bean信息">注册Bean信息</h4>
+
+<ul>
+<li>获取Document信息之后，第一步先取ROOT节点，再根据root节点，注册Bean的信息</li>
+</ul>
+
+<pre><code class="language-java">public void registerBeanDefinitions(Document doc, XmlReaderContext readerContext) {
+        this.readerContext = readerContext;
+        logger.debug(&quot;Loading bean definitions&quot;);
+        Element root = doc.getDocumentElement();
+        doRegisterBeanDefinitions(root);
+    }
+
+</code></pre>
+
+<ul>
+<li>首先解析xml里面的profile，profile的作用做到环境隔离</li>
+<li>然后解析root节点；
+parseDefaultElement解析的是Spring自带的标签，例如：bean,import,alias,beans；而parseCustomElement解析是用户自定义的标签，需要用户自己去写对应的实现；</li>
+</ul>
+
+<pre><code class="language-java">protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
+        if (delegate.isDefaultNamespace(root)) {
+            NodeList nl = root.getChildNodes();
+            for (int i = 0; i &lt; nl.getLength(); i++) {
+                Node node = nl.item(i);
+                if (node instanceof Element) {
+                    Element ele = (Element) node;
+                    if (delegate.isDefaultNamespace(ele)) {
+                        parseDefaultElement(ele, delegate);
+                    }
+                    else {
+                        delegate.parseCustomElement(ele);
+                    }
+                }
+            }
+        }
+        else {
+            delegate.parseCustomElement(root);
+        }
+    }
+
+
+
+</code></pre>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

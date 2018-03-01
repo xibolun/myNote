@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>React on penggy Blog</title>
+    <link>https://kedadiannao220.github.io/tags/react/</link>
+    <description>Recent content in React on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 02 Feb 2018 10:13:59 +0800</lastBuildDate>
+    
+	<atom:link href="https://kedadiannao220.github.io/tags/react/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>React--Redux学习</title>
+      <link>https://kedadiannao220.github.io/post/react--redux/</link>
+      <pubDate>Fri, 02 Feb 2018 10:13:59 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/react--redux/</guid>
+      <description>为什么要使用Redux 某个组件要共享 某个组件要改变全局的状态 某个组件状态发生变化了，另外的组件也要变化 某个组件的状态要在各个地方拿到 短小精悍</description>
+    </item>
+    
+  </channel>
+</rss>

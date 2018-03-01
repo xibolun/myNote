@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Spring-RestTemplate &middot; penggy Blog</title>
+
+  
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="penggy Blog" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://kedadiannao220.github.io/"><h1>penggy Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://kedadiannao220.github.io/">Home</a> </li>
+      <li><a href="/post/"> 首页 </a></li><li><a href="/about/"> 关于 </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Spring-RestTemplate</h1>
+  <span class="post-date">Thu, Apr 27, 2017</span>
+  
+
+<h2 id="解决中文乱码的问题和delete无法传入body的问题">解决中文乱码的问题和Delete无法传入body的问题</h2>
+
+<p>问题说明：<a href="http://www.cnblogs.com/accessking/p/Java.html#3659369">RestTemplate中文乱码问题</a>；
+回复里面有我的评论，以下为解决方法</p>
+
+<pre><code class="language-java">package com.idcos.cloudres.biz.common.util;
+
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
+/**
+ * restful 接口工具类
+ * Created by guanbin on 2017/3/15.
+ */
+public class RestfulUtil {
+
+    private static final Logger logger = LoggerFactory.getLogger(RestfulUtil.class);
+
+    /**
+     * 获取StringHttpMessageConverter字符集为utf-8类型的RestTemplate
+     * @return
+     */
+    public static final RestTemplate getRestTemplate() {
+        RestTemplate restTemplate = new RestTemplate();
+        List&lt;HttpMessageConverter&lt;?&gt;&gt; converterList = restTemplate.getMessageConverters();
+        HttpMessageConverter&lt;?&gt; converterTarget = null;
+        for (HttpMessageConverter&lt;?&gt; item : converterList) {
+            if (item.getClass() == StringHttpMessageConverter.class) {
+                converterTarget = item;
+                break;
+            }
+        }
+
+        if (converterTarget != null) {
+            converterList.remove(converterTarget);
+        }
+        HttpMessageConverter&lt;?&gt; converter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
+        converterList.add(1, converter);
+
+        return restTemplate;
+    }
+
+    /**
+     * 获取可以支持delete body的resttemplate
+     * @return
+     */
+    public static RestTemplate getDeleteRestTemplate() {
+        RestTemplate restTemplate = getRestTemplate();
+        restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory() {
+            @Override
+            protected HttpUriRequest createHttpUriRequest(HttpMethod httpMethod, URI uri) {
+                if (HttpMethod.DELETE == httpMethod) {
+                    return new HttpEntityEnclosingDeleteRequest(uri);
+                }
+                return super.createHttpUriRequest(httpMethod, uri);
+            }
+        });
+        return restTemplate;
+    }
+
+    public static class HttpEntityEnclosingDeleteRequest extends HttpEntityEnclosingRequestBase {
+
+        public HttpEntityEnclosingDeleteRequest(final URI uri) {
+            super();
+            setURI(uri);
+        }
+        @Override
+        public String getMethod() {
+            return &quot;DELETE&quot;;
+        }
+    }
+
+}
+</code></pre>
+
+<h2 id="resttemplate请求添加token">RestTemplate请求添加token</h2>
+
+<h3 id="post请求">POST请求</h3>
+
+<pre><code class="language-java">        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        httpHeaders.add(&quot;access-token&quot;, &quot;Bearer &quot; + token);
+
+        HttpEntity&lt;String&gt; entity = new HttpEntity(paramter, httpHeaders);
+
+        return JSON.parseObject(restTemplate.postForObject(url.toString(), entity, String.class),
+            CmdbResponse.class);
+</code></pre>
+
+<h3 id="get请求">GET请求</h3>
+
+<pre><code class="language-java">        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        httpHeaders.add(&quot;access-token&quot;, &quot;Bearer &quot; + token);
+
+        HttpEntity&lt;String&gt; entity = new HttpEntity(null, httpHeaders);
+        String url = flowUrl + &quot;/wf/api/1.0/wf_proc_inst/&quot; + procInsId + &quot;?tenant_id=egfbank&quot;;
+
+        return restTemplate.exchange(url, HttpMethod.GET, entity, CmdbResponse.class).getBody();
+
+</code></pre>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

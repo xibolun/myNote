@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Curl学习 &middot; penggy Blog</title>
+
+  
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="penggy Blog" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://kedadiannao220.github.io/"><h1>penggy Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://kedadiannao220.github.io/">Home</a> </li>
+      <li><a href="/post/"> 首页 </a></li><li><a href="/about/"> 关于 </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Curl学习</h1>
+  <span class="post-date">Fri, Jun 2, 2017</span>
+  
+
+<h2 id="curl概述">CURL概述</h2>
+
+<p>CURL(command line url
+viewer),是命令行工具，发出网络请求，得到并提取数据，显示在标准输出里面，支持多种协议</p>
+
+<h2 id="curl命令">CURL命令</h2>
+
+<ul>
+<li>curl -o file url: 保存url的网页</li>
+<li>curl -C -o url: 断点下载文件</li>
+<li>curl -L url: 跳转至某个页面</li>
+<li>curl -i url: 显示url的头部信息</li>
+<li>curl -v url: 显示请求的通信过程</li>
+</ul>
+
+<h2 id="body请求">body请求</h2>
+
+<ul>
+<li>curl -X POST &ndash;data &ldquo;data=xxx&rdquo; url: 将参数信息放到&ndash;data里面 或-d</li>
+<li>curl url?data=xxx : get请求直接在后面拼装参数即可，curl默认是get请求</li>
+<li>curl -u username:password url: http认证</li>
+<li>curl -u username url: 输入用户后再提示输入密码，为了安全</li>
+<li>curl -u username:password -T file <a href="ftp://ftpserver.com">ftp://ftpserver.com</a>:
+上传文件到ftp</li>
+</ul>
+
+<h2 id="添加cookie">添加cookie</h2>
+
+<pre><code class="language-shell">curl --cookie &quot;access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTY0NTgwMzcsImxvZ2luTmFtZSI6ImFkbWluIiwibmFtZUNOIjoi57O757uf566h55CG5ZGYIiwidGltZW91dCI6MjQsInVzZXJJZCI6IjU3M2E0Njk4ZTRiMGQ5MDY2OGJjOWYwMyIsInVzZXJOYW1lIjoiYWRtaW4ifQ.DuWu64q_xiTHJFxQ8X9nMlGwFo82UtP_-2axvKgWois&quot;  http://10.0.106.37:8080/app/backop/6b9ab697-4f81-42e8-8a98-80b1e3f6f0a7/syncmdb
+</code></pre>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>MongoDB高级学习 &middot; penggy Blog</title>
+
+  
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="penggy Blog" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://kedadiannao220.github.io/"><h1>penggy Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://kedadiannao220.github.io/">Home</a> </li>
+      <li><a href="/post/"> 首页 </a></li><li><a href="/about/"> 关于 </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>MongoDB高级学习</h1>
+  <span class="post-date">Thu, Dec 14, 2017</span>
+  
+
+<h2 id="execute-js">execute JS</h2>
+
+<p>创建test.js文件，录入以下文字</p>
+
+<pre><code class="language-js">printjson(db.adminCommand('listDatabases'));
+printjson(db.getCollectionNames());
+printjson(pwd());
+</code></pre>
+
+<p>执行js</p>
+
+<pre><code class="language-shell">mongo --quiet test.js
+mongo test.js
+mongo localhost:27017/test test.js
+</code></pre>
+
+<ul>
+<li><p>可以指定数据库连接和库名执行</p></li>
+
+<li><p>quiet的作用是执行的时候不输出相关的执行信息，shell版本、服务器版本等</p></li>
+
+<li><p>printjson是一个函数，将结果美化成json格式输出</p></li>
+
+<li><p>pwd()是一些常用的native函数列表  <a href="https://docs.mongodb.com/manual/reference/method/js-native/#native-methods">native-methods </a></p></li>
+
+<li><p>db.adminCommand(&lsquo;listDatabases&rsquo;)与show dbs作用相同，是js脚本的写法，还有一些其他的改变见 <a href="https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/#differences-between-interactive-and-scripted-mongo">Differences Between Interactive and Scripted</a></p></li>
+</ul>
+
+<h2 id="mapreduce">MapReduce</h2>
+
+<pre><code class="language-json">var result = db.cms_ci_class.mapReduce(
+	function() {
+		emit(this.name, 1)
+	},
+	function(key, values) {
+		printjson(key + &quot;--&quot; + values);
+		return Array.sum(values)
+	}, {
+		query: {},
+		out: &quot;hell&quot;
+	}
+);
+
+printjson(result);
+</code></pre>
+
+<pre><code>{
+        &quot;result&quot; : &quot;hell&quot;,
+        &quot;timeMillis&quot; : 9,
+        &quot;counts&quot; : {
+                &quot;input&quot; : 135,
+                &quot;emit&quot; : 135,
+                &quot;reduce&quot; : 0,
+                &quot;output&quot; : 135
+        },
+        &quot;ok&quot; : 1
+}
+</code></pre>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/#write-scripts-for-the-mongo-shell">write-scripts</a></p>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

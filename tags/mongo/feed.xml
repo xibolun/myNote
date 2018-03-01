@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mongo on penggy Blog</title>
+    <link>https://kedadiannao220.github.io/tags/mongo/</link>
+    <description>Recent content in Mongo on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 14 Dec 2017 23:36:24 +0800</lastBuildDate>
+    
+	<atom:link href="https://kedadiannao220.github.io/tags/mongo/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MongoDB高级学习</title>
+      <link>https://kedadiannao220.github.io/post/mongo/mongodb-%E9%AB%98%E7%BA%A7/</link>
+      <pubDate>Thu, 14 Dec 2017 23:36:24 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/mongo/mongodb-%E9%AB%98%E7%BA%A7/</guid>
+      <description>execute JS 创建test.js文件，录入以下文字 printjson(db.adminCommand(&#39;listDatabases&#39;)); printjson(db.getCollectionNames()); printjson(pwd()); 执行js mongo --quiet test.js mongo test.js mongo localhost:27017/test test.js 可以指定数据库连接和库名执行 quiet的作用是执行的时候不输出相关的执</description>
+    </item>
+    
+    <item>
+      <title>MongoDB ReplSet Replication</title>
+      <link>https://kedadiannao220.github.io/post/mongo/mongodb-replset-replication/</link>
+      <pubDate>Wed, 15 Nov 2017 23:36:24 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/mongo/mongodb-replset-replication/</guid>
+      <description>ReplSet Replicatin master的IP： 10.0.1.9 slave IP: 10.0.106.2、10.0.106.6 以replSet形式启动master，replSet名称设置为rs0</description>
+    </item>
+    
+    <item>
+      <title>MongoDB Master Slave Replication</title>
+      <link>https://kedadiannao220.github.io/post/mongo/mongodb-master-slave-replication/</link>
+      <pubDate>Tue, 14 Nov 2017 23:36:24 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/mongo/mongodb-master-slave-replication/</guid>
+      <description>Replication&amp;ndash;Master Slave Replication Mongod命令列表 dbpath: 指定数据库文件目录，若不存在，则提示异常 port: 端口号指定 master:指定主节点 slaver:指定从节点 source: 指定主节点</description>
+    </item>
+    
+    <item>
+      <title>MongoDB基础学习</title>
+      <link>https://kedadiannao220.github.io/post/mongo/mongodb/</link>
+      <pubDate>Wed, 27 Sep 2017 13:07:24 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/mongo/mongodb/</guid>
+      <description>启动 mongodump -h localhost --username dbuser --password dbuser -o /tmp/mongodb-directory -d directory\_db\_dev mongorestore -d hf-cmdb0622-1 --drop --dir=/root/mongodb\_production-backup-file.201701192300/hf-cmdb/ mongo --username dbuser --password dbuser 基本命令 启动mongodb ： mongod &amp;ndash;dbpath /Users/admin/projects/mongodb/data/db 连接mongodb : mongo 数据类型 String Integer Boolean Double keys Arrays Timestamp Object Null Symbol Date Object ID Binary Data</description>
+    </item>
+    
+  </channel>
+</rss>
