@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Python学习 &middot; penggy Blog</title>
+
+  
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="penggy Blog" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://kedadiannao220.github.io/"><h1>penggy Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://kedadiannao220.github.io/">Home</a> </li>
+      <li><a href="/post/"> 首页 </a></li><li><a href="/about/"> 关于 </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Python学习</h1>
+  <span class="post-date">Thu, Jul 20, 2017</span>
+  
+
+<h1 id="基础">基础</h1>
+
+<h2 id="语法">语法</h2>
+
+<ul>
+<li>and : &amp;&amp;</li>
+<li>or : ||</li>
+<li>elif : if else</li>
+<li>if、for后面是:</li>
+<li>if <strong>~name~_</strong> == &lsquo;<strong>~main~_</strong>&lsquo;: main方法，方法的入口</li>
+<li>str(10) : 将int转换为str</li>
+<li>int(&lsquo;1&rsquo;): 将str转换为int</li>
+</ul>
+
+<h2 id="2-using-the-python-interpreter">2 Using the Python Interpreter</h2>
+
+<ul>
+<li>python打开python的解释器，若命令不存在，请检查Path环境变量</li>
+<li>Ctrl+D或quit() 关闭Interpreter; windows是Ctrl+z</li>
+<li>Interpreter里面自带命令历史，可以通过ctroller+P去查找上一个命令</li>
+<li>python3 xx.py: 执行python</li>
+</ul>
+
+<h2 id="3-using-python-as-a-calculator">3 Using Python as a Calculator</h2>
+
+<pre><code class="language-python">&gt;&gt;&gt; 2** 3   ## 2的3次方
+8
+&gt;&gt;&gt; 10 / 3   ## 10除以3
+3.3333333333333335
+</code></pre>
+
+<h1 id="生态">生态</h1>
+
+<h2 id="工具">工具</h2>
+
+<h3 id="pip3-包管理工具">pip3 包管理工具</h3>
+
+<ul>
+<li>easy~install~ pip 安装包管理工具；或从官网下载</li>
+<li>pip install &ndash;upgrade pip : 升级包管理工具</li>
+<li>pip install markdown 使用pip安装软件包</li>
+<li>pip freeze: pip安装的软件包列表</li>
+</ul>
+
+<h3 id="ipython">ipython</h3>
+
+<ul>
+<li>import inspect &amp;&amp; print(inspect.get(range)) :
+即可看到range函数的说明信息</li>
+<li>brew install ipython : 安装ipython的函数说明，使用方法range?
+中间没有空格</li>
+<li>range? 快速查找函数说明</li>
+<li>支持命令行相关工具</li>
+</ul>
+
+<h2 id="其他类库">其他类库</h2>
+
+<h3 id="xlrd-python读取excel">xlrd : python读取excel</h3>
+
+<pre><code class="language-python3">import xlrd
+
+if __name__ == '__main__':
+    data = xlrd.open_workbook(&quot;/tmp/test.xlsx&quot;)
+    sheet = data.sheets()[0]
+    nrows = sheet.nrows
+    ncols = sheet.ncols
+    for rowNum in range(0, nrows):
+        row = sheet.row_values(rowNum)
+        for colNum in range(0, ncols):
+            cell = row[colNum]
+            print(cell)
+</code></pre>
+
+<h2 id="虚拟环境">虚拟环境</h2>
+
+<ul>
+<li>pip3 install virtualenv: 安装虚拟环境</li>
+<li>​</li>
+
+<li><p>virtualenv pyenv3 : 创建一个虚拟环境目录</p></li>
+
+<li><p>source pyenv3/activate: 启动虚拟环境工作</p></li>
+
+<li><p>deactivate: 退出虚拟环境工作</p></li>
+</ul>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

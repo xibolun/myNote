@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术文章 on penggy Blog</title>
+    <link>https://kedadiannao220.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/</link>
+    <description>Recent content in 技术文章 on penggy Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 02 Feb 2018 10:13:59 +0800</lastBuildDate>
+    
+	<atom:link href="https://kedadiannao220.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>React--Redux学习</title>
+      <link>https://kedadiannao220.github.io/post/react--redux/</link>
+      <pubDate>Fri, 02 Feb 2018 10:13:59 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/react--redux/</guid>
+      <description>为什么要使用Redux 某个组件要共享 某个组件要改变全局的状态 某个组件状态发生变化了，另外的组件也要变化 某个组件的状态要在各个地方拿到 短小精悍</description>
+    </item>
+    
+    <item>
+      <title>AMQ Topic Subsriber Model</title>
+      <link>https://kedadiannao220.github.io/post/activemq--topicsubscriber/</link>
+      <pubDate>Wed, 27 Dec 2017 16:38:18 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/activemq--topicsubscriber/</guid>
+      <description>Topic Subsriber模式 订阅模式分为非持久订阅(Non-Durable Topic Subscribers)和持久订阅模式（Durable Topic Subscr</description>
+    </item>
+    
+    <item>
+      <title>Neo4j JavaReference</title>
+      <link>https://kedadiannao220.github.io/post/neo4j-javareference/</link>
+      <pubDate>Tue, 26 Dec 2017 23:36:24 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/neo4j-javareference/</guid>
+      <description>Neo4j JavaReference Extending Neo4j 自定义程序 neo4j里面有一套程序模板，可以让用户进行使用并调用 neo4j-procedure-template 内置程序列表 db.constraints db.indexes db.labels db.propertyKeys db.relationshipTypes dbms.changePassword dbms.components dbms.procedures dbms.queryJmx 远程debugger 在neo4j.c</description>
+    </item>
+    
+    <item>
+      <title>MongoDB高级学习</title>
+      <link>https://kedadiannao220.github.io/post/mongo/mongodb-%E9%AB%98%E7%BA%A7/</link>
+      <pubDate>Thu, 14 Dec 2017 23:36:24 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/mongo/mongodb-%E9%AB%98%E7%BA%A7/</guid>
+      <description>execute JS 创建test.js文件，录入以下文字 printjson(db.adminCommand(&#39;listDatabases&#39;)); printjson(db.getCollectionNames()); printjson(pwd()); 执行js mongo --quiet test.js mongo test.js mongo localhost:27017/test test.js 可以指定数据库连接和库名执行 quiet的作用是执行的时候不输出相关的执</description>
+    </item>
+    
+    <item>
+      <title>MongoDB基础学习</title>
+      <link>https://kedadiannao220.github.io/post/mongo/mongodb/</link>
+      <pubDate>Wed, 27 Sep 2017 13:07:24 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/mongo/mongodb/</guid>
+      <description>启动 mongodump -h localhost --username dbuser --password dbuser -o /tmp/mongodb-directory -d directory\_db\_dev mongorestore -d hf-cmdb0622-1 --drop --dir=/root/mongodb\_production-backup-file.201701192300/hf-cmdb/ mongo --username dbuser --password dbuser 基本命令 启动mongodb ： mongod &amp;ndash;dbpath /Users/admin/projects/mongodb/data/db 连接mongodb : mongo 数据类型 String Integer Boolean Double keys Arrays Timestamp Object Null Symbol Date Object ID Binary Data</description>
+    </item>
+    
+    <item>
+      <title>ActiveMQ Queue Model</title>
+      <link>https://kedadiannao220.github.io/post/activemq--queue/</link>
+      <pubDate>Tue, 01 Aug 2017 23:36:24 +0800</pubDate>
+      
+      <guid>https://kedadiannao220.github.io/post/activemq--queue/</guid>
+      <description>ActiveMQ是干什么的？ Apache ActiveMQ 是一个开源的消息集成服务 支持多语言，支持JMS1.1 J2EE1.4 首先需要了解什么是JMS和JMS相关的API：Java</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>MongoDB基础学习 &middot; penggy Blog</title>
+
+  
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="penggy Blog" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://kedadiannao220.github.io/"><h1>penggy Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://kedadiannao220.github.io/">Home</a> </li>
+      <li><a href="/post/"> 首页 </a></li><li><a href="/about/"> 关于 </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>MongoDB基础学习</h1>
+  <span class="post-date">Wed, Sep 27, 2017</span>
+  
+
+<h2 id="启动">启动</h2>
+
+<pre><code class="language-shell">mongodump -h localhost --username dbuser --password dbuser -o
+/tmp/mongodb-directory -d directory\_db\_dev mongorestore -d
+hf-cmdb0622-1 --drop
+--dir=/root/mongodb\_production-backup-file.201701192300/hf-cmdb/ mongo
+--username dbuser --password dbuser
+</code></pre>
+
+<h2 id="基本命令">基本命令</h2>
+
+<ul>
+<li>启动mongodb ： mongod &ndash;dbpath
+/Users/admin/projects/mongodb/data/db<br /></li>
+<li>连接mongodb : mongo</li>
+</ul>
+
+<h2 id="数据类型">数据类型</h2>
+
+<ul>
+<li>String</li>
+<li>Integer</li>
+<li>Boolean</li>
+<li>Double</li>
+<li>keys</li>
+<li>Arrays</li>
+<li>Timestamp</li>
+<li>Object</li>
+<li>Null</li>
+<li>Symbol</li>
+<li>Date</li>
+<li>Object ID</li>
+<li>Binary Data</li>
+<li>Code</li>
+<li>Regular expression</li>
+</ul>
+
+<h2 id="命令介绍">命令介绍</h2>
+
+<ul>
+<li>show dbs: 列出数据库列表</li>
+<li>use local: 切换数据库</li>
+<li>db: 查看当前的数据库</li>
+<li>db.test.insert({&ldquo;name&rdquo;:&ldquo;zhangsan&rdquo;}):
+插入数据，其中test为数据库的库名</li>
+<li>db.dropDatabase(): 删除当前的数据库</li>
+<li>db.createCollection(&ldquo;pengganyu&rdquo;,{capped:true,size:1000}):
+创建固定大小的集合</li>
+<li>db.pengganyu.drop(): 删除集合</li>
+<li>db.pengganyu.insert({title:&ldquo;name&rdquo;}): 集合当中插入文档</li>
+</ul>
+
+<h4 id="重命名一个库">重命名一个库</h4>
+
+<pre><code>&gt; db.copy(&quot;old&quot;,&quot;new&quot;,&quot;localhost&quot;)
+&gt; use old;
+&gt; db.dropDatabase();
+</code></pre>
+
+<h3 id="查询相关">查询相关</h3>
+
+<ul>
+<li>在语句的结尾添加.pretty()可以格式化json</li>
+<li>db.pengganyu.find();  // 查看文档</li>
+<li>db.cms~ci~.find().count(); //统计数量</li>
+<li>db.getCollection(&lsquo;cms_ci_class&rsquo;).find({&lsquo;displayName&rsquo;:&lsquo;数据库服务节点&rsquo;,&lsquo;name&rsquo;:&lsquo;BpDatabaseServiceRef&rsquo;})；//and查询方式</li>
+<li>db.getCollection(&lsquo;cms~ci~&lsquo;).find({},{&rdquo;~id~&rdquo;:0,&ldquo;source&rdquo;:1});//返回指定的列，0为不显示，1为显示</li>
+<li>db.getCollection(&lsquo;cms_ci_class&rsquo;).find({&lsquo;name&rsquo;:&lsquo;BpAppModel&rsquo;,&lsquo;name&rsquo;:&lsquo;BpDatabaseServiceRef&rsquo;}); // 若两个key相同，则and查询会按照最后一个value进行查询</li>
+<li>db.getCollection(&lsquo;cms_ci_class&rsquo;).find( {\$or:
+[{&lsquo;name&rsquo;:&lsquo;BpAppModel&rsquo;},{&lsquo;name&rsquo;:&lsquo;BpDatabaseServiceRef&rsquo;}]}); //or的查询，因为or查询后面肯定是一个列表，所以是[]的形式</li>
+<li>db.getCollection(&lsquo;cms_ci_class&rsquo;).find({&lsquo;displayName&rsquo;:&lsquo;数据库服务节点&rsquo;},{\$or:[{&lsquo;name&rsquo;:&lsquo;BpAppModel&rsquo;},{&lsquo;name&rsquo;:&lsquo;BpDatabaseServiceRef&rsquo;}]}); //and和or的联合查询</li>
+<li>db.getCollection(&lsquo;cms_ci&rsquo;).find({&lsquo;domain&rsquo;:{$nin:[&lsquo;hangzhou&rsquo;]}}).count();   //not in 查询</li>
+<li>db.getCollection(&lsquo;cms_ci&rsquo;).find({&lsquo;domain&rsquo;:{$in:[&lsquo;hangzhou&rsquo;]}}).count();  // in 查询</li>
+<li>db.getCollection(&lsquo;cms_ci_class&rsquo;).find({&lsquo;status&rsquo;:{\$gte:0}});  //gte:&gt;= ; lte: &lt;=</li>
+<li>db.getCollection(&lsquo;cms_ci_class&rsquo;).find({&lsquo;status&rsquo;:{\$gt:0}}); //gt: &gt; ; lt: &lt;</li>
+<li>db.getCollection(&lsquo;cms~ci~&lsquo;).find({&ldquo;source&rdquo;:{&rdquo;\$ne&rdquo;:&ldquo;CLOUD&rdquo;}},{&rdquo;~id~&rdquo;:0,&ldquo;source&rdquo;:1}); // \$ne不相待</li>
+<li>db.cms~ciclass~.find({&lsquo;createTime&rsquo;: {\$type:18}}); //查询数据类型为32-bit integer的数据 type:18</li>
+<li>db.cms~ciclass~.find({&lsquo;createTime&rsquo;: {\$type:18}}).limit(10); //    limit</li>
+<li>db.cms~ciclass~.find({&lsquo;createTime&rsquo;: {\$type:18}}).skip(10); // skip  跳过前10条</li>
+<li>db.cms~ciclass~.find().sort({&lsquo;name&rsquo;:1}); // 根据名称进行排序 1为升序，-1为降序</li>
+<li>db.runCommand({&lsquo;distinct&rsquo;:&lsquo;cms_ci_class&rsquo;,&lsquo;key&rsquo;:&lsquo;attributes.dataType&rsquo;});  //distinct语句</li>
+<li>db.cms~ciclass~.distinct(&lsquo;attributes.dataType&rsquo;); distinct语句</li>
+<li>db.getCollection(&lsquo;cms_api_log&rsquo;).find({&lsquo;createTime&rsquo;:{$gte: new Date(&lsquo;2017-11-14&rsquo;)}})    // 查询日期；日期存储的时候使用java.util.Date，mongo会转成ISO格式，读出来的时候仍然是Date</li>
+<li>db.getCollection(&lsquo;cms_api_log&rsquo;).find({&lsquo;uri&rsquo;:/query/})   // like查询 &lsquo;%query%&rsquo;</li>
+<li>db.getCollection(&lsquo;cms_api_log&rsquo;).find({&lsquo;uri&rsquo;:/^query/})   // like查询 &lsquo;%query&rsquo;</li>
+<li>db.getCollection(&lsquo;cms_api_log&rsquo;).find({&lsquo;uri&rsquo;:/query$/})   // like查询 &lsquo;query%&rsquo;</li>
+</ul>
+
+<h3 id="其他操作">其他操作</h3>
+
+<ul>
+<li>db.pengganyu.update({&ldquo;title&rdquo;:&ldquo;name&rdquo;},{\$set:{&ldquo;title&rdquo;:&ldquo;pengganyu&rdquo;}}):
+更新文档</li>
+<li>db.pengganyu.save({xxxx}): 保存文档</li>
+<li>db.pengganyu.remove({}): 移除所有的文档</li>
+<li>db.pengganyu.remove({xxx}): 移除文档</li>
+</ul>
+
+<h2 id="索引">索引</h2>
+
+<p>mongo当中的索引使用ensureIndex来操作，将所需要添加到索引的列标记为1，为正序排序</p>
+
+<pre><code class="language-shell">// db.getCollection('cms_ci').find({&quot;dataFieldMap.id&quot;:&quot;158b9616-d61a-4bbc-8da1-a4f35879a3d6&quot;}); // 0.567s
+// db.getCollection(&quot;cms_ci&quot;).ensureIndex({&quot;dataFieldMap.id&quot;:1});
+// db.getCollection('cms_ci').find({&quot;dataFieldMap.id&quot;:&quot;158b9616-d61a-4bbc-8da1-a4f35879a3d6&quot;}); // 0.004s
+</code></pre>
+
+<ul>
+<li>每个集合的最大索引个数为64</li>
+<li>建立索引的时候使用background参数，将建立过程在后台完成，不阻塞数据操作；
+db.getCollection(&ldquo;cms~ci~&ldquo;).ensureIndex({&ldquo;dataFieldMap.id&rdquo;:1},{&ldquo;background&rdquo;:true});</li>
+</ul>
+
+<h2 id="备份恢复">备份恢复</h2>
+
+<ul>
+<li>mongodump -h dbhost -d dbname -o dbdirectory</li>
+<li>mongodump -h localhost -d test -o /tmp/test</li>
+<li>mongorestore -h localhost:27017 -d test test; // mongorestore -h
+&lt;hostname&gt;&lt;:port&gt; -d dbname</li>
+<li>mongorestore -h localhost:27017 -d test  &ndash;dir <em>tmp/test &ndash;drop; /</em>
+先删除，再按照指定目录进行恢复</li>
+</ul>
+
+<h2 id="mongoshell">MongoShell</h2>
+
+<p>mongo命令连接至mongoshell，在mongoshell当中，按tab键可以进行自动匹配的提示</p>
+
+<ul>
+<li>show dbs; 查看当前的数据库实例列表</li>
+<li>show users; 查看当前数据库实例当中的用户列表</li>
+<li>use hf-cmdb5; 使用指定的数据库实例；若不存在则直接创建</li>
+<li>db.stats(); 查看当前数据库实例的状态</li>
+<li>db ; 返回当前的数据库实例</li>
+<li>db.system.users.find().pretty(); 查看所有的用户列表</li>
+<li>db.system.users.remove({user:&lsquo;username&rsquo;}); 删除用户</li>
+</ul>
+
+<pre><code class="language-example">    ➜  ~ mongo
+    MongoDB shell version v3.4.7
+   connecting to: mongodb://127.0.0.1:27017
+    MongoDB server version: 3.4.7
+    &gt; 
+
+    &gt; show dbs;
+    admin     0.000GB
+    hf-cmdb5  0.013GB
+    local     0.000GB
+    test      0.348GB
+
+    &gt; db.stats()
+    {
+            &quot;db&quot; : &quot;hf-cmdb&quot;,
+            &quot;collections&quot; : 0,
+            &quot;views&quot; : 0,
+            &quot;objects&quot; : 0,
+            &quot;avgObjSize&quot; : 0,
+            &quot;dataSize&quot; : 0,
+            &quot;storageSize&quot; : 0,
+            &quot;numExtents&quot; : 0,
+            &quot;indexes&quot; : 0,
+            &quot;indexSize&quot; : 0,
+            &quot;fileSize&quot; : 0,
+            &quot;ok&quot; : 1
+    }
+</code></pre>
+
+<h3 id="添加用户">添加用户</h3>
+
+<ul>
+<li>mongo 进入到mongoshell模式下</li>
+<li>use admin;</li>
+<li>db.createUser({user:&lsquo;dba&rsquo;,pwd:&lsquo;dba&rsquo;,roles:[{role:&lsquo;userAdminAnyDatabase&rsquo;,db:&lsquo;admin&rsquo;}];
+为admin创建用户名和密码及角色；此用户名和密码只适用于admin的db，虽然是admin，但是与其他的db的用户名密码不能通用</li>
+<li>db.createUser({user:&lsquo;dbuser&rsquo;,pwd:&lsquo;dbuser&rsquo;,roles:[{role:&lsquo;userAdminAnyDatabase&rsquo;,db:&lsquo;hf-cmdb5&rsquo;}]});
+使用admin给其他db创建用户和角色</li>
+<li>说明其他数据库，不能使用userAdminAnyDatabase角色</li>
+<li>db.auth({&lsquo;username&rsquo;,&lsquo;password&rsquo;});  // 测试用户名密码是否正确，返回1说明正确</li>
+</ul>
+
+<h3 id="角色说明">角色说明</h3>
+
+<ul>
+<li>数据库用户：read，readWrite</li>
+<li>数据库管理员角色：dbAdmin、dbOwner、userAdmin</li>
+<li>集群管理角色：clusterAdmin、clusterManager、clusterMonitor、hostManager</li>
+<li>备份恢复角色： backup、restore</li>
+<li>所有数据库角色：
+readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase</li>
+<li>超级用户角色：root
+其中dbOwner、userAdmin、userAdminAnyDatabase可以对超级用户的访问</li>
+<li>内部角色: ~system~</li>
+</ul>
+
+<h2 id="连接认证">连接认证</h2>
+
+<h2 id="一些错误">一些错误</h2>
+
+<pre><code class="language-shell">&gt; show dbs;
+2017-11-14T15:13:26.658+0800 E QUERY    [thread1] Error: listDatabases failed:{
+        &quot;ok&quot; : 0,
+        &quot;errmsg&quot; : &quot;not master and slaveOk=false&quot;,
+        &quot;code&quot; : 13435,
+        &quot;codeName&quot; : &quot;NotMasterNoSlaveOk&quot;
+} 
+</code></pre>
+
+<ul>
+<li>连接至从节点的时候，show
+dbs异常，这是因为从节点默认不允许读写操作，使用rs.slaveOk()设置slaveOk为true;</li>
+<li>rs为 replSet，副本集</li>
+</ul>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>JWT学习 &middot; penggy Blog</title>
+
+  
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="penggy Blog" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://kedadiannao220.github.io/"><h1>penggy Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://kedadiannao220.github.io/">Home</a> </li>
+      <li><a href="/post/"> 首页 </a></li><li><a href="/about/"> 关于 </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>JWT学习</h1>
+  <span class="post-date">Sat, Apr 22, 2017</span>
+  
+
+<h2 id="什么是jwt">什么是JWT?</h2>
+
+<p>jwt的全称是JSON Web Token；JSON Web
+Token是一个开源标准(<a href="https://tools.ietf.org/html/rfc7519">rfc7519)</a>
+，是一个轻量，携带着用户信息的json
+Object对象，安全的进行服务器端与客户端交互；这个对象可以校验、信任，因为它由数字组成；
+轻量：因为轻量，所以可以更好地放在http
+header里面，在服务器与客户端之间快速交互
+携带用户信息：将用户的重要信息:userId，userName等放在jwt当中，不用再次从数据库当中获取</p>
+
+<h2 id="什么时候使用">什么时候使用？</h2>
+
+<ol>
+<li><p>需要认证:用户根据username、password登录后，使用jwt返回一个token给客户端，客户端在请求的时候将token放在http
+header当中给服务器端，服务器端校验token的合法性，然后处理请求的response</p></li>
+
+<li><p>用户信息被改变：</p></li>
+</ol>
+
+<h2 id="jwt的结构">jwt的结构</h2>
+
+<h3 id="基本结构">基本结构</h3>
+
+<p>由header、payload、sinature三部分组成，最终以xxx.yyy.zzz的形式拼接</p>
+
+<h3 id="header">header</h3>
+
+<p>header由两部分组成：</p>
+
+<ul>
+<li>type of token : JWT</li>
+<li>加密算法: HMAC/SHA256/RSA</li>
+</ul>
+
+<h3 id="payload">payload</h3>
+
+<p>payload里面存放着用户的信息，可以使用claims进行复合拼装,claims由已定义、public、private三部分组成</p>
+
+<ul>
+<li>resolved(已定义)：iss/exp/sub/aud</li>
+<li>public:url信息</li>
+<li>private:用户信息</li>
+</ul>
+
+<p>payload当中的数据都可以由用户自行设置</p>
+
+<h3 id="sinature">sinature</h3>
+
+<p>签名，根据header、payload和一个用户设置的密码(secret)，生成一个签名，最后将header，payload，sinature拼接成xxx.yyy.zzz形式</p>
+
+<h2 id="怎么使用-java">怎么使用（java）</h2>
+
+<p>pom.xml里面引入jwt</p>
+
+<pre><code class="language-java">  &lt;dependency&gt;
+   &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;
+   &lt;artifactId&gt;jjwt&lt;/artifactId&gt;
+   &lt;version&gt;0.7.0&lt;/version&gt;
+  &lt;/dependency&gt; 
+</code></pre>
+
+<pre><code class="language-java">public static void main(String[] args) {
+     String secret = &quot;password&quot;;
+     String userId = &quot;zhangsan&quot;;
+     String userName = &quot;张三&quot;;
+
+     // 输出的jwt:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aGFuZ3NhbiIsInVzZXJOYW1lIjoi5byg5LiJIn0.024kCUw4nodiXEdeOWtjWFn8u2eoh-DdfmLiXYgZs9g
+     String jwt = Jwts.builder().setSubject(userId).signWith(SignatureAlgorithm.HS256, secret)
+         .claim(&quot;userName&quot;, userName).compact();
+     System.out.println(jwt);
+     // 客户端将Jwt传递给服务器,服务器根据secret进行解密,可以对jwt进行校验,取数据
+     Jws&lt;Claims&gt; claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(jwt);
+     //header={alg=HS256},body={sub=zhangsan, userName=张三},signature=024kCUw4nodiXEdeOWtjWFn8u2eoh-DdfmLiXYgZs9g
+     System.out.println(claims);
+
+ }
+</code></pre>
+
+<p>由上面可以看出claims里面存放的数据由header、body、signature三部分组成</p>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>

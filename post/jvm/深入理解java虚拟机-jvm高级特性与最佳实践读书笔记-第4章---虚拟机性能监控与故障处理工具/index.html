@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.20" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>深入理解Java虚拟机--第4章 虚拟机性能监控与故障处理 &middot; penggy Blog</title>
+
+  
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/print.css" media="print">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/syntax.css">
+  <link rel="stylesheet" href="https://kedadiannao220.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="penggy Blog" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://kedadiannao220.github.io/"><h1>penggy Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://kedadiannao220.github.io/">Home</a> </li>
+      <li><a href="/post/"> 首页 </a></li><li><a href="/about/"> 关于 </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>深入理解Java虚拟机--第4章 虚拟机性能监控与故障处理</h1>
+  <span class="post-date">Wed, Jul 5, 2017</span>
+  
+
+<h1 id="第4章-虚拟机性能监控与故障处理">第4章 虚拟机性能监控与故障处理</h1>
+
+<h2 id="4-1-概述">4.1 概述</h2>
+
+<ul>
+<li>工具永远都是知识技能的一层包装</li>
+<li>我的mac的jdk
+PATH为/Library/Java/JavaVirtualMachines/jdk1.7.0~79~.jdk/Contents/Home</li>
+</ul>
+
+<h2 id="4-2-jdk命令行工具">4.2 JDK命令行工具</h2>
+
+<p>工具名称   作用</p>
+
+<hr />
+
+<p>jps        JVM Process Status Tool, 显示指定系统内所有的HotSpot虚拟机进程
+  jstat      JVM Statistics Monitoring Tool,用于收集HotSpot虚拟机各方面的运行数据
+  jinfo      Configuration Info for Java,显示虚拟机的配置信息
+  jmap       Memory Map for Java,生成虚拟机的内存转储快照
+  jhat       Jvm Heap Dump Brower，用于分析headump文件，它会建立一个HTTP/HTML服务器，让用户可以在浏览器上查看分析结果
+  jstack     Stack Trace for Java， 显示虚拟机的线程快照</p>
+
+<h3 id="4-2-1-jps-虚拟机进程监控工具">4.2.1 jps: 虚拟机进程监控工具</h3>
+
+<ul>
+<li>jps -q : 输入LVMID(Local Virtual Machine
+Identifier)，虚拟机执行主类名称以及这些进程的本地虚拟机唯一ID</li>
+<li>jps -m : 输出虚拟机进程启动时传递给主类main()函数的参数</li>
+<li>jps -l : 输出主类的全名，如果进程执行的是jar包，输入jar路径</li>
+<li>jps -v : 输出虚拟机进程启动时jvm参数</li>
+</ul>
+
+<pre><code class="language-shell"># ./jps -q
+19959
+# ./jps -m
+19974 Jps -m
+# ./jps -l
+19904 sun.tools.jps.Jps
+# ./jps -v
+19919 Jps -Dapplication.home=/usr/java/jdk1.7.0_80 -Xms8m
+</code></pre>
+
+<h3 id="4-2-2-jstat-虚拟机统计信息监视工具">4.2.2 jstat: 虚拟机统计信息监视工具</h3>
+
+<ul>
+<li>jstat是用于监视虚拟机的各种运行状态信息的命令行工具</li>
+<li>jstat可以显示本地或远程虚拟机进程中的类装载，内存，垃圾收集，JIT编译等运行数据</li>
+<li>jstat -class vmId : 查看java进程的类加载信息</li>
+<li>jstat -gc vmId: 查看java进程的堆状况</li>
+<li>-gcutil : 输出已使用空间占总空间的百分比</li>
+<li>-gccapacity : 输出Java堆各个区域使用内存的情况，最大、最小空间</li>
+<li>-gccause : 输出导致上一次GC的原因</li>
+<li>-gcnew : 新生代gc</li>
+<li>-gcnewcapcacity :</li>
+<li>-gcold : 老年代GC</li>
+<li>-compiler : JIT编译器编译过的方法、耗时等</li>
+<li>-printcompilation : 输出已经被JIT编译过的方法</li>
+</ul>
+
+<h3 id="4-2-3-jinfo-java配置信息工具">4.2.3 jinfo: Java配置信息工具</h3>
+
+<ul>
+<li>jinfo pid : 查看java进程里面jvm的配置信息</li>
+</ul>
+
+<h3 id="4-2-4-jmap-java内存映像工具">4.2.4 jmap: Java内存映像工具</h3>
+
+<ul>
+<li>jmap: Memory Map for Java，用于生成堆转储快照</li>
+<li>jmap pid : 查看进程堆快照</li>
+<li>jmp -heap pid : 查看进程的堆详细信息</li>
+<li>jmap -dump:format=b,file=/tmp/aa.bin 660 : dump文件</li>
+</ul>
+
+<pre><code class="language-shell"># ./jmap 660Attaching to process ID 660, please wait...Debugger attached successfully.
+Server compiler detected.
+JVM version is 24.80-b11
+0x0000000000400000      7K      /usr/java/jdk1.7.0_80/jre/bin/java
+0x00007f3d8ef56000      36K     /usr/java/jdk1.7.0_80/jre/lib/amd64/headless/libmawt.so
+0x00007f3d8f15d000      755K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libawt.so
+0x00007f3d8f9de000      108K    /usr/lib64/libresolv-2.17.so
+0x00007f3d8fbf8000      26K     /usr/lib64/libnss_dns-2.17.so
+0x00007f3dac8b3000      86K     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+0x00007f3dacacf000      250K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libsunec.so
+0x00007f3daceac000      44K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libmanagement.so
+0x00007f3dad0e5000      113K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libnet.so
+0x00007f3dad2fc000      89K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libnio.so
+0x00007f3dadb13000      21K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libdt_socket.so
+0x00007f3db16ae000      107K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libzip.so
+0x00007f3db18c6000      60K     /usr/lib64/libnss_files-2.17.so
+0x00007f3dbc1cc000      14K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libnpt.so
+0x00007f3dbc3cf000      264K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libjdwp.so
+0x00007f3dbc60a000      214K    /usr/java/jdk1.7.0_80/jre/lib/amd64/libjava.so
+0x00007f3dbc835000      63K     /usr/java/jdk1.7.0_80/jre/lib/amd64/libverify.so
+0x00007f3dbca43000      43K     /usr/lib64/librt-2.17.so
+0x00007f3dbcc4b000      1114K   /usr/lib64/libm-2.17.so
+0x00007f3dbcf4d000      14879K  /usr/java/jdk1.7.0_80/jre/lib/amd64/server/libjvm.so
+0x00007f3dbddc7000      2058K   /usr/lib64/libc-2.17.so
+0x00007f3dbe188000      19K     /usr/lib64/libdl-2.17.so
+0x00007f3dbe38c000      96K     /usr/java/jdk1.7.0_80/jre/lib/amd64/jli/libjli.so
+0x00007f3dbe5a1000      138K    /usr/lib64/libpthread-2.17.so
+0x00007f3dbe7bd000      160K    /usr/lib64/ld-2.17.so
+
+# ./jmap -heap 660
+Attaching to process ID 660, please wait...
+Debugger attached successfully.
+Server compiler detected.
+JVM version is 24.80-b11
+
+using thread-local object allocation.
+Mark Sweep Compact GC                     ## CMS垃圾回收器
+
+Heap Usage:                               ## 各区域堆的使用情况
+New Generation (Eden + 1 Survivor Space):
+   capacity = 161021952 (153.5625MB)
+   used     = 101349832 (96.65473175048828MB)
+   free     = 59672120 (56.90776824951172MB)
+   62.94162425754222% used
+Eden Space:
+   capacity = 143130624 (136.5MB)
+   used     = 98631840 (94.06265258789062MB)
+   free     = 44498784 (42.437347412109375MB)
+   68.91036819625687% used
+From Space:
+   capacity = 17891328 (17.0625MB)
+   used     = 2717992 (2.5920791625976562MB)
+   free     = 15173336 (14.470420837402344MB)
+   15.191672747825091% used
+To Space:
+   capacity = 17891328 (17.0625MB)
+   used     = 0 (0.0MB)
+   free     = 17891328 (17.0625MB)
+   0.0% used
+tenured generation:
+   capacity = 357957632 (341.375MB)
+   used     = 283893288 (270.74173736572266MB)
+   free     = 74064344 (70.63326263427734MB)
+   79.3091870716141% used
+Perm Generation:
+   capacity = 134217728 (128.0MB)
+   used     = 71081288 (67.78839874267578MB)
+   free     = 63136440 (60.21160125732422MB)
+   52.959686517715454% used
+
+
+
+</code></pre>
+
+<h3 id="4-2-5-jhat-虚拟机堆转快照分析工具">4.2.5 jhat: 虚拟机堆转快照分析工具</h3>
+
+<ul>
+<li>jhat: JVM Heap Analysis Tool</li>
+<li>分析是一个比较耗时而且消耗硬件资源的过程</li>
+<li>jhat的分析比较丑陋，还不如使用VisualVM</li>
+<li>jhat针对于dump文件进行分析</li>
+</ul>
+
+<h3 id="4-2-6-jstack-java堆栈追踪工具">4.2.6 jstack: Java堆栈追踪工具</h3>
+
+<ul>
+<li>jstack: Stack Trace for Java;
+用于生成虚拟机当前时刻的线程快照信息，即每一个线程在正在执行的方法堆栈的集合</li>
+<li>可以定位线程的出现长时间卡顿的原因，线程卡顿的时候后台在做什么操作，需要等待的资源</li>
+<li>jstack -F vmId : 强行输出堆栈信息</li>
+<li>jstack -l vmId : 显示堆栈信息和锁信息</li>
+<li>jstack -m vmId : 显示C/C++堆栈信息，若调用本地方法的话</li>
+</ul>
+
+<h3 id="4-2-7-hsdis-jit生成代码反汇编">4.2.7 HSDIS: JIT生成代码反汇编</h3>
+
+<ul>
+<li>JIT代码的反汇编插件</li>
+</ul>
+
+<h2 id="4-3-jdk可视化工具">4.3 JDK可视化工具</h2>
+
+<ul>
+<li>JDK中提供了JConsole和VisualVM两个可视化工具</li>
+<li>JConsole是JDK1.5时提供</li>
+<li>VisualVM是JDK1.6Update7版本提供</li>
+</ul>
+
+<h3 id="4-3-1-jconsole">4.3.1 JConsole</h3>
+
+<ul>
+<li>JConsole可以通过remote连接运行服务器</li>
+</ul>
+
+<h3 id="4-3-2-visualvm">4.3.2 VisualVM</h3>
+
+<ul>
+<li>visualVM可以安装插件</li>
+</ul>
+
+<h4 id="定位java慢的问题">定位java慢的问题</h4>
+
+<ol>
+<li>top ,然后 shift + h ，看线程，观察哪个线程异常记录下pid</li>
+<li>jstack $java主进程pid &gt; a.log  打出线程到文件</li>
+<li>printf &lsquo;0x%x\n&rsquo;  异常线程pid转为16进制</li>
+<li>打开a.log搜0x625c 看线程堆栈定位问题。</li>
+</ol>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>
