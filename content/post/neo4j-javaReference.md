@@ -13,14 +13,14 @@ neo4j里面有一套程序模板，可以让用户进行使用并调用  [neo4j-
 
    * db.constraints	
    * db.indexes	
-   * db.labels	
-   * db.propertyKeys	
-   * db.relationshipTypes	
+   	 db.labels	
+   	 db.propertyKeys	
+   	 db.relationshipTypes	
    * dbms.changePassword
    * dbms.components	
-   * dbms.procedures	
+   	 dbms.procedures	
    * dbms.queryJmx 
-   
+
 ### 远程debugger ###
 在neo4j.conf文件当中设置
 
@@ -44,7 +44,7 @@ GraphDatabaseService graphDb = new GraphDatabaseFactory()
     .setConfig( GraphDatabaseSettings.array_block_size, "300" )
     .newGraphDatabase();
 ```
-  
+
 
 #### OGM ####
 

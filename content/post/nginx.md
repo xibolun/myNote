@@ -1,7 +1,5 @@
 +++
-date = "2017-06-15T23:36:24+08:00"
-title = "Nginx学习"
-
+date = "2017-06-15T23:36:24+08:00" title = "Nginx学习" categories = ["技术文章"] tags = ["nginx"] toc = true
 +++
 
 Mac下nginx命令

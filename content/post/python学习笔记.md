@@ -1,7 +1,5 @@
 +++
-date = "2017-07-20T23:36:24+08:00"
-title = "Python学习"
-
+date = "2017-07-20T23:36:24+08:00" title = "Python学习" categories = ["技术文章"] tags = ["python"] toc = true
 +++
 
 基础

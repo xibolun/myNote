@@ -1,10 +1,8 @@
 +++
-date = "2017-11-17T09:55:42+08:00"
-title = "neo4j"
-
+date = "2017-12-04T22:38:37+08:00" title = "neo4j-基础学习" categories = ["技术文章"] tags = ["neo4j"] toc = true
 +++
 
-#### 索引 
+## 索引 
 
 建立索引
 

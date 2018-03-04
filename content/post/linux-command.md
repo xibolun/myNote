@@ -1,7 +1,5 @@
 +++
-date = "2017-05-22T23:36:24+08:00"
-title = "linux命令学习"
-
+date = "2017-05-22T23:36:24+08:00" title = "linux命令学习" categories = ["技术文章"] tags = ["linux"] toc = true
 +++
 
 每天一个linux命令

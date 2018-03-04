@@ -1,7 +1,5 @@
 +++
-date = "2017-06-22T23:36:24+08:00"
-title = "Basic Java"
-
+date = "2017-06-22T23:36:24+08:00" title = "Java基础" categories = ["技术文章"] tags = ["java"]
 +++
 
 一些颠覆认知的问题

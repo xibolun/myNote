@@ -1,7 +1,5 @@
 +++
-date = "2016-04-27T23:36:24+08:00"
-title = "Git学习"
-
+date = "2016-04-27T23:36:24+08:00" title = "Git学习" categories = ["技术文章"] tags = ["git"] toc = true
 +++
 
 ### GIT命令
