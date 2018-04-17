@@ -10,6 +10,7 @@ echo "---------------- cd   public---------------"
 cd public
 
 echo "---------------- commit public-------------"
+git add .
 git commit -am  "commit blog"
 
 echo "---------------- push public---------------"
