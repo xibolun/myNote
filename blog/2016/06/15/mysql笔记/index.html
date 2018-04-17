@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <title>mysql笔记 - org-page</title>
+  <meta charset="utf-8" />
+  <meta name="author" content="彭甘雨" />
+
+  <link rel="alternate" title="RSS Feed" href="/rss.xml" type="application/rss+xml">
+  <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/media/css/posts.css" type="text/css">
+</head>
+
+  <body class="container">
+<header id="header">
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+<div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">org-page</a>
+        </div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="/">Biblenote</a></li>
+                <li class="active"><a href="/">Blog</a></li>
+                <li class="active"><a href="/">Ezra</a></li>
+          <li><a href="https://github.com/kedadiannao220">GitHub</a></li>
+        </ul>
+</div>
+</div>
+    </nav>
+</body>
+</header>
+
+<section id="content" role="main">
+    <div id="outline-container-sec-" class="row" style="padding-top: 70px">
+        <div class="col-md-2"></div>
+            <h1>mysql笔记</h1>
+            
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17">MySql学习</h2>
+<div class="outline-text-2" id="text-orgheadline17">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">启动相关</h3>
+<div class="outline-text-3" id="text-orgheadline1">
+<div class="org-src-container">
+
+<pre class="src src-shell">/etc/init.d/mysqld start
+/etc/init.d/mysqld stop
+/etc/init.d/mysqld restart
+
+service mysqld restart
+service mysqld stop
+service mysqld start
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">其他</h3>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">Mysql Dump</h3>
+<div class="outline-text-3" id="text-orgheadline9">
+</div><div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3">dump数据库</h4>
+<div class="outline-text-4" id="text-orgheadline3">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p hf-csa &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4">只dump数据库表结构（&#x2013;no-data -d）</h4>
+<div class="outline-text-4" id="text-orgheadline4">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p --no-data --add-drop-table hf-csa &gt; hf-csa.sql
+mysqldump -uroot -p -d --add-drop-table hf-csa &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">dump数据库表结构排除某些表</h4>
+<div class="outline-text-4" id="text-orgheadline5">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p --no-data --add-drop-table hf-csa --ignore-table=hf-csa.ACT_GET_PROPERTY &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">dump数据库某张表，表中间以空格分隔</h4>
+<div class="outline-text-4" id="text-orgheadline6">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p --no-data hf-csa SRV_INFO SRV_BP_APP_INFO &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">dump数据库带注释的表结构</h4>
+<div class="outline-text-4" id="text-orgheadline7">
+<div class="org-src-container">
+
+<pre class="src src-shell">mysqldump -uroot -p --no-data --comments hf-csa SRV_INFO SRV_BP_APP_INFO &gt; hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8">reload dump File</h4>
+<div class="outline-text-4" id="text-orgheadline8">
+<div class="org-src-container">
+
+<pre class="src src-shell">shell&gt; mysql hf-csa &lt; hf-csa.sql
+shell&gt; mysql -e "source hf-csa.sql" hf-csa
+mysql&gt; use `hf-csa`;
+mysql&gt; source hf-csa.sql
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">INFOMATION_SCHEMA</h3>
+<div class="outline-text-3" id="text-orgheadline10">
+<div class="org-src-container">
+
+<pre class="src src-sql">SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有表的列
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询hf-csa下所有的表
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sql">SHOW FULL COLUMNS FROM table_name;                          #查看mysql某表当中的列字段，包括列的character
+SHOW TABLE STATUS where name like 'SRV_BP_APP_NODE_VER';    # 查看某表的状态
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12">语法相关</h3>
+<div class="outline-text-3" id="text-orgheadline12">
+</div><div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">LEFT JOIN，RIGHT JOIN,  INNER JOIN</h4>
+<div class="outline-text-4" id="text-orgheadline11">
+<ul class="org-ul">
+<li>LEFT JOIN：以左边的表为基准显示查询结果</li>
+<li>RIGHT JOIN：以右边的表为基准显示查询结果</li>
+<li>INNER JOIN：只显示符合条件的查询结果</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-shell">SELECT ip.IP_ADDRESS,ip.ID,unit.NAME FROM SRV_BP_DEV_IP ip LEFT JOIN SRV_BP_DEV dev ON ip.SRV_BP_DEV_ID = dev.ID
+  LEFT JOIN SRV_BP_APP_DP_UNIT unit ON dev.SRV_BP_APP_DP_UNIT_ID = unit.ID WHERE
+  ip.SRV_INFO_ID = dev.SRV_INFO_ID AND dev.SRV_INFO_ID = unit.SRV_INFO_ID AND ip.SRV_INFO_ID = '9ecbd34c-3ed6-4e61-8d11-0ba526e9ca98';
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">问题列表</h3>
+<div class="outline-text-3" id="text-orgheadline16">
+</div><div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13">mysql的一些运维命令</h4>
+<div class="outline-text-4" id="text-orgheadline13">
+<div class="org-src-container">
+
+<pre class="src src-shell"># 查看mysql的端口监听情况
+netstate -nlt | grep 3306
+lsof -i:3306
+# 查看mysql的进程，同时可以看到mysql的一些文件位置
+ps ax | grep mysqld
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14">ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)</h4>
+<div class="outline-text-4" id="text-orgheadline14">
+<div class="org-src-container">
+
+<pre class="src src-mysql">-- 进入安全模式
+➜  ~ mysqld_safe --skip-grant-tables &amp;
+
+-- 直接无密码进入
+➜  ~ mysql -uroot
+
+-- 选择mysql
+mysql&gt; use mysql;
+
+-- 修改密码
+mysql&gt; update user set password=PASSWORD("yunjikeji") where User = 'root';
+
+-- flush 生效
+mysql&gt; flush privileges;
+
+-- 再次用密码尝试登陆
+➜  ~ mysql -uroot -p
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15">Incorrect definition of table performance_schema.events_waits_current: expected column 'NESTING_EVEN</h4>
+<div class="outline-text-4" id="text-orgheadline15">
+<p>
+数据库结构错误，导致mysql启动异常
+</p>
+<div class="org-src-container">
+
+<pre class="src src-shell">➜  ~ mysql_upgrade -u root -p
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    </div>
+</section>
+
+
+<footer id="footer">
+    <br />
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,31 @@
+#+TITLE: nginx
+#+DATE: 2017-06-15T23:47:43+08:00
+#+PUBLISHDATE: 2017-06-15T23:47:43+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: nginx
+#+DESCRIPTION: Short description
+
+** Mac下nginx命令
+#+BEGIN_SRC shell
+sudo brew install nginx: brew安装nginx
+/usr/local/etc/nginx/nginx.conf: nginx配置文件路径
+sudo nginx：启动nginx
+sudo nginx -s stop: 停止nginx
+sudo nginx -s reload: 重启nginx
+
+#+END_SRC
+
+** 静态资源配置
+#+BEGIN_SRC shell
+server {
+    listen       4000;
+    server_name  localhost;
+    root   /home/www/christ;
+    location / {
+        autoindex on;
+        autoindex_exact_size on;
+        autoindex_localtime on;
+    }
+}
+#+END_SRC

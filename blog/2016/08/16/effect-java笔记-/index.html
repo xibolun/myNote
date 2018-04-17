@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <title>Effect Java笔记  - org-page</title>
+  <meta charset="utf-8" />
+  <meta name="author" content="彭甘雨" />
+
+  <link rel="alternate" title="RSS Feed" href="/rss.xml" type="application/rss+xml">
+  <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/media/css/posts.css" type="text/css">
+</head>
+
+  <body class="container">
+<header id="header">
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+<div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">org-page</a>
+        </div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="/">Biblenote</a></li>
+                <li class="active"><a href="/">Blog</a></li>
+                <li class="active"><a href="/">Ezra</a></li>
+          <li><a href="https://github.com/kedadiannao220">GitHub</a></li>
+        </ul>
+</div>
+</div>
+    </nav>
+</body>
+</header>
+
+<section id="content" role="main">
+    <div id="outline-container-sec-" class="row" style="padding-top: 70px">
+        <div class="col-md-2"></div>
+            <h1>Effect Java笔记 </h1>
+            
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">第2章 对象的销毁和创建</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">私有构造方法来强化单例属性</h3>
+<div class="outline-text-3" id="text-orgheadline1">
+<p>
+单例的三种实现方法
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java">public class Elvis{
+  public static final Elvis INSTANCE = new Elvis();
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-java">public class Elvis{
+  public static final Evlis INSTANCE = new Elvis();
+
+  public static Elvis getInstance(){
+     return INSTANCE;
+  }
+
+    public static void main(){
+        System.out.println("hello");
+    }
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-java">public enum Elvis{
+  INSTANCE;
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">私有构造方法强化不可实例化的能力</h3>
+<div class="outline-text-3" id="text-orgheadline2">
+<p>
+在某些类当中，比如工具类，常量类，是不希望被实例化的。但是在没有构造方法的情况下，会调用默认的无参的构造方法。如果我们创建一个私有的构造方法，则编译器就不会实例化一个无参的构造方法。
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">避免创建不必要的对象</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<div class="org-src-container">
+
+<pre class="src src-java">String s = new String("hello");
+String s = "hello";
+</pre>
+</div>
+<p>
+以上的代码在每次执行的时候都会创建一个新的对象。
+</p>
+
+<ol class="org-ol">
+<li><p>
+对于同时提供了静态方法和构造方法的不可变类，静态方法的使用要优于构造方法
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java">Boolean.valueOf("true");
+Boolean("true");
+</pre>
+</div></li>
+<li>我们可以在将一些变量声明于类或方法的抬头，防止多次实例化</li>
+<li></li>
+</ol>
+</div>
+</div>
+</div>
+
+    </div>
+</section>
+
+
+<footer id="footer">
+    <br />
+</footer>
+
+  </body>
+</html>

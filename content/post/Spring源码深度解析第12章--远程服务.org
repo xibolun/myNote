@@ -1,0 +1,10 @@
+#+TITLE: Spring源码深度解析第12章--远程服务
+#+DATE: 2017-09-20T17:40:50+08:00
+#+PUBLISHDATE: 2017-09-20T17:40:50+08:00
+#+DRAFT: nil
+#+SHOWTOC: t
+#+TAGS: Java, Spring
+#+DESCRIPTION: Short description
+
+目前调用远程接口可以使用一些RPC框架，或者使用Spring Template；或Web Service等
+
