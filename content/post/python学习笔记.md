@@ -34,6 +34,34 @@ date = "2017-07-20T23:36:24+08:00" title = "Python学习" categories = ["技术�
 3.3333333333333335
 ```
 
+#### 循环
+
+```
+1. for x in reversed(array):
+           print x
+2. for x in range(len(array)-1,-1,-1):
+           print array[x]
+3. for x in array[::-1]:
+           print x
+```
+
+
+
+### md5
+
+```python
+import hashlib
+if __name__ == '__main__':
+    str = "hello"
+    hmd5 = hashlib.md5()
+    # update之前必须encode
+    hmd5.update(str.encode('utf-9'))
+    print('加密前：' + str)
+    print('加密后：' + hmd5.hexdigest())
+```
+
+
+
 生态
 ====
 
@@ -56,6 +84,17 @@ date = "2017-07-20T23:36:24+08:00" title = "Python学习" categories = ["技术�
 -   range? 快速查找函数说明
 -   支持命令行相关工具
 
+## 虚拟环境
+
+- pip3 install virtualenv: 安装虚拟环境
+- virtualenv pyenv3 : 创建一个虚拟环境目录
+
+
+- source pyenv3/bin/activate: 启动虚拟环境工作
+
+
+- deactivate: 退出虚拟环境工作
+
 其他类库
 --------
 
@@ -76,17 +115,9 @@ if __name__ == '__main__':
             print(cell)
 ```
 
+### 爬虫(requests,beautifulsoup4)
 
+```
 
-## 虚拟环境
-
-- pip3 install virtualenv: 安装虚拟环境
-- ​
-- virtualenv pyenv3 : 创建一个虚拟环境目录
-
-
-- source pyenv3/activate: 启动虚拟环境工作
-
-
-- deactivate: 退出虚拟环境工作
+```
 
