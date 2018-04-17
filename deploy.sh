@@ -13,7 +13,7 @@ echo "---------------- commit public-------------"
 git commit -am  "commit blog"
 
 echo "---------------- push public---------------"
-git push
+git push -f
 
 echo "---------------- end  --------------------"
 
