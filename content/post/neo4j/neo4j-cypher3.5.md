@@ -1,29 +1,38 @@
 +++
-date = "2017-12-04T22:38:37+08:00" title = "neo4j-基础学习" categories = ["技术文章"] tags = ["neo4j"] toc = true
+date = "2018-05-02T11:16:31+08:00" title = "neo4j-cypher3.5" categories = ["技术文章"] tags = ["neo4j"] toc = true
 +++
 
-## 索引 
+## 3.5 索引
 
-建立索引
+- 索引分为单属性索引(*single-property index*)和组合属性索引(*composite index*)
+
+### create single-property index
 
 ```cypher
-create index on : BpAppInfo(code)
-Added 1 index, statement executed in 157 ms.
+CREATE INDEX ON :defautl_BpAppInfo(id)
 ```
 
-查看索引
+查询索引列表
 
 ```cypher
-call db.indexes
+CALL db.indexes
 ```
 
 删除索引
 
-```cypher
-drop index on : BpAppInfo(code)
+```
+drop index on :default_BpAppInfo(id);
 ```
 
-#### profile
+### create compostive index
+
+```cypher
+CREATE INDEX on :default_BpAppInfo(typeCode,name)
+```
+
+注意：旧版本不支持索引逗号分隔操作
+
+### profile
 
 作用是查看查询计划，
 
@@ -39,11 +48,3 @@ profile match (n:egfbank_BpAppInfo)  USING index  n:egfbank_BpAppInfo(code)  whe
 - 第二条会查询指定的label
 - 第三条会根据建立的索引去做查询
 - 可以指定index去做查询
-
-
-#### 修改密码
-
-```
-curl -H "Content-Type: application/json" -XPOST -d '{"password":"new password"}' -u neo4j:neo4j http://localhost:7474/user/neo4j/password
-```
-

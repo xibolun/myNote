@@ -144,6 +144,13 @@ WHERE charlie.name = 'Charlie Sheen' AND martin.name = 'Martin Sheen'
 RETURN p
 ```
 
+- 带参数查询
+
+```
+MATCH (n:egfbank_AppInfo) where n.`系统名称` = {pro} return n  // 3.0版本
+MATCH (n:egfbank_AppInfo) where n.`系统名称` = $pro return n  // 3.2以上版本
+```
+
 ### With
 
 可以将match出来的结果进行一次聚合，然后再return；结合order by 和limit使用
