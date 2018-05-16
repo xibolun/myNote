@@ -31,20 +31,3 @@ CREATE INDEX on :default_BpAppInfo(typeCode,name)
 ```
 
 注意：旧版本不支持索引逗号分隔操作
-
-### profile
-
-作用是查看查询计划，
-
-```cypher
-profile match (n{code:'A_ENDS'}) return n;
-profile match (n:egfbank_BpAppInfo {code:'A_ENDS'}) return n;
-create index on : BpAppInfo(code)
-profile match (n:egfbank_BpAppInfo {code:'A_ENDS'}) return n;
-profile match (n:egfbank_BpAppInfo)  USING index  n:egfbank_BpAppInfo(code)  where n.code= 'A_ENDS'   return n;
-```
-
-- 第一条会查询所有的节点，耗时比较长
-- 第二条会查询指定的label
-- 第三条会根据建立的索引去做查询
-- 可以指定index去做查询
