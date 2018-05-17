@@ -1,9 +1,0 @@
-#+TITLE: Spring源码深度解析第11章--Spring MVC
-#+DATE: 2017-09-18T17:51:31+08:00
-#+PUBLISHDATE: 2017-09-18T17:51:31+08:00
-#+DRAFT: nil
-#+SHOWTOC: t
-#+TAGS: Java, Spring
-#+DESCRIPTION: Short description
-
-说明，由于目前使用SpringBoot，并且使用Restful对API进行管理；所以Spring MVC的思想继续保持延续，但代码一般不怎么写了，所以此部分的源码目前不打算看了；

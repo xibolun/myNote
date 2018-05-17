@@ -1,8 +1,0 @@
-#+TITLE: redis
-#+DATE: 2017-05-10T13:27:01+08:00
-#+PUBLISHDATE: 2017-05-10T13:27:01+08:00
-#+DRAFT: nil
-#+TAGS: redis
-#+DESCRIPTION: Short description
-
-redis-cli del 'LOGIN_ERROR_LIMIT:zhangbo'
