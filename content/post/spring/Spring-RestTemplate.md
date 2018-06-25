@@ -1,8 +1,7 @@
 +++
-date = "2017-04-27T23:36:24+08:00"
-title = "Spring-RestTemplate"
-
+date = "2017-04-27T23:36:24+08:00" title = "Spring-RestTemplate" categories = ["技术文章"] tags = ["spring"] toc = true
 +++
+
 
 解决中文乱码的问题和Delete无法传入body的问题
 --------------------------------------------

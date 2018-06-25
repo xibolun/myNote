@@ -1,8 +1,7 @@
 +++
-date = "2017-09-20T23:36:24+08:00"
-title = "SpringBoot实战第2章--自定义配置"
-
+date = "2017-09-20T23:36:24+08:00" title = "SpringBoot实战第2章--自定义配置" categories = ["技术文章"] tags = ["spring"] toc = true
 +++
+
 
 注解
 ----

@@ -168,13 +168,20 @@ mongo命令连接至mongoshell，在mongoshell当中，按tab键可以进行自�
 ### 添加用户
 
 -   mongo 进入到mongoshell模式下
--   use admin;
--   db.createUser({user:'dba',pwd:'dba',roles:\[{role:'userAdminAnyDatabase',db:'admin'}\];
-    为admin创建用户名和密码及角色；此用户名和密码只适用于admin的db，虽然是admin，但是与其他的db的用户名密码不能通用
--   db.createUser({user:'dbuser',pwd:'dbuser',roles:\[{role:'userAdminAnyDatabase',db:'hf-cmdb5'}\]});
-    使用admin给其他db创建用户和角色
--   说明其他数据库，不能使用userAdminAnyDatabase角色
--   db.auth({'username','password'});  // 测试用户名密码是否正确，返回1说明正确
+
+```
+use admin;
+//为admin创建用户名和密码及角色；此用户名和密码只适用于admin的db，虽然是admin，但是与其他的db的用户名密码不能通用
+db.createUser({user:'dba',pwd:'dba',roles:[{role:'userAdminAnyDatabase',db:'admin'}]});
+
+
+use hf-cmdb5
+
+db.createUser({user:'dbuser',pwd:'dbuser',roles:[{role:'dbAdmin',db:'hf-cmdb5'}]});
+
+// 测试用户名密码是否正确，返回1说明正确
+db.auth({'username','password'}); 
+```
 
 ### 角色说明
 

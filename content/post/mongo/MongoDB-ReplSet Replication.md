@@ -273,3 +273,69 @@ rs0:SECONDARY> rs.reconfig(cfg)
 - 当PRIMARY挂掉的时候，权重高的会被设置为PRIMARY；
 - 非PRIMARY的副本只允许查询，不允许其他的操作；
 
+### 使用Springboot进行操作
+
+查看rs设置
+
+```
+rs0:PRIMARY> rs.conf()
+{
+        "_id" : "rs0",
+        "version" : 12,
+        "members" : [
+                {
+                        "_id" : 0,
+                        "host" : "10.0.1.9:27017",
+                        "priority" : 2
+                },
+                {
+                        "_id" : 1,
+                        "host" : "10.0.106.2:27017",
+                        "priority" : 0.8
+                },
+                {
+                        "_id" : 2,
+                        "host" : "10.0.106.6:27017",
+                        "priority" : 0.5
+                }
+        ],
+        "settings" : {
+                "getLastErrorDefaults" : {
+                        "w" : 1,
+                        "wtimeout" : 0
+                }
+        }
+}
+```
+
+springboot application.properties文件配置
+```
+mongo.replicaSet=mongodb://10.0.1.9:27017,10.0.106.2:27017,10.0.106.6:27017
+```
+
+PRIMARY: 10.0.1.9   SECONDARY: 10.0.106.2, 10.0.106.6
+
+当工程启动后，实验过程和结论如下
+
+- 关闭10.0.1.9
+  - 10.0.106.2成为PRIMARY
+  - 10.0.106.2与10.0.106.6都在尝试重连10.0.1.9
+  - 此时应用操作正常，后台无连数据不上的问题
+- 关闭10.0.106.2
+  - 此时没有PRIMARY，10.0.106.6仍然是SECONDARY节点
+  - 此时应用操作不正常，后台过了最大尝试重连时间后直接异常提示
+
+```
+org.springframework.dao.DataAccessResourceFailureException: Timed out after 30000 ms while waiting for a server that matches {serverSelectors=[ReadPreferenceServerSelector{readPreference=primary}, LatencyMinimizingServerSelector{acceptableLatencyDifference=15 ms}]}. Client view of cluster state is {type=ReplicaSet, servers=[{address=10.0.1.9:27017, type=Unknown, state=Connecting, exception={com.mongodb.MongoException$Network: Exception opening the socket}, caused by {java.net.ConnectException: Connection refused}}, {address=10.0.106.2:27017, type=ReplicaSetSecondary, averageLatency=11.9 ms, state=Connected}, {address=10.0.106.6:27017, type=Unknown, state=Connecting, exception={com.mongodb.MongoException$Network: Exception opening the socket}, caused by {java.net.ConnectException: Connection refused}}]; nested exception is com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting for a server that matches {serverSelectors=[ReadPreferenceServerSelector{readPreference=primary}, LatencyMinimizingServerSelector{acceptableLatencyDifference=15 ms}]}. Client view of cluster state is {type=ReplicaSet, servers=[{address=10.0.1.9:27017, type=Unknown, state=Connecting, exception={com.mongodb.MongoException$Network: Exception opening the socket}, caused by {java.net.ConnectException: Connection refused}}, {address=10.0.106.2:27017, type=ReplicaSetSecondary, averageLatency=11.9 ms, state=Connected}, {address=10.0.106.6:27017, type=Unknown, state=Connecting, exception={com.mongodb.MongoException$Network: Exception opening the socket}, caused by {java.net.ConnectException: Connection refused}}]
+```
+
+- 重新启动10.0.106.2
+  - 节点10.0.106.2变为PRIMARY
+  - 此时应用开始恢复，正常操作
+- 重新启动10.0.1.9
+  - 节点10.0.106.6变为SECONDARY，10.0.1.9变为PRIMARY
+  - 此时应用正常操作
+
+- 当没有PRIMARY的时候，应用才会宕机
+- 当三个节点组成replica set的时候，集群宕机到只剩下一台机器的时候，就没有PRIMARY节点，应用也就无法正常运转
+- spring配置文件当中的配置顺序没有关系
