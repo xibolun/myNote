@@ -215,3 +215,13 @@ db.auth({'username','password'});
     dbs异常，这是因为从节点默认不允许读写操作，使用rs.slaveOk()设置slaveOk为true;
 -   rs为 replSet，副本集
 
+### 其他命令
+
+```
+rs.conf();
+
+rs.status();
+
+db.state();
+```
+

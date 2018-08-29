@@ -153,7 +153,9 @@ ps ax | grep mysqld
 mysql> use mysql;
 
 -- 修改密码
+## 5.7以后 passowrd字段改为authentication_string
 mysql> update user set password=PASSWORD("yunjikeji") where User = 'root';
+
 
 -- flush 生效
 mysql> flush privileges;
@@ -196,3 +198,8 @@ max_connections=200
 
 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 
 ```
+
+
+### mysql lock ###
+[An InnoDB Deadlock Example](https://dev.mysql.com/doc/refman/8.0/en/innodb-deadlock-example.html)
+[Deadlocks in InnoDB](https://dev.mysql.com/doc/refman/8.0/en/innodb-deadlocks.html)

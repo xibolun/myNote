@@ -34,6 +34,7 @@ title = "深入理解Java虚拟机--第4章 虚拟机性能监控与故障处理
 -   jps -m : 输出虚拟机进程启动时传递给主类main()函数的参数
 -   jps -l : 输出主类的全名，如果进程执行的是jar包，输入jar路径
 -   jps -v : 输出虚拟机进程启动时jvm参数
+-   jus -mlvV: 查看java进程以及启动的参数及路径
 
 ``` {.shell}
 # ./jps -q
@@ -44,6 +45,12 @@ title = "深入理解Java虚拟机--第4章 虚拟机性能监控与故障处理
 19904 sun.tools.jps.Jps
 # ./jps -v
 19919 Jps -Dapplication.home=/usr/java/jdk1.7.0_80 -Xms8m
+[root@puppet-master-139 ~]# jps -mlvV
+31346 org.apache.catalina.startup.Bootstrap start -Djava.util.logging.config.file=/usr/yunji/tomcat-rbac-davinci/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Xdebug -Xrunjdwp:transport=dt_socket,address=9527,suspend=n,server=y -Xms1024m -Xmx1024m -XX:PermSize=128M -XX:MaxNewSize=2048M -XX:MaxPermSize=2048M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/jvmdump/rbac-davinci -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dcatalina.base=/usr/yunji/tomcat-rbac-davinci -Dcatalina.home=/usr/yunji/tomcat-rbac-davinci -Djava.io.tmpdir=/usr/yunji/tomcat-rbac-davinci/temp
+133 clojure.main -m puppetlabs.trapperkeeper.main --config /etc/puppetlabs/puppetserver/conf.d -b /etc/puppetlabs/puppetserver/bootstrap.cfg -Xms2g -Xmx2g -XX:MaxPermSize=256m -XX:OnOutOfMemoryError=kill -9 %p -Djava.security.egd=/dev/urandom
+31354 org.apache.catalina.startup.Bootstrap start -Djava.util.logging.config.file=/usr/yunji/tomcat-flow-srv/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Xms1024m -Xmx1024m -XX:PermSize=128M -XX:MaxNewSize=2048M -XX:MaxPermSize=2048M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/jvmdump/catalog -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dcatalina.base=/usr/yunji/tomcat-flow-srv -Dcatalina.home=/usr/yunji/tomcat-flow-srv -Djava.io.tmpdir=/usr/yunji/tomcat-flow-srv/temp
+43 clojure.main -m puppetlabs.puppetdb.main --config /etc/puppetlabs/puppetdb/conf.d -b /etc/puppetlabs/puppetdb/bootstrap.cfg -Xmx192m -XX:OnOutOfMemoryError=kill -9 %p -Djava.security.egd=/dev/urandom
+32331 sun.tools.jps.Jps -mlvV -Dapplication.home=/usr/java/jdk1.8.0_144 -Xms8m
 ```
 
 ### 4.2.2 jstat: 虚拟机统计信息监视工具

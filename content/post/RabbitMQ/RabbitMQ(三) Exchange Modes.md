@@ -19,6 +19,7 @@ date = "2018-06-25T17:30:28+08:00" title = "RabbitMQ(三) Exchange Modes" catego
 
 - 路由模式，设置routingKey是没有用的，会发送消息至所有与fanoutExchange绑定的queues里面去
 - 若FanoutExchange改变了绑定的Queue，RabbitMQ不会内部刷新，需要手工删除
+- faout发送的消息，topic也是可以接收到的
 
 ![exchange-fanout](https://www.rabbitmq.com/img/tutorials/intro/exchange-fanout.png)
 

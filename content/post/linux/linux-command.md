@@ -348,3 +348,9 @@ date = "2017-05-22T23:36:24+08:00" title = "linux命令学习" categories = ["�
     crontab服务的生命周期命令
 -   crontab -r : 删除当前用户的cron
 
+#### linux唯一标识：
+
+```
+cat /sys/class/dmi/id/product_uuid
+```
+

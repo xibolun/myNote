@@ -17,6 +17,8 @@ date = "2018-05-30T10:35:47+08:00" title = "RabbitMQ(一) 入门及基础概念"
 
 - exchange、routingKey、queue、channel之间的关系是怎么样的
 
+- delayQueue的参数同时添加ttl和expire为什么就再也接收不到消息？
+
 - 为什么发送的时候没有使用queue，在接收的时候却需要queue，queue是怎么和channel结合的？
 
 - Spring AMQP集成：https://docs.spring.io/spring-amqp/docs/2.0.3.RELEASE/reference/html/index.html
@@ -24,6 +26,10 @@ date = "2018-05-30T10:35:47+08:00" title = "RabbitMQ(一) 入门及基础概念"
 - [rabbitmq-cli-rabbitmqadmin]: http://www.cnblogs.com/xishuai/p/rabbitmq-cli-rabbitmqadmin.html?utm_source=gold_browser_extension
 
 - web stomp: http://stomp.github.io/
+
+- 如何配置mq的开机自启与关闭
+
+- zeroMQ、rabbitMQ、ActiveMQ有什么区别及性能优势
 
 # RabbitMQ(一) 入门及基础概念
 
@@ -38,7 +44,7 @@ date = "2018-05-30T10:35:47+08:00" title = "RabbitMQ(一) 入门及基础概念"
 ### 内置地址
 
 - web界面：loalhost::15672   
-- 默认用户名密码：guest/guest
+- 默认用户名密码：guest/guest（若新增的用户名密码登陆失败，有可能是没有添加权限的tag）
 - client： localhost:5672，默认virtual  host： /
 
 
