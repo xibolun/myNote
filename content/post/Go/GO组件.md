@@ -17,7 +17,7 @@ date = "2018-07-19T20:39:43+08:00" title = "go规范及组件" categories = ["�
   * [hclog](https://github.com/hashicorp/go-hclog)
   * [dep](https://studygolang.com/articles/10589)
 
-#### cli
+#### urfave/cli
 
 - github: [cli](https://github.com/urfave/cli)
 - version字段默认flag为v,当我想定义一下-v, verbose的时候是会提示被重复的，修改默认的versionFlag即可；官网的README.md里面也有提及
@@ -45,20 +45,53 @@ func FileActions(ctx *cli.Context) error {
 
 ```
 
-#### httplib ####
+#### beego ####
+
+##### httplib #####
+
 httplib是beego的一个包，里面有restful相关的方法，问题如下：
 
 ``` go
+package handler
+
+func TestUpdateEntityIdByHostId(t *testing.T) {
+    // queryParam参数
+	postRequest := httplib.Put("http://localhost:6868/host/entity")
+	postRequest.Param("hostId", "23143243214").Param("entityId", "34134123")
+	fmt.Println(postRequest)
+	req, err := postRequest.String()
+    ....
+
+}
 
 ```
 
 
-### 命令行工具开发 ###
+``` go
+
+    //取pathVariable方法
+	r.URL.Query().Get("hostId") // 此种方法只能取pathVariable
+   
+    //取QueryParam参数方法
+    r.ParseForm()   // 若要取queryParam，必须先parseForm一下，然后才能拿到具体数据
+	r.Form.Get("hostId")
+    
+    //取QueryParam参数方法
+    r.FormValue("hostId")
+    
+    //取body当中参数方法
+    bytes, err := ioutil.ReadAll(r.Body)   //将bytes转成json即可
+    
+```
+
+
+
+
+### urfave/cli ###
 
 #### 如何生成help和命令flag ####
 #### 如何输出格式 ####
 #### 如何输出色彩 ####
-
 [bash_color](https://misc.flogisoft.com/bash/tip_colors_and_formatting)
 
 
