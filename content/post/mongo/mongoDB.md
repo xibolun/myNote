@@ -225,3 +225,6 @@ rs.status();
 db.state();
 ```
 
+### 一些问题
+
+http://www.cnblogs.com/cswuyg/p/4355948.html

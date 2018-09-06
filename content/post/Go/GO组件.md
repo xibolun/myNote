@@ -8,6 +8,8 @@ date = "2018-07-19T20:39:43+08:00" title = "go规范及组件" categories = ["�
 
 - 包名是小写单词，不应该有下划线或混合大小写，保持简洁，不要过早考虑包名冲突
 - 使用驼峰而非下划线来命名函数或者变量
+- 接口名称必须是er为后缀
+- 
 
 ### GO组件使用注意 ###
 
@@ -42,6 +44,22 @@ func FileActions(ctx *cli.Context) error {
 }
 
 ```
+
+#### httplib ####
+httplib是beego的一个包，里面有restful相关的方法，问题如下：
+
+``` go
+
+```
+
+
+### 命令行工具开发 ###
+
+#### 如何生成help和命令flag ####
+#### 如何输出格式 ####
+#### 如何输出色彩 ####
+
+[bash_color](https://misc.flogisoft.com/bash/tip_colors_and_formatting)
 
 
 
