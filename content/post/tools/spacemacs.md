@@ -1,5 +1,5 @@
 +++
-date = "2018-09-04T10:30:23+08:00" title = "spacemacs" categories = ["工具"] tags = ["tool"] toc = true
+date = "2018-09-04T10:30:23+08:00" title = "emacs" categories = ["工具"] tags = ["tool"] toc = true
 +++
 
 ## Spacemacs ##
@@ -12,6 +12,3 @@ date = "2018-09-04T10:30:23+08:00" title = "spacemacs" categories = ["工具"] t
 
 #### 注释 ####
 - [Commenting](http://spacemacs.org/doc/DOCUMENTATION#commenting) 
-
-
-
