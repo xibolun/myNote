@@ -3,9 +3,7 @@ date = "2018-07-19T20:39:43+08:00" title = "go语言基础学习笔记" categori
 +++
 
 ## GO语言基础
-
 ### 顺序编程 ###
-
 #### 执行
 
 - 必须在main package下面的main方法才可以运行
@@ -39,13 +37,30 @@ func addRessFunc() {
 2 0xc420084008 1
 ```
 
-#### string ####
+#### iota ####
 
-- len(str) :获取字符串的长度
-- s[i] : 取字符串s当中的某一条字符char类型
-- UTF8中3个字节
-- 默认值为"", bool为false
+##### string #####
+  - len(str) :获取字符串的长度
+  - s[i] : 取字符串s当中的某一条字符char类型
+  - UTF8中3个字节
+  - 默认值为"", bool为false, int为0 
+  - %号转义  fmt.Sprintf("%%%s%s","hello") --> %hello%
 
+###### stringbuild ######
+
+``` go
+// 线程不安全
+func TestBufferWrite(t *testing.T) {
+	strs := []string{"1", "2", "3", "4", "5", "6"}
+
+	var buffer bytes.Buffer
+	for _, str := range strs {
+		buffer.WriteString(str)
+	}
+
+	fmt.Println(buffer.String())
+}
+```
 
 #### 切片 ####
 
@@ -54,6 +69,63 @@ func addRessFunc() {
 - append
 - append ... 当添加的元素也是一个切片的时候需要加...
 
+
+``` go
+func main() {
+    s := make([]int, 5)
+    s = append(s, 1, 2, 3)
+    fmt.Println(s)    //  [0 0 0 0 0 1 2 3]
+
+    s := make([]int, 0)
+    s = append(s, 1, 2, 3)
+    fmt.Println(s)//[1 2 3] //[1,2,3]
+}
+
+
+```
+
+##### 切片截取性能测试 #####
+
+``` go
+func BenchmarkSliceCopy(b *testing.B) {
+	b.ResetTimer()
+	var a []int
+	for i := 0; i < 10000000; i++ {
+		a = append(a, i)
+	}
+
+	i := rand.Intn(1000000)
+
+	copy(a[i:], a[i+1:])
+
+	a = a[:len(a)-1]
+
+	fmt.Println(len(a))
+
+}
+
+func BenchmarkSliceSplit(b *testing.B) {
+	b.ResetTimer()
+	var a []int
+	for i := 0; i < 10000000; i++ {
+		a = append(a, i)
+	}
+	i := rand.Intn(1000000)
+
+	m := a[0:i]
+
+	c := a[i+1:]
+
+	a = append(m, c...)
+
+	fmt.Println(len(a))
+
+}
+
+```
+
+#### file ####
+- file.writeString(string) 可以append file，不会覆盖文件
 
 #### map  ####
 - var myMap map[string] PersonInfo  :声明一个map
@@ -71,6 +143,14 @@ func addRessFunc() {
 - 不支持while和do-while
 - 支持break contiue
 - JLoop
+
+``` go
+for i:=0;i<10;i++{
+}
+
+for i,x := range array{
+}
+```
 
 
 #### func ####
@@ -92,11 +172,35 @@ Strings.NewReader(string)  // string to reader
 bytes.NewReader([]byte)  // []byte to reader
 ```
 
+``` go
+[]byte(string)  // string to byte
+```
 
 
+
+#### defer ####
+- defer是先入后出，所以是先打印最后的
+- defer会在return 之前被执行
+``` go
+func Test_defer(t *testing.T) {
+	deferTest()
+}
+
+func deferTest() {
+	defer fmt.Println("1")
+	defer fmt.Println("2")
+	defer fmt.Println("3")
+
+	panic("error")
+}
+
+```
+
+#### struct ####
+- 两个结构体相等，必须得是参数名一样，顺序一样
+- 若结构体当中存在map、slicen属性，则肯定不相等
 
 ### 面向对象编程 ###
-
 #### 类型 ####
 - 无this关键字，对象需要显式进行传递
 - 若需要改变传入对象，则需要传入对象的指针 (a *Integer)
@@ -114,4 +218,9 @@ func (n1 *NameAge) doSomething(n2 int) { /* */ }
 ```
 func doSomething(n1 *NameAge, n2 int) { /* */ }
 ```
+
+### 其他库 ###
+#### gofmt ####
+[http://nickgravgaard.com/elastic-tabstops/](elastic-tabstops)
+
 

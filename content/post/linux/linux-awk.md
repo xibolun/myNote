@@ -30,3 +30,11 @@ date = "2017-04-22T23:36:24+08:00" title = "Awk学习" categories = ["技术文�
  echo -e "A line 1n A line 2" | awk  '{print $1}'                                                                        ## -F为空时，默认以空格分隔 
  echo | awk '{ var1="hello"; var2="world"; print var1,var2}'                                               ##在{}当中定义变量，变量声明之间用 ; 进行分隔
 ```
+
+
+### 运维命令
+
+``` shell
+lsof |awk '{print $2}'|uniq -c
+```
+

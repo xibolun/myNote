@@ -12,3 +12,11 @@ date = "2018-09-04T10:30:23+08:00" title = "emacs" categories = ["工具"] tags 
 
 #### 注释 ####
 - [Commenting](http://spacemacs.org/doc/DOCUMENTATION#commenting) 
+
+
+### org ###
+- SPC t l    // 设置截取行开关
+
+#### evil ####
+- selection M-x iedit-mode (https://github.com/syl20bnr/evil-iedit-state)
+

@@ -28,7 +28,6 @@ command
 -   docker images : 列出镜像
 -   docker images -q : 只列出镜像ID
 -   docker images -f since=hello-world : -f 过滤出某些镜像；since/before
--   ​
 
 容器
 ----
@@ -51,7 +50,7 @@ command
 4.  docker run -it ubuntu:14.04 /bin/bash :
     启动一个bash终端，退出则容器销毁
 5.  docker exec -it de2ef4052dce /bin/bash: 进入某个docker容器
-6.  docker rm bfa78720b949 : 删除某个容器，其中bfa78720b949为容器的ID号
+6.  docker rm bfa78720b949 : 删除某个容器，其中bfa78720b949为容器的ID号，结合stop命令使用，先stop再rm
 7.  ctrl+d :
     退出容器，此时容器也就不再running了，若想重新再running，可以使用docker
     start bfa

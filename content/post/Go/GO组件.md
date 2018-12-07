@@ -9,7 +9,6 @@ date = "2018-07-19T20:39:43+08:00" title = "go规范及组件" categories = ["�
 - 包名是小写单词，不应该有下划线或混合大小写，保持简洁，不要过早考虑包名冲突
 - 使用驼峰而非下划线来命名函数或者变量
 - 接口名称必须是er为后缀
-- 
 
 ### GO组件使用注意 ###
 
@@ -74,7 +73,8 @@ func TestUpdateEntityIdByHostId(t *testing.T) {
    
     //取QueryParam参数方法
     r.ParseForm()   // 若要取queryParam，必须先parseForm一下，然后才能拿到具体数据
-	r.Form.Get("hostId")
+	r.Form.Get("hostId") // 发现此方法有时候取不到值，反而Query可以使用
+	r.URL.Query().Get("hostId")
     
     //取QueryParam参数方法
     r.FormValue("hostId")
@@ -89,10 +89,27 @@ func TestUpdateEntityIdByHostId(t *testing.T) {
 
 ### urfave/cli ###
 
+#### 一个bug ####
+[https://github.com/urfave/cli/issues/355](issues/355)
+
 #### 如何生成help和命令flag ####
 #### 如何输出格式 ####
 #### 如何输出色彩 ####
 [bash_color](https://misc.flogisoft.com/bash/tip_colors_and_formatting)
 
 
+### cobra ###
+- 支持json、table样式输出
+
+### gorm
+
+```
+	err := model.GetDb().Table("act2_job_record").Pluck("id",&strs).Error
+```
+
+
+
+### gRPC
+
+[gRPC实战](https://jergoo.gitbooks.io/go-grpc-practice-guide/content)
 

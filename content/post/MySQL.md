@@ -5,6 +5,14 @@ date = "2017-04-27T23:36:24+08:00" title = "MySql日常杂学" categories = ["�
 MySql日常杂学
 =============
 
+### 安装 ###
+
+``` shell
+wget -i -c http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
+yum -y install mysql57-community-release-el7-10.noarch.rpm
+yum -y install mysql-community-server
+```
+
 启动相关
 --------
 
@@ -138,6 +146,17 @@ netstate -nlt | grep 3306
 lsof -i:3306
 # 查看mysql的进程，同时可以看到mysql的一些文件位置
 ps ax | grep mysqld 
+```
+
+### 设置允许远程连接 ###
+
+
+``` sql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Yunjikeji@123' WITH GRANT OPTION;
+
+update user set authentication_string=PASSWORD("Yunjikeji#123") where User='root';
+
+FLUSH PRIVILEGES;
 ```
 
 ### ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
