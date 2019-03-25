@@ -3,20 +3,27 @@
 ##### public目录下面是另一个repository，gitpage必须以Master分支来作为发布分支，所以必须另起一个repository
 ##### 将public目录删除，然后重新生成，提交至public的master分支，即可发布
 ##### 发布会有延时
+echo "---------------- start --------------------"
+git add .
 
+git commit -am "commit blog master"
 
 git push origin master
 
+echo "---------------- remove public-------------"
 rm -rf public/* -y
 
-hugo
+echo "---------------- generate public-----------"
+hugo --theme=hugo-pacman-theme --baseUrl="https://kedadiannao220.github.io/blog/"
 
+echo "---------------- cd   public---------------"
 cd public
 
-git add  .
+echo "---------------- commit public-------------"
+git add .
+git commit -am  "commit blog"
 
-git commit -am "commit github page"
+echo "---------------- push public---------------"
+git push -f
 
-git push origin master
-
-
+echo "---------------- end  --------------------"
