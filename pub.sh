@@ -14,7 +14,7 @@ echo "---------------- remove public-------------"
 rm -rf public/* -y
 
 echo "---------------- generate public-----------"
-hugo --theme=hugo-pacman-theme --baseUrl="https://kedadiannao220.github.io/blog/"
+hugo 
 
 echo "---------------- cd   public---------------"
 cd public
