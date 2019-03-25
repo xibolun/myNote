@@ -1,5 +1,5 @@
 +++
-date = "2018-10-20T22:12:01+08:00" title = "go time学习" categories = ["技术文章"] tags = ["go"] toc = true
+date = "2018-10-20T22:12:01+08:00" title = "Go--time" categories = ["技术文章"] tags = ["go"] toc = true
 +++
 
 
@@ -83,3 +83,11 @@ func Test_Ticket(t *testing.T) {
 }
 
 ```
+
+
+
+###  标准时间格式列表
+
+- ```
+  2006-01-02 15:04:05 +0800 CST
+  ```

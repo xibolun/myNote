@@ -45,7 +45,7 @@ func LogPanic(next http.Handler) http.Handler {
 		defer func() {
 			if rvr := recover(); rvr != nil {
 				// append panic info to file
-				panicTime := time.Now().Format("2006-01-02 15:04:05")
+				panicTimae := time.Now().Format("2006-01-02 15:04:05")
 				if _, err := file.WriteString(fmt.Sprintf("\n%s: %v\n %s", panicTime, rvr, debug.Stack())); err != nil {
 					fmt.Printf("write panic file error , %s", err.Error())
 				}

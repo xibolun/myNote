@@ -176,7 +176,47 @@ bytes.NewReader([]byte)  // []byte to reader
 []byte(string)  // string to byte
 ```
 
-
+```
+func strConvert(str, typ string) (v interface{}, err error) {
+   switch typ {
+   case reflect.Int.String():
+      v, err = strconv.ParseInt(str, 10, 0)
+   case reflect.Int8.String():
+      v, err = strconv.ParseInt(str, 10, 8)
+   case reflect.Int16.String():
+      v, err = strconv.ParseInt(str, 10, 16)
+   case reflect.Int32.String():
+      v, err = strconv.ParseInt(str, 10, 32)
+   case reflect.Int64.String():
+      v, err = strconv.ParseInt(str, 10, 64)
+   case reflect.Uint.String():
+      v, err = strconv.ParseUint(str, 10, 0)
+   case reflect.Uint8.String():
+      v, err = strconv.ParseUint(str, 10, 8)
+   case reflect.Uint16.String():
+      v, err = strconv.ParseUint(str, 10, 16)
+   case reflect.Uint32.String():
+      v, err = strconv.ParseUint(str, 10, 32)
+   case reflect.Uint64.String():
+      v, err = strconv.ParseUint(str, 10, 64)
+   case reflect.Bool.String():
+      v, err = strconv.ParseBool(str)
+   case reflect.Float32.String():
+      v, err = strconv.ParseFloat(str, 32)
+   case reflect.Float64.String():
+      v, err = strconv.ParseFloat(str, 64)
+   case "reader":
+      v = strings.NewReader(str)
+   case "time":
+      if strings.Contains(str, "CST") {
+         v, err = time.Parse("2006-01-02 15:04:05 +0800 CST", str)
+      }
+   default:
+      v = str
+   }
+   return
+}
+```
 
 #### defer ####
 - defer是先入后出，所以是先打印最后的
