@@ -1,6 +1,11 @@
-+++
-date = "2017-12-14T23:36:24+08:00" title = "MongoDB高级学习" categories = ["技术文章"] tags = ["Mongo"] toc = true
-+++
+---
+
+date :  "2017-12-14T23:36:24+08:00" 
+title : "MongoDB高级学习" 
+categories : ["技术文章"] 
+tags : ["Mongo"] 
+toc : true
+---
 
 
 ## execute JS

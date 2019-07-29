@@ -1,6 +1,11 @@
-+++
-date = "2017-09-12T23:36:24+08:00" title = "Spring源码深度解析第8章--数据库连接JDBC" categories = ["技术文章"] tags = ["spring"] toc = true
-+++
+---
+
+date :  "2017-09-12T23:36:24+08:00" 
+title : "Spring源码深度解析第8章--数据库连接JDBC" 
+categories : ["技术文章"] 
+tags : ["spring"] 
+toc : true
+---
 
 前言
 ----

@@ -1,6 +1,11 @@
-+++
-date = "2018-05-30T10:35:47+08:00" title = "RabbitMQ(二) HelloWorld" categories = ["技术文章"] tags = ["RabbitMQ"] toc = true
-+++
+---
+
+date :  "2018-05-30T10:35:47+08:00" 
+title : "RabbitMQ(二) HelloWorld" 
+categories : ["技术文章"] 
+tags : ["RabbitMQ"] 
+toc : true
+---
 
 ## HelloWorld
 

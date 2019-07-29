@@ -1,7 +1,12 @@
-+++
-date = "2019-03-28T09:56:53+08:00" title = "深入浅出MySQL(一)" categories = ["技术文章"] tags = ["MySQL"] toc = true
+---
 
-+++
+date :  "2019-03-28T09:56:53+08:00" 
+title : "深入浅出MySQL(一)" 
+categories : ["技术文章"] 
+tags : ["MySQL"] 
+toc : true
+
+---
 
 ### DDL、DML、DCL
 

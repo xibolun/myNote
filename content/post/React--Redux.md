@@ -1,6 +1,11 @@
-+++
-date = "2018-02-02T10:13:59+08:00" title = "React--Redux学习" categories = ["技术文章"] tags = ["react"] toc = true
-+++
+---
+
+date :  "2018-02-02T10:13:59+08:00" 
+title : "React--Redux学习" 
+categories : ["技术文章"] 
+tags : ["react"] 
+toc : true
+---
 
 ### 为什么要使用Redux
 - 某个组件要共享

@@ -1,7 +1,12 @@
-+++
-date = "2018-12-07T22:20:49+08:00" title = "GO stack" categories = ["技术文章"] tags = ["go"] toc = true
+---
 
-+++
+date :  "2018-12-07T22:20:49+08:00" 
+title : "GO stack" 
+categories : ["技术文章"] 
+tags : ["go"] 
+toc : true
+
+---
 
 
 

@@ -1,6 +1,11 @@
-+++
-date = "2017-12-04T22:37:52+08:00" title = "Neo4j-OGM源码分析" categories = ["技术文章"] tags = ["neo4j"] toc = true
-+++
+---
+
+date :  "2017-12-04T22:37:52+08:00" 
+title : "Neo4j-OGM源码分析" 
+categories : ["技术文章"] 
+tags : ["neo4j"] 
+toc : true
+---
 
 判断NODE是否发生变化 
 

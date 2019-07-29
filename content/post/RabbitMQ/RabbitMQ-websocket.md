@@ -1,7 +1,12 @@
-+++
-date = "2019-04-25T10:43:27+08:00" title = "RabbitMQ-Websocket" categories = ["技术文章"] tags = ["rabbitmq"] toc = true
+---
 
-+++
+date :  "2019-04-25T10:43:27+08:00" 
+title : "RabbitMQ-Websocket" 
+categories : ["技术文章"] 
+tags : ["rabbitmq"] 
+toc : true
+
+---
 
 ### Demo
 

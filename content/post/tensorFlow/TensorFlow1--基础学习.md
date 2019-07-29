@@ -1,6 +1,11 @@
-+++
-date = "2018-03-25T19:48:23+08:00" title = "TensorFlow入门" categories = ["技术文章"] tags = ["tensorflow"] toc = true
-+++
+---
+
+date :  "2018-03-25T19:48:23+08:00" 
+title : "TensorFlow入门" 
+categories : ["技术文章"] 
+tags : ["tensorflow"] 
+toc : true
+---
 
 ## 什么是MNIST
 

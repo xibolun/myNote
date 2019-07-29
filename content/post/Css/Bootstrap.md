@@ -1,7 +1,12 @@
-+++
-date = "2019-02-10T09:56:08+08:00" title = "Bootstrap" categories = ["技术文章"] tags = ["Css"] toc = true
+---
 
-+++
+date :  "2019-02-10T09:56:08+08:00" 
+title : "Bootstrap" 
+categories : ["技术文章"] 
+tags : ["Css"] 
+toc : true
+
+---
 
 ### 滚动
 

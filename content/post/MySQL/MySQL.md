@@ -1,6 +1,11 @@
-+++
-date = "2017-04-27T23:36:24+08:00" title = "MySql日常杂学" categories = ["技术文章"] tags = ["mysql"] toc = true
-+++
+---
+
+date :  "2017-04-27T23:36:24+08:00" 
+title : "MySql日常杂学" 
+categories : ["技术文章"] 
+tags : ["mysql"] 
+toc : true
+---
 
 MySql日常杂学
 =============

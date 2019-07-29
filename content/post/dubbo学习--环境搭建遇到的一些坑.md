@@ -1,6 +1,11 @@
-+++
-date = "2017-07-04T22:43:54+08:00" title = "dubbo学习--环境搭建遇到的一些坑" categories = ["技术文章"] tags = ["dubbo"] toc = true
-+++
+---
+
+date :  "2017-07-04T22:43:54+08:00" 
+title : "dubbo学习--环境搭建遇到的一些坑" 
+categories : ["技术文章"] 
+tags : ["dubbo"] 
+toc : true
+---
 
 前言
 ----

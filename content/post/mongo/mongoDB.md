@@ -1,6 +1,11 @@
-+++
-date = "2017-09-27T13:07:24+08:00" title = "MongoDB基础学习" categories = ["技术文章"] tags = ["Mongo"] toc = true
-+++
+---
+
+date :  "2017-09-27T13:07:24+08:00" 
+title : "MongoDB基础学习" 
+categories : ["技术文章"] 
+tags : ["Mongo"] 
+toc : true
+---
 
 
 启动

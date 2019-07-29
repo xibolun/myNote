@@ -1,6 +1,11 @@
-+++
-date = "2018-07-19T20:39:43+08:00" title = "go语言基础学习笔记" categories = ["技术文章"] tags = ["go"] toc = true
-+++
+---
+
+date :  "2018-07-19T20:39:43+08:00" 
+title : "go语言基础学习笔记" 
+categories : ["技术文章"] 
+tags : ["go"] 
+toc : true
+---
 
 ## GO语言基础
 ### 顺序编程 ###

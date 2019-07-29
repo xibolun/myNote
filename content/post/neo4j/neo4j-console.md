@@ -1,6 +1,11 @@
-+++
-date = "2018-05-02T11:29:18+08:00" title = "Neo4j控制台" categories = ["技术文章"] tags = ["neo4j"] toc = true
-+++
+---
+
+date :  "2018-05-02T11:29:18+08:00" 
+title : "Neo4j控制台" 
+categories : ["技术文章"] 
+tags : ["neo4j"] 
+toc : true
+---
 
 ## console内经
 

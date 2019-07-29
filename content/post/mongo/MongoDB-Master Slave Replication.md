@@ -1,6 +1,10 @@
-+++
-date = "2017-11-14T23:36:24+08:00" title = "MongoDB Master Slave Replication"  tags = ["Mongo"] toc = true
-+++
+---
+
+date :  "2017-11-14T23:36:24+08:00" 
+title : "MongoDB Master Slave Replication"  
+tags : ["Mongo"] 
+toc : true
+---
 
 
 ## Replication--Master Slave Replication

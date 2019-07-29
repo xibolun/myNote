@@ -1,6 +1,11 @@
-+++
-date = "2017-08-15T23:36:24+08:00" title = "Spring源码深度解析第3章--默认标签的解析" categories = ["技术文章"] tags = ["spring"] toc = true
-+++
+---
+
+date :  "2017-08-15T23:36:24+08:00" 
+title : "Spring源码深度解析第3章--默认标签的解析" 
+categories : ["技术文章"] 
+tags : ["spring"] 
+toc : true
+---
 
 
 3.1 bean标签的解析及注册

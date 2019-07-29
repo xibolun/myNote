@@ -1,6 +1,11 @@
-+++
-date = "2017-09-21T23:36:24+08:00" title = "SpringBoot实战第7章--Actuator" categories = ["技术文章"] tags = ["spring"] toc = true
-+++
+---
+
+date :  "2017-09-21T23:36:24+08:00" 
+title : "SpringBoot实战第7章--Actuator" 
+categories : ["技术文章"] 
+tags : ["spring"] 
+toc : true
+---
 
 
 说明

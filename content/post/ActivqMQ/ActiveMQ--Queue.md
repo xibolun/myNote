@@ -1,6 +1,11 @@
-+++
-date = "2017-08-01T23:36:24+08:00" title = "ActiveMQ Queue Model" categories = ["技术文章"] tags = ["ActiveMQ"] toc = true
-+++
+---
+
+date :  "2017-08-01T23:36:24+08:00" 
+title : "ActiveMQ Queue Model" 
+categories : ["技术文章"] 
+tags : ["ActiveMQ"] 
+toc : true
+---
 
 # ActiveMQ是干什么的？
 

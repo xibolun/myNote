@@ -1,6 +1,11 @@
-+++
-date = "2016-04-27T23:36:24+08:00" title = "Git学习" categories = ["技术文章"] tags = ["git"] toc = true
-+++
+---
+
+date :  "2016-04-27T23:36:24+08:00" 
+title : "Git学习" 
+categories : ["技术文章"] 
+tags : ["git"] 
+toc : true
+---
 
 ### GIT命令
 
@@ -52,6 +57,7 @@ date = "2016-04-27T23:36:24+08:00" title = "Git学习" categories = ["技术文�
 -   git remote renmae \[remote-oldname\]
     \[remote-newname\]：重命名remote名称
 -   git remote vm \[remote-name\]：删除remote
+-   `git remote prune origin` 清空无用的分支
 
 #### git tag
 
@@ -138,6 +144,14 @@ date = "2016-04-27T23:36:24+08:00" title = "Git学习" categories = ["技术文�
 
 -   git clean -f : remove untracked files
 -   git clean -fd : remove untracked directories
+
+#### git stash
+
+- git stash: 存储变更
+- git stash save 'message': 为stash添加存储的信息，查看并回滚
+- git stash list ：查看现有的存储列表
+- git stash drop {stash@1}：删除指定的stash信息
+- git stash show {stash@1}：查看指定stash文件信息
 
 ### 如何重命名远程分支
 

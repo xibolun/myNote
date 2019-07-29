@@ -1,7 +1,12 @@
-+++
-date = "2018-05-30T10:35:47+08:00" title = "RabbitMQ(一) 入门及基础概念" categories = ["技术文章"] tags = ["RabbitMQ"] toc = true
+---
 
-+++
+date :  "2018-05-30T10:35:47+08:00" 
+title : "RabbitMQ(一) 入门及基础概念" 
+categories : ["技术文章"] 
+tags : ["RabbitMQ"] 
+toc : true
+
+---
 
 - 什么是Exchange，为什么要用Exchange，四种模式有什么区别
 

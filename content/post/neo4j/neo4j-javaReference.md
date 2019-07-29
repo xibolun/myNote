@@ -1,6 +1,11 @@
-+++
-date = "2017-12-26T23:36:24+08:00" title = "Neo4j JavaReference" categories = ["技术文章"] tags = ["Neo4j"] toc = true
-+++
+---
+
+date :  "2017-12-26T23:36:24+08:00" 
+title : "Neo4j JavaReference" 
+categories : ["技术文章"] 
+tags : ["Neo4j"] 
+toc : true
+---
 
 ## Neo4j JavaReference ##
 

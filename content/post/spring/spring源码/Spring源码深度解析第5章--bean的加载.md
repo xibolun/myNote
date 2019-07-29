@@ -1,6 +1,11 @@
-+++
-date = "2017-08-21T23:36:24+08:00" title = "Spring源码深度解析第5章--bean的加载" categories = ["技术文章"] tags = ["spring"] toc = true
-+++
+---
+
+date :  "2017-08-21T23:36:24+08:00" 
+title : "Spring源码深度解析第5章--bean的加载" 
+categories : ["技术文章"] 
+tags : ["spring"] 
+toc : true
+---
 
 
 5.1 FactoryBean的使用

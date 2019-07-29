@@ -1,6 +1,11 @@
-+++
-date = "2018-10-20T22:12:01+08:00" title = "Go--time" categories = ["技术文章"] tags = ["go"] toc = true
-+++
+---
+
+date :  "2018-10-20T22:12:01+08:00" 
+title : "Go--time" 
+categories : ["技术文章"] 
+tags : ["go"] 
+toc : true
+---
 
 
 ## Go time学习 ##

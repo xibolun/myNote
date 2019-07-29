@@ -1,7 +1,12 @@
-+++
-date = "2018-12-07T22:20:32+08:00" title = "Go File学习" categories = ["技术文章"] tags = ["go"] toc = true
+---
 
-+++
+date :  "2018-12-07T22:20:32+08:00" 
+title : "Go File学习" 
+categories : ["技术文章"] 
+tags : ["go"] 
+toc : true
+
+---
 
 ## Go File学习
 
@@ -86,3 +91,47 @@ func TestFile(t *testing.T) {
    os.Remove(path)
 }
 ```
+
+#### 获取文件列表
+
+```
+
+// GetFileList 获取目录下的文件列表
+func GetFileList(dir, excludes string) []*os.File {
+	var files []*os.File
+
+	root, err := os.Open(dir)
+	if err != nil {
+		return files
+	}
+	fi, err := root.Stat()
+	if err != nil {
+		return files
+	}
+	if !fi.IsDir() {
+		files = append(files, root)
+		return files
+	}
+
+	fis, err := ioutil.ReadDir(dir)
+	if err != nil {
+		return files
+	}
+
+	for _, item := range fis {
+		if strings.Index(excludes, item.Name()) != -1 {
+			continue
+		}
+		fileFullPath := filepath.Join(dir, item.Name())
+
+		if !item.IsDir() {
+			f, _ := os.Open(fileFullPath)
+			files = append(files, f)
+			continue
+		}
+		files = append(files, GetFileList(fileFullPath, excludes)...)
+	}
+	return files
+}
+```
+

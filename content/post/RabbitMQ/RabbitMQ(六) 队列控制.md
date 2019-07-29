@@ -1,6 +1,11 @@
-+++
-date = "2018-07-23T10:01:44+08:00" title = "RabbitMQ队列控制" categories = ["技术文章"] tags = ["rabbitmq"] toc = true
-+++
+---
+
+date :  "2018-07-23T10:01:44+08:00" 
+title : "RabbitMQ队列控制" 
+categories : ["技术文章"] 
+tags : ["rabbitmq"] 
+toc : true
+---
 
 
 ## RabbitMQ队列控制

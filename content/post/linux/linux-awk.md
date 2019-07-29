@@ -1,6 +1,11 @@
-+++
-date = "2017-04-22T23:36:24+08:00" title = "Awk学习" categories = ["技术文章"] tags = ["linux"] toc = true
-+++
+---
+
+date :  "2017-04-22T23:36:24+08:00" 
+title : "Awk学习" 
+categories : ["技术文章"] 
+tags : ["linux"] 
+toc : true
+---
 
 常用Command
 -----------

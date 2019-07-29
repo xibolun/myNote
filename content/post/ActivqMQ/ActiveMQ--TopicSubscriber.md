@@ -1,6 +1,10 @@
-+++
-date = "2017-12-27T16:38:18+08:00" title = "AMQ Topic Subsriber Model" categories = ["技术文章"] tags = ["ActiveMQ"]
-+++
+---
+
+date :  "2017-12-27T16:38:18+08:00" 
+title : "AMQ Topic Subsriber Model" 
+categories : ["技术文章"] 
+tags : ["ActiveMQ"]
+---
 
 
 

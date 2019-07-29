@@ -1,7 +1,12 @@
-+++
-date = "2019-03-25T09:57:31+08:00" title = "深入浅出MySQL(二)" categories = ["技术文章"] tags = ["MySQL"] toc = true
+---
 
-+++
+date :  "2019-03-25T09:57:31+08:00" 
+title : "深入浅出MySQL(二)" 
+categories : ["技术文章"] 
+tags : ["MySQL"] 
+toc : true
+
+---
 
 ### MySQL存储引擎
 

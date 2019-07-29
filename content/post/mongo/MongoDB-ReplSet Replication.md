@@ -1,6 +1,10 @@
-+++
-date = "2017-11-15T23:36:24+08:00" title = "MongoDB ReplSet Replication"  tags = ["Mongo"] toc = true
-+++
+---
+
+date :  "2017-11-15T23:36:24+08:00" 
+title : "MongoDB ReplSet Replication"  
+tags : ["Mongo"] 
+toc : true
+---
 
 ## ReplSet Replicatin
 

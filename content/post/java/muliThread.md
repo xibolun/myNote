@@ -1,6 +1,11 @@
-+++
-date = "2017-04-22T23:36:24+08:00" title = "Java多线程学习" categories = ["技术文章"] tags = ["java"] toc = true
-+++
+---
+
+date :  "2017-04-22T23:36:24+08:00" 
+title : "Java多线程学习" 
+categories : ["技术文章"] 
+tags : ["java"] 
+toc : true
+---
 
 Java多线程
 ==========

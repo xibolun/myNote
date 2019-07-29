@@ -2,7 +2,7 @@ baseUrl="https://kedadiannao220.github.io/"
 LanguageCode = "zh-CN"
 HasCJKLanguage = true
 Title = "penggy Blog"
-Theme = "hugo-pacman-theme"
+Theme = "maupassant"
 pygmentsStyle = "default"
 pygmentsUseClasses = true
 RSSUri = "feed.xml"
@@ -33,12 +33,19 @@ RSSUri = "feed.xml"
     Rss = "RSS 订阅"
     TableOfContents = "文章目录"
 
-[Menu]
-  [[Menu.Main]]
-    Name = "首页"
-    URL = "/post/"
-    Weight = 1
-  [[Menu.Main]]
-    Name = "关于"
-    URL = "/about/"
-    Weight = 2
+[menu]
+  [[menu.main]]
+    identifier = "books"
+    name = "新书"
+    url = "/books/"
+    weight = 2
+  [[menu.main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
+    weight = 3
+  [[menu.main]]
+    identifier = "about"
+    name = "关于"
+    url = "/about/"
+    weight = 4

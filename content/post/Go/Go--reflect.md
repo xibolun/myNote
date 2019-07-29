@@ -1,7 +1,12 @@
-+++
-date = "2018-12-10T09:58:34+08:00" title = "GO—reflect" categories = ["技术文章"] tags = ["go"] toc = true
+---
 
-+++
+date :  "2018-12-10T09:58:34+08:00" 
+title : "GO—reflect" 
+categories : ["技术文章"] 
+tags : ["go"] 
+toc : true
+
+---
 
 - 如何通过go的实现类去拿到上级接口的所有method列表？
 - go的基础数据类型，ptr是什么类型；运行时的类型

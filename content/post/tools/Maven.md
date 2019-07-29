@@ -1,6 +1,11 @@
-+++
-date = "2017-03-04T22:39:39+08:00" title = "Maven学习" categories = ["技术文章"] tags = ["maven"] toc = true
-+++
+---
+
+date :  "2017-03-04T22:39:39+08:00" 
+title : "Maven学习" 
+categories : ["技术文章"] 
+tags : ["maven"] 
+toc : true
+---
 
 简介
 ====

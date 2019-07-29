@@ -1,6 +1,11 @@
-+++
-date = "2017-04-27T23:36:24+08:00" title = "Spring-SpringBoot" categories = ["技术文章"] tags = ["spring"] toc = true
-+++
+---
+
+date :  "2017-04-27T23:36:24+08:00" 
+title : "Spring-SpringBoot" 
+categories : ["技术文章"] 
+tags : ["spring"] 
+toc : true
+---
 
 
 Spring 1.5.x当中的hibrenate名称转换策略
