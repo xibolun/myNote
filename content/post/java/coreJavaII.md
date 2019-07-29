@@ -1,9 +1,9 @@
 ---
-
 date :  "2017-06-03T23:36:24+08:00"
-
 title :  "Java核心技术卷二"
-
+categories : ["技术文章"] 
+tags : ["java"] 
+toc : true
 ---
 
 Java核心技术卷二

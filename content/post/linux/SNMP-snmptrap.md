@@ -1,3 +1,11 @@
+---
+date :  "2019-07-30T00:19:41+08:00" 
+title : "SNMPTrap实战" 
+categories : ["技术文章"] 
+tags : ["运维"] 
+toc : true
+---
+
 ## 实战
 
 ### 环境准备

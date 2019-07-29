@@ -1,7 +1,7 @@
 ---
 
 date :  "2018-09-04T10:30:23+08:00" 
-title : "emacs" 
+title : "Spacemacs" 
 categories : ["工具"] 
 tags : ["tool"] 
 toc : true

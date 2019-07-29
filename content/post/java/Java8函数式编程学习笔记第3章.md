@@ -1,9 +1,9 @@
 ---
-
 date :  "2017-10-10T23:36:24+08:00"
-
 title : "Java8函数式编程笔记第3章"
-
+categories : ["技术文章"] 
+tags : ["java"] 
+toc : true
 ---
 
 

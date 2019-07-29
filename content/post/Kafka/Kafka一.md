@@ -1,3 +1,11 @@
+---
+date :  "2019-07-30T00:20:07+08:00" 
+title : "Kafka学习笔记" 
+categories : ["技术文章"] 
+tags : ["kafka"] 
+toc : true
+---
+
 ### 问题
 
 - Kafka的消费流转模型是怎么样的？
