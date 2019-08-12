@@ -63,6 +63,24 @@ command
 9.  `docker import test.tar - test/ubuntu:v1.0` : 导入容器
 10.  `docker rename a b` ：重命名容器
 
+#### 进入关闭的container
+
+```
+➜  ~ docker ps -a
+CONTAINER ID        IMAGE               COMMAND               CREATED             STATUS                     PORTS               NAMES
+e60e84b8f06d        centos              "/bin/bash"           4 days ago          Exited (130) 4 days ago                        determined_austin
+7e02d7cc602a        centos:7            "/bin/bash"           2 weeks ago         Up 3 minutes                                   golang
+➜  ~ docker start golang 
+golang
+➜  ~ docker ps 
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+7e02d7cc602a        centos:7            "/bin/bash"         2 weeks ago         Up 9 seconds                            golang
+➜  ~ docker exec -it golang /bin/bash
+[root@7e02d7cc602a /]# 
+```
+
+
+
 数据管理
 --------
 

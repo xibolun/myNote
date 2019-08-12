@@ -48,6 +48,10 @@ toc : true
 
 -   git checkout -- file：取消对file的修改操作
 
+#### git cherry-pick
+
+- `git cherry-pick commit-id`  只合并此commit_id所提交的代码；区别于merge
+
 #### git remote
 
 -   git remote：显示远程仓库名称
@@ -173,8 +177,8 @@ toc : true
 
 ### git其他命令
 
--   查看git tag 日期，信息：git for-each-ref --format="%(refname:short)
-    %(taggerdate) %(subject) %(body)" refs/tags
+-   查看git tag 日期，信息：`git for-each-ref --format="%(refname:short)
+    %(taggerdate) %(subject) %(body)" refs/tags`
 -   添加.gitignore之后，git还会标记ignore的文件，用git rm -rf --cached
     FILENAME将缓存删除
 

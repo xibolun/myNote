@@ -15,8 +15,8 @@ toc : true
 
 #### 运算符 ####
 
-- `& 返回内存地址
-- ·* 返回指针变量
+- `&`  返回内存地址
+- `*  `  返回指针变量
 
 ```go
 func addRessFunc() {
@@ -41,6 +41,21 @@ func addRessFunc() {
 2 2 1
 2 0xc420084008 1
 ```
+
+```
+func TestArrayPoint(t *testing.T) {
+	sp := [3]*string{new(string), new(string), new(string)}
+	*sp[0] = "red"
+	*sp[1] = "blue"
+	*sp[2] = "green"
+
+	for i, _ := range sp {
+		fmt.Printf("point value %v,real value %s\n", sp[i], *sp[i])
+	}
+}
+```
+
+
 
 #### iota ####
 
