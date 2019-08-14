@@ -1,27 +1,14 @@
 ### 个人Blog
 
-#### 2019-07-29
+##### 地址 [pengganyu Blog](https://kedadiannao220.github.io)
 
-##### hugo版本
+##### 工具
 
-```
-➜  typora git:(master) ✗ hugo version
-Hugo Static Site Generator v0.55.6/extended darwin/amd64 
-```
+- [hugo](https://gohugo.io)
 
-##### Theme
+##### 主题
 
-[maupassant-hugo](https://github.com/rujews/maupassant-hugo)
+- 17~18年，采用[hugo-pacman-theme](https://themes.gohugo.io/hugo-pacman-theme/)
 
-
-
-
-
-
-
-#### 16~17年
-
-- 用[hugo](https://gohugo.io/)静态生成器生成
-- 主题采用[hugo-pacman-theme](https://themes.gohugo.io/hugo-pacman-theme/)
-- 地址：[pengganyu Blog](https://kedadiannao220.github.io/blog/)
+- 19年，采用[maupassant-hugo](https://github.com/rujews/maupassant-hugo)
 

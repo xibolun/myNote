@@ -17,6 +17,7 @@ toc : true
 
 ### GO组件使用注意 ###
 
+  * [awesome-go](https://github.com/avelino/awesome-go)
   * [chi](https://github.com/go-chi/chi)
   * [hclog](https://github.com/hashicorp/go-hclog)
   * [dep](https://studygolang.com/articles/10589)
@@ -110,6 +111,16 @@ func TestUpdateEntityIdByHostId(t *testing.T) {
 
 ```
 	err := model.GetDb().Table("act2_job_record").Pluck("id",&strs).Error
+```
+
+#### 关于gorm的一个问题
+```go
+
+```
+
+
+```go
+
 ```
 
 

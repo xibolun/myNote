@@ -1,4 +1,4 @@
-baseUrl="https://kedadiannao220.github.io/blog/"
+baseUrl="https://kedadiannao220.github.io"
 LanguageCode = "zh-CN"
 HasCJKLanguage = true
 Title = "penggy Blog"
@@ -10,42 +10,15 @@ RSSUri = "feed.xml"
 [Author]
   Name = "pengganyu"
 
-[Params]
-  #BottomIntroduce = "Introduce1 <br/> Introduce2"
-  Description = ""
-  #Subtitle = "subtitle"
-  Weibo = "南阳小三轮"
-  GitHub = "kedadiannao220"
-  Imglogo = "img/logo.svg"
-  #AuthorImg = "img/author.jpg"
-  DateFormat = "2006年01月02日"
-  MonthFormat = "2006年01月"
-  FancyBox = true
-
-  [Params.Strings]
-    PageNotFound = "你访问的页面不存在"
-    ShowSideBar = "显示侧边栏"
-    HideSideBar = "隐藏侧边栏"
-    Categories = "分类"
-    Archive = "归档"
-    Tags = "标签"
-    TagCloud = "标签云"
-    Rss = "RSS 订阅"
-    TableOfContents = "文章目录"
 
 [menu]
-  [[menu.main]]
-    identifier = "books"
-    name = "新书"
-    url = "/books/"
-    weight = 2
   [[menu.main]]
     identifier = "archives"
     name = "归档"
     url = "/archives/"
-    weight = 3
+    weight = 2
   [[menu.main]]
     identifier = "about"
     name = "关于"
     url = "/about/"
-    weight = 4
+    weight = 3
