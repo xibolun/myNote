@@ -66,7 +66,7 @@ func TestArrayPoint(t *testing.T) {
   - 默认值为"", bool为false, int为0 
   - %号转义  fmt.Sprintf("%%%s%s","hello") --> %hello%
 
-###### stringbuild ######
+###### stringbuilder ######
 
 ``` go
 // 线程不安全

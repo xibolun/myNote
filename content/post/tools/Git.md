@@ -1,5 +1,4 @@
 ---
-
 date :  "2016-04-27T23:36:24+08:00" 
 title : "Git学习" 
 categories : ["技术文章"] 
@@ -75,6 +74,7 @@ toc : true
 -   git tag -v \[version\]：验证已经签署过的version
 -   git tag -a \[version\] \[log\]：为某个log添加标签
 -   git push --tags ：提交git标签
+-   `git push --delete origin tagname` : 删除远程分支
 
 #### git fetch
 
@@ -110,19 +110,9 @@ toc : true
 
 #### git log
 
--   git log --graph --abbrev-commit --decorate
-    --format=format:'%C(bold blue)%h%C(reset) -
-    %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)-
-    %an%C(reset)%C(bold yellow)%d%C(reset)' --all
--   git log --graph --abbrev-commit --decorate
-    --format=format:'%C(bold blue)%h%C(reset) -
-    %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)-
-    %an%C(reset)%C(bold yellow)%d%C(reset)' develop : 只看develop分支
--   git log --graph --abbrev-commit --decorate
-    --format=format:'%C(bold blue)%h%C(reset) -
-    %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold
-    yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)-
-    %an%C(reset)' --all
+-   `git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) -%C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)-%an%C(reset)%C(bold yellow)%d%C(reset)' --all`
+-   `git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) -%C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' develop `: 只看develop分支
+-   `git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) -%C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all`
 
 #### git branch
 
@@ -148,6 +138,7 @@ toc : true
 
 -   git clean -f : remove untracked files
 -   git clean -fd : remove untracked directories
+-   `git clean ` :  看哪些文件需要clean
 
 #### git stash
 

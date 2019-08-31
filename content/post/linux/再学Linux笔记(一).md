@@ -1,6 +1,6 @@
 ---
 date :  "2019-07-30T00:19:16+08:00" 
-title : "再学Linux(一)文件及权限" 
+title : "再学Linux笔记(一)文件及权限" 
 categories : ["技术文章"] 
 tags : ["linux"] 
 toc : true

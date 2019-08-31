@@ -20,7 +20,23 @@ toc : true
 
 ##### 数组循环
 
-#### eq、if、or
+##### eq、if、or
+
+##### 变量引用
+
+```
+{{$ref := .Basic}}
+{{range $i,$v := .Methods}}
+  ,
+  {
+    "category": "{{$v.Buttons}}",
+    "category_name": "{{$v.Comment}}",
+    "http_method": "{{$v.HttpMethod | ToGoTypeCamel}}",
+    "url": "{{$ref.BaseURI}}{{$v.URL}}"
+  }{{end}}
+```
+
+
 
 #### 其他
 

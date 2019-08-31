@@ -52,16 +52,17 @@ command
 
 ### 其他
 
-1.  `docker create ubuntu:14.04` : 创建一个容器
-2.  `docker ps` : 查看running状态的docker运行状态；
-3.  `docker ps -a `: 查看所有的容器列表，包括没有运行的和已经Exited
-4.  `docker run -it ubuntu:14.04 /bin/bash` : 启动一个bash终端，退出则容器销毁
-5.  `docker exec -it de2ef4052dce /bin/bash`: 进入某个docker容器
-6.  `docker rm bfa78720b949` : 删除某个容器，其中bfa78720b949为容器的ID号，结合stop命令使用，先stop再rm
-7.  `ctrl+d` :  退出容器，此时容器也就不再running了，若想重新再running，可以使用`docker start`
-8.  `docker export de2ef4052dce &gt; test.tar` : 将容器导出至tar
-9.  `docker import test.tar - test/ubuntu:v1.0` : 导入容器
-10.  `docker rename a b` ：重命名容器
+1.  `docker logs ubuntu:14.04 ` ： 输出容器log日志信息
+2.  `docker create ubuntu:14.04` : 创建一个容器
+3.  `docker ps` : 查看running状态的docker运行状态；
+4.  `docker ps -a `: 查看所有的容器列表，包括没有运行的和已经Exited
+5.  `docker run -it ubuntu:14.04 /bin/bash` : 启动一个bash终端，退出则容器销毁
+6.  `docker exec -it de2ef4052dce /bin/bash`: 进入某个docker容器
+7.  `docker rm bfa78720b949` : 删除某个容器，其中bfa78720b949为容器的ID号，结合stop命令使用，先stop再rm
+8.  `ctrl+d` :  退出容器，此时容器也就不再running了，若想重新再running，可以使用`docker start`
+9.  `docker export de2ef4052dce &gt; test.tar` : 将容器导出至tar
+10.  `docker import test.tar - test/ubuntu:v1.0` : 导入容器
+11.  `docker rename a b` ：重命名容器
 
 #### 进入关闭的container
 

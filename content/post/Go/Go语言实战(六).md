@@ -1,5 +1,5 @@
 ---
-date :  "2019-08-07T09:03:50+08:00" 
+date :  "2019-05-20T09:03:50+08:00" 
 title : "Go语言实战(六)并发" 
 categories : ["技术文章"] 
 tags : ["go"] 
@@ -267,5 +267,17 @@ func TestChannel4(t *testing.T) {
 	}
 }
 
+```
+
+#### 同一goroutine不能操作无缓冲通道的channel
+
+```go
+// TestDeadLock 在同一goroutine里面不能又读又取无缓冲通道的channel
+// 程序hang住
+func TestDeadLock(t *testing.T) {
+	c := make(chan string)
+	c <- "hello"
+	fmt.Printf("after channel: %s\n", <-c)
+}
 ```
 

@@ -1,5 +1,4 @@
 ---
-
 date :  "2018-07-19T20:39:43+08:00" 
 title : "go规范及组件" 
 categories : ["技术文章"] 
@@ -38,7 +37,7 @@ toc : true
 - Flag当中的Destination可以将参数对应的value拿到
 - 通过Args可以拿到命令行里面入参信息
 
-```
+```go
 func FileActions(ctx *cli.Context) error {
 	args := ctx.Args()
 	argsLen := len(args)
@@ -73,57 +72,35 @@ func TestUpdateEntityIdByHostId(t *testing.T) {
 
 
 ``` go
-
-    //取pathVariable方法
+	//取pathVariable方法
 	r.URL.Query().Get("hostId") // 此种方法只能取pathVariable
    
-    //取QueryParam参数方法
-    r.ParseForm()   // 若要取queryParam，必须先parseForm一下，然后才能拿到具体数据
+  //取QueryParam参数方法
+  r.ParseForm()   // 若要取queryParam，必须先parseForm一下，然后才能拿到具体数据
 	r.Form.Get("hostId") // 发现此方法有时候取不到值，反而Query可以使用
 	r.URL.Query().Get("hostId")
     
-    //取QueryParam参数方法
-    r.FormValue("hostId")
+  //取QueryParam参数方法
+  r.FormValue("hostId")
     
-    //取body当中参数方法
-    bytes, err := ioutil.ReadAll(r.Body)   //将bytes转成json即可
-    
+  //取body当中参数方法
+  bytes, err := ioutil.ReadAll(r.Body)   //将bytes转成json即可
 ```
-
-
 
 
 ### urfave/cli ###
 
-#### 一个bug ####
-[https://github.com/urfave/cli/issues/355](issues/355)
-
-#### 如何生成help和命令flag ####
-#### 如何输出格式 ####
-#### 如何输出色彩 ####
-[bash_color](https://misc.flogisoft.com/bash/tip_colors_and_formatting)
-
+-  一个bug[https://github.com/urfave/cli/issues/355](issues/355) ####
+-  如何输出色彩 [bash_color](https://misc.flogisoft.com/bash/tip_colors_and_formatting)
 
 ### cobra ###
 - 支持json、table样式输出
 
 ### gorm
 
-```
+```go
 	err := model.GetDb().Table("act2_job_record").Pluck("id",&strs).Error
 ```
-
-#### 关于gorm的一个问题
-```go
-
-```
-
-
-```go
-
-```
-
-
 
 ### gRPC
 

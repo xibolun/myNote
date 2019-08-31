@@ -59,7 +59,7 @@ payload当中的数据都可以由用户自行设置
 
 pom.xml里面引入jwt
 
-``` {.java}
+``` xml
   <dependency>
    <groupId>io.jsonwebtoken</groupId>
    <artifactId>jjwt</artifactId>
@@ -67,7 +67,7 @@ pom.xml里面引入jwt
   </dependency> 
 ```
 
-``` {.java}
+``` java
 public static void main(String[] args) {
      String secret = "password";
      String userId = "zhangsan";

@@ -1,6 +1,6 @@
 ---
-date :  "2019-07-31T22:35:59+08:00" 
-title : "GO语言实战(四)--数组、切片、映射" 
+date :  "2019-05-11T22:35:59+08:00" 
+title : "Go语言实战(四)数组、切片、映射" 
 categories : ["技术文章"] 
 tags : ["go"] 
 toc : true
@@ -57,6 +57,9 @@ slice := make([]int, 5, 3)  // 长度不能大于容量
 sl := make([]int, 3, 5)
 fmt.Println(len(sl))  //3
 fmt.Println(cap(sl))  //5
+
+sl := make([]int,2)  // 初始化了两个0值的切片；长度和容量都为2
+sl := make([][]interface) // 初始化一个interface数组的切片
 ```
 
 - 切片截取

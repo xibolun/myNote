@@ -12,7 +12,7 @@ toc : true
 
 就写一个test方法
 
-```
+```go
 func TestFile(t *testing.T) {
    dir := "/tmp/hello"
    path := "/tmp/hello.txt"
@@ -94,7 +94,7 @@ func TestFile(t *testing.T) {
 
 #### 获取文件列表
 
-```
+```go
 
 // GetFileList 获取目录下的文件列表
 func GetFileList(dir, excludes string) []*os.File {

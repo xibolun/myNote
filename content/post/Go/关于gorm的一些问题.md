@@ -160,3 +160,13 @@ func (s *DB) Exec(sql string, values ...interface{}) *DB {
 ```
 
 > Exec的与NewScop的本质没有区别，都是使用NewScope进行操作
+
+### JSON结构查询不出来
+
+```sql
+select t1.oob->>'$.network.ip' as oob_ip
+```
+
+目前这个数据查出来是空
+
+### InLike查询
