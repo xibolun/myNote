@@ -57,7 +57,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.3.5
 10.0.2.1 ansible_ssh_pass='Yunjikeji#123' ansible_ssh_port=2222
 ```
 
-还可以配置内置端口,用于配置容器化技术, `inventory`里面有许多的内置参数 [inventory-parameters](
+还可以配置内置端口,用于配置容器化技术, `inventory`里面有许多的内置参数 [inventory-parameters](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#assigning-a-variable-to-one-machine-host-variables)
 
 ### 各模块说明
 
@@ -84,6 +84,13 @@ shell模块使用； 查看nginx服务状态
 
 ```
 ansible webservers -m shell  -a 'systemctl status nginx' -i inventory.cfg
+```
+
+ansible还做了命令的解析和处理
+``` shell
+~ ansible hosts -m shell -a 'rm -rf swagger.log' 
+ [WARNING]: Consider using the file module with state=absent rather than running 'rm'.  If you need to use command because file is insufficient you can add 'warn: false' to this command task or set 'command_warnings=False' in
+ansible.cfg to get rid of this message.
 ```
 
 服务处理

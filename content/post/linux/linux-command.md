@@ -338,9 +338,36 @@ toc : true
 -   lsof -u root: 打开某个用户正在使用的文件
 -   lsof -u ^root^ : 打开除了某个用户正在使用的文件
 -   lsof -i : 列出所有的网络连接
+-   lsof -p PID:  列出进程打开的文件
 -   lsof -i tcp/udp: 列出所有的tcp、udp网络连接信息
 -   lsof -i:8080 : 列出8080端口被哪个应用使用
 -   lsof -i tcp:80: 列出指定的tcp协议80端口
+
+### pmap
+
+- pmap PID: 查看进程的内存使用状态
+
+文本处理
+----
+
+### grep ###
+- `grep -v` : 排除某些选项
+- `grep ^u` : 匹配以u开头的内容
+- `grep ^[^u]` : 匹配以非u开头的内容
+- `grep hat$` : 以hat结尾
+- `grep -E "ed|at"` : 正则多条件匹配
+- `grep "Inspection" error.log -c` : 统计数量
+- `grep "Inspection" error.log -n` : 打印匹配行数
+- `grep "Inspection" error.log -i` : 忽略大小写匹配
+
+### sort ###
+- `sort test.txt -r` : 倒序排列， reverse
+- `sort test.txt -k n` : 指定排序的列
+
+### uniq ###
+- `uniq -c test.txt1` : 统计重复数据
+- `uniq -u test.txt1` : 只输出不重复信息
+- `uniq -d test.txt1` : 只输出重复的信息
 
 高级
 ----
@@ -361,3 +388,8 @@ toc : true
 cat /sys/class/dmi/id/product_uuid
 ```
 
+### vmstat
+
+- `vmstat 1 3 ` : 每1钟输出process、memory等信息详情，总共输出3次，
+- `vmstat 1`:  若count为空，则会一直输出
+- 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Go语言实战(三).html</title>
+
+</head>
+
+<body>
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LC_ALL = (unset),
+	LANG = "en_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+<hr />
+
+<p>date :  "2019-05-10T19:33:39+08:00" 
+title : "Go语言实战(三)工具包" 
+categories : ["技术文章"] 
+tags : ["go"] </p>
+
+<h2>toc : true</h2>
+
+<h3>Init函数</h3>
+
+<p>在操作mysql数据库的时候需要引入</p>
+
+<p><code>
+    _ "github.com/go-sql-driver/mysql"
+</code></p>
+
+<p>具体是引入了什么呢？引入的是<code>github.com/go-sql-driver/mysql/driver.go</code>文件里面的这个函数；只需要引入这个包里面的Init函数，而不需要使用其他的函数</p>
+
+<p><code>
+func init() {
+    sql.Register("mysql", &amp;MySQLDriver{})
+}
+</code></p>
+
+<h3>工具包</h3>
+
+<h4>go fmt</h4>
+
+<p>用于fmt代码，可以配置到不同的IDE里面进行使用</p>
+
+<h4>go doc</h4>
+
+<p>命令行文档帮助</p>
+
+<p><code>
+go doc tar
+</code></p>
+
+<h4>godoc</h4>
+
+<p>基本自己的GOPATH，生成一个在线的http文档</p>
+
+<p><code>
+ godoc -http=:6060
+</code></p>
+
+<p>需要有一些注释约定</p>
+
+<p><code>
+// : 函数、结构体、常量等需要export的注释
+package注释
+/**
+*
+/
+</code></p>
+
+<h4>go build</h4>
+
+<p>如何在build的时候添加版本和git commit信息</p>
+
+<p><code>shell
+go build -ldflags "-X 'idcos.io/wgen/cmd.GitBranch=`git branch | grep \* | cut -d ' ' -f2`'
+-X 'idcos.io/wgen/cmd.Commit=`git rev-parse HEAD`'
+-X 'idcos.io/wgen/cmd.Date=`date +'%Y-%m-%dT%H:%M:%m+08:00'`' \
+-X 'idcos.io/wgen/cmd.GoVersion=`go version`'"
+</code></p>
+
+</body>
+</html>

@@ -23,7 +23,7 @@ CURL命令
 -   curl -v url: 显示请求的通信过程
 
 body请求
---------
+--------fLyMd-mAkEr
 
 -   curl -X POST --data "data=xxx" url: 将参数信息放到--data里面 或-d
 -   curl url?data=xxx : get请求直接在后面拼装参数即可，curl默认是get请求

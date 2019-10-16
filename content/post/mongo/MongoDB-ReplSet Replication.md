@@ -200,7 +200,7 @@ rs0:SECONDARY> rs.status()
 
 原因是因为本地已经存在了 replSet的opLog，所以需要去掉，再重新initiate
 
-```
+```shell
 > use local
 switched to db local
 > db.dropDatabase()
@@ -209,13 +209,13 @@ switched to db local
 
 再重新启动，可以考虑换一个新的replSet的名称
 
-```
+```shell
 mongod --dbpath /home/www/data/ --replSet rs0
 ```
 
 再重新初始化即可
 
-```
+```shell
 > rs.initiate({_id:"rs0",members:[{_id:0,host:"10.0.1.9:27017"}]})
 {
         "info" : "Config now saved locally.  Should come online in about a minute.",
@@ -281,7 +281,7 @@ rs0:SECONDARY> rs.reconfig(cfg)
 
 查看rs设置
 
-```
+```shell
 rs0:PRIMARY> rs.conf()
 {
         "_id" : "rs0",
@@ -313,7 +313,7 @@ rs0:PRIMARY> rs.conf()
 ```
 
 springboot application.properties文件配置
-```
+```properties
 mongo.replicaSet=mongodb://10.0.1.9:27017,10.0.106.2:27017,10.0.106.6:27017
 ```
 
@@ -329,7 +329,7 @@ PRIMARY: 10.0.1.9   SECONDARY: 10.0.106.2, 10.0.106.6
   - 此时没有PRIMARY，10.0.106.6仍然是SECONDARY节点
   - 此时应用操作不正常，后台过了最大尝试重连时间后直接异常提示
 
-```
+```shell
 org.springframework.dao.DataAccessResourceFailureException: Timed out after 30000 ms while waiting for a server that matches {serverSelectors=[ReadPreferenceServerSelector{readPreference=primary}, LatencyMinimizingServerSelector{acceptableLatencyDifference=15 ms}]}. Client view of cluster state is {type=ReplicaSet, servers=[{address=10.0.1.9:27017, type=Unknown, state=Connecting, exception={com.mongodb.MongoException$Network: Exception opening the socket}, caused by {java.net.ConnectException: Connection refused}}, {address=10.0.106.2:27017, type=ReplicaSetSecondary, averageLatency=11.9 ms, state=Connected}, {address=10.0.106.6:27017, type=Unknown, state=Connecting, exception={com.mongodb.MongoException$Network: Exception opening the socket}, caused by {java.net.ConnectException: Connection refused}}]; nested exception is com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting for a server that matches {serverSelectors=[ReadPreferenceServerSelector{readPreference=primary}, LatencyMinimizingServerSelector{acceptableLatencyDifference=15 ms}]}. Client view of cluster state is {type=ReplicaSet, servers=[{address=10.0.1.9:27017, type=Unknown, state=Connecting, exception={com.mongodb.MongoException$Network: Exception opening the socket}, caused by {java.net.ConnectException: Connection refused}}, {address=10.0.106.2:27017, type=ReplicaSetSecondary, averageLatency=11.9 ms, state=Connected}, {address=10.0.106.6:27017, type=Unknown, state=Connecting, exception={com.mongodb.MongoException$Network: Exception opening the socket}, caused by {java.net.ConnectException: Connection refused}}]
 ```
 

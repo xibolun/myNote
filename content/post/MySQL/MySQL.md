@@ -227,3 +227,27 @@ sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 ### mysql lock ###
 [An InnoDB Deadlock Example](https://dev.mysql.com/doc/refman/8.0/en/innodb-deadlock-example.html)
 [Deadlocks in InnoDB](https://dev.mysql.com/doc/refman/8.0/en/innodb-deadlocks.html)
+
+
+####  一个存储过程 ####
+``` sql
+
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS DisinctInsp;
+CREATE PROCEDURE DisinctInsp()
+BEGIN
+  DECLARE sns varchar(64);
+	DECLARE cur1 CURSOR FOR SELECT sn FROM inspection GROUP BY sn;
+	OPEN cur1;
+	map_loop:
+		LOOP
+			FETCH cur1 INTO sns;
+			DELETE FROM inspection_latest WHERE sn = sns AND id != (SELECT max(id) FROM inspection WHERE sn = sns);
+		END LOOP map_loop;
+END;
+DELIMITER ;;
+
+
+CALL DisinctInsp;
+
+```

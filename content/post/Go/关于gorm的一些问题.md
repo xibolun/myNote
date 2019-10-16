@@ -169,4 +169,23 @@ select t1.oob->>'$.network.ip' as oob_ip
 
 目前这个数据查出来是空
 
+### limiter和offset
+
+``` go
+    // 此处limit和offset不生效，需要将其放在Find前面
+    if err := db.Find(&result).Limit(limiter.Limit).Offset(limiter.Offset).Error; err != nil {
+		repo.log.Error(err.Error())
+		return nil, err
+	}
+    
+   	db = db.Limit(limiter.Limit).Offset(limiter.Offset)
+
+	if err := db.Find(&result).Error; err != nil {
+		repo.log.Error(err.Error())
+		return nil, err
+	}
+
+    
+```
+
 ### InLike查询

@@ -107,13 +107,13 @@ source: localhost:10001
   2017-11-14T17:13:07.847+0800 I REPL     [replslave] sleep 3 sec before next pass
   ```
 
-  ​
+  
 
 #### 遇到问题
 
 连接slave的时候，做查询报错，原因是默认slave不允许读写需要进行设置
 
-```
+```shell
 > show dbs;
 2017-11-14T15:13:26.658+0800 E QUERY    [thread1] Error: listDatabases failed:{
         "ok" : 0,
@@ -123,7 +123,7 @@ source: localhost:10001
 } :
 ```
 
-```
+```shell
 > rs.slaveOk();
 > show dbs;
 admin     0.000GBhf-cmdb5  0.009GB

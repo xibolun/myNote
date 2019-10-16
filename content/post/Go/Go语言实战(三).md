@@ -36,13 +36,13 @@ func init() {
 go doc tar
 ```
 
-#### godoc
-
 基本自己的GOPATH，生成一个在线的http文档
 
 ```
  godoc -http=:6060
 ```
+
+
 
 需要有一些注释约定
 
@@ -52,5 +52,24 @@ package注释
 /**
 *
 /
+```
+> godoc 在1.13.x版本里面已经被废弃 
+
+#### go build ####
+如何在build的时候添加版本和git commit信息
+
+``` shell
+go build -ldflags "-X 'idcos.io/wgen/cmd.GitBranch=`git branch | grep \* | cut -d ' ' -f2`'
+-X 'idcos.io/wgen/cmd.Commit=`git rev-parse HEAD`'
+-X 'idcos.io/wgen/cmd.Date=`date +'%Y-%m-%dT%H:%M:%m+08:00'`' \
+-X 'idcos.io/wgen/cmd.GoVersion=`go version`'"
+```
+
+#### go get
+
+下载指定版本的仓库
+
+```
+ go get <path-to-repo>@<branch>
 ```
 
