@@ -29,24 +29,6 @@ toc : true
 - 喜欢看书，书是人类进步的阶梯，看书一定要记笔记哦
 - 喜欢骑行：用汗水见证自己的腿变细^ ^
 
-## 个人利器
-
-### 日常软件
-
-- Iterm+Zsh+tmux
-- DataGrip+IDEA
-- Sublime
-- Spacemacs
-- Alfred
-- Shadowsocks
-
-### 硬件
-
-- 电脑：MacPro
-- 键盘：Flico FKBC87M
-- 显示器：Dell U2412Mb
-- 自行车：Forever A9
-
 ## 个人技能
 
 - 熟练Java,SprintBoot,Apache相关生态等
