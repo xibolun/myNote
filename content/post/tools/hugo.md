@@ -1,6 +1,6 @@
 ---
 date :  "2019-10-22T18:47:21+08:00" 
-title : "使用hugo&gitpage写博客" 
+title : "使用Hugo&GitPage写博客" 
 categories : ["tool"] 
 tags : ["hugo","tool"] 
 toc : true
@@ -22,9 +22,9 @@ Hugo是一个go语言写的静态博客生成器，与业界里面的Jeklly、He
 
 ### 主题
 
-最早找了许多的主题，但是最终选择了广东一个哥们的 [hugo-pacman-theme](https://themes.gohugo.io/hugo-pacman-theme/)，他是做游戏的，我用他的主题的原因就是支持归档，支持标签，看着色彩也还可以
+最早找了许多的主题，但是最终选择了广东一个哥们的 [blog](https://blog.coderzh.com/)，他是做游戏的，我用他的主题 [hugo-pacman-theme](https://themes.gohugo.io/hugo-pacman-theme/)的原因就是支持归档，支持标签，看着色彩也还可以。我用了大概两年的时间；
 
-后来看到阿里的一位大牛的博客 [飞雪无情](https://github.com/rujews/maupassant-hugo)，所以就拿过来用了一下 [maupassant-hugo](https://github.com/rujews/maupassant-hugo)
+后来看到阿里的一位大牛的博客 [飞雪无情](https://github.com/rujews/maupassant-hugo)，感觉非常好看，所以就拿过来用了一下 [maupassant-hugo](https://github.com/rujews/maupassant-hugo)；于2019年2月份左右迁移完成。
 
 ### 发布
 
@@ -47,13 +47,13 @@ Hugo官网文档里面有许多的发布方式 [hosting-and-deploymeng](https://
 
 ### 脚本
 
-每次发布我觉得太麻烦了，因为你的blog是一个仓库，而静态文件是另外一个仓库，所以我写了一个脚本
+每次发布我觉得太麻烦了，因为你的blog是一个仓库，而静态文件是另外一个仓库，所以我写了一个简单的脚本
 
 ```shell
 echo "---------------- start --------------------"
 git add .
 
-git commit -am "commit blog master"
+git commit -am "commit message: $1"
 
 git push origin master
 
