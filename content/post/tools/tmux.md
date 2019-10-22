@@ -34,13 +34,15 @@ toc : true
 
 ### 配置文件
 
-默认是在~/.tmux.conf下面，所有的配置项见 [example_tmu.conf](https://github.com/tmux/tmux/blob/master/example_tmux.conf)
+默认是在`~/.tmux.conf`下面，所有的配置项见 [example_tmu.conf](https://github.com/tmux/tmux/blob/master/example_tmux.conf)
 
 ### Hot key
 
 Tmux所有的快捷键都是一个前缀来控制；前缀快捷键可以修改配置文件里面的`set-option -g prefix C-x` 我设置的是`Ctrl+x`，默认的是`Ctrl+a`
 
 #### session操作
+
+- `? ` 打开帮助文档
 
 - `$` 重命名会话
 - `d` 断开当前连接，或者`Ctrl+d`
@@ -64,6 +66,7 @@ tmux kill-server # 删除所有的会话
 - `w` Panel列表选择，注意 macOS 下使用 `⌃p` 和 `⌃n` 进行上下选择
 - `&` 关闭当前Panel
 - `,` 重命名Panel，可以使用中文，重命名后能在 tmux 状态栏更快速的识别Panel id
+- `.` 设置Panel的序号
 - `0` 切换至 0 号Panel，使用其他数字 id 切换至对应Panel
 - `f` 根据Panel名搜索选择Panel，可模糊匹配
 

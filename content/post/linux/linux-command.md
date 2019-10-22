@@ -347,6 +347,49 @@ toc : true
 
 - pmap PID: 查看进程的内存使用状态
 
+### sar
+
+部署
+
+```
+## 安装
+yum install sysstat 
+## 配置文件修改
+echo '----
+# Should sadc collect system activity informations? Valid values
+# are "true" and "false". Please do not put other values, they
+# will be overwritten by debconf!
+ENABLED="true"
+----' >> /etc/default/sysstat
+## 重启服务
+systemctl restart sysstat.service
+```
+
+使用
+
+```
+sar -u 1 3 ## 每隔1s，查看cpu的情况三次
+sar -d ## 硬盘
+sar -A ## 所有信息
+sar -r ## 内存
+sar -p ## 活动页page
+sar -q ## 队列
+sar -w ## 系统交换情况
+```
+
+
+
+## 网络相关
+
+### netstat
+
+```
+## t-tcp  l-listening p-program
+netstat -tlp 
+```
+
+
+
 文本处理
 ----
 
@@ -392,4 +435,3 @@ cat /sys/class/dmi/id/product_uuid
 
 - `vmstat 1 3 ` : 每1钟输出process、memory等信息详情，总共输出3次，
 - `vmstat 1`:  若count为空，则会一直输出
-- 

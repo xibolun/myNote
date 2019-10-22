@@ -63,7 +63,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.3.5
 
 - adhoc：可以快速执行的一些命令，比如说查看rpm包、服务信息，文件权限等`-m`参数执行
 - playbooks：ansible的配置、发布、编排语言，将你需要的配置改成目标即可
-- invertory：主机信息配置文件，ansible通过读取此配置文件来获取到需要执行的目标机器，主机列表支持group和pattern
+- inventory：主机信息配置文件，ansible通过读取此配置文件来获取到需要执行的目标机器，主机列表支持group和pattern
 - Cobbler：ansible的一个插件，RHEL发版，管理DNS和DHCP网络的工具
 
 #### Ad-hoc
@@ -75,14 +75,16 @@ ansible的模块，有各个公司、个人的支持，这也是ansible火起来
 2114
 ```
 
+想看这些模块的帮助文档: `ansible-doc yum|copy|ping`
+
 下发文件
 
-```
+```shell
 ansible webservers -m copy -a 'src=/tmp/cloudboot-server.conf dest=/tmp/cloudboot-server.conf'  -i inventory.cfg
 ```
 shell模块使用； 查看nginx服务状态
 
-```
+```shell
 ansible webservers -m shell  -a 'systemctl status nginx' -i inventory.cfg
 ```
 
@@ -95,9 +97,15 @@ ansible.cfg to get rid of this message.
 
 服务处理
 
-```
+```shell
 ansible hosts -m service -a "name=nginx state=started" -u root
 ansible hosts -m service -a "name=nginx state=stopped" -u root
+```
+
+单台执行
+
+```shell
+ansible HOST -m shell -a 'ls /tmp'
 ```
 
 #### facts
@@ -136,6 +144,8 @@ ansible hosts -m service -a "name=nginx state=stopped" -u root
 - ansible-pull : 可以拉取配置中心的配置信息，然后用于下发操作  [clever-pull](https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml)
 
 #### Playbook
+
+playbook是一个ansible的编排执行工具，官网文档[working-with-playbooks](https://docs.ansible.com/ansible/2.7/user_guide/playbooks.html#working-with-playbooks)
 
 ping-playbook.yml
 
@@ -181,6 +191,27 @@ PLAY RECAP *********************************************************************
 - playbook里有哪些参数：[playbooks_keywords](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html#play)
 - task里面有哪些参数：[task_keywords](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html#task)
 - 变量使用：[playbooks_variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#)
+
+#### 发布swagger的一个例子
+
+```yaml
+---
+- hosts: dev
+  remote_user: root
+  tasks:
+    - name: copy swagger.yaml
+      copy:
+       src: /tmp/swagger/swagger.yaml
+       dest: /usr/yunji/swagger
+    - name: apidoc service
+      service:
+       name: apidoc
+       state: reloaded
+```
+
+- 注意copy的两个参数`src`、`dest`前面是空格，而不是tab；
+- 若下发的文件已经存在，则ansible不会再次覆盖；
+- state参数： started|stopped|restarted|reloaded
 
 ### 加密
 
