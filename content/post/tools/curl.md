@@ -10,8 +10,7 @@ toc : true
 CURL概述
 --------
 
-CURL(command line url
-viewer),是命令行工具，发出网络请求，得到并提取数据，显示在标准输出里面，支持多种协议
+CURL(command line url viewer),是命令行工具，发出网络请求，得到并提取数据，显示在标准输出里面，支持多种协议
 
 CURL命令
 --------
@@ -19,6 +18,7 @@ CURL命令
 -   curl -o file url: 保存url的网页
 -   curl -C -o url: 断点下载文件
 -   curl -L url: 跳转至某个页面
+-   curl -k : 关闭https的证书认证
 -   curl -i url: 显示url的头部信息
 -   curl -v url: 显示请求的通信过程
 
@@ -37,6 +37,21 @@ body请求
 添加cookie
 ----------
 
-``` {.shell}
+``` shell
 curl --cookie "access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0OTY0NTgwMzcsImxvZ2luTmFtZSI6ImFkbWluIiwibmFtZUNOIjoi57O757uf566h55CG5ZGYIiwidGltZW91dCI6MjQsInVzZXJJZCI6IjU3M2E0Njk4ZTRiMGQ5MDY2OGJjOWYwMyIsInVzZXJOYW1lIjoiYWRtaW4ifQ.DuWu64q_xiTHJFxQ8X9nMlGwFo82UtP_-2axvKgWois"  http://10.0.106.37:8080/app/backop/6b9ab697-4f81-42e8-8a98-80b1e3f6f0a7/syncmdb
 ```
+
+#### websocket请求
+
+```shell
+curl --include \
+     --no-buffer \
+     --header "Connection: Upgrade" \
+     --header "Upgrade: websocket" \
+     --header "Host: 10.0.2.1:8086" \
+     --header "Origin: http://10.0.2.1:8086" \
+     --header "Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==" \
+     --header "Sec-WebSocket-Version: 13" \
+     http://10.0.2.1:8086/ws/unread
+```
+

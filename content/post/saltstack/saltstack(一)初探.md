@@ -66,6 +66,8 @@ Usage: salt [options] '<target>' <function> [arguments]
 1548
 ```
 
+[salt-module-index](https://docs.saltstack.com/en/latest/salt-modindex.html)：salt所有的moduels
+
 #### 执行命令
 
 执行命令
@@ -88,6 +90,14 @@ E84B4F5F-0000-0000-BBD1-FA294FBCB7D5:
 [root@salt system]# salt '*' pkg.install net-tools
 ```
 
+下发文件
+
+```shell
+➜  ~ sudo salt 'AAAAAAAA-0000-0000-BBD1-FA294FBCB7D6' cp.get_file salt://ping.sls /tmp          
+```
+
+> `salt://`是配置文件当中的`/srv/salt`目录
+
 查看IP，调用`cmd.run`模块
 
 ```shell
@@ -99,6 +109,8 @@ minion1:
             inet 172.18.0.4  netmask 255.255.0.0  broadcast 172.18.255.255
             inet 127.0.0.1  netmask 255.0.0.0
 ```
+
+
 
 ### 参考 ###
 

@@ -24,49 +24,38 @@ toc : true
 
 - 活泼开朗，生活充满了艰辛与挑战为何不高兴一些去面对呢
 - 对信仰非常认真，对于自己的人生和信仰多花时间是有意义的
-- 对技术有热忱，只因不甘平庸，总想逃离舒适区
-- 对生活充满激情，不会做饭的程序员不是好的女婿
-- 喜欢看书，书是人类进步的阶梯，看书一定要记笔记哦
-- 喜欢骑行：用汗水见证自己的腿变细^ ^
+- 对技术有热忱，只因不甘平庸，总想逃离舒适区，不过这个css好像怎么玩的玩不会；
+- 对生活充满激情，不会做饭的程序员不是好的女婿；用机车承载灵魂，追求梦想和远方；
+- 喜欢看书，书是人类进步的阶梯，看书一定要记笔记，[自己的读书列表](https://kedadiannao220.github.io/books/readbooklist/)
+- 喜欢折腾工具，提高工作效果，[个人常用的利器](https://kedadiannao220.github.io/post/tools/%E5%88%A9%E5%99%A8/)
+- 喜欢自动化运维技术，能解决太多的痛点，提升效率，提升产品质量
 
-## 个人技能
+### 经历
 
-- 熟练Java,SprintBoot,Apache相关生态等
-- 熟练EmberJs
-- 熟练Git
-- 熟悉Mysql和Oracle
-- 熟悉Linux
-- 熟悉DevOps
+2012年在校创业开店，主营电脑组装、笔记本、外设等相关，每天早上6点起来，10点回宿舍，周末出没在百脑汇，电子市场周边；因几个同学一起合伙，后因观念不一致，个人退出，一方面也是因为学业太忙，没有时间；
 
-## 个人经历
+2013年因一位计算机老师推荐，加入校实验室，开始自觉Java，Oracle
 
-- 2013年自学Java和Oracle
-- 2014年毕业入职[中软](http://www.css.com.cn/css/index.html)， 同年参与金税三期
-- 2015年入职[云霁](http://www.idcos.com/)至今（7号员工）
+2013年11月经老师推荐入职中国软件，参与金税三期项目开发
 
-### 项目经验
+2015年5月8日，只身来到杭州，入职 [云霁科技](http://idcos.com/)，7号员工，做云计算创业直到今天；参与了公司所有的产品线
 
-##### Cludboot产品研发负责
+- 15年研发公司的RBAC产品，管理用户，角色、权限；
+- 16年研发 [idcos](http://idcos.com/products/idcos)，在恒丰银行试点成功，荣获银监会二等奖
+- 17年2月份研发 [cloudres](http://idcos.com/products/cloudres)，早期框架选型，环境搭建，开发设计，后交由其他同学维护；现在产品已经被多家金融客户使用；
+- 17年下半年接手 [cloudxmdb](http://idcos.com/products/xmdb)，主导产品设计，前后端开发，是自己最艰难的时候，只有一个人，撑了2个月，后来有几位同学加入，一起进行了梳理和重构；
+- 18年2月份，投入 [cloudconf](http://idcos.com/products/cloudconf) 自动化运维项目，在中间做技术问题解决；
+- 18年年中，开源 [cloud-act2](https://github.com/idcos/cloud-act2)，基于golang实现的自动化运维组件，一个ansible、saltstack、puppet、shell执行层的抽象；
+- 18年11月份至今，加入 [cloudboot](http://idcos.com/products/cloudboot)产品线，负责产品的研发管理。
 
-##### 广发证券云平台项目（在做）（2016.03~至今）
+### 技能
 
-- 项目背景：主要管理广发证券内部的主机资源（VMware,OpenStack,阿里云等公有云），项目管理，计费功能；
-- 使用技术：SpringBoot,SpringMVC,SpringWeb,SpringSecurity,SpringDataJpa,Mysql,Maven,Tomcat,ReactJs,代码生成工具；
-- 主要负责：需求分析、表结构设计、环境搭建、登陆认证、定时任务配置、缓存配置、第三方接口对接、后端接口开发、前端开发、Java基础组件维护；
-
-##### 恒丰银行金融云私有云项目（2016.03~2017.03）
-
-- 项目背景：为恒丰银行数据中心打造自动化运维管理系统；恒丰内部各应用的蓝图关系梳理，自动化派单，可视化界面和流程；历时6个月，15人左右的团队，上线了人员管理系统、puppet配置管理系统、单点登陆系统、权限系统、包管理系统、cmdb系统、云管理平台系统、流程引擎；
-- 主要使用技术：SpringBoot,SpringDataJpa,Mybaits,Mysql,MongoDB,emberJs,goJs,go,redis,puppet,swagger,Bpmn,Neo4j,puppet;
-- 主要负责：权限系统开发、包管理系统开发、后期云管理平台需求开发及问题修改，发版，系统正常运行；成为此项目的两位核心之一；
-
-##### 公司内部DevOps研发（2015.05~2015.08）
-
-- 背景介绍：当时公司没有运维，部署比较艰难，写了一个一键发布的脚本，后来升级为使用jenkins调用包管理系统打包，上传yum源，自动安装rpm包；
-- 主要使用技术：Jetty,SpringDataJpa,Apache Common CLI,JGit,Mysql,emberJs,BootStrap,fpm;
-- 主要负责：自动将java工程文件打包成rpm包，并发布至yum源，自动将rpm安装部署至目标机器，前端开发；
-- 了解RPM打包原理、yum包管理原理；
-
-#### 中国软件与技术服务股份有限公司（2013.11~2015.05）
-
-- 税务行业相关系统研发；金三系统开发
+- Java: web开发、jvm heap日志分析、springboot相关生态
+- golang：熟练golang，web开发、底层执行
+- Js：熟练emberjs，熟悉reactJs、vue
+- 中间件：使用过rabbitmq、Activemq，了解过kafka、redis
+- 运维工具：熟悉saltstack、ansible；了解过puppet、chef
+- Linux：熟练一些常用的命令
+- database: 常用mysql、使用过mongodb、neo4j、oralce现在已经不怎么用了
+- python：偶尔会用python写点爬虫，但是没有搞过什么项目
+- docker与k8s: 目前只用来做一些环境搭建，具体使用还未开始深入研究

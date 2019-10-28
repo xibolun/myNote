@@ -40,3 +40,17 @@ lrwxrwxrwx   1 root root     7 Mar  5 17:34 bin -> usr/bin
 
 - `cd `即 `change directory`
 - `usr`即`Unix Software Resource`
+
+#### 环境变量
+
+1. 首先读入的是全局环境变量设置文件`/etc/profile`，然后根据其内容读取额外的文档，如`/etc/profile.d`和`/etc/inputrc`
+2. 读取当前登录用户Home目录下的文件`~/.bash_profile`，其次读取`~/.bash_login`，最后读取`~/.profile`，这三个文档设定基本上是一样的，读取有优先关系
+3. 读取`~/.bashrc`
+
+
+
+`~/.profile`与`~/.bashrc`的区别:
+
+- 这两者都具有个性化定制功能
+- `~/.profile`可以设定本用户专有的路径，环境变量，等，它只能登入的时候执行一次
+- `~/.bashrc`也是某用户专有设定文档，可以设定路径，命令别名，每次shell script的执行都会使用它一次

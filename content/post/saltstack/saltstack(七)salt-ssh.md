@@ -31,5 +31,6 @@ toc : true
 ➜  ~ sudo salt-ssh '*' -r 'ls /tmp' --roster-file /tmp/roster  ## 指定roster文件执行
 ➜  ~ sudo salt-ssh '*' cmd.run 'ls /tmp' ## 可以调用salt的fun模块
 ➜  ~ sudo salt-ssh '*' cp.get_file salt://ping.sls /tmp  ## 调用cp.get_file模块下发文件
+➜  ~ sudo salt-ssh '*' cp.get_file /tmp/swagger/swagger.yaml /tmp/swagger.yaml        
 ```
 
