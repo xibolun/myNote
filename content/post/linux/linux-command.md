@@ -435,3 +435,75 @@ cat /sys/class/dmi/id/product_uuid
 
 - `vmstat 1 3 ` : 每1钟输出process、memory等信息详情，总共输出3次，
 - `vmstat 1`:  若count为空，则会一直输出
+
+#### iostat
+
+```shell
+-C 显示CPU使用情况
+-d 显示磁盘使用情况
+-k 以 KB 为单位显示
+-m 以 M 为单位显示
+-N 显示磁盘阵列(LVM) 信息
+-n 显示NFS 使用情况
+-p[磁盘] 显示磁盘和分区的情况
+-t 显示终端和CPU的信息
+-x 显示详细信息
+-V 显示版本信息
+```
+
+```shell
+# iostat -d  -x -k 1 1
+Linux 3.10.0-229.el7.x86_64 (res-10-0-0-142)    10/29/2019      _x86_64_        (4 CPU)
+
+Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+vda               0.00     0.19    1.02   31.48     4.07   529.77    32.86     0.04    1.22   16.05    0.74   0.31   1.01
+vdb               0.00     0.01    0.97    0.23     2.91     3.37    10.48     0.00    1.37    1.59    0.43   0.07   0.01
+
+```
+
+查看所有
+
+```shell
+# iostat 
+Linux 3.10.0-229.el7.x86_64 (res-10-0-0-142)    10/29/2019      _x86_64_        (4 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           4.77    0.00    0.74    0.22    0.03   94.24
+
+Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+vda              32.50         4.07       529.77    3819959  497494630
+vdb               1.20         2.91         3.37    2736630    3162946
+```
+
+
+
+```shell
+%user：CPU处在用户模式下的时间百分比。
+%nice：CPU处在带NICE值的用户模式下的时间百分比。
+%system：CPU处在系统模式下的时间百分比。
+%iowait：CPU等待输入输出完成时间的百分比。
+%steal：管理程序维护另一个虚拟处理器时，虚拟CPU的无意识等待时间百分比。
+%idle：CPU空闲时间百分比。
+```
+
+
+
+#### ldd
+
+查看程序依赖库
+
+```shell
+# ldd /usr/bin/sar
+        linux-vdso.so.1 =>  (0x00007fffb3f8f000)
+        libc.so.6 => /lib64/libc.so.6 (0x00007fb08f569000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007fb08f931000)
+```
+
+#### fuser
+
+查看程序的运行和被哪个用户使用情况
+
+```shell
+# fuser -u -m /usr/bin/redis-server
+```
+

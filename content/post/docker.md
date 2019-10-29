@@ -7,11 +7,6 @@ tags : ["docker"]
 toc : true
 ---
 
-
-date :  "2017-06-20T23:36:24+08:00"
-
-title : "Docker学习"
-
 ---
 
 Get Started

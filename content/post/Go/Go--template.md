@@ -36,7 +36,39 @@ toc : true
   }{{end}}
 ```
 
+##### len的使用
 
+```
+{{ $length := len $v.CReq.Attrs }} {{if gt $length 0}}
+```
+
+##### function
+
+定义function
+
+```
+func IsNil(v interface{}) bool {
+	return v == nil
+}
+```
+将function添加至template当中
+```
+	tplFunc := template.FuncMap{
+		"ToGoTypeCamel": common.ToGoTypeCamel,
+		"ToCamel":       common.ToCamel,
+		"ToGinURL":      common.ToGinURL,
+		"ToUpper":       strings.ToUpper,
+		"IsNil":         common.IsNil,
+	}
+
+	tpl := template.Must(template.New(r.Name).Funcs(tplFunc).Parse(string(bytes)))
+```
+
+使用
+
+```
+{{if $v | IsNil}}{{end}}
+```
 
 #### 其他
 
