@@ -19,14 +19,6 @@ neo4j分为community和enterprise两种版本，后者属于企业版本，为�
 
 
 
-由于下载版本耗时较长，我将3.0.4thsg下载后放到10.0.106.2服务器上
-
-```
-## 密码 yunjikeji
-## 可以将/tmp目录替换为自己所需用的目录，这里为了方便设置为/tmp而已
-scp root@10.0.106.2:/home/pengganyu/neo4j-community-3.4.0-unix.tar.gz /tmp
-```
-
 解压后展开目录层级如下：
 
 ```

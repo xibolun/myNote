@@ -24,7 +24,7 @@ toc : true
 
 ##### 变量引用
 
-```
+```jinja2
 {{$ref := .Basic}}
 {{range $i,$v := .Methods}}
   ,
@@ -38,7 +38,7 @@ toc : true
 
 ##### len的使用
 
-```
+```jinja2
 {{ $length := len $v.CReq.Attrs }} {{if gt $length 0}}
 ```
 
@@ -46,13 +46,13 @@ toc : true
 
 定义function
 
-```
+```go
 func IsNil(v interface{}) bool {
 	return v == nil
 }
 ```
 将function添加至template当中
-```
+```go
 	tplFunc := template.FuncMap{
 		"ToGoTypeCamel": common.ToGoTypeCamel,
 		"ToCamel":       common.ToCamel,
@@ -61,14 +61,22 @@ func IsNil(v interface{}) bool {
 		"IsNil":         common.IsNil,
 	}
 
-	tpl := template.Must(template.New(r.Name).Funcs(tplFunc).Parse(string(bytes)))
+	tpl := template.Must(template.New(r.Name).Funcs(tplFunc).Parse(string(bytes))
 ```
 
 使用
 
-```
+```jinja2
 {{if $v | IsNil}}{{end}}
 ```
+
+function可以连续使用
+
+```jinja2
+{{$j.Name | ToGoTypeCamel | ToLower}}
+```
+
+
 
 #### 其他
 

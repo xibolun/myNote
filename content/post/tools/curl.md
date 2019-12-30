@@ -25,10 +25,16 @@ CURL命令
 body请求
 --------
 
--   curl -X POST --data "data=xxx" url: 将参数信息放到--data里面 或-d
--   curl url?data=xxx : get请求直接在后面拼装参数即可，curl默认是get请求
--   curl -u username:password url: http认证
--   curl -u username url: 输入用户后再提示输入密码，为了安全
+- curl -X POST --data "data=xxx" url: 将参数信息放到--data里面 或-d
+
+- curl url?data=xxx : get请求直接在后面拼装参数即可，curl默认是get请求
+
+- `curl -X POST --data "@/tmp/collection.txt" http://xxxx`  请求数据以文件形式进行传递
+
+- curl -u username:password url: http认证
+
+- curl -u username url: 输入用户后再提示输入密码，为了安全
+
 -   curl -u username:password -T file <ftp://ftpserver.com>:
     上传文件到ftp
     

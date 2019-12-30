@@ -48,16 +48,22 @@ hf-cmdb0622-1 --drop
 命令介绍
 --------
 
--   show dbs: 列出数据库列表
--   use local: 切换数据库
--   db: 查看当前的数据库
--   db.test.insert({"name":"zhangsan"}):
+`mongo shell`是mongodb的命令行界面，使用`mongo`即启动成功，`quiet`参数可以忽略掉启动时输出的一些信息
+
+```
+# mongo --quiet
+>
+```
+
+-   `show dbs`: 列出数据库列表
+-   `use local`: 切换数据库，若不存在，默认创建一个
+-   `db`: 查看当前的数据库
+-   `db.test.insert({"name":"zhangsan"}):`
     插入数据，其中test为数据库的库名
--   db.dropDatabase(): 删除当前的数据库
--   db.createCollection("pengganyu",{capped:true,size:1000}):
-    创建固定大小的集合
--   db.pengganyu.drop(): 删除集合
--   db.pengganyu.insert({title:"name"}): 集合当中插入文档
+-   `db.dropDatabase()`: 删除当前的数据库
+-   `db.createCollection("pengganyu",{capped:true,size:1000})`: 创建固定大小的集合
+-   `db.pengganyu.drop()`: 删除集合
+-   `db.pengganyu.insert({title:"name"})`: 集合当中插入文档
 
 #### 重命名一个库
 
@@ -70,6 +76,7 @@ hf-cmdb0622-1 --drop
 ### 查询相关
 
 -   在语句的结尾添加.pretty()可以格式化json
+-   `show collections`： 查看所有的集合
 -   db.pengganyu.find();  // 查看文档
 -   db.cms~ci~.find().count(); //统计数量
 -   db.getCollection('cms\_ci\_class').find({'displayName':'数据库服务节点','name':'BpDatabaseServiceRef'})；//and查询方式
@@ -185,7 +192,7 @@ use hf-cmdb5
 db.createUser({user:'dbuser',pwd:'dbuser',roles:[{role:'dbAdmin',db:'hf-cmdb5'}]});
 
 // 测试用户名密码是否正确，返回1说明正确
-db.auth({'username','password'}); 
+db.auth({'user':'dbuser','pwd':'dbuser'});
 ```
 
 ### 角色说明

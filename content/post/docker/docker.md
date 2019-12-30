@@ -87,6 +87,15 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 2.  第一个tmp为docker里面的数据卷，第二个/tmp为本机的/tmp目录
 3.  本机目录必须为绝对路径
 
+#### 修改docker默认的uuid
+
+```shell
+# cat /proc/sys/kernel/random/uuid > /var/tmp/product_uuid ( uuidgen > /var/tmp/product_uuid)
+# docker run --rm -ti -v /var/tmp/product_uuid:/sys/class/dmi/id/product_uuid centos bash
+```
+
+
+
 ### 创建docker与其他docker的共享
 
 1.  创建docker hf-csa-manager ： docker run -it -v hf-csa-manager --name

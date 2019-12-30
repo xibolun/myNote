@@ -50,6 +50,8 @@ toc : true
 #### git cherry-pick
 
 - `git cherry-pick commit-id`  只合并此commit_id所提交的代码；区别于merge
+- `git cherry-pick A^..B` : 合并A到B的所有commit信息，`git 1.7+`
+- `git cherry-pick A..B` :  合并A到B的所有commit信息，不包含A
 
 #### git remote
 

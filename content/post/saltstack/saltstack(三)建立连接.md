@@ -168,3 +168,6 @@ toc : true
 [DEBUG   ] Reading configuration from /etc/salt/master
 ```
 
+
+
+- [salt-communication](https://docs.saltstack.com/en/getstarted/system/communication.html)

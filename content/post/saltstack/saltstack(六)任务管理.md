@@ -64,7 +64,7 @@ salt在执行命令的时候会生成一个`JobID`，存放在`/var/cache/salt/{
         sudo_admin
 ```
 
-Job相关操作
+salt-run Job相关操作
 
 ```shell
 ➜  ~ sudo salt-run jobs.exit_success 20191016092026294806  ## 查看job是否执行成功
@@ -76,6 +76,20 @@ Job相关操作
 ```
 
 > 所有的Job操作：https://docs.saltstack.com/en/latest/ref/runners/all/salt.runners.jobs.html
+
+#### saltutil管理Job
+
+`salt-master`run一个sleep的命令，请注意超时时间的设置
+
+`salt '*' cmd.run 'sleep 30'`
+
+```
+salt '*' saltutil.running  ##查看正在running的job，可以拿到jid
+salt '*' saltutil.find_job 20191209234219896309 ## 查看jid
+salt '*' saltutil.signal_job 20191209234219896309 9 ## 向job发送信号
+salt '*' saltutil.term_job  20191209234219896309 ## 终止job
+salt '*' saltutil.kill_job  20191209234219896309 ## 杀掉job
+```
 
 ### 定时Job
 

@@ -54,7 +54,7 @@ Index
 MySQL优化
 ---------
 
-### 表字段
+#### 表字段
 
 -   整数类型不要使用INT，使用TINYINT、SMALLINT、MEDIUM~INT~,非负添加UNSIGNED
 -   VARCHAR的长度只分配真正需要的空间
@@ -62,7 +62,7 @@ MySQL优化
 -   单表字段不超过20
 -   用整型来存IP
 
-### 查询类
+#### 查询类
 
 -   不用SELECT \*
 -   OR改写为IN: or的效率是N级别，而IN的效率是Log(n)级别
@@ -71,36 +71,44 @@ MySQL优化
 Mysql Dump
 ----------
 
-### dump数据库
+#### dump数据库
 
 ``` {.shell}
 mysqldump -uroot -p hf-csa > hf-csa.sql
 ```
 
-### 只dump数据库表结构（--no-data -d）
+#### 只dump数据库表结构（--no-data -d）
 
 ``` {.shell}
 mysqldump -uroot -p --no-data --add-drop-table hf-csa > hf-csa.sql
 mysqldump -uroot -p -d --add-drop-table hf-csa > hf-csa.sql
 ```
 
-### dump数据库表结构排除某些表
+#### dump数据库表结构排除某些表
 
 ``` {.shell}
 mysqldump -uroot -p --no-data --add-drop-table hf-csa --ignore-table=hf-csa.ACT_GET_PROPERTY > hf-csa.sql
 ```
 
-### dump数据库某张表，表中间以空格分隔
+#### dump数据库某张表，表中间以空格分隔
 
 ``` {.shell}
 mysqldump -uroot -p --no-data hf-csa SRV_INFO SRV_BP_APP_INFO > hf-csa.sql
 ```
 
-### dump数据库带注释的表结构
+#### dump数据库带注释的表结构
 
 ``` {.shell}
 mysqldump -uroot -p --no-data --comments hf-csa SRV_INFO SRV_BP_APP_INFO > hf-csa.sql
 ```
+
+#### dump数据库某表的某些数据
+
+```
+mysqldump -uroot -p cloudboot_216 device --where="sn='J3Q9F3X'"
+```
+
+
 
 ### reload dump File
 
@@ -123,6 +131,14 @@ SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'hf-csa'; // 查询
  SHOW FULL COLUMNS FROM table_name;                          #查看mysql某表当中的列字段，包括列的character
  SHOW TABLE STATUS where name like 'SRV_BP_APP_NODE_VER';    # 查看某表的状态
 
+```
+
+#### 修改密码
+
+```shell
+UPDATE user SET authentication_string = PASSWORD('xxxxx') WHERE User = 'root' AND Host = '%';
+UPDATE user SET authentication_string = PASSWORD('xxxxx') WHERE User = 'root' AND Host = 'localhost';
+FLUSH PRIVILEGES
 ```
 
 语法相关

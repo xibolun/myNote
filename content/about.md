@@ -46,7 +46,7 @@ toc : true
 - 17年下半年接手 [cloudxmdb](http://idcos.com/products/xmdb)，主导产品设计，前后端开发，是自己最艰难的时候，只有一个人，撑了2个月，后来有几位同学加入，一起进行了梳理和重构；
 - 18年2月份，投入 [cloudconf](http://idcos.com/products/cloudconf) 自动化运维项目，在中间做技术问题解决；
 - 18年年中，开源 [cloud-act2](https://github.com/idcos/cloud-act2)，基于golang实现的自动化运维组件，一个ansible、saltstack、puppet、shell执行层的抽象；
-- 18年11月份至今，加入 [cloudboot](http://idcos.com/products/cloudboot)产品线，负责产品的研发管理。
+- 18年11月份至今，加入 [cloudboot](http://idcos.com/products/cloudboot) 产品线，负责产品的研发管理。
 
 ### 技能
 

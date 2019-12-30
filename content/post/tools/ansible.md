@@ -6,6 +6,8 @@ tags : ["ansible"]
 toc : true
 ---
 
+学无止境，不定期更新......
+
 ### 牛刀小试
 
 1. 将ansible的ssh-pub添加至远程的服务器当中，建立ssh连接
@@ -191,6 +193,19 @@ PLAY RECAP *********************************************************************
 - playbook里有哪些参数：[playbooks_keywords](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html#play)
 - task里面有哪些参数：[task_keywords](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html#task)
 - 变量使用：[playbooks_variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#)
+- 所有模块：[all-modules](https://docs.ansible.com/ansible/latest/modules/list_of_all_modules.html#all-modules)
+- 如何指定local执行命令？使用`delegate_to`
+
+```
+- name: Remove file if already exists
+   file:
+    path: /tmp/logfile.log
+    state: absent
+    mode: "u+rw,g-wx,o-rwx"
+   delegate_to: 127.0.0.1
+```
+
+
 
 #### 发布swagger的一个例子
 

@@ -144,6 +144,10 @@ AAAAAAAA-0000-0000-BBD1-FA294FBCB7D6:
 ➜  salt sudo salt '*' saltutil.refresh_pillar
 ```
 
+使用`jinjia`动态参数配置
+
+
+
 
 
 ### 通用

@@ -13,6 +13,7 @@ toc : true
 - 包名是小写单词，不应该有下划线或混合大小写，保持简洁，不要过早考虑包名冲突
 - 使用驼峰而非下划线来命名函数或者变量
 - 接口名称必须是er为后缀
+- [uber规范](https://github.com/uber-go/guide/blob/master/style.md)
 
 ### GO组件使用注意 ###
 
@@ -105,4 +106,20 @@ func TestUpdateEntityIdByHostId(t *testing.T) {
 ### gRPC
 
 [gRPC实战](https://jergoo.gitbooks.io/go-grpc-practice-guide/content)
+
+### 包管理
+
+#### govendor
+
+删除依赖包下面的所有子包
+
+```
+govendor remove idcos.io/cloudboot/hardware/...
+```
+
+更新依赖包下面的所有子包；注意若子包未被依赖，则不会添加进来
+
+```
+govendor update idcos.io/cloudboot/hardware/...
+```
 

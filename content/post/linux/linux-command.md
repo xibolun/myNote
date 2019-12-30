@@ -10,6 +10,8 @@ toc : true
 每天一个linux命令
 =================
 
+会有不定期的更新，汇总........
+
 文件及目录操作
 --------------
 
@@ -242,6 +244,47 @@ toc : true
 系统管理
 --------
 
+#### systemctl
+
+- `systemctl --version` : 版本信息
+
+- `systemctl list-unit-files` : 查看所有可用的单元
+
+- `systemctl list-units` : 查看所有运行单元
+
+- `systemctl --failed` : 查看失败的单元
+
+- `systemctl is-active tmp.mount|smb.service|dbus.socket` : 是否active
+
+- `systemctl is-enabled tmp.mount|smb.service|dbus.socket` : 是否enabled
+
+- `systemctl enable|disable tmp.mount|smb.service|dbus.socket` : 设置开机启动|不启动
+
+- `systemctl --type=mount` : 查看挂载点列表
+
+- `systemctl --type=service` : 查看服务列表
+
+- `systemctl --type=socket` : 查看服务列表
+
+- ``systemctl status|reload|restart|start|stop|kill  tmp.mount|smb.service|dbus.socket` : 生命周期管理
+
+- `systemctl cat docker.service|tmp.mount|dbus.socket` : 查看配置
+
+- `systemctl show docker.service|tmp.mount|dbus.socket` : 查看配置细节 
+
+- `systemctl list-dependencies docker.service|tmp.mount|dbus.socket` : 查看依赖列表
+
+- `systemd-analyze critical-chain docker.service|tmp.mount|dbus.socket` : 查看配置细节 
+
+- 分析启动进程
+
+  ```shell
+  [root@10-0-2-7 ~]# systemd-analyze
+  Startup finished in 1.601s (kernel) + 2.817s (initrd) + 32.876s (userspace) = 37.296s
+  ```
+
+- 分析
+
 ### df
 
 -   df是查看系统磁盘的使用情况
@@ -411,6 +454,35 @@ netstat -tlp
 - `uniq -c test.txt1` : 统计重复数据
 - `uniq -u test.txt1` : 只输出不重复信息
 - `uniq -d test.txt1` : 只输出重复的信息
+
+#### [sed](https://www.gnu.org/software/sed/manual/sed.html)
+
+常用参数
+
+- `n` ：使用安静(silent)模式。在一般 sed 的用法中，所有来自 STDIN 的数据一般都会被列出到终端上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。
+- `e` ：直接在命令列模式上进行 sed 的动作编辑；
+- `f` ：直接将 sed 的动作写在一个文件内， -f filename 则可以运行 filename 内的 sed 动作；
+- `r` ：sed 的动作支持的是延伸型正规表示法的语法。(默认是基础正规表示法语法)
+- `i` ：直接修改读取的文件内容，而不是输出到终端。
+
+常用function
+
+- `a` ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～
+- `c` ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+- `d` ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；
+- `i` ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；
+- `p` ：列印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～
+- `s` ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！
+
+样例：
+
+- `sed -i 's/ws:\/\//wss:\/\//g' test.sh`：将test.sh里面的`ws://`替换为`wss://`; `-i`修改文件内容
+
+- `sed -e 's/ws:\/\//wss:\/\//g' test.sh`：将`test.sh`为内容，执行`-e`后面命令，输出至stdout
+
+- `sed -e '1,2d' test.sh `: 删除1-2行的数据
+
+  
 
 高级
 ----

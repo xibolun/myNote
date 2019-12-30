@@ -1,85 +1,31 @@
 ---
 date :  "2019-07-30T00:19:41+08:00" 
-title : "SNMPTrap实战" 
+title : "NMAP使用" 
 categories : ["技术文章"] 
 tags : ["运维"] 
 toc : true
 ---
 
-## 实战
+## Nmap
 
-### 环境准备
+[nmap](https://nmap.org/) （Network Mapper）是一个网络工具，用于网络发现和安全审计
 
-- 两台机器： 10.0.2.1(Manager)  192.168.1.8(Agent)
-- net-snmp包安装 [net-snmp](http://www.net-snmp.org/download.html)
+### 使用详解
 
-```
-[root@9af74c959cc8 mibs]# snmpd -v
-
-NET-SNMP version:  5.7.2
-Web:               http://www.net-snmp.org/
-Email:             net-snmp-coders@lists.sourceforge.net
-```
-
-### 配置Manager
-
-##### 配置[Trap_Handlers](http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd#Trap_Handlers)
-
-- 采用文件方式；写一个脚本将trap的message放至/tmp/a.log里面
-- 详细查看  [Configure Snmptrap](http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd)
+仅列出需要发现的目标
 
 ```shell
-[root@cloudboot snmp]# vim /etc/snmp/snmptrapd.conf 
-traphandle default /usr/local/bin/lognotify
-authCommunity log,execute,net public
+[root@10-0-2-7 ~]# nmap -sL 10.0.1.1-3
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2019-11-20 21:25 CST
+Nmap scan report for 10.0.1.1
+Nmap scan report for 10.0.1.2
+Nmap scan report for 10.0.1.3
+Nmap done: 3 IP addresses (0 hosts up) scanned in 0.25 seconds
 ```
 
-```shell
-[root@cloudboot snmp]# vim /usr/local/bin/lognotify
-[pengganyu@archlinux ~]$ 
-#!/bin/sh
+### 设备发现
 
-read host
-read ip
-vars=
-
-while read oid val
-do
-  if [ "$vars" = "" ]
-  then
-    vars="$oid = $val"
-  else
-    vars="$vars, $oid = $val"
-  fi
-done
-
-echo trap: $1 $host $ip $vars >> /tmp/a.log
-```
-
-##### 启动TrapListener
-
-```
-[root@cloudboot snmp]# snmptrapd -c /etc/snmp/snmptrapd.conf udp:1622
-```
-
-#### 配置Agent
-
-##### 编写mib文件（直接使用net-snmp库里面的mib）
-
-```
-/usr/share/snmp/mibs/NET-SNMP-EXAMPLES-MIB
-```
-
-##### 发送trap
-
-```
-snmptrap -v 2c -c public 10.0.2.1:1622 "" NET-SNMP-EXAMPLES-MIB::netSnmpExampleHeartbeatNotification netSnmpExampleHeartbeatRate i 123456
-```
-
-发送trap至10.0.2.1的1622 UDP端口
-
-
-
-### 其他
-
-- [snmptt](http://www.snmptt.org/) Perl写的一个SNMP trap handler
+- 列出活着的设备 `nmap 10.0.1.1-3`
+- 不扫描端口：`nmap -sn 10.0.1.1-3`
+- 排除某些设备：`nmap -sn 10.0.1.1-3 --exclude 10.0.1.1,10.0.1.2 `1

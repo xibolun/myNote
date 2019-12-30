@@ -6,6 +6,10 @@ tags : ["saltstack"]
 toc : true
 ---
 
+### 其他环境
+
+
+
 ## Mac OS本机SaltStack环境搭建
 
 在mac os下部署一个master，并利用两个salt-minion的docker容器搭建一个本机版本的saltstack环境
@@ -146,3 +150,6 @@ AAAAAAAA-0000-0000-BBD1-FA294FBCB7D6:
 └── pki ##公钥
 ```
 
+> master与minion建立连接后pki下面的钥匙md5值是一致的
+>
+> md5sum /etc/salt/pki/master/master.pub   == md5sum /etc/salt/pki/minion/minion.pub
