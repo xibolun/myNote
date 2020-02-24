@@ -1,6 +1,6 @@
 ---
 date :  "2019-07-30T00:20:07+08:00" 
-title : "Kafka学习笔记" 
+title : "Kafka(一)环境搭建及问题整理" 
 categories : ["技术文章"] 
 tags : ["kafka"] 
 toc : true

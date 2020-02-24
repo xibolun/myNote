@@ -77,37 +77,36 @@ hf-cmdb0622-1 --drop
 
 -   在语句的结尾添加.pretty()可以格式化json
 -   `show collections`： 查看所有的集合
--   db.pengganyu.find();  // 查看文档
--   db.cms~ci~.find().count(); //统计数量
--   db.getCollection('cms\_ci\_class').find({'displayName':'数据库服务节点','name':'BpDatabaseServiceRef'})；//and查询方式
--   db.getCollection('cms~ci~').find({},{"~id~":0,"source":1});//返回指定的列，0为不显示，1为显示
--   db.getCollection('cms\_ci\_class').find({'name':'BpAppModel','name':'BpDatabaseServiceRef'}); // 若两个key相同，则and查询会按照最后一个value进行查询
--   db.getCollection('cms\_ci\_class').find( {\$or:
-    [{'name':'BpAppModel'},{'name':'BpDatabaseServiceRef'}\]}); //or的查询，因为or查询后面肯定是一个列表，所以是\[\]的形式
--   db.getCollection('cms\_ci\_class').find({'displayName':'数据库服务节点'},{\$or:[{'name':'BpAppModel'},{'name':'BpDatabaseServiceRef'}\]}); //and和or的联合查询
--   db.getCollection('cms_ci').find({'domain':{$nin:['hangzhou']}}).count();   //not in 查询
--   db.getCollection('cms_ci').find({'domain':{$in:['hangzhou']}}).count();  // in 查询
--   db.getCollection('cms\_ci\_class').find({'status':{\$gte:0}});  //gte:&gt;= ; lte: &lt;=
--   db.getCollection('cms\_ci\_class').find({'status':{\$gt:0}}); //gt: &gt; ; lt: &lt;
--   db.getCollection('cms~ci~').find({"source":{"\$ne":"CLOUD"}},{"~id~":0,"source":1}); // \$ne不相待
--   db.cms~ciclass~.find({'createTime': {\$type:18}}); //查询数据类型为32-bit integer的数据 type:18
--   db.cms~ciclass~.find({'createTime': {\$type:18}}).limit(10); //    limit
--   db.cms~ciclass~.find({'createTime': {\$type:18}}).skip(10); // skip  跳过前10条
--   db.cms~ciclass~.find().sort({'name':1}); // 根据名称进行排序 1为升序，-1为降序
--   db.runCommand({'distinct':'cms\_ci\_class','key':'attributes.dataType'});  //distinct语句
--   db.cms~ciclass~.distinct('attributes.dataType'); distinct语句
--   db.getCollection('cms_api_log').find({'createTime':{$gte: new Date('2017-11-14')}})    // 查询日期；日期存储的时候使用java.util.Date，mongo会转成ISO格式，读出来的时候仍然是Date
--   db.getCollection('cms_api_log').find({'uri':/query/})   // like查询 '%query%'
--   db.getCollection('cms_api_log').find({'uri':/^query/})   // like查询 '%query'
--   db.getCollection('cms_api_log').find({'uri':/query$/})   // like查询 'query%'
+-   `db.pengganyu.find()`;  // 查看文档
+-   `db.cms_ci.find().count()`; //统计数量
+-   `db.getCollection('cms_ci_class').find({'displayName':'数据库服务节点','name':'BpDatabaseServiceRef'})`；//and查询方式
+-   `db.getCollection('cms_ci').find({},{"id":0,"source":1});`//返回指定的列，0为不显示，1为显示
+-   `db.getCollection('cms_ci_class').find({'name':'BpAppModel','name':'BpDatabaseServiceRef'});` // 若两个key相同，则and查询会按照最后一个value进行查询
+-   `db.getCollection('cms_ci_class').find( {\$or:
+    [{'name':'BpAppModel'},{'name':'BpDatabaseServiceRef'}\]});` //or的查询，因为or查询后面肯定是一个列表,所以是\[\]的形式
+-   `db.getCollection('cms_ci_class').find({'displayName':'数据库服务节点'},{\$or:[{'name':'BpAppModel'},{'name':'BpDatabaseServiceRef'}\]});` //and和or的联合查询
+-   `db.getCollection('cms_ci').find({'domain':{$nin:['hangzhou']}}).count(); `  //not in 查询
+-   `db.getCollection('cms_ci').find({'domain':{$in:['hangzhou']}}).count();`  // in 查询
+-   `db.getCollection('cms_ci_class').find({'status':{$gte:0}}); ` //gte:&gt;= ; lte: &lt;=
+-   `db.getCollection('cms_ci_class').find({'status':{$gt:0}});` //gt: &gt; ; lt: &lt;
+-   `db.getCollection('cms_ci').find({"source":{"$ne":"CLOUD"}},{"id":1,"source":1});` // \$ne不相待
+-   `db.cms_ciclass.find({'createTime': {$type:18}}); `//查询数据类型为32-bit integer的数据 type:18
+-   `db.cms_ciclass.find({'createTime': {$type:18}}).limit(10);` //    limit
+-   `db.cms_ci_class.find({'createTime': {$type:18}}).skip(10);` // skip  跳过前10条
+-   `db.cms_ci_class.find().sort({'name':1}); `// 根据名称进行排序 1为升序，-1为降序
+-   `db.runCommand({'distinct':'cms_ci_class','key':'attributes.dataType'}); ` //distinct语句
+-   `db.cms_ci_class.distinct('attributes.dataType');` distinct语句
+-   `db.getCollection('cms_api_log').find({'createTime':{$gte: new Date('2017-11-14')}}) `   // 查询日期；日期存储的时候使用java.util.Date，mongo会转成ISO格式，读出来的时候仍然是Date
+-   `db.getCollection('cms_api_log').find({'uri':/query/}) `  // like查询 '%query%'
+-   `db.getCollection('cms_api_log').find({'uri':/^query/})`   // like查询 '%query'
+-   `db.getCollection('cms_api_log').find({'uri':/query$/}) `  // like查询 'query%'
 
 ### 其他操作
 
--   db.pengganyu.update({"title":"name"},{\$set:{"title":"pengganyu"}}):
-    更新文档
--   db.pengganyu.save({xxxx}): 保存文档
--   db.pengganyu.remove({}): 移除所有的文档
--   db.pengganyu.remove({xxx}): 移除文档
+-   `db.pengganyu.update({"title":"name"},{\$set:{"title":"pengganyu"}});`更新文档
+-   `db.pengganyu.save({xxxx})`: 保存文档
+-   `db.pengganyu.remove({})`: 移除所有的文档
+-   `db.pengganyu.remove({xxx})`: 移除文档
 
 索引
 ----
@@ -122,17 +121,33 @@ mongo当中的索引使用ensureIndex来操作，将所需要添加到索引的�
 
 -   每个集合的最大索引个数为64
 -   建立索引的时候使用background参数，将建立过程在后台完成，不阻塞数据操作；
-    db.getCollection("cms~ci~").ensureIndex({"dataFieldMap.id":1},{"background":true});
+    `db.getCollection("cms_ci").ensureIndex({"dataFieldMap.id":1},{"background":true});`
+
+索引管理
+
+```
+db.cms_ci.createIndex({'dataFieldMap.id':1})
+db.cms_ci.getIndexes()
+db.cms_ci.dropIndex({"dataFieldMap.id":1});
+db.cms_ci.dropIndexes();
+// 查看所有索引
+db.getCollectionNames().forEach(function(collection) {
+   indexes = db[collection].getIndexes();
+   print("Indexes for " + collection + ":");
+   printjson(indexes);
+});
+```
+
+
 
 备份恢复
 --------
 
--   mongodump -h dbhost -d dbname -o dbdirectory
--   mongodump -h localhost -d test -o /tmp/test
--   mongorestore -h localhost:27017 -d test test; // mongorestore -h
+-   `mongodump -h dbhost -d dbname -o dbdirectory`
+-   `mongodump -h localhost -d test -o /tmp/test`
+-   `mongorestore -h localhost:27017 -d test test`; // mongorestore -h
     &lt;hostname&gt;&lt;:port&gt; -d dbname
--   mongorestore -h localhost:27017 -d test  --dir *tmp/test --drop; /*
-    先删除，再按照指定目录进行恢复
+-   `mongorestore -h localhost:27017 -d test  --dir tmp/test --drop; `先删除，再按照指定目录进行恢复
 
 MongoShell
 ----------
@@ -193,6 +208,10 @@ db.createUser({user:'dbuser',pwd:'dbuser',roles:[{role:'dbAdmin',db:'hf-cmdb5'}]
 
 // 测试用户名密码是否正确，返回1说明正确
 db.auth({'user':'dbuser','pwd':'dbuser'});
+
+// 查看所有的用户
+show users
+db.runCommand({usersInfo:1})
 ```
 
 ### 角色说明
@@ -205,7 +224,7 @@ db.auth({'user':'dbuser','pwd':'dbuser'});
     readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase
 -   超级用户角色：root
     其中dbOwner、userAdmin、userAdminAnyDatabase可以对超级用户的访问
--   内部角色: ~system~
+-   内部角色: system
 
 连接认证
 --------

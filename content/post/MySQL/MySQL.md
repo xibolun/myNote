@@ -217,6 +217,20 @@ mysql> flush privileges;
 -   my.cnf目录位于：/usr/local/Cellar/mysql/5.7.11/support-files/
 -   启动相关命令：mysql.server start|stop|staus|restart
 
+### 修改timestamp类型的默认值
+
+无法使用
+
+```
+alter table mytable alter column updated_at SET DEFAULT current_timestamp ;
+```
+
+只能使用以下来解决
+
+```
+ALTER TABLE mytable CHANGE `time` `time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+```
+
 ### Data source rejected establishment of connection, message from server: "Too many connections
 
 由于mysql的连接数过大导致，修改最大连接数即可;
@@ -272,3 +286,4 @@ DELIMITER ;;
 CALL DisinctInsp;
 
 ```
+

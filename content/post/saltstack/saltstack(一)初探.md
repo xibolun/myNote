@@ -110,7 +110,11 @@ minion1:
             inet 127.0.0.1  netmask 255.0.0.0
 ```
 
+#### 其他
 
+有一些模块的命令可能不太熟悉，可以使用
+
+`salt '*' sys.doc cmd|service|pkg|file`： 类似man操作
 
 ### 参考 ###
 
