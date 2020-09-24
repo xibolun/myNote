@@ -1,6 +1,6 @@
 ---
 date :  "2020-02-27T19:49:47+08:00" 
-title : "Redis(二)––分布式锁" 
+title : "Redis(三)––分布式锁" 
 categories : ["技术文章"] 
 tags : ["redis"] 
 toc : true

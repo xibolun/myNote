@@ -1,18 +1,20 @@
 ---
 date :  "2020-02-12T14:27:40+08:00" 
-title : "k8s(四)--pod" 
+title : "k8s(四)--Pod" 
 categories : ["技术文章"] 
-tags : [""] 
+tags : ["k8s"] 
 toc : true
 ---
 
-### Pod的生命周期
+### Pod[的生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
 
+- Pending
+- Running
+- Succeeded
+- Failed
+- Unknown
 
-
-
-
-### Pod模板
+### 探索Pod
 
 建立一个模板
 
@@ -52,6 +54,19 @@ Hello Kubernetes!
 kubectl exec myapp-pod -it /bin/bash
 ```
 
+查看pod描述信息
+
+```
+kubectl describe pod myapp-pod
+```
+
+删除pod
+
+```
+## 删除pod
+kubectl delete pod myapp-pod
+```
+
 如果不知道怎么创建模板时的各种参数怎么办？
 
 - 具体的参数列表可以查看：[pod-v1-core](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#pod-v1-core)
@@ -73,13 +88,9 @@ kubectl exec myapp-pod -it /bin/bash
 - tcp socket connection：tcp套接字尝试连接，类似ping命令
 - exec command: 执行一个命令
 
-### Pod相关命令
+### 问题
 
-```
-## 创建pod
-## 删除pod
-kubectl delete pod myapp-pod
-```
-
-
+- pod重启了ip如何保持不变？
+- 如果将pod里面的应用对外进行暴露
+- 如何在多个pod间的负载均衡控制
 

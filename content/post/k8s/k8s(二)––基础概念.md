@@ -82,6 +82,13 @@ nginx-86c57db685-vjz8x   1/1     Running   0          23h
 - kube-proxy
 - container-runtime
 
+#### 插件
+
+- DNS
+- WebUI （`minikube dashboard`）
+- Container Resource Monitoring
+- Cluster-level Loggin
+
 ### 概念
 
 ### namespace
@@ -107,7 +114,17 @@ nginx-86c57db685-vjz8x   1/1     Running   0          23h
 
 #### pod
 
-#### replicationcontroller
+用于存放`container`的容器组，是k8s的最基本单元，一个`pod`里面可以有多个容器；并且可以包含不同的容器；存储卷，网络服务，普通镜像等；一个`node`上面可以有多个`pod`
+
+### node
+
+node是k8s里面的虚拟机或物理机，是计算节点；承载着N个pod；master会根据资源的(cpu、内存、硬盘、负载等)指标去计算，指定需要创建的`pod`在哪个节点上面；
+
+#### replication controller
+
+`pod`副本控制器，用于根据`CRD`文件当中指定参数控制`pod`的数量和状态；可以用于故障处理、升级、迁移等；
 
 #### service
+
+`cluster`与宿主机网络是不通的，因此需要`proxy`，`k8s`也提供了`kubectl proxy`，也可以使用`service`进行操作
 

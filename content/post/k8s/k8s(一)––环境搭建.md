@@ -334,3 +334,174 @@ k8s-node2    Ready    <none>   14m     v1.17.2
 - [reference](https://kubernetes.io/docs/reference/)： 命令行工具参数，像kubectl、kubeadm等，还有一些API列表
 - [api-reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#container-v1-core):用于查找一些配置参数信息
 
+
+
+## MacOS环境搭建(minikube)
+
+### 下载Vm-Driver
+
+macos上面可选的`driver`有许多种 [drivers/macos](https://minikube.sigs.k8s.io/docs/drivers/#macos)，选择一个下载即可；我选择的是`virtualbox`
+
+### 安装[Minikube](https://minikube.sigs.k8s.io/docs/start/)
+
+版本要求在1.7以上，否则在使用的时候会报如下错误：
+
+```shell
+➜  ~ minikube start --vm-driver=virtualbox  --image-repository=https://registry.docker-cn.com --memory=4g
+😄  minikube v1.6.2 on Darwin 10.14
+✨  Selecting 'virtualbox' driver from user configuration (alternates: [hyperkit])
+⚠️  Not passing HTTP_PROXY=127.0.0.1:1087 to docker env.
+⚠️  Not passing HTTPS_PROXY=127.0.0.1:1087 to docker env.
+✅  Using image repository https://registry.docker-cn.com
+🔥  Creating virtualbox VM (CPUs=2, Memory=4000MB, Disk=20000MB) ...
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x28 pc=0x4ecd70f]
+
+goroutine 95 [running]:
+github.com/google/go-containerregistry/pkg/v1/tarball.Write(0x0, 0xc00004c990, 0x6, 0xc00004c997, 0x1b, 0xc0002e40e3, 0x7, 0x0, 0x0, 0xc00053bc68, ...)
+        /private/tmp/minikube-20191220-77113-wmp8w9/.brew_home/go/pkg/mod/github.com/google/go-containerregistry@v0.0.0-20180731221751-697ee0b3d46e/pkg/v1/tarball/write.go:57 +0x12f
+k8s.io/minikube/pkg/minikube/machine.CacheImage(0xc0002e40c0, 0x2a, 0xc0002ee500, 0x4e, 0x0, 0x0)
+        /private/tmp/minikube-20191220-77113-wmp8w9/pkg/minikube/machine/cache_images.go:395 +0x5df
+k8s.io/minikube/pkg/minikube/machine.CacheImages.func1(0xc0003a5768, 0x0)
+        /private/tmp/minikube-20191220-77113-wmp8w9/pkg/minikube/machine/cache_images.go:85 +0x124
+golang.org/x/sync/errgroup.(*Group).Go.func1(0xc000498420, 0xc000498540)
+        /private/tmp/minikube-20191220-77113-wmp8w9/.brew_home/go/pkg/mod/golang.org/x/sync@v0.0.0-20190423024810-112230192c58/errgroup/errgroup.go:57 +0x64
+created by golang.org/x/sync/errgroup.(*Group).Go
+        /private/tmp/minikube-20191220-77113-wmp8w9/.brew_home/go/pkg/mod/golang.org/x/sync@v0.0.0-20190423024810-112230192c58/errgroup/errgroup.go:54 +0x66
+```
+
+`minikube`的issues里面也有描述 [minikube/issues/6428](https://github.com/kubernetes/minikube/issues/6428)
+
+#### brew安装
+
+```shell
+brew install minikube
+```
+
+#### 直接下载安装
+
+```shell
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
+sudo install minikube-darwin-amd64 /usr/local/bin/minikube
+```
+
+### 安装集群
+
+```shell
+minikube start --vm-driver=virtualbox
+```
+
+> 中间会拉取k8s的相关镜像，需要开启proxy代理
+
+### 安装kubectl
+
+```shell
+brew install kubectl
+```
+
+### 测试
+
+部署nginx
+
+```shell
+kubectl apply  -f  https://k8s.io/examples/application/deployment.yaml
+```
+
+> 部署前可以使用`kubectl get --watch deployment`观察deployment的状态
+
+查看状态
+
+```shell
+➜  ~ kubectl get deployments
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   0/2     2            0           4m30s
+```
+
+### 一些信息
+
+查看集群
+
+```shell
+➜  ~ kubectl get po -A
+NAMESPACE     NAME                               READY   STATUS    RESTARTS   AGE
+kube-system   coredns-66bff467f8-nnm5b           1/1     Running   0          72m
+kube-system   coredns-66bff467f8-wk9x5           1/1     Running   0          72m
+kube-system   etcd-minikube                      1/1     Running   0          72m
+kube-system   kube-apiserver-minikube            1/1     Running   0          72m
+kube-system   kube-controller-manager-minikube   1/1     Running   0          72m
+kube-system   kube-proxy-pxvlk                   1/1     Running   0          72m
+kube-system   kube-scheduler-minikube            1/1     Running   0          72m
+kube-system   storage-provisioner                1/1     Running   0          72m
+```
+
+查看`Dashboard`
+
+```
+➜  ~ minikube dashboard
+🔌  Enabling dashboard ...
+🤔  Verifying dashboard health ...
+🚀  Launching proxy ...
+🤔  Verifying proxy health ...
+🎉  Opening http://127.0.0.1:62758/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
+```
+
+查看服务
+
+```
+➜  ~ minikube addons list
+|-----------------------------|----------|--------------|
+|         ADDON NAME          | PROFILE  |    STATUS    |
+|-----------------------------|----------|--------------|
+| dashboard                   | minikube | enabled ✅   |
+| default-storageclass        | minikube | enabled ✅   |
+| efk                         | minikube | disabled     |
+| freshpod                    | minikube | disabled     |
+| gvisor                      | minikube | disabled     |
+| helm-tiller                 | minikube | disabled     |
+| ingress                     | minikube | disabled     |
+| ingress-dns                 | minikube | disabled     |
+| istio                       | minikube | disabled     |
+| istio-provisioner           | minikube | disabled     |
+| logviewer                   | minikube | disabled     |
+| metrics-server              | minikube | disabled     |
+| nvidia-driver-installer     | minikube | disabled     |
+| nvidia-gpu-device-plugin    | minikube | disabled     |
+| registry                    | minikube | disabled     |
+| registry-aliases            | minikube | disabled     |
+| registry-creds              | minikube | disabled     |
+| storage-provisioner         | minikube | enabled ✅   |
+| storage-provisioner-gluster | minikube | disabled     |
+|-----------------------------|----------|--------------|
+```
+
+
+
+### 如何连接至Minikube VM
+
+#### 方式一
+
+```shell
+➜  ~ minikube ssh
+                         _             _
+            _         _ ( )           ( )
+  ___ ___  (_)  ___  (_)| |/')  _   _ | |_      __
+/' _ ` _ `\| |/' _ `\| || , <  ( ) ( )| '_`\  /'__`\
+| ( ) ( ) || || ( ) || || |\`\ | (_) || |_) )(  ___/
+(_) (_) (_)(_)(_) (_)(_)(_) (_)`\___/'(_,__/'`\____)
+
+$
+```
+
+查看IP
+
+```shell
+➜  ~ minikube ip
+192.168.99.102
+```
+
+由于`minikube`使用 [boot2docker](https://github.com/boot2docker/boot2docker#ssh-into-vm)，所以默认用户名密码为`docker/tcuser`
+
+```shell
+ssh docker@192.168.99.102
+```
+

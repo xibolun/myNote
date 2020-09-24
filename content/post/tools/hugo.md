@@ -2,7 +2,7 @@
 date :  "2019-02-22T18:47:21+08:00" 
 title : "使用Hugo&GitPage写博客" 
 categories : ["tool"] 
-tags : ["hugo","tool"] 
+tags : ["hugo","tools"] 
 toc : true
 ---
 
