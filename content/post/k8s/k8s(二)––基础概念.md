@@ -126,5 +126,13 @@ node是k8s里面的虚拟机或物理机，是计算节点；承载着N个pod；
 
 #### service
 
-`cluster`与宿主机网络是不通的，因此需要`proxy`，`k8s`也提供了`kubectl proxy`，也可以使用`service`进行操作
+`cluster`与宿主机网络是不通的，因此需要`proxy`，`k8s`也提供了`kubectl proxy`，也可以使用`service`进行操作；将一组的pod进行统一的管理和适配
+
+#### ingress/egress
+
+`pod`集群的入流量称为`ingress`，出流量为`egress`；可以通过配置策略来达到这样的限制的效果；
+
+基于以上两个概念就会有了入流量的控制器`ingressController`；
+
+
 
