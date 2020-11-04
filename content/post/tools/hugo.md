@@ -26,6 +26,11 @@ Hugo是一个go语言写的静态博客生成器，与业界里面的Jeklly、He
 
 后来看到阿里的一位大牛的博客 [飞雪无情](https://github.com/rujews/maupassant-hugo)，感觉非常好看，所以就拿过来用了一下 [maupassant-hugo](https://github.com/rujews/maupassant-hugo)；于2019年2月份左右迁移完成。
 
+也有一些比较好的主题推荐
+
+- [hugo-material-docs](https://github.com/digitalcraftsman/hugo-material-docs)，用于生成文档，比gitbook好看；
+- [blackburn](https://github.com/yoshiharuyamashita/blackburn)，`go-restful`[作者使用的一个主题](http://ernestmicklei.com/)
+
 ### 发布
 
 Hugo官网文档里面有许多的发布方式 [hosting-and-deploymeng](https://gohugo.io/hosting-and-deployment/)，

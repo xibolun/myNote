@@ -110,13 +110,15 @@ nginx-86c57db685-vjz8x   1/1     Running   0          23h
 
 #### deployment
 
-简称`deploy`，运行在
+简称`deploy`；
+
+生命周期：`progressing`、`complete`、`fail to progress`
 
 #### pod
 
 用于存放`container`的容器组，是k8s的最基本单元，一个`pod`里面可以有多个容器；并且可以包含不同的容器；存储卷，网络服务，普通镜像等；一个`node`上面可以有多个`pod`
 
-### node
+#### node
 
 node是k8s里面的虚拟机或物理机，是计算节点；承载着N个pod；master会根据资源的(cpu、内存、硬盘、负载等)指标去计算，指定需要创建的`pod`在哪个节点上面；
 

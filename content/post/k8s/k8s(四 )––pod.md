@@ -88,9 +88,20 @@ kubectl delete pod myapp-pod
 - tcp socket connection：tcp套接字尝试连接，类似ping命令
 - exec command: 执行一个命令
 
+#### StaticPod
+
+[官方的说明](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/)
+
+这种类型的`pod`是不受`apiserver`纳管的，放至在特殊的`node`上面，并且这样的pod你是无法删除的，因为你删除了，还会立即运行起来；这样的`pod`只会监听`manifests`路径下的配置文件，配置文件发生变化的时候会自动重启；
+
+> ```shell
+> manifests目录可以使用参数指定
+> kubelet --pod-manifest-path=/etc/kubernetes/manifests
+> ```
+
 ### 问题
 
 - pod重启了ip如何保持不变？
-- 如果将pod里面的应用对外进行暴露
+- 如何将pod里面的应用对外进行暴露
 - 如何在多个pod间的负载均衡控制
 
