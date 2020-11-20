@@ -31,7 +31,7 @@ toc : true
 
 #### 查看引擎
 
-```
+```shell
 mysql> SHOW ENGINES \G
 
 mysql>SHOW VARIABLES LIKE 'have%';
