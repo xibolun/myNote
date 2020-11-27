@@ -1,13 +1,12 @@
 ---
-
-date :  "2020年8月6日 上午11:46:17" 
+date :  "2020-08-06T18:00:55+08:00" 
 title : "prometheus(一)环境搭建" 
 categories : ["技术文章"] 
 tags : ["prometheues"] 
 toc : true
 ---
 
-
+---
 
 ### 需求了解的几个概念
 
@@ -17,9 +16,6 @@ toc : true
 - Rule
 - Exporter
 - Target
-- 
-
-
 
 ### Rule
 

@@ -1,3 +1,11 @@
+---
+date :  "2020-04-26T18:04:35+08:00" 
+title : "如何刷机ipad、iphone" 
+categories : ["杂谈"] 
+tags : ["杂谈"] 
+toc : true
+---
+
 ## 如何刷机ipad、iphone
 
 ### 准备

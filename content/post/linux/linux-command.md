@@ -579,3 +579,19 @@ vdb               1.20         2.91         3.37    2736630    3162946
 # fuser -u -m /usr/bin/redis-server
 ```
 
+#### 进程相关
+
+```
+## 进程查看
+ps -ef | grep zabbix_agentd
+
+## 查看进程下的线程
+ps mp pid -o THREAD,tid
+## 统计进程下的线程数
+cat /proc/15176/status | grep -i Threads
+
+## 子进程
+pstree pid
+ps -axjf | grep 2018
+```
+
