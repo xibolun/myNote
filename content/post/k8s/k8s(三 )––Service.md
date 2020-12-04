@@ -20,9 +20,43 @@ toc : true
 
 ### Service的模式
 
-NodePod、ClusterIP、
+- NodePod：可以指定在集群内访问，同时也可以指定集群外的访问；只有一个局限，那便是端口号有一个范围 `30000~32767`，可以通过`http://<KUBERNETES_MASTER>:32600`进行访问
 
+```
+➜  k8s kubectl get svc -n idcos -o wide
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE   SELECTOR
+cloud-act2-doc-srv   NodePort    10.233.33.230   <none>        80:32600/TCP   4s    app=cloud-act2-doc
+```
 
+- ClusterIP：默认的`svc type`，只能在集群内访问，会自动创建`endpoints`进行关联
+
+```shell
+➜  k8s kubectl get svc -n idcos -o wide
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+cloud-act2-doc-srv   ClusterIP   10.233.43.198   <none>        80/TCP    9s    app=cloud-act2-doc
+```
+
+```shell
+➜  k8s kubectl get endpoints -n idcos -o wide
+NAME                 ENDPOINTS           AGE
+cloud-act2-doc-srv   10.233.105.49:80    51s
+```
+
+- LoadBalancer：会分配给`svc`一个虚拟的`CLUSTER_IP`，同时也会暴露一个`NodePort`供外部进行访问；
+
+```shell
+➜  k8s kubectl get svc -n idcos
+NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+cloud-act2-doc-srv   LoadBalancer   10.233.38.230   <pending>     80:32077/TCP   8s
+```
+
+### Headless Service
+
+无IP的那些`service`称为 [Headless Service](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services) ，用于那些不需要服务发现的`svc`
+
+### 参考
+
+- [jimmysong的blog](https://jimmysong.io/kubernetes-handbook/guide/accessing-kubernetes-pods-from-outside-of-the-cluster.html)
 
 
 

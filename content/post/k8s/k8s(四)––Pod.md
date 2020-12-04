@@ -1,6 +1,6 @@
 ---
 date :  "2020-02-12T14:27:40+08:00" 
-title : "k8s(四)--Pod" 
+title : "k8s(四)––Pod" 
 categories : ["技术文章"] 
 tags : ["k8s"] 
 toc : true
@@ -8,17 +8,17 @@ toc : true
 
 ### Pod[的生命周期](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
 
-- Pending
-- Running
-- Succeeded
-- Failed
-- Unknown
+- Pending：创建的时候
+- Running：正常运行
+- Succeeded：重启成功
+- Failed：重启失败
+- Unknown：未知
 
 ### 探索Pod
 
 建立一个模板
 
-```
+```shell
 apiVersion: v1
 kind: Pod
 metadata:
@@ -34,7 +34,7 @@ spec:
 
 创建pod，刚开始会创建中，过一会儿会变成running状态
 
-```
+```shell
 [root@k8s-master ~]# kubectl apply -f hello.yaml 
 [root@k8s-master ~]# kubectl get pods
 NAME                     READY   STATUS    RESTARTS   AGE
@@ -43,26 +43,26 @@ myapp-pod                1/1     Running   0          4m51
 
 查看命令输出
 
-```
+```shell
 [root@k8s-master ~]# kubectl logs myapp-pod
 Hello Kubernetes!
 ```
 
 进入pod
 
-```
+```shell
 kubectl exec myapp-pod -it /bin/bash
 ```
 
 查看pod描述信息
 
-```
+```shell
 kubectl describe pod myapp-pod
 ```
 
 删除pod
 
-```
+```shell
 ## 删除pod
 kubectl delete pod myapp-pod
 ```
@@ -99,9 +99,35 @@ kubectl delete pod myapp-pod
 > kubelet --pod-manifest-path=/etc/kubernetes/manifests
 > ```
 
+### Pod与Container
+
+一个`pod`下面可以有多个`container`，模型比例为1:n ，看下面的`CRD`文件
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: counter
+spec:
+  containers:
+  - name: count
+    image: busybox
+		...
+  - name: count-agent
+    image: fluentd:v1.6-debian-1
+		...
+  - name: config-volume
+    mountPath: /etc/fluentd-config
+		...	
+```
+
+那么如何查看这些`container`的状态呢？
+
+```shell
+kubectl get containers -n idcos
+```
+
 ### 问题
 
-- pod重启了ip如何保持不变？
-- 如何将pod里面的应用对外进行暴露
-- 如何在多个pod间的负载均衡控制
+如何将pod里面的应用对外进行暴露？如何在多个pod间的负载均衡控制？这些就需要引出`service`
 

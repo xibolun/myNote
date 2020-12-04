@@ -1,6 +1,6 @@
 ---
 date :  "2020-01-28T13:36:27+08:00" 
-title : "k8s(一)–环境搭建" 
+title : "k8s(一)––环境搭建" 
 categories : ["技术文章"] 
 tags : ["k8s"] 
 toc : true
@@ -27,7 +27,7 @@ toc : true
 
 设置静态IP
 
-```
+```shell
 vi /etc/sysconfig/network-scripts/ifcfg-ens33
 
 ....
@@ -41,19 +41,19 @@ GATEWAY=192.168.128.2
 
 重启
 
-```
+```shell
 systemctl restart network
 ```
 
 设置主机名
 
-```
+```shell
 hostnamectl set-hostname k8s-master
 ```
 
 设置域名，配置/ect/hosts
 
-```
+```shell
  cat >> /etc/hosts << EOF
 192.168.128.220    k8s-master
 192.168.128.221    k8s-node01
@@ -63,14 +63,14 @@ EOF
 
 关闭防火墙
 
-```
+```shell
 systemctl status firewalld &  systemctl stop firewalld & systemctl status firewalld 
 systemctl status iptables &  systemctl stop iptables & systemctl status iptables
 ```
 
 关闭selinux
 
-```
+```shell
 setenforce 0
 
 getenforce
@@ -79,7 +79,7 @@ vi /etc/selinux/config
 
 关闭swap
 
-```
+```shell
 vi /etc/fstab
 ## 注释
 # /dev/mapper/centos-swap swap                    swap    defaults        0 0
@@ -87,7 +87,7 @@ vi /etc/fstab
 
 开启透明网桥
 
-```
+```shell
 echo "net.bridge.bridge-nf-call-iptables=1" >> /etc/sysctl.d/k8s.conf
 echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.d/k8s.conf
 sysctl -p
@@ -95,7 +95,7 @@ sysctl -p
 
 开启ipvs
 
-```
+```shell
 cat > /etc/sysconfig/modules/ipvs.modules <<EOF
 #!/bin/bash
 modprobe -- ip_vs
@@ -106,7 +106,7 @@ modprobe -- nf_conntrack_ipv4
 EOF
 ```
 
-```
+```shell
 #执行脚本
 chmod 755 /etc/sysconfig/modules/ipvs.modules && bash /etc/sysconfig/modules/ipvs.modules && lsmod | grep -e ip_vs -e nf_conntrack_ipv4
 ```
@@ -117,7 +117,7 @@ chmod 755 /etc/sysconfig/modules/ipvs.modules && bash /etc/sysconfig/modules/ipv
 yum remove docker-client docker-common docker -y
 ```
 
-```
+```shell
 # step 1: 安装必要的一些系统工具
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 # Step 2: 添加软件源信息
@@ -129,7 +129,7 @@ sudo yum -y install docker-ce
 
 配置cgroup
 
-```
+```shell
 cat > /etc/docker/daemon.json <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"]
@@ -139,20 +139,20 @@ EOF
 
 设置FORWARD ACCEPT
 
-```
+```shell
 vi /usr/lib/systemd/system/docker.service
 ExecStartPost=/usr/sbin/iptables -P FORWARD ACCEPT
 ```
 
 重置并设置开机启动
 
-```
+```shell
  systemctl daemon-reload && systemctl restart docker.service && systemctl enable docker.service
 ```
 
 ### 安装k8s
 
-```
+```shell
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
@@ -167,13 +167,13 @@ yum install -y kubelet kubeadm kubectl
 
 启动
 
-```
+```shell
 systemctl enable kubelet && systemctl start kubelet
 ```
 
 通过aliyun仓库拉取gc.src.io的镜像的一个脚本
 
-```
+```shell
 vi /tmp/image.sh
 #!/bin/bash
 url=registry.cn-hangzhou.aliyuncs.com/google_containers
@@ -198,7 +198,7 @@ kubeadm init --image-repository registry.aliyuncs.com/google_containers  --kuber
 ```
 
 输出信息
-```
+```shell
 kubeadm init --image-repository registry.aliyuncs.com/google_containers  --kubernetes-version v1.17.0 --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=192.168.128.220 
 W0203 12:06:56.185377    4249 validation.go:28] Cannot validate kube-proxy config - no validator is available
 W0203 12:06:56.185442    4249 validation.go:28] Cannot validate kubelet config - no validator is available
@@ -274,14 +274,14 @@ kubeadm join 192.168.128.220:6443 --token j6crlr.k2eh15nkxw4ear9y \
 
 设置`kubectl`命令行环境
 
-```
+```shell
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 ```
 
 查看状态
 
-```
+```shell
 [root@k8s-master ~]# kubectl get nodes
 NAME         STATUS     ROLES    AGE   VERSION
 k8s-master   NotReady   master   36m   v1.17.2
@@ -289,27 +289,27 @@ k8s-master   NotReady   master   36m   v1.17.2
 
 状态未成功的原因未安装网络插件
 
-```
+```shell
 kubectl describe node k8s-master | grep Ready
   Ready            False   Mon, 03 Feb 2020 12:48:44 +0800   Mon, 03 Feb 2020 12:08:03 +0800   KubeletNotReady              runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
 ```
 
 安装flannel
 
-```
+```shell
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
 离线安装
 
-```
+```shell
 curl -O https://github.com/coreos/flannel/blob/master/Documentation/kube-flannel-aliyun.yml
 kubectl apply -f kube-flannel-aliyun.yml
 ```
 
 查看状态
 
-```
+```shell
 [root@k8s-master ~]# kubectl get nodes
 NAME         STATUS   ROLES    AGE   VERSION
 k8s-master   Ready    master   78m   v1.17.2
@@ -317,11 +317,11 @@ k8s-master   Ready    master   78m   v1.17.2
 
 #### 添加Node
 
-```
+```shell
 kubeadm join 192.168.128.220:6443 --token j6crlr.k2eh15nkxw4ear9y --discovery-token-ca-cert-hash sha256:b79e738df3cafd3d303707f877242cfb634429566c84e78818e86798be85f705
 ```
 
-```
+```shell
 [root@k8s-node1 ~]# kubectl get nodes
 NAME         STATUS   ROLES    AGE     VERSION
 k8s-master   Ready    master   4h29m   v1.17.2
@@ -436,7 +436,7 @@ kube-system   storage-provisioner                1/1     Running   0          72
 
 查看`Dashboard`
 
-```
+```shell
 ➜  ~ minikube dashboard
 🔌  Enabling dashboard ...
 🤔  Verifying dashboard health ...
@@ -447,7 +447,7 @@ kube-system   storage-provisioner                1/1     Running   0          72
 
 查看服务
 
-```
+```shell
 ➜  ~ minikube addons list
 |-----------------------------|----------|--------------|
 |         ADDON NAME          | PROFILE  |    STATUS    |
