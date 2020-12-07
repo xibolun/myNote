@@ -61,6 +61,13 @@ NETWORK ID          NAME                DRIVER              SCOPE
 
 ### Bridge原理
 
+前提需要保证，NETNS_LOCAL的属性为`off`，否则无法进行跨命名空间的操作；
+
+```shell
+[root@CloudBoot-dev-2-103 ~]# ethtool -k eth0 | grep netns-local
+netns-local: off [fixed]
+```
+
 创建两个`netns`
 
 ```shell
