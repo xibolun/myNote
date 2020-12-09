@@ -1,6 +1,6 @@
 ---
 
-date :  "2020-03-09T10:31:51+08:00" 
+date :  "2020-03-11T10:31:51+08:00" 
 title : "k8s––证书修改" 
 categories : ["技术文章"] 
 tags : ["k8s"] 
@@ -30,7 +30,7 @@ ca                      Sep 14, 2030 08:42 UTC   9y              no
 front-proxy-ca          Sep 14, 2030 08:42 UTC   9y              no
 ```
 
-可收看到`CA`的有效期为10年，而`api、schedule`等相关认证的证书时间为1年，为什么是这样呢？
+可以看到`CA`的有效期为10年，而`api、schedule`等相关认证的证书时间为1年，为什么是这样呢？
 
 在生成`k8s config`的时候会创建证书和`key`
 
@@ -134,6 +134,13 @@ kubeadm alpha certs renew all
 ```shell
 date -s 12/09/2022
 ```
+
+```shell
+[root@ops-pre-4-175 pki]# kubectl get pods  -n idcos -o wide
+Unable to connect to the server: x509: certificate has expired or is not yet valid
+```
+
+调用的时候已经出现了证书校验不通过的问题，续签一年，然后再执行命令的时候依旧会报上面的错误；只有重启才可以生效；若想使用长久的证书，并且不重启集群，可以通过修改源码实现；需要了解一下如何编译`k8s`；
 
 #### 镜像编译
 
