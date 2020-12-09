@@ -2,8 +2,8 @@
 
 date :  "2020-03-02T10:37:27+08:00" 
 title : "Imagemagick使用" 
-categories : ["技术文章"] 
-tags : ["tools"] 
+categories : ["tool"] 
+tags : ["tool"] 
 toc : true
 ---
 

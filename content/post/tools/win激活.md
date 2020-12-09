@@ -3,7 +3,7 @@
 date :  "2020-10-02T23:37:59+08:00" 
 title : "windows激活" 
 categories : ["技术文章"] 
-tags : ["tools"] 
+tags : ["tool"] 
 toc : true
 ---
 

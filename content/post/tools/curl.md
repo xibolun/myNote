@@ -2,8 +2,8 @@
 
 date :  "2017-06-02T23:36:24+08:00" 
 title : "curl学习" 
-categories : ["技术文章"] 
-tags : ["curl","tools"] 
+categories : ["tool"] 
+tags : ["curl","tool"] 
 toc : true
 ---
 

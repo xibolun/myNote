@@ -1,8 +1,8 @@
 ---
 date :  "2019-07-30T00:15:33+08:00" 
 title : "Ansbile学习" 
-categories : ["技术文章"] 
-tags : ["ansible"] 
+categories : ["tool"] 
+tags : ["ansible","tool"] 
 toc : true
 ---
 
