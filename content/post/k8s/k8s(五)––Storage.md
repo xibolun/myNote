@@ -98,7 +98,7 @@ total 8
 2. [Storage](https://kubernetes.io/docs/concepts/storage/storage-classes/#introduction)有一个属性为`volumeBindingMode`，默认为`Immediate`会立即绑定，若设置为`WaitForFirstConsumer`，则当有`Pod`使用此`pvc`的时候才会进行绑定；
 3. 报错：`no volume plugin matched`；说明你没有对应的 [provisioner](https://kubernetes.io/docs/concepts/storage/storage-classes/#provisioner)；去搜索添加对应的`provisioner`即可，我使用的是`nfs`，需要安装 [nfs-client](https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client)；然后再指定对应的配置；
 
-可以看到使用nfs比较麻烦，流程如下
+可以看到使用nfs比较麻烦，总结一下流程如下：
 
 - 搭建nfs环境
 - sa创建

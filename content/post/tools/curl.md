@@ -61,3 +61,9 @@ curl --include \
      http://10.0.2.1:8086/ws/unread
 ```
 
+#### 证书请求
+
+```shell
+curl -k --cert /tmp/server.crt --key /tmp/server.key GET   'https://10.0.2.9:6868/api/v2/job/script/detail?jobId=112f2816-03d8-acc9-8ae2-a15070ef012b'   -H 'Cache-Control: no-cache'   -H 'Content-Type: application/json'
+```
+
