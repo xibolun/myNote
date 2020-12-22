@@ -6,7 +6,7 @@ Theme = "maupassant"
 pygmentsStyle = "default"
 pygmentsUseClasses = true
 RSSUri = "feed.xml"
-DisqusShortname = "http-xibolun-github-io"
+DisqusShortname = "xibolun"
 googleAnalytics = "UA-101106729-1"
 
 
