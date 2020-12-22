@@ -21,15 +21,15 @@ googleAnalytics = "UA-101106729-1"
   [[menu.main]]
     identifier = "books"
     name = "读书"
-    url = "/books/"
-    weight = 1
+    url = "/books/readbooklist/"
+    weight = 20
   [[menu.main]]
     identifier = "archives"
     name = "归档"
     url = "/archives/"
-    weight = 2
+    weight = 30
   [[menu.main]]
     identifier = "about"
     name = "关于"
     url = "/about/"
-    weight = 3
+    weight = 40
