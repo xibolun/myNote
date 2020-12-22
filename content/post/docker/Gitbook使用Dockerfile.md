@@ -64,3 +64,4 @@ docker push registry.idcos.com/cloudpower/cloud-act2-docs:v1.0
 docker run -dp 80:80 --name cloud-act2-gitbook registry.idcos.com/cloudpower/cloud-act2-docs:v1.0
 ```
 
+{{ template "_internal/disqus.html" . }}

@@ -31,6 +31,18 @@ Hugo是一个go语言写的静态博客生成器，与业界里面的Jeklly、He
 - [hugo-material-docs](https://github.com/digitalcraftsman/hugo-material-docs)，用于生成文档，比gitbook好看；
 - [blackburn](https://github.com/yoshiharuyamashita/blackburn)，`go-restful`[作者使用的一个主题](http://ernestmicklei.com/)
 
+### 增强配置
+
+```shell
+## 添加GA分析，参考文章https://note.qidong.name/2017/07/05/google-analytics-in-hugo
+googleAnalytics = "xxxx"
+## 添加不蒜子
+[params]
+  busuanzi = true
+## 添加评论
+disqusShortname = "xibolun"
+```
+
 ### 发布
 
 Hugo官网文档里面有许多的发布方式 [hosting-and-deploymeng](https://gohugo.io/hosting-and-deployment/)，

@@ -240,6 +240,59 @@ func (c MajorityConfig) VoteResult(votes map[uint64]bool) VoteResult {
 		}
 ```
 
+#### 成为leader
+
+成为leader即为`becomseLeader`，做了如下的操作
+
+- 开始做为`leader`的`step`，这里主要是做几个事情：
+  - 心跳：看看其他的`follower`是否还活着
+  - 校验`quorum`（法人）即自己是否一直持有最高的投票数
+  - 接受`proposal`（提案）：即是否同步日志`entry`给其他的节点
+  - 获取当前最新的日志`index`：当前`leader`的`raftlog`的`lastIndex`
+- 设置`Term`
+- 将`tick`修改为心跳的`tick`，之前是`tickElection`
+- 设置状态为`Leaader`
+- 生与一个空日志，尝试一下是否可以追加，主要是想办法一下，现在的`uncommittedSize`是否够用；默认配置的上限为`1G`
+
+```go
+func (r *raft) becomeLeader() {
+  // 这里还有李响的一个TODO，也不知道什么时候会实现，哈哈
+	// TODO(xiangli) remove the panic when the raft implementation is stable
+	if r.state == StateFollower {
+		panic("invalid transition [follower -> leader]")
+	}
+	r.step = stepLeader
+	r.reset(r.Term)
+	r.tick = r.tickHeartbeat
+	r.lead = r.id
+	r.state = StateLeader
+	r.prs.Progress[r.id].BecomeReplicate()
+
+	r.pendingConfIndex = r.raftLog.lastIndex()
+
+	emptyEnt := pb.Entry{Data: nil}
+	if !r.appendEntry(emptyEnt) {
+		// This won't happen because we just called reset() above.
+		r.logger.Panic("empty entry was dropped")
+	}
+	r.reduceUncommittedSize([]pb.Entry{emptyEnt})
+	r.logger.Infof("%x became leader at term %d", r.id, r.Term)
+}
+```
+
+```go
+	c := &raft.Config{
+		ID:                        uint64(rc.id),
+		ElectionTick:              10,
+		HeartbeatTick:             1,
+		Storage:                   rc.raftStorage,
+		MaxSizePerMsg:             1024 * 1024,
+		MaxInflightMsgs:           256,
+		// 默认unCommitted大小为 2^30=1G
+		MaxUncommittedEntriesSize: 1 << 30,
+	}
+```
+
 ### 几个问题
 
 #### 选举不出来怎么办？
