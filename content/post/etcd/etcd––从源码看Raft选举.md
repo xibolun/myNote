@@ -29,6 +29,8 @@ Raft同时搞了几个角色和名词
 
 - 当`follower`的选举定时器时间到了（长时间没有收到`leader`的消息），就会发起一次投票选举；
 
+![follower tick](/img/etcd/etcd-election-tick.jpg)
+
 ```go
 // tickElection is run by followers and candidates after r.electionTimeout.
 func (r *raft) tickElection() {
@@ -54,8 +56,13 @@ func (r *raft) resetRandomizedElectionTimeout() {
 
 - 角色修改为`candidate`
 - 重置计数器
+
+![follower to candidate](/img/etcd/etcd-election-candidate.jpg)
+
 - 投票的对象变为自身
 - 开始接收其他节点的信息
+
+![candidate vote](/img/etcd/etcd-election-vote.jpg)
 
 ```go
 func (r *raft) becomeCandidate() {
@@ -242,6 +249,8 @@ func (c MajorityConfig) VoteResult(votes map[uint64]bool) VoteResult {
 
 #### 成为leader
 
+![candidate to leader](/img/etcd/etcd-election-become-leader.jpg)
+
 成为leader即为`becomseLeader`，做了如下的操作
 
 - 开始做为`leader`的`step`，这里主要是做几个事情：
@@ -348,6 +357,8 @@ case pb.MsgVote, pb.MsgPreVote:
 
 #### 如何控制节点不发起投票
 
+![leader heartbeat](/img/etcd/etcd-election-heartbeat.jpg)
+
 `leader`会向每个`follower`发一个心跳，每发一次就会将`follower`的投票计时器清0
 
 #### 来了新加节点怎么办？
@@ -361,3 +372,8 @@ case pb.MsgVote, pb.MsgPreVote:
 
 `leader`挂了，就不会再有心跳，`follower`进入选举过程；
 
+![leader down](/img/etcd/etcd-election-leader-down.jpg)
+
+### 参考
+
+- [在线理解raft](http://thesecretlivesofdata.com/raft/)

@@ -91,6 +91,8 @@ func (n *node) stepWithWaitOption(ctx context.Context, m pb.Message, wait bool) 
 - 若可以则进行将`pendingConfIndex+1`，并进行日志追加广播
   - 追加日志广播的时候一样的逻辑，消息类型为`msgApp`，消息体为`entry`，并带上自身的`LogTerm`和`Index`
 
+![leader send entry](/img/etcd/etcd-election-send-entry.jpg)
+
 ```go
 case pb.MsgProp:
 		......
@@ -142,6 +144,8 @@ case pb.MsgProp:
 - 比对一个`Term`，看看`leader`是不是最新的
 - 开始尝试追加
 - 最后返回给`leader`一个`MsgAppResp`的消息类型
+
+![follower resp](/img/etcd/etcd-election-heartbeat.jpg)
 
 ```go
 func (r *raft) handleAppendEntries(m pb.Message) {

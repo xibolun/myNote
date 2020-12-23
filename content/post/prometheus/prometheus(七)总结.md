@@ -1,9 +1,9 @@
 ---
 
-date :  "2020年8月6日 上午11:45:27" 
-title : "" 
-categories : [""] 
-tags : [""] 
+date :  "2020-08-06T18:00:55+08:00" 
+title : "prometheus(七)总结" 
+categories : ["技术文章"] 
+tags : ["prometheus"] 
 toc : true
 ---
 

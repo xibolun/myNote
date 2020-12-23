@@ -6,7 +6,7 @@
 echo "---------------- start --------------------"
 git add .
 
-git commit -am "commit message: $1"
+git commit -am " $1"
 
 git push origin master
 
@@ -21,7 +21,7 @@ cd public
 
 echo "---------------- commit public-------------"
 git add .
-git commit -am  "commit blog"
+git commit -am  "commit blog: $1"
 
 echo "---------------- push public---------------"
 git push -f
