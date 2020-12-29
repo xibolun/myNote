@@ -195,3 +195,20 @@ for {
 	}
 ```
 
+需要注意的：快照是`follower`在本地完成的，不需要`leader`向其发送消息；因为`follower`是完整的备份事项，`leader`只需要将`snapshot`所带的`term`和`index`传递过来即可；
+
+```
+func (r *raft) handleSnapshot(m pb.Message) {
+	// message里面只是一个snapshot对象，包含index和term
+   sindex, sterm := m.Snapshot.Metadata.Index, m.Snapshot.Metadata.Term
+   if r.restore(m.Snapshot) {
+      r.logger.Infof("%x [commit: %d] restored snapshot [index: %d, term: %d]",
+         r.id, r.raftLog.committed, sindex, sterm)
+      r.send(pb.Message{To: m.From, Type: pb.MsgAppResp, Index: r.raftLog.lastIndex()})
+   } else {
+      r.logger.Infof("%x [commit: %d] ignored snapshot [index: %d, term: %d]",
+         r.id, r.raftLog.committed, sindex, sterm)
+      r.send(pb.Message{To: m.From, Type: pb.MsgAppResp, Index: r.raftLog.committed})
+   }
+}
+```
