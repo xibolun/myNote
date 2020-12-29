@@ -12,10 +12,10 @@ description: etcd watch
 
 `watch`有两种操作，一种是`key`，一种是`range`，即监听一段的`key`，从一个测试用例里面看看，主要包括几个操作
 
-- 初始化一个watchablestore
-- 初始化watchStream
-- 使用watchStream创建一个watch对象，监听一个Key
-- 使用put操作进行测试即可完成整个流程
+- 初始化一个`watchablestore`
+- 初始化`watchStream`
+- 使用`watchStream`创建一个`watch`对象，监听一个`Key`
+- 使用`put`操作进行测试即可完成整个流程
 
 ```go
 func TestWatch(t *testing.T) {
@@ -53,11 +53,11 @@ func TestWatch(t *testing.T) {
 
 #### watcher
 
-使用`watch`命令的时候即为使用此对象来存放所监听的key，并负责对事件最终的发送；里面重要结构如下：
+使用`watch`命令的时候即为使用此对象来存放所监听的`key`，并负责对事件最终的发送；里面重要结构如下：
 
 - `key`：`key`列表
 - `end`：若是监听一段`key`的变化，则会有一个区间形式的操作，[start，end)
-- `victim`：翻译为牺牲者，当有事件可以发送时，client可能存在一定的问题未发送成功（比如说通道满了）是否存在未发送成功的事件，是一个标记
+- `victim`：翻译为牺牲者，当有事件可以发送时，`client`可能存在一定的问题未发送成功（比如说通道满了）是否存在未发送成功的事件，是一个标记
 - `compacted`：对事件进行压缩
 - `fcs`：这是一个函数过滤器列表，过滤出`client`只想监听的`key`
 - `ch`：还有一个`watchResponse`，用于将监听的事件发送出去，形成消息通道
