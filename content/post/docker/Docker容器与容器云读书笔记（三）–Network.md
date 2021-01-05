@@ -2,7 +2,7 @@
 
 date :  "2020-05-29T09:13:38+08:00" 
 title : "Docker容器与容器云读书笔记（三）–Network" 
-categories : ["技术文章"] 
+categories : ["docker"] 
 tags : ["docker"] 
 toc : true
 ---

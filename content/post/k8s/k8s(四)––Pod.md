@@ -1,7 +1,7 @@
 ---
 date :  "2020-02-12T14:27:40+08:00" 
 title : "k8s(四)––Pod" 
-categories : ["技术文章"] 
+categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
 ---

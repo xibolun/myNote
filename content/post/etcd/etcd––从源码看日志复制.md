@@ -2,7 +2,7 @@
 
 date :  "2020-07-04T09:45:47+08:00" 
 title : "etcd––从源码看日志复制" 
-categories : ["技术文章"] 
+categories : ["etcd"] 
 tags : ["etcd"] 
 toc : true
 ---

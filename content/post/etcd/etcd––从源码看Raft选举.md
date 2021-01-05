@@ -2,7 +2,7 @@
 
 date :  "2020-07-03T15:48:17+08:00" 
 title : "etcd––从源码看raft选举" 
-categories : ["技术文章"] 
+categories : ["etcd"] 
 tags : ["etcd"] 
 toc : true
 ---

@@ -1,7 +1,7 @@
 ---
 date :  "2020-02-05T21:43:03+08:00" 
 title : "k8s(二)––基础概念" 
-categories : ["技术文章"] 
+categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
 ---

@@ -2,7 +2,7 @@
 
 date :  "2020-03-09T21:50:12+08:00" 
 title : "k8s––ServiceAccount" 
-categories : ["技术文章"] 
+categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
 ---

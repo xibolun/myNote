@@ -2,7 +2,7 @@
 
 date :  "2020-07-05T14:32:00+08:00" 
 title : "etcd––从源码看Storage" 
-categories : ["技术文章"] 
+categories : ["etcd"] 
 tags : ["etcd"] 
 toc : true
 description: etcd storage types

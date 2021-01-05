@@ -2,7 +2,7 @@
 
 date :  "2020-02-14T13:44:57+08:00" 
 title : "k8s(五)––Storage" 
-categories : ["技术文章"] 
+categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
 ---

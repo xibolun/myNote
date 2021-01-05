@@ -1,7 +1,7 @@
 ---
 date :  "2020-03-05T21:43:03+08:00" 
 title : "k8s--API" 
-categories : ["技术文章"] 
+categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
 ---

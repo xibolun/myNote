@@ -2,7 +2,7 @@
 
 date :  "2020-03-07T20:45:32+08:00" 
 title : "k8s--JMX监控" 
-categories : ["技术文章"] 
+categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
 ---

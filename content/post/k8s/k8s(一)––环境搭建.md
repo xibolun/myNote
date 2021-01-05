@@ -1,9 +1,10 @@
 ---
 date :  "2020-01-28T13:36:27+08:00" 
 title : "k8s(一)––环境搭建" 
-categories : ["技术文章"] 
+categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
+description : k8s 环境搭建
 ---
 
 ## K8S环境搭建

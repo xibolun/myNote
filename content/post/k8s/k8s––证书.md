@@ -2,7 +2,7 @@
 
 date :  "2020-03-11T10:31:51+08:00" 
 title : "k8s––证书修改" 
-categories : ["技术文章"] 
+categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
 ---

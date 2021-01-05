@@ -2,7 +2,7 @@
 
 date :  "2017-06-20T23:36:24+08:00" 
 title : "Docker学习" 
-categories : ["技术文章"] 
+categories : ["docker"] 
 tags : ["docker"] 
 toc : true
 ---

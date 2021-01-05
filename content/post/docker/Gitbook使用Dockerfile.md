@@ -2,7 +2,7 @@
 
 date :  "2020-11-16T14:13:01+08:00" 
 title : "GitBook使用Dockerfile" 
-categories : ["技术文章"] 
+categories : ["docker"] 
 tags : ["docker","gitbook"] 
 toc : true
 ---

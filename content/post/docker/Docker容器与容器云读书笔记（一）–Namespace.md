@@ -2,7 +2,7 @@
 
 date :  "2020-05-26T17:59:21+08:00" 
 title : "Docker容器与容器云读书笔记（一）–Namespace" 
-categories : ["技术文章"] 
+categories : ["docker"] 
 tags : ["docker"] 
 toc : true
 ---

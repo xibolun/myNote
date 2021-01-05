@@ -2,7 +2,7 @@
 
 date :  "2020-06-03T09:37:06+08:00" 
 title : "Docker守护进程" 
-categories : ["技术文章"] 
+categories : ["docker"] 
 tags : ["docker"] 
 toc : true
 ---

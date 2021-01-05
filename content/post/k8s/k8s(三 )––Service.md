@@ -1,7 +1,7 @@
 ---
 date :  "2020-02-06T21:43:03+08:00" 
 title : "k8s(三)––Service" 
-categories : ["技术文章"] 
+categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
 ---

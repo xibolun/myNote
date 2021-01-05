@@ -2,7 +2,7 @@
 
 date :  "2020-07-01T14:17:18+08:00" 
 title : "etcd––入门" 
-categories : ["技术文章"] 
+categories : ["etcd"] 
 tags : ["etcd"] 
 toc : true
 ---
