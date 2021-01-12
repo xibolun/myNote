@@ -30,6 +30,39 @@ blkio  cpu  cpuacct  cpu,cpuacct  cpuset  devices  freezer  hugetlb  memory  net
 - subsystem 子系统：`sys/fs/cgroup`目录下面的子系统
 - hierarchy 层级：由多个`cgroup`组成，与子系统绑定，对资源进行控制
 
+### 原理
+
+Linux当中一切皆文件，进程也是文件，限制也做成了文件；
+
+在`/sys/fs/cgroup/cpu`目录下创建一个目录，看看会发生什么效果？
+
+```
+[root@CloudPower-dev-2-119 cpu]# mkdir /sys/fs/cgroup/cpu/cg1
+[root@CloudPower-dev-2-119 cpu]# ll cg1
+total 0
+-rw-r--r-- 1 root root 0 Nov 26 13:53 cgroup.clone_children
+--w--w--w- 1 root root 0 Nov 26 13:53 cgroup.event_control
+-rw-r--r-- 1 root root 0 Nov 26 13:53 cgroup.procs
+-r--r--r-- 1 root root 0 Nov 26 13:53 cpuacct.stat
+-rw-r--r-- 1 root root 0 Nov 26 13:53 cpuacct.usage
+-r--r--r-- 1 root root 0 Nov 26 13:53 cpuacct.usage_percpu
+-rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.cfs_period_us
+-rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.cfs_quota_us
+-rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.rt_period_us
+-rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.rt_runtime_us
+-rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.shares
+-r--r--r-- 1 root root 0 Nov 26 13:53 cpu.stat
+-rw-r--r-- 1 root root 0 Nov 26 13:53 notify_on_release
+-rw-r--r-- 1 root root 0 Nov 26 13:53 tasks
+```
+
+为什么会多出那么多的文件呢？`cg1`便是一个`cpu`的`cgroup`，这个乃是系统自动生成，为控制`CPU`的使用的；可以理解为`cgroup`是一个对象，这些文件都是它的属性，然后通过外接`cpu 子系统`的调度算法对`cgroup`下的`cpu`进行控制；最重要的两个参数如下：
+
+- cpu.cfs_quota_us：为-1时表示cpu不受cgroup限制
+- cfs_period_us：设置cpu的带宽，设置某个周期内可以使用cpu，用于提升cpu的吞吐量
+
+通俗理解，一个`cpu`子系统下面挂载着许多的`cpu cgroups`，每个`cgroup`对进程进行限制；
+
 ### 实战
 
 #### CPU限制
@@ -54,30 +87,6 @@ int main(void)
 	PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
   7543 root      20   0    4212    352    276 R 100.0  0.0   0:15.79 cpu
 ```
-
-在`/sys/fs/cgroup/cpu`目录下创建一个目录，看看会发生什么效果？
-
-```
-[root@CloudPower-dev-2-119 cpu]# mkdir /sys/fs/cgroup/cpu/cg1
-[root@CloudPower-dev-2-119 cpu]# ll cg1
-total 0
--rw-r--r-- 1 root root 0 Nov 26 13:53 cgroup.clone_children
---w--w--w- 1 root root 0 Nov 26 13:53 cgroup.event_control
--rw-r--r-- 1 root root 0 Nov 26 13:53 cgroup.procs
--r--r--r-- 1 root root 0 Nov 26 13:53 cpuacct.stat
--rw-r--r-- 1 root root 0 Nov 26 13:53 cpuacct.usage
--r--r--r-- 1 root root 0 Nov 26 13:53 cpuacct.usage_percpu
--rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.cfs_period_us
--rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.cfs_quota_us
--rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.rt_period_us
--rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.rt_runtime_us
--rw-r--r-- 1 root root 0 Nov 26 13:53 cpu.shares
--r--r--r-- 1 root root 0 Nov 26 13:53 cpu.stat
--rw-r--r-- 1 root root 0 Nov 26 13:53 notify_on_release
--rw-r--r-- 1 root root 0 Nov 26 13:53 tasks
-```
-
-为什么会多出那么多的文件呢？`cg1`便是一个`cpu`的`cgroup`，这个乃是系统自动生成，为控制`CPU`的使用的；
 
 其中`cpu.cfs_quota_us`即为限制`cpu`的阈值
 
@@ -112,3 +121,32 @@ PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
 [root@docker-ns ~]# echo 7543 > /sys/fs/cgroup/blkio/disk/tasks
 ```
 
+#### Dcoker的实现
+
+而现在`containerd`已经提供了标准的调用方式 [cgroups](https://github.com/containerd/cgroups)，并且`Docker`为了生态也实现了，所以咱直接引包，使用即可；创建一个`Dcoker`容器后，也会在`cgroup`当中创建对应的目录结构，及对进程的限制信息；
+
+> 不同的驱动和版本创建的目录不尽相同：https://docs.docker.com/config/containers/runmetrics/#find-the-cgroup-for-a-given-container
+
+```shell
+# tree /sys/fs/cgroup/cpu/system.slice/docker-30110dfe51d97408e45814afe729cf5aa609a120f300e80795b450830ee81455.scope
+/sys/fs/cgroup/cpu/system.slice/docker-30110dfe51d97408e45814afe729cf5aa609a120f300e80795b450830ee81455.scope
+├── cgroup.clone_children
+├── cgroup.event_control
+├── cgroup.procs
+├── cpuacct.stat
+├── cpuacct.usage
+├── cpuacct.usage_percpu
+├── cpu.cfs_period_us
+├── cpu.cfs_quota_us
+├── cpu.rt_period_us
+├── cpu.rt_runtime_us
+├── cpu.shares
+├── cpu.stat
+├── notify_on_release
+└── tasks
+```
+
+### 参考
+
+- [美团技术blog](https://tech.meituan.com/2015/03/31/cgroups.html)
+- [lwn](https://lwn.net/Articles/606925/)

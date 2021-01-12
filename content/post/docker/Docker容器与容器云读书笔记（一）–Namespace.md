@@ -9,7 +9,17 @@ toc : true
 
 ## Docker容器与容器云读书笔记（一）–Namespace
 
+Linux提供了一系列隔离的API
+
+- `Mount`: 隔离文件系统挂载点，`CLONE_NEWNS`
+- `UTS`: 隔离主机名和域名信息，`CLONE_NEWUTS`
+- `IPC`: 隔离进程间通信，`CLONE_NEWIPC`
+- `PID`: 隔离进程的ID，`CLONE_NEWPID`
+- `Network`: 隔离网络资源，`CLONE_NEWNET`
+- `User`: 隔离用户和用户组的ID，`CLONE_NEWUSER`
+
 ### UTC Namespace
+
 创建`utc.c`文件如下：
 ```c
 #define _GNU_SOURCE
@@ -370,3 +380,4 @@ PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
 64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.061 ms
 64 bytes from 10.0.0.1: icmp_seq=2 ttl=64 time=0.077 ms
 ```
+
