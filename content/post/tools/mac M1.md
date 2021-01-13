@@ -8,6 +8,8 @@ toc : true
 description: mac m1 rosetta
 ---
 
+## M1的艰辛使用之旅
+
 公司给每个同学置换了mac，由于docker已经支持了M1版本，所以我也入手了一台，想体验一把传说中的神器，不想自己掉坑里了；花了两天的时间才把东西弄全；
 
 ### 迁移
@@ -57,6 +59,18 @@ sudo /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 ```
 
 最后我看了一下我的配置文件，发现域名解析出错了，将`apple`相关的域名解析给去掉，得以成功安装`rosetta`
+
+### 必需的软件
+
+- Jetbrains家族： Goland\DataGrip\Pycharm
+- Alfred：注意使用4.2.1 1183版本
+- Postman：所有存储的API请求设置都会进行同步
+- Docker M1版本：[download](https://docs.docker.com/docker-for-mac/apple-m1/)
+- 工具类： [vscode Arm版本](https://code.visualstudio.com/docs/?dv=darwinarm64&build=insiders)、Mindnode、网易邮箱、Reeder、wps、iterm2、emacs
+- 通讯类：钉钉、微信、QQ
+- 笔记类：有道、语雀、Typora、
+- 其他：[Flux](https://justgetflux.com/mac/Flux.zip)一个护眼的工具、百度网盘
+- 命令行工具：git、trash、wrk、go、hugo、tmux、brew、ag、pandoc、swag、swagger、swagger-markdown
 
 ### 目前遇到的问题
 
