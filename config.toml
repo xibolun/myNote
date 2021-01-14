@@ -17,6 +17,11 @@ googleAnalytics = "UA-101106729-1"
 [params]
   busuanzi = true
 
+[sitemap]
+  changefreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
 [menu]
   [[menu.main]]
     identifier = "books"
