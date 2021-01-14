@@ -81,5 +81,4 @@ sudo /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 
 - [Error! If trying to Reinstall macOS Big Sur On Apple Silicon Macs](https://mrmacintosh.com/reinstalling-big-sur-on-apple-silicon-macs-with-11-0-20a2411-error/)
 - [If you get a personalization error when reinstalling macOS on your Mac with Apple M1 chip](https://support.apple.com/en-us/HT211983)
-- 
 
