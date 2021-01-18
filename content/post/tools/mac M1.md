@@ -75,7 +75,15 @@ sudo /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 ### 目前遇到的问题
 
 - Goland闪退
+- Teamviewer无法使用
 - [Virtualbox不支持ARM](https://forums.virtualbox.org/viewtopic.php?f=8&t=98742)
+- [delve无法支持arm，导致goland debug无法运行](https://github.com/go-delve/delve/issues/2246)
+
+```
+rosetta error: failed to allocate vm space for aot
+```
+
+
 
 ### 参考
 
