@@ -37,7 +37,7 @@ go version go1.16beta1 darwin/arm64
 - 下载 [delve](https://github.com/go-delve/delve)源码，`master`分支，编译`make`即可在`$GOPATH/bin`下面得到一个`dlv`的文件
 
 ```shell
-GOOS=darwin GOARCH=amd64  make install
+make install
 ```
 
 - 在goland当中使用最新的`delve`进行`debug`，在`help -> Edit Custom Vm Option`添加如下配置，重启`IDE`
