@@ -330,10 +330,45 @@ k8s-node1    Ready    <none>   2m10s   v1.17.2
 k8s-node2    Ready    <none>   14m     v1.17.2
 ```
 
+### 卸载
+
+- 重置
+
+```shell
+kubeadm reset
+```
+
+- 删除目录
+
+```shell
+rm -rf /etc/cni/
+rm -rf /var/lib/etcd/
+rm -rf /var/lib/kubelet/
+rm -rf /var/lib/dockershim/
+rm -rf /var/lib/cni
+```
+
+- 清空iptables规则
+
+```shell
+ipvsadm --clear
+iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+```
+
+- 删除 `ip link`，只需要保留`lo,eth0,docker0`
+
+```shell
+ip link delete cni0
+ip link delete flannel.1
+ip link delete kube-ipvs0
+```
+
 ### 必看资源
 
 - [reference](https://kubernetes.io/docs/reference/)： 命令行工具参数，像kubectl、kubeadm等，还有一些API列表
 - [api-reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#container-v1-core):用于查找一些配置参数信息
+
+
 
 
 

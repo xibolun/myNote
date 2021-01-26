@@ -1,6 +1,6 @@
 ---
 date :  "2020-12-03T14:21:20+08:00" 
-title : "k8s——强制删除namespace" 
+title : "k8s—强制删除namespace" 
 categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
