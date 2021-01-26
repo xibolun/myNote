@@ -1,7 +1,7 @@
 ---
 
 date :  "2020-03-16T17:50:01+08:00" 
-title : "k8s--informer机制" 
+title : "k8s—informer机制" 
 categories : ["k8s"] 
 tags : ["k8s"] 
 description: k8s informer

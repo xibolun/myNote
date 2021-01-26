@@ -1,7 +1,7 @@
 ---
 
 date :  "2020-03-17T17:58:41+08:00" 
-title : "k8s——Operator开发" 
+title : "k8s—Operator开发" 
 categories : ["k8s"] 
 tags : ["k8s"] 
 toc : true
