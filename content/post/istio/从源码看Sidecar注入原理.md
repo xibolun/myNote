@@ -78,9 +78,9 @@ $ kubectl label namespace default istio-injection=enabled
 kubectl apply -f samples/sleep/sleep.yaml
 ```
 
-这里面发生了什么事情呢？执行完上面的命令后，会进入`istio-piolt`的`/inject`请求当中；在`istiod`容器内部的日志当中可以看到如下的信息
+这里面发生了什么事情呢？执行完上面的命令后，会进入`istio-pilot`的`/inject`请求当中；在`istiod`容器内部的日志当中可以看到如下的信息
 
-![istio-piolt-inject-log](/img/istio/istio-piolt-inject-log.jpg)
+![istio-pilot-inject-log](/img/istio/istio-pilot-inject-log.jpg)
 
 在`istio-sidecar-injector`当中早早添加了配置如下，这个配置告诉了`k8s-apiserver`，会有如下的条件判断
 
@@ -123,7 +123,7 @@ webhooks:
   timeoutSeconds: 30
 ```
 
-在启动容器`istiod`的时候会有一个`pilot-discovery`进程，这个便是`istio-piolt`的主进程
+在启动容器`istiod`的时候会有一个`pilot-discovery`进程，这个便是`istio-pilot`的主进程
 
 ```shell
 $ ps -aux
