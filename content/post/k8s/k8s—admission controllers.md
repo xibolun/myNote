@@ -141,12 +141,8 @@ func applySecurityDefaults(req *v1beta1.AdmissionRequest) ([]patchOperation, err
 - 创建`pod-with-defaults.yaml`，由于其`runAsUser`、`runAsNonRoot`为空，所以会被设置为`1234`和`true`
 
 ```shell
- ✗ kubectl get pod/pod-with-defaults -o yaml
- ...
-   securityContext:
-    runAsNonRoot: true
-    runAsUser: 1234
- ...
+✗ kubectl get pod/pod-with-defaults  -o=jsonpath='{.spec.securityContext}'
+map[runAsNonRoot:true runAsUser:1234]
  
 ✗ kubectl logs pod-with-defaults  busybox
 I am running as user 1234
@@ -155,11 +151,9 @@ I am running as user 1234
 - 创建`pod-with-override.yaml`，配置里面指定了`runAsNonRoot: false`，由于没有设置`runAsUser`，并且没有被`webhook`所处理，所以`user`为0
 
 ```shell
- ✗ kubectl get pod/pod-with-override -o yaml
- ...
-  securityContext:
-    runAsNonRoot: false
- ...
+✗ kubectl get pod/pod-with-override  -o=jsonpath='{.spec.securityContext}'
+map[runAsNonRoot:false]
+
  ✗ kubectl logs pod-with-override busybox
 I am running as user 0
 ```
@@ -167,12 +161,9 @@ I am running as user 0
 - 创建`pod-with-conflict.yaml`，将`runAsNonRoot`设置为`true`，且`runAsUser`设置为`1234`，打印出当前的`user`
 
 ```shell
- kubectl get pod/pod-with-conflict  -o yaml
- ...
- 	securityContext:
-    runAsNonRoot: true
-    runAsUser: 1234
- ...
+✗ kubectl get pod/pod-with-conflict  -o=jsonpath='{.spec.securityContext}'
+map[runAsNonRoot:true runAsUser:1234
+
 ✗ kubectl logs pod-with-conflict   busybox
 I am running as user 1234
 ```
@@ -190,6 +181,7 @@ spec:
   restartPolicy: OnFailure
   securityContext:
     runAsNonRoot: true
+    ## 指定runAsUser为0
     runAsUser: 0
   containers:
     - name: busybox
