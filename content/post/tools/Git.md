@@ -206,3 +206,12 @@ Bs 服务器密钥
 5. 客户端将 n(q+x) 发送给服务器
 6. 服务器比较 m(q+x) 和 n(q+x)，两者相同则认证成功
 ```
+
+### git常用统计
+
+[统计代码行数](https://gist.github.com/mandiwise/dc53cb9da00856d7cdbb)
+
+```
+ git ls-files | grep "\(.go\|.yaml\)$" | grep -v vendor | xargs wc -l
+```
+
