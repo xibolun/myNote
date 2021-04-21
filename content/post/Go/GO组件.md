@@ -1,7 +1,7 @@
 ---
 date :  "2018-07-19T20:39:43+08:00" 
 title : "go规范及组件" 
-categories : ["技术文章"] 
+categories : ["技术文章","go"] 
 tags : ["go"] 
 toc : true
 ---

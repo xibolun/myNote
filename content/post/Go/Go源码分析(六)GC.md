@@ -1,7 +1,7 @@
 ---
 date :  "2019-10-01T22:52:32+08:00" 
 title : "Go源码分析(六)GC" 
-categories : ["技术文章"] 
+categories : ["技术文章","go"] 
 tags : ["go"] 
 toc : true
 ---

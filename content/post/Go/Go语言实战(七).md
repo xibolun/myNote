@@ -1,7 +1,7 @@
 ---
 date :  "2019-05-23T11:41:46+08:00" 
 title : "Go语言实战(七)并发模式" 
-categories : ["技术文章"] 
+categories : ["技术文章","go"] 
 tags : ["go"] 
 toc : true
 ---

@@ -2,7 +2,7 @@
 
 date :  "2018-12-07T22:20:49+08:00" 
 title : "GO stack" 
-categories : ["技术文章"] 
+categories : ["技术文章","go"] 
 tags : ["go"] 
 toc : true
 

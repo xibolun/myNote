@@ -2,7 +2,7 @@
 
 date :  "2019-03-18T17:26:28+08:00" 
 title : "Go—RPC" 
-categories : ["技术文章"] 
+categories : ["技术文章","go"] 
 tags : ["go"] 
 toc : true
 

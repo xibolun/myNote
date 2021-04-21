@@ -1,0 +1,3 @@
+[submodule "themes/mogege"]
+	path = themes/mogege
+	url = https://github.com/Mogeko/mogege

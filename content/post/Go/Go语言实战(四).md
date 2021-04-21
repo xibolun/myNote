@@ -1,7 +1,7 @@
 ---
 date :  "2019-05-11T22:35:59+08:00" 
 title : "Go语言实战(四)数组、切片、映射" 
-categories : ["技术文章"] 
+categories : ["技术文章","go"] 
 tags : ["go"] 
 toc : true
 ---

@@ -2,7 +2,7 @@
 
 date :  "2018-10-20T22:12:01+08:00" 
 title : "Go--time" 
-categories : ["技术文章"] 
+categories : ["技术文章","go"] 
 tags : ["go"] 
 toc : true
 ---

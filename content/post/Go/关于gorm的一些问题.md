@@ -1,7 +1,7 @@
 ---
 date :  "2019-08-13T15:04:36+08:00" 
 title : "关于gorm的问题" 
-categories : ["技术文章"] 
+categories : ["技术文章","go"] 
 tags : ["Go"] 
 toc : true
 ---

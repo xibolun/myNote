@@ -2,7 +2,7 @@
 
 date :  "2018-12-10T09:58:34+08:00" 
 title : "GO—reflect" 
-categories : ["技术文章"] 
+categories : ["技术文章","go"] 
 tags : ["go"] 
 toc : true
 
