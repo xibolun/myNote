@@ -59,7 +59,7 @@ preserveTaxonomyNames = true
     avatar = "/img/person/face.png"           # Author's avatar
     subtitle = "Just for Fun"                  # Subtitle
     home_mode = "" # post or other
-    enableGitalk = true # gitalk 评论系统
+    enableUtterances = true  # Utterances 评论系统
 
     google_verification = ""
 
@@ -74,7 +74,7 @@ preserveTaxonomyNames = true
 [params.gitalk] # Github: https://github.com/gitalk/gitalk
     clientID = "621dd77636c317069337" # Your client ID
     clientSecret = "c6a258cc1f4300f2da872961334eeef4b63f8d18" # Your client secret
-    repo = "blog-commits" # The repo to store comments
+    repo = "xibolun/xibolun.github.io" # The repo to store comments
     owner = "xibolun" # Your GitHub ID
     admin= "xibolun" # Required. Github repository owner and collaborators. (Users who having write access to this repository)
     id= "location.pathname" # The unique id of the page.
