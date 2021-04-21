@@ -72,7 +72,7 @@ preserveTaxonomyNames = true
     # license= '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
 
 [params.utteranc] # Homepage: https://utteranc.es
-    repo = "xibolun/blog-comment" # The repo to store comments
-    issueTerm = "title" # the mapping between blog posts and GitHub issues. 
+    repo = "xibolun/xibolun.github.io" # The repo to store comments
+    issueTerm = "pathname" # the mapping between blog posts and GitHub issues. 
     theme = "github-light" # Theme
     crossorigin = "anonymous" # default: anonymous
