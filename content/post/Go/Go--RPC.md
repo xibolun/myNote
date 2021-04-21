@@ -2,8 +2,8 @@
 
 date :  "2019-03-18T17:26:28+08:00" 
 title : "Go—RPC" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 
 ---

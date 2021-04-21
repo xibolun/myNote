@@ -1,8 +1,8 @@
 ---
 date :  "2019-05-20T09:03:50+08:00" 
 title : "Go语言实战(六)并发" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : false
 ---
 

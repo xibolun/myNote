@@ -1,8 +1,8 @@
 ---
 date :  "2019-09-02T20:19:12+08:00" 
 title : "Go源码分析(一)环境搭建" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 ---
 

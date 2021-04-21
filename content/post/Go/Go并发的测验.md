@@ -1,8 +1,8 @@
 ---
 date :  "2019-08-28T09:53:42+08:00" 
 title : "关于Go并发的测验" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 ---
 

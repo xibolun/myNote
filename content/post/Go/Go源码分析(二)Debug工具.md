@@ -1,8 +1,8 @@
 ---
 date :  "2019-09-06T07:59:20+08:00" 
 title : "Go源码分析(二)Debug工具" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 ---
 

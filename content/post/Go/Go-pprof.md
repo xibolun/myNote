@@ -1,8 +1,8 @@
 ---
 date :  "2019-08-29T19:08:49+08:00" 
 title : "Go pprof" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 ---
 

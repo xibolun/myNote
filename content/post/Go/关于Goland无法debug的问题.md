@@ -2,8 +2,8 @@
 
 date :  "2021-01-18T14:50:13+08:00" 
 title : "M1 Goland无法debug" 
-categories : ["go"] 
-tags : ["go","tool"] 
+categories : ["golang"] 
+tags : ["golang","tool"] 
 toc : true
 description: goland debug 
 ---

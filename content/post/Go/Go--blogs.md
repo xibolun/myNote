@@ -1,8 +1,8 @@
 ---
 date :  "2020-01-15T22:54:35+08:00" 
 title : "go的一些博客学习资源列表" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 ---
 

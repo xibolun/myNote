@@ -1,8 +1,8 @@
 ---
 date :  "2019-05-05T07:39:43+08:00" 
 title : "Go语言实战(一/二)基础" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 ---
 

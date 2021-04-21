@@ -1,8 +1,8 @@
 ---
 date :  "2019-05-14T11:09:22+08:00" 
 title : "Go语言实战(五)Go语言的类型系统" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 ---
 

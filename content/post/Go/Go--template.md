@@ -1,8 +1,8 @@
 ---
 date :  "2019-07-30T00:21:32+08:00" 
 title : "Go template" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 ---
 

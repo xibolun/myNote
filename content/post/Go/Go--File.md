@@ -2,8 +2,8 @@
 
 date :  "2018-12-07T22:20:32+08:00" 
 title : "Go File学习" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 
 ---

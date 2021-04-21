@@ -1,8 +1,8 @@
 ---
 date :  "2019-09-10T22:52:32+08:00" 
 title : "Go源码分析(四)调度器" 
-categories : ["技术文章","go"] 
-tags : ["go"] 
+categories : ["技术文章","golang"] 
+tags : ["golang"] 
 toc : true
 ---
 
