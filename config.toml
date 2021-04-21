@@ -73,6 +73,6 @@ preserveTaxonomyNames = true
 
 [params.utteranc] # Homepage: https://utteranc.es
     repo = "xibolun/xibolun.github.io" # The repo to store comments
-    issueTerm = "pathname" # the mapping between blog posts and GitHub issues. 
+    issueTerm = "title" # the mapping between blog posts and GitHub issues. 
     theme = "github-light" # Theme
     crossorigin = "anonymous" # default: anonymous
