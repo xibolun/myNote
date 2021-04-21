@@ -19,7 +19,7 @@ canonifyURLs = true
   Name = "pengganyu"
 
 [params]
-  busuanzi = true
+  busuanzi = false
 
 
 [menu]
