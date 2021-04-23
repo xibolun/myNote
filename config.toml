@@ -54,10 +54,10 @@ preserveTaxonomyNames = true
     weight = 50
 
 [params]
-    since = 2017
+    since = 2016
     author = "pengganyu"                          # Author's name
     avatar = "/img/person/face.png"           # Author's avatar
-    subtitle = "Just for Fun"                  # Subtitle
+    subtitle = "Walk With God"                  # Subtitle
     home_mode = "" # post or other
     enableUtterances = true  # Utterances 评论系统
 
@@ -65,11 +65,9 @@ preserveTaxonomyNames = true
 
     description = "Peng ganyu的个人博客" # (Meta) 描述
 
-    beian = ""
     googleAnalytics = "UA-101106729-1" # Google 统计 id
 
     busuanzi = true # 不蒜子计数
-    # license= '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
 
 [params.utteranc] # Homepage: https://utteranc.es
     repo = "xibolun/xibolun.github.io" # The repo to store comments

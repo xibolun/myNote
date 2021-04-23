@@ -68,6 +68,13 @@ go build -ldflags "-X 'idcos.io/wgen/cmd.GitBranch=`git branch | grep \* | cut -
 -X 'idcos.io/wgen/cmd.GoVersion=`go version`'"
 ```
 
+> -X importpath.name=value
+	Set the value of the string variable in importpath named name to value.
+	This is only effective if the variable is declared in the source code either uninitialized
+	or initialized to a constant string expression. -X will not work if the initializer makes
+	a function call or refers to other variables.
+	Note that before Go 1.5 this option took two separate arguments.
+
 #### go get
 
 下载指定版本的仓库

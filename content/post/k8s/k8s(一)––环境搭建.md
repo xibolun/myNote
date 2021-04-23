@@ -363,6 +363,14 @@ ip link delete flannel.1
 ip link delete kube-ipvs0
 ```
 
+### WebUI
+
+```shell
+kubectl proxy --address='0.0.0.0' --port=8001 --accept-hosts='.*'
+```
+
+[Token生成及登陆](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md)
+
 ### 必看资源
 
 - [reference](https://kubernetes.io/docs/reference/)： 命令行工具参数，像kubectl、kubeadm等，还有一些API列表
