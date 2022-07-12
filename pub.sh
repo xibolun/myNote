@@ -19,7 +19,7 @@ hugo
 echo "---------------- cd   public---------------"
 cd public
 echo "---------------- copy GSC---- -------------"
-cp ../google-search-console.html  .
+cp ../google10e2609aef42e94a.html  .
 
 echo "---------------- commit public-------------"
 git add .
