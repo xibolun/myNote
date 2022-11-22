@@ -217,7 +217,14 @@ LoopBreak:
 }
 ```
 
+### 关于管道操作
 
+管道操作不要使用CombinedOutput，会将stderr重定向至stdout当中；看如下几个测试用例
+
+- [执行一个不存在的文件](https://github.com/xibolun/GOTest/blob/master/basic/exec_test.go#L240)，output不为空，而是stderr的值
+- [加一下管道操作会怎么样呢？](https://github.com/xibolun/GOTest/blob/master/basic/exec_test.go#L259)  stdout为空了，而error有了数值，因为fork去执行了
+- [把stderr放出来 呢?](https://github.com/xibolun/GOTest/blob/master/basic/exec_test.go#L267)，可以看到这个时候stdout\stderr都为nil，因为fork去执行报错了
+- [使用bash执行呢？](https://github.com/xibolun/GOTest/blob/master/basic/exec_test.go#L280)，可以看到这个时候的执行才符合stdout\stderr
 
 ### 参考
 
