@@ -49,8 +49,8 @@ preserveTaxonomyNames = true
 
   [[menu.main]]
     name = "SRE周刊"
-    url = "/tags/SRE Weekly"
-    weight = 42
+    url = "/tags/sre-weekly/"
+    weight = 46
 
 
   [[menu.main]]

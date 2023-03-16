@@ -1,8 +1,8 @@
 ---
 date :  "2023-03-16 11:21:07+08:00"
 title : "SRE Weekly-2023M03W02" 
-categories : ["SRE Weekly"] 
-tags : ["SRE Weekly"] 
+categories : ["sre-weekly"] 
+tags : ["sre-weekly"] 
 toc : true
 ---
 
