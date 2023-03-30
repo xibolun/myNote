@@ -193,8 +193,9 @@ FLUSH PRIVILEGES;
 mysql> use mysql;
 
 -- 修改密码
-## 5.7以后 passowrd字段改为authentication_string
 mysql> update user set password=PASSWORD("yunjikeji") where User = 'root';
+## 5.7以后 passowrd字段改为authentication_string
+mysql> UPDATE mysql.user SET authentication_string=PASSWORD('P@ssw0rd') WHERE user='root' AND host='localhost';
 
 
 -- flush 生效
