@@ -26,6 +26,6 @@ git add .
 git commit -am  "commit blog: $1"
 
 echo "---------------- push public---------------"
-git push -f
+git push -f origin main
 
 echo "---------------- end  --------------------"
