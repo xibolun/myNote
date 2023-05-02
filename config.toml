@@ -64,7 +64,7 @@ preserveTaxonomyNames = true
     avatar = "/img/person/face.png"           # Author's avatar
     subtitle = "Walk With God"                  # Subtitle
     home_mode = "" # post or other
-    enableUtterances = true  # Utterances 评论系统
+    enableUtteranc = true  # Utterances 评论系统
 
     google_verification = ""
 
